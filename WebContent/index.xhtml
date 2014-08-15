@@ -11,9 +11,11 @@
 
 <h:body>
 	<h1>hello</h1>
-	
-	<h:outputLabel value="#{controllerOfTesting.personDOB}" />
-	
+
+	<ui:remove>
+		<h:outputLabel value="#{controllerOfTesting.personDOB}" />
+	</ui:remove>
+
 	<h:form>
 		<h:commandButton value="test" action="#{controllerOfTesting.test()}" />
 	</h:form>

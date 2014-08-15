@@ -24,7 +24,9 @@ public class Entry implements Serializable, Describable {
 	@GeneratedValue
 	private Long id;
 
+	@OneToOne
 	private History history;
+	
 	private List<Event> historyOfEvents;
 
 	@OneToMany(mappedBy = "something")
@@ -45,6 +47,30 @@ public class Entry implements Serializable, Describable {
 			allRelations.addAll(relationsWith);
 		}
 		return allRelations;
+	}
+
+
+
+	public History getHistory() {
+		return history;
+	}
+
+
+
+	public void setHistory(History history) {
+		this.history = history;
+	}
+
+
+
+	public List<Event> getHistoryOfEvents() {
+		return historyOfEvents;
+	}
+
+
+
+	public void setHistoryOfEvents(List<Event> historyOfEvents) {
+		this.historyOfEvents = historyOfEvents;
 	}
 
 

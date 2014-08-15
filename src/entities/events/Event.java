@@ -6,6 +6,8 @@ import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import entities.Describable;
 
@@ -19,6 +21,7 @@ public class Event implements Serializable, Describable {
 	@GeneratedValue
 	private Long id;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateAndTime;
 
 

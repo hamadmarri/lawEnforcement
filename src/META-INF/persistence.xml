@@ -5,12 +5,10 @@
 	
 	<persistence-unit name="lawEnforcementPersistenceUnit"
 		transaction-type="JTA">
-		<provider>com.objectdb.jpa.Provider</provider>
+		<jta-data-source>jdbc/lawEnforcement</jta-data-source>
 		<properties>
-			<property name="javax.persistence.jdbc.url"
-				value="objectdb://localhost/lawEnforcement.odb;user=admin;password=admin" />
-			<property name="javax.persistence.jdbc.user" value="admin" />
-			<property name="javax.persistence.jdbc.password" value="admin" />
+			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 		</properties>
 	</persistence-unit>
 </persistence>
