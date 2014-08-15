@@ -15,7 +15,7 @@ import entities.entries.Entry;
 @Entity
 public class History implements Serializable {
 
-	private static final long serialVersionUID = 2563374344096049059L;
+	private static final long serialVersionUID = 1899017063886895301L;
 
 	@Id
 	@GeneratedValue
@@ -31,6 +31,18 @@ public class History implements Serializable {
 
 	public History() {
 
+	}
+
+
+
+	public Entry getEntry() {
+		return entry;
+	}
+
+
+
+	public void setEntry(Entry entry) {
+		this.entry = entry;
 	}
 
 

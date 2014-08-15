@@ -24,7 +24,7 @@ public class EJB_of_test {
 
 
 	public Person getPerson() {
-		return em.find(Person.class, 17);
+		return em.find(Person.class, 1);
 	}
 
 
@@ -68,19 +68,23 @@ public class EJB_of_test {
 	public void test() {
 		createpersons();
 
-		// Entry e = new Entry();
-		// History h = new History();
-		// List<Action> actions = new ArrayList<Action>();
-		//
-		// actions.add(new Action(new Location(), new Location()));
-		// actions.add(new Action(new Location(), new Location()));
-		// actions.add(new Action(new Location(), new Location()));
-		//
+		Entry e = new Entry();
+		History h = new History();
+		List<Action> actions = new ArrayList<Action>();
+
+		e.setHistory(h);
+
+		actions.add(new Action("dfg", "Dfgd", h));
+		actions.add(new Action("dfg", "Dfgd", h));
+		actions.add(new Action("dfg", "Dfgd", h));
+
 		// h.setActions(actions);
-		//
-		// e.setHistory(h);
-		//
-		// em.persist(e);
+
+		em.persist(e);
+
+		for (Action action : actions)
+			em.persist(action);
+
 	}
 
 }

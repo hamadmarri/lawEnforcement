@@ -7,14 +7,14 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
+	<f:metadata>
+		<f:event listener="#{controllerOfTesting.test()}" type="preRenderView" />
+	</f:metadata>
 </h:head>
 
 <h:body>
 	<h1>hello</h1>
 
-	<ui:remove>
-		<h:outputLabel value="#{controllerOfTesting.personDOB}" />
-	</ui:remove>
 
 	<h:form>
 		<h:commandButton value="test" action="#{controllerOfTesting.test()}" />

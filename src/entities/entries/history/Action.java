@@ -3,6 +3,7 @@ package entities.entries.history;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,13 +21,14 @@ public class Action implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private History history;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateAndTime;
 	private String oldData;
 	private String newData;
+
 
 
 	public Action() {
@@ -36,20 +38,34 @@ public class Action implements Serializable {
 
 
 
-	public Action(String oldDate, String newDate) {
+	public Action(String oldDate, String newDate, History history) {
 		super();
 		this.dateAndTime = Calendar.getInstance();
 		this.oldData = oldDate;
 		this.newData = newDate;
+		this.history = history;
 	}
 
 
 
-	public Action(Calendar dateAndTime, String oldDate, String newDate) {
+	public Action(Calendar dateAndTime, String oldDate, String newDate, History history) {
 		super();
 		this.dateAndTime = dateAndTime;
 		this.oldData = oldDate;
 		this.newData = newDate;
+		this.history = history;
+	}
+
+
+
+	public History getHistory() {
+		return history;
+	}
+
+
+
+	public void setHistory(History history) {
+		this.history = history;
 	}
 
 

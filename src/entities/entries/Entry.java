@@ -24,7 +24,7 @@ public class Entry implements Serializable, Describable {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private History history;
 	
 	private List<Event> historyOfEvents;
