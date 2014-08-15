@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 @Embeddable
 public class Race {
 
-	@Transient
+//	@Transient
 	private static String[] raceSuggestions = { "Canadian", "English", "French", "Scottish", "Irish", "German",
 			"Italian", "Chinese", "North American Indian", "Ukrainian", "Dutch", "Polish", "East Indian", "Russian",
 			"Welsh", "Filipino", "Norwegian", "Portuguese", "Métis", "British Isles", "not included elsewhere",

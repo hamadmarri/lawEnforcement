@@ -27,6 +27,22 @@ public class Image extends Entry {
 
 
 
+	public Image() {
+		super();
+	}
+
+
+
+	public Image(String caption, String link, Person personOfMugShots, Person personOfFingerprints) {
+		super();
+		this.caption = caption;
+		this.link = link;
+		this.personOfMugShots = personOfMugShots;
+		this.personOfFingerprints = personOfFingerprints;
+	}
+
+
+
 	public String getCaption() {
 		return caption;
 	}
@@ -92,6 +108,13 @@ public class Image extends Entry {
 			this.personsOfPhotos = new ArrayList<Person>();
 
 		this.personsOfPhotos.add(person);
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.caption;
 	}
 
 }

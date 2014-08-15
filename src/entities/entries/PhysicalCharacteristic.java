@@ -7,18 +7,18 @@ import javax.persistence.Transient;
 @Embeddable
 public class PhysicalCharacteristic {
 
-	@Transient
+//	@Transient
 	private static String[] buildCharacteristicsSuggestions = { "Plump", "Stocky", "Overweight", "Fat", "Slim", "Trim",
 			"Skinny", "Buff", "Well built" };
 
-	@Transient
+//	@Transient
 	private static String[] heightCharacteristicsSuggestions = { "Short", "Tall", "Petite", "Average height" };
 
-	@Transient
+//	@Transient
 	private static String[] complexionCharacteristicsSuggestions = { "Dark", "Light", "Fair", "Olive", "Pale", "Tan",
 			"Pimply", "Freckles", "Spots", "Pimples" };
 
-	@Transient
+//	@Transient
 	private static String[] hairCharacteristicsSuggestions = { "Blond", "Fair", "Red", "Brown", "Black", "Grey",
 			"White", "Long", "Short", "Curly", "Frizzy", "Straight", "Bald", "Receding" };
 
@@ -26,6 +26,22 @@ public class PhysicalCharacteristic {
 	private String heightCharacteristics;
 	private String complexionCharacteristics;
 	private String hairCharacteristics;
+
+
+
+	public PhysicalCharacteristic() {
+
+	}
+
+
+
+	public PhysicalCharacteristic(String buildCharacteristics, String heightCharacteristics,
+			String complexionCharacteristics, String hairCharacteristics) {
+		this.buildCharacteristics = buildCharacteristics;
+		this.heightCharacteristics = heightCharacteristics;
+		this.complexionCharacteristics = complexionCharacteristics;
+		this.hairCharacteristics = hairCharacteristics;
+	}
 
 
 
