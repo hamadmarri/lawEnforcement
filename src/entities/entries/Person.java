@@ -8,7 +8,12 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import entities.entries.images.FingerprintImage;
+import entities.entries.images.MugShotImage;
+import entities.entries.images.PhotographicImage;
 
 
 /**
@@ -30,7 +35,10 @@ public class Person extends Entry {
 	private static final long serialVersionUID = -8786554206930842361L;
 
 	private String name;
+
+	@Temporal(TemporalType.DATE)
 	private Calendar dateOfBirth;
+
 	private String birthPlace;
 	private String Gender;
 	private String citizenship;
@@ -46,20 +54,15 @@ public class Person extends Entry {
 	@Embedded
 	private Race race;
 
-	@OneToMany(mappedBy = "personOfMugShots")
-	private List<Image> mugShots;
+	@OneToMany(mappedBy = "person")
+	private List<MugShotImage> mugShots;
 
-	@OneToMany(mappedBy = "personOfFingerprints")
-	private List<Image> fingerprintsImages;
+	@OneToMany(mappedBy = "person")
+	private List<FingerprintImage> fingerprintsImages;
 
-	@ManyToMany(mappedBy = "personsOfPhotos")
-	private List<Image> photographs;
+	@ManyToMany(mappedBy = "persons")
+	private List<PhotographicImage> photographs;
 
-	@Transient
-	private String[] fortest = { "AA", "TT", "##50", "##", "PI", "PM", "PO", "CI", "CM", "CO", "dI", "dM", "dO", "XI",
-			"XM", "XO", "XX", "SR" };
-
-	// @Transient
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
 
@@ -229,37 +232,37 @@ public class Person extends Entry {
 
 
 
-	public List<Image> getMugShots() {
+	public List<MugShotImage> getMugShots() {
 		return mugShots;
 	}
 
 
 
-	public void setMugShots(List<Image> mugShots) {
+	public void setMugShots(List<MugShotImage> mugShots) {
 		this.mugShots = mugShots;
 	}
 
 
 
-	public List<Image> getFingerprintsImages() {
+	public List<FingerprintImage> getFingerprintsImages() {
 		return fingerprintsImages;
 	}
 
 
 
-	public void setFingerprintsImages(List<Image> fingerprintsImages) {
+	public void setFingerprintsImages(List<FingerprintImage> fingerprintsImages) {
 		this.fingerprintsImages = fingerprintsImages;
 	}
 
 
 
-	public List<Image> getPhotographs() {
+	public List<PhotographicImage> getPhotographs() {
 		return photographs;
 	}
 
 
 
-	public void setPhotographs(List<Image> photographs) {
+	public void setPhotographs(List<PhotographicImage> photographs) {
 		this.photographs = photographs;
 	}
 

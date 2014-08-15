@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -16,8 +17,27 @@ public class Relation implements Serializable {
 	@GeneratedValue
 	private Long id;
 
+	@ManyToOne
 	private Entry something;
+
 	private String typeOfRelation;
+
+	@ManyToOne
 	private Entry somethingElse;
+
+
+
+	public Relation() {
+		super();
+	}
+
+
+
+	public Relation(Entry something, String typeOfRelation, Entry somethingElse) {
+		super();
+		this.something = something;
+		this.typeOfRelation = typeOfRelation;
+		this.somethingElse = somethingElse;
+	}
 
 }

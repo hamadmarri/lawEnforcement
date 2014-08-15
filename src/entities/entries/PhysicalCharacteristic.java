@@ -1,24 +1,19 @@
 package entities.entries;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Transient;
 
 
 @Embeddable
 public class PhysicalCharacteristic {
 
-//	@Transient
 	private static String[] buildCharacteristicsSuggestions = { "Plump", "Stocky", "Overweight", "Fat", "Slim", "Trim",
 			"Skinny", "Buff", "Well built" };
 
-//	@Transient
 	private static String[] heightCharacteristicsSuggestions = { "Short", "Tall", "Petite", "Average height" };
 
-//	@Transient
 	private static String[] complexionCharacteristicsSuggestions = { "Dark", "Light", "Fair", "Olive", "Pale", "Tan",
 			"Pimply", "Freckles", "Spots", "Pimples" };
 
-//	@Transient
 	private static String[] hairCharacteristicsSuggestions = { "Blond", "Fair", "Red", "Brown", "Black", "Grey",
 			"White", "Long", "Short", "Curly", "Frizzy", "Straight", "Bald", "Receding" };
 

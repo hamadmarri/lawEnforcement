@@ -1,6 +1,7 @@
 package entities.entries;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -25,7 +26,26 @@ public class Entry implements Serializable, Describable {
 
 	private History history;
 	private List<Event> historyOfEvents;
-	private List<Relation> relations;
+
+	@OneToMany(mappedBy = "something")
+	private List<Relation> relationsTo;
+
+	@OneToMany(mappedBy = "somethingElse")
+	private List<Relation> relationsWith;
+
+	@Transient
+	private List<Relation> allRelations;
+
+
+
+	public List<Relation> getRelations() {
+		if (this.allRelations == null) {
+			allRelations = new ArrayList<Relation>();
+			allRelations.addAll(relationsTo);
+			allRelations.addAll(relationsWith);
+		}
+		return allRelations;
+	}
 
 
 

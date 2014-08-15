@@ -1,13 +1,11 @@
 package entities.entries;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Transient;
 
 
 @Embeddable
 public class Race {
 
-//	@Transient
 	private static String[] raceSuggestions = { "Canadian", "English", "French", "Scottish", "Irish", "German",
 			"Italian", "Chinese", "North American Indian", "Ukrainian", "Dutch", "Polish", "East Indian", "Russian",
 			"Welsh", "Filipino", "Norwegian", "Portuguese", "Métis", "British Isles", "not included elsewhere",
@@ -39,6 +37,18 @@ public class Race {
 			"Cornish", "Manx" };
 
 	private String race;
+
+
+
+	public Race() {
+
+	}
+
+
+
+	public Race(String race) {
+		this.race = race;
+	}
 
 
 
