@@ -25,8 +25,10 @@ public class EJB_of_test {
 
 
 
-	public Relation getView() {
-		return em.find(Relation.class, 15L);
+	public List<Entry> getView() {
+		@SuppressWarnings("unchecked")
+		List<Entry> r = (List<Entry>) em.createNamedQuery("Address.findAll").getResultList(); 
+		return r;
 	}
 
 
@@ -41,17 +43,21 @@ public class EJB_of_test {
 
 		Officer of1 = new Officer(new PersonName("Jims", "Richard"), "Male");
 		Officer of2 = new Officer(new PersonName("Lorinda", "dfjkhld"), "Female");
-
+		Person p = em.find(Person.class, 1L);
 		IncidentReport ir = new IncidentReport();
 		Conveyance c = em.find(Conveyance.class, 13L);
+		Relation r1 = new Relation(c, "the car hit the cat", ir);
+		Relation r2 = new Relation(p, "the person who reported", ir);
 
-		ir.setDescription("hit a cat");
-		ir.addEntryAssociatedWith(c);
+		ir.setDescription("hitting a cat");
+//		 ir.addEntryAssociatedWith(c);
 		of1.addEventResponsibleFor(ir);
 		of2.addEventResponsibleFor(ir);
 
 		em.persist(of1);
 		em.persist(of2);
+		em.persist(r1);
+		em.persist(r2);
 	}
 
 

@@ -2,10 +2,13 @@ package entities.entries;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import entities.Relatable;
 
 
 @Entity
@@ -17,13 +20,13 @@ public class Relation implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne
-	private Entry something;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Relatable something;
 
 	private String typeOfRelation;
 
-	@ManyToOne
-	private Entry somethingElse;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Relatable somethingElse;
 
 
 
@@ -33,7 +36,7 @@ public class Relation implements Serializable {
 
 
 
-	public Relation(Entry something, String typeOfRelation, Entry somethingElse) {
+	public Relation(Relatable something, String typeOfRelation, Relatable somethingElse) {
 		super();
 		this.something = something;
 		this.typeOfRelation = typeOfRelation;
@@ -54,13 +57,13 @@ public class Relation implements Serializable {
 
 
 
-	public Entry getSomething() {
+	public Relatable getSomething() {
 		return something;
 	}
 
 
 
-	public void setSomething(Entry something) {
+	public void setSomething(Relatable something) {
 		this.something = something;
 	}
 
@@ -78,13 +81,13 @@ public class Relation implements Serializable {
 
 
 
-	public Entry getSomethingElse() {
+	public Relatable getSomethingElse() {
 		return somethingElse;
 	}
 
 
 
-	public void setSomethingElse(Entry somethingElse) {
+	public void setSomethingElse(Relatable somethingElse) {
 		this.somethingElse = somethingElse;
 	}
 

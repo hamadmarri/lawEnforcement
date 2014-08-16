@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
- 
+
 <h:head>
 	<f:metadata>
 		<f:event listener="#{controllerOfTesting.test()}" type="preRenderView" />
@@ -15,7 +15,9 @@
 <h:body>
 	<h1>hello</h1>
 
-	<h:outputLabel value="#{controllerOfTesting.view}" />
+<!-- 	<h:dataTable value="#{controllerOfTesting.view}" var="v">
+		<h:column>#{v.id}</h:column>
+	</h:dataTable> -->
 
 	<h:form>
 		<h:commandButton value="test" action="#{controllerOfTesting.test()}" />

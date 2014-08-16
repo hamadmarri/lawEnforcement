@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import entities.Describable;
+import entities.Relatable;
 import entities.entries.history.History;
 import entities.events.Event;
 
@@ -17,30 +18,15 @@ import entities.events.Event;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Entry implements Serializable, Describable {
+@NamedQueries({ @NamedQuery(name = "Entry.findAll", query = "SELECT e FROM Entry e") })
+public class Entry extends Relatable implements Serializable, Describable {
 
 	private static final long serialVersionUID = 2034421404091295704L;
-
-	@Id
-	@GeneratedValue
-	private Long id;
 
 	private String name;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private History history;
-
-	@ManyToMany(mappedBy = "entriesAssociatedWith")
-	private List<Event> eventsAssociatedWith;
-
-	@OneToMany(mappedBy = "something")
-	private List<Relation> relationsTo;
-
-	@OneToMany(mappedBy = "somethingElse")
-	private List<Relation> relationsWith;
-
-	@Transient
-	private List<Relation> allRelations;
 
 
 
@@ -62,17 +48,6 @@ public class Entry implements Serializable, Describable {
 
 
 
-	public List<Relation> getRelations() {
-		if (this.allRelations == null) {
-			allRelations = new ArrayList<Relation>();
-			allRelations.addAll(relationsTo);
-			allRelations.addAll(relationsWith);
-		}
-		return allRelations;
-	}
-
-
-
 	public History getHistory() {
 		return history;
 	}
@@ -81,18 +56,6 @@ public class Entry implements Serializable, Describable {
 
 	public void setHistory(History history) {
 		this.history = history;
-	}
-
-
-
-	public List<Event> getEventsAssociatedWith() {
-		return eventsAssociatedWith;
-	}
-
-
-
-	public void setEventsAssociatedWith(List<Event> eventsAssociatedWith) {
-		this.eventsAssociatedWith = eventsAssociatedWith;
 	}
 
 

@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +23,7 @@ import entities.entries.images.PhotographicImage;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Person.findAll", query = "select p from Person p") })
 public class Person extends Entry {
 
 	/*

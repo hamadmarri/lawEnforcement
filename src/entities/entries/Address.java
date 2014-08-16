@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -11,6 +13,7 @@ import javax.persistence.ManyToMany;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Address.findAll", query = "select a from Address a") })
 public class Address extends Entry {
 
 	private static final long serialVersionUID = 4813533643600059461L;
