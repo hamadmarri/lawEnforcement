@@ -30,7 +30,8 @@ public class Entry implements Serializable, Describable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private History history;
 
-	private List<Event> historyOfEvents;
+	@ManyToMany(mappedBy = "entriesAssociatedWith")
+	private List<Event> eventsAssociatedWith;
 
 	@OneToMany(mappedBy = "something")
 	private List<Relation> relationsTo;
@@ -84,14 +85,14 @@ public class Entry implements Serializable, Describable {
 
 
 
-	public List<Event> getHistoryOfEvents() {
-		return historyOfEvents;
+	public List<Event> getEventsAssociatedWith() {
+		return eventsAssociatedWith;
 	}
 
 
 
-	public void setHistoryOfEvents(List<Event> historyOfEvents) {
-		this.historyOfEvents = historyOfEvents;
+	public void setEventsAssociatedWith(List<Event> eventsAssociatedWith) {
+		this.eventsAssociatedWith = eventsAssociatedWith;
 	}
 
 

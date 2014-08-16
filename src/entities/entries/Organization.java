@@ -24,12 +24,14 @@ public class Organization extends Entry {
 
 
 
-	public Organization(String organizationType) {
+	public Organization(String name, String organizationType) {
 		super();
+		setName(name);
 		this.organizationType = organizationType;
 	}
 
 
+	
 
 	public String getOrganizationType() {
 		return organizationType;

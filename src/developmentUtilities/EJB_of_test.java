@@ -14,6 +14,7 @@ import entities.entries.Location.Coordinate;
 import entities.entries.history.*;
 import entities.entries.images.*;
 import entities.events.*;
+import entities.police.Officer;
 
 
 @Stateless
@@ -35,7 +36,36 @@ public class EJB_of_test {
 		createEntity_History_Actions();
 		createLocation_Addresses();
 		createConveyance_person();
+		creatRelations();
+		createOrgAndProperty();
 
+		Officer of1 = new Officer(new PersonName("Jims", "Richard"), "Male");
+		Officer of2 = new Officer(new PersonName("Lorinda", "dfjkhld"), "Female");
+
+		IncidentReport ir = new IncidentReport();
+		Conveyance c = em.find(Conveyance.class, 13L);
+
+		ir.setDescription("hit a cat");
+		ir.addEntryAssociatedWith(c);
+		of1.addEventResponsibleFor(ir);
+		of2.addEventResponsibleFor(ir);
+
+		em.persist(of1);
+		em.persist(of2);
+	}
+
+
+
+	private void createOrgAndProperty() {
+		Organization o = new Organization("alwan", Organization.getOrganizationTypeSuggestions()[1]);
+		Property p = new Property("3kljfdg8", "Sony", "D300s", "Sony", "fkldgldkfjgld");
+		em.persist(o);
+		em.persist(p);
+	}
+
+
+
+	private void creatRelations() {
 		Person p = em.find(Person.class, 2L);
 		Conveyance c = em.find(Conveyance.class, 14L);
 		Relation r = new Relation(p, "drove", c);

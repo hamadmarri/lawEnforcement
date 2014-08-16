@@ -1,6 +1,8 @@
 package entities.events;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 
 /**
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
  * 
  */
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Permit extends Event {
 
 	private static final long serialVersionUID = 3382900005934861030L;
