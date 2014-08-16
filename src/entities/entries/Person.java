@@ -34,7 +34,8 @@ public class Person extends Entry {
 
 	private static final long serialVersionUID = -8786554206930842361L;
 
-	private String name;
+	@Embedded
+	private PersonName personName;
 
 	@Temporal(TemporalType.DATE)
 	private Calendar dateOfBirth;
@@ -63,6 +64,9 @@ public class Person extends Entry {
 	@ManyToMany(mappedBy = "persons")
 	private List<PhotographicImage> photographs;
 
+	@OneToMany(mappedBy = "registeredOwner")
+	private List<Conveyance> conveyance;
+
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
 
@@ -74,10 +78,10 @@ public class Person extends Entry {
 
 
 
-	public Person(String name, Calendar dateOfBirth, String birthPlace, String gender, String citizenship,
+	public Person(PersonName personName, Calendar dateOfBirth, String birthPlace, String gender, String citizenship,
 			String modusOperandi, String nCIC_fingerprintClassification) {
 		super();
-		this.name = name;
+		this.personName = personName;
 		this.dateOfBirth = dateOfBirth;
 		this.birthPlace = birthPlace;
 		Gender = gender;
@@ -88,14 +92,14 @@ public class Person extends Entry {
 
 
 
-	public String getName() {
-		return name;
+	public PersonName getPersonName() {
+		return personName;
 	}
 
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPersonName(PersonName name) {
+		this.personName = name;
 	}
 
 

@@ -12,10 +12,39 @@ public class Organization extends Entry {
 
 	private static final long serialVersionUID = -2612388572963932408L;
 
+	private static String[] organizationTypeSuggestions = { "gang", "business", "school", "shopping center", };
+
+	private String organizationType;
+
 
 
 	public Organization() {
 		super();
+	}
+
+
+
+	public Organization(String organizationType) {
+		super();
+		this.organizationType = organizationType;
+	}
+
+
+
+	public String getOrganizationType() {
+		return organizationType;
+	}
+
+
+
+	public void setOrganizationType(String organizationType) {
+		this.organizationType = organizationType;
+	}
+
+
+
+	public static String[] getOrganizationTypeSuggestions() {
+		return organizationTypeSuggestions;
 	}
 
 }

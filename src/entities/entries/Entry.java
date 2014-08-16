@@ -16,7 +16,7 @@ import entities.events.Event;
  * 
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Entry implements Serializable, Describable {
 
 	private static final long serialVersionUID = 2034421404091295704L;
@@ -25,9 +25,11 @@ public class Entry implements Serializable, Describable {
 	@GeneratedValue
 	private Long id;
 
+	private String name;
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private History history;
-	
+
 	private List<Event> historyOfEvents;
 
 	@OneToMany(mappedBy = "something")
@@ -38,6 +40,24 @@ public class Entry implements Serializable, Describable {
 
 	@Transient
 	private List<Relation> allRelations;
+
+
+
+	public Entry() {
+
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 
 
