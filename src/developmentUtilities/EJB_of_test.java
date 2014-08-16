@@ -27,7 +27,7 @@ public class EJB_of_test {
 
 	public List<Entry> getView() {
 		@SuppressWarnings("unchecked")
-		List<Entry> r = (List<Entry>) em.createNamedQuery("Address.findAll").getResultList(); 
+		List<Entry> r = (List<Entry>) em.createNamedQuery("Address.findAll").getResultList();
 		return r;
 	}
 
@@ -40,7 +40,43 @@ public class EJB_of_test {
 		createConveyance_person();
 		creatRelations();
 		createOrgAndProperty();
+		createOfficer_Entry_Event();
+		createSuspectPerson_officer_incidentReport_Entry();
 
+	}
+
+
+
+	private void createSuspectPerson_officer_incidentReport_Entry() {
+		Officer of = em.find(Officer.class, 18L);
+		SuspectPerson sp1 = new SuspectPerson(new PhysicalCharacteristic(
+				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],
+				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[0],
+				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[3],
+				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[2]), "cool");
+		SuspectPerson sp2 = new SuspectPerson(new PhysicalCharacteristic(
+				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[1],
+				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[3],
+				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[0],
+				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), "ugly");
+		IncidentReport ir = new IncidentReport("flirting", IncidentReport.getStatusOptions()[0], "nothing yet");
+		Location l = em.find(Location.class, 10L);
+		Person complainant = new Person(new PersonName("Yara", null), null, null, "Female", "Libanies", null, null);
+		Relation r = new Relation(l, "happened in", ir);
+		Relation r2 = new Relation(complainant, "reported", ir);
+		ir.addSuspectPerson(sp1);
+		ir.addSuspectPerson(sp2);
+
+		of.addEventResponsibleFor(ir);
+
+		em.persist(r);
+		em.persist(r2);
+		em.persist(of);
+	}
+
+
+
+	private void createOfficer_Entry_Event() {
 		Officer of1 = new Officer(new PersonName("Jims", "Richard"), "Male");
 		Officer of2 = new Officer(new PersonName("Lorinda", "dfjkhld"), "Female");
 		Person p = em.find(Person.class, 1L);
@@ -50,7 +86,7 @@ public class EJB_of_test {
 		Relation r2 = new Relation(p, "the person who reported", ir);
 
 		ir.setDescription("hitting a cat");
-//		 ir.addEntryAssociatedWith(c);
+		// ir.addEntryAssociatedWith(c);
 		of1.addEventResponsibleFor(ir);
 		of2.addEventResponsibleFor(ir);
 

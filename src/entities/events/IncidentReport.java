@@ -38,6 +38,15 @@ public class IncidentReport extends Event {
 
 
 
+	public IncidentReport(String offenseInformation, String caseStatus, String summary) {
+		super();
+		this.offenseInformation = offenseInformation;
+		this.caseStatus = caseStatus;
+		this.summary = summary;
+	}
+
+
+
 	public IncidentReport(String offenseInformation, List<SuspectPerson> suspectPersons, String caseStatus,
 			String summary) {
 		super();
