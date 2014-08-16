@@ -1,12 +1,13 @@
 package entities.entries.history;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import entities.entries.Entry;
@@ -24,7 +25,7 @@ public class History implements Serializable {
 	@OneToOne(mappedBy = "history")
 	private Entry entry;
 
-	@OneToMany(mappedBy = "history")
+	@ElementCollection
 	private List<Action> actions;
 
 
@@ -55,6 +56,15 @@ public class History implements Serializable {
 
 	public void setActions(List<Action> actions) {
 		this.actions = actions;
+	}
+
+
+
+	public void addAction(Action action) {
+		if (this.actions == null)
+			this.actions = new ArrayList<Action>();
+
+		this.actions.add(action);
 	}
 
 }

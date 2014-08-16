@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import entities.*;
 import entities.entries.*;
+import entities.entries.Location.Coordinate;
 import entities.entries.history.*;
 import entities.entries.images.*;
 import entities.events.*;
@@ -25,6 +26,20 @@ public class EJB_of_test {
 
 	public Person getPerson() {
 		return em.find(Person.class, 1);
+	}
+
+
+
+	public void test() {
+		createpersons();
+		createEntity_History_Actions();
+
+		Location l = new Location("B", new Location.Coordinate(65, 987, 234), "few", "second floor", "offices");
+		l.addAddress(new Address("Centenial St", "183", "Regina", "SK", "Canada", "S4S 6W3"));
+		l.addAddress(new Address("Wascana Parkway", "LA612", "Regina", "SK", "Canada", "S4S 0A2"));
+
+		em.persist(l);
+
 	}
 
 
@@ -65,26 +80,25 @@ public class EJB_of_test {
 
 
 
-	public void test() {
-		createpersons();
-
+	private void createEntity_History_Actions() {
 		Entry e = new Entry();
 		History h = new History();
 		List<Action> actions = new ArrayList<Action>();
 
 		e.setHistory(h);
 
-		actions.add(new Action("dfg", "Dfgd", h));
-		actions.add(new Action("dfg", "Dfgd", h));
-		actions.add(new Action("dfg", "Dfgd", h));
-
+		// actions.add(new Action("dfg", "Dfgd", h));
+		// actions.add(new Action("dfg", "Dfgd", h));
+		// actions.add(new Action("dfg", "Dfgd", h));
 		// h.setActions(actions);
+		h.addAction(new Action("dfg", "Dfgd"));
+		h.addAction(new Action("dfg", "Dfgd"));
+		h.addAction(new Action("dfg", "Dfgd"));
 
 		em.persist(e);
 
-		for (Action action : actions)
-			em.persist(action);
-
+		// for (Action action : actions)
+		// em.persist(action);
 	}
 
 }

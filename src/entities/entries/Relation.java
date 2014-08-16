@@ -40,4 +40,52 @@ public class Relation implements Serializable {
 		this.somethingElse = somethingElse;
 	}
 
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public Entry getSomething() {
+		return something;
+	}
+
+
+
+	public void setSomething(Entry something) {
+		this.something = something;
+	}
+
+
+
+	public String getTypeOfRelation() {
+		return typeOfRelation;
+	}
+
+
+
+	public void setTypeOfRelation(String typeOfRelation) {
+		this.typeOfRelation = typeOfRelation;
+	}
+
+
+
+	public Entry getSomethingElse() {
+		return somethingElse;
+	}
+
+
+
+	public void setSomethingElse(Entry somethingElse) {
+		this.somethingElse = somethingElse;
+	}
+
 }

@@ -16,6 +16,7 @@ import entities.events.Event;
  * 
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Entry implements Serializable, Describable {
 
 	private static final long serialVersionUID = 2034421404091295704L;

@@ -7,8 +7,8 @@
 		transaction-type="JTA">
 		<jta-data-source>jdbc/lawEnforcement</jta-data-source>
 		<properties>
-			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
 		</properties>
 	</persistence-unit>
 </persistence>

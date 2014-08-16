@@ -3,26 +3,15 @@ package entities.entries.history;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@Entity
+@Embeddable
 public class Action implements Serializable {
 
 	private static final long serialVersionUID = 1019588440452680728L;
-
-	@Id
-	@GeneratedValue
-	private Long id;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	private History history;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateAndTime;
@@ -38,34 +27,20 @@ public class Action implements Serializable {
 
 
 
-	public Action(String oldDate, String newDate, History history) {
+	public Action(String oldDate, String newDate) {
 		super();
 		this.dateAndTime = Calendar.getInstance();
 		this.oldData = oldDate;
 		this.newData = newDate;
-		this.history = history;
 	}
 
 
 
-	public Action(Calendar dateAndTime, String oldDate, String newDate, History history) {
+	public Action(Calendar dateAndTime, String oldDate, String newDate) {
 		super();
 		this.dateAndTime = dateAndTime;
 		this.oldData = oldDate;
 		this.newData = newDate;
-		this.history = history;
-	}
-
-
-
-	public History getHistory() {
-		return history;
-	}
-
-
-
-	public void setHistory(History history) {
-		this.history = history;
 	}
 
 
