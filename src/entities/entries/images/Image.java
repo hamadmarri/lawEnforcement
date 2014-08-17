@@ -1,11 +1,14 @@
 package entities.entries.images;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import entities.entries.Entry;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Image extends Entry {
 
 	private static final long serialVersionUID = 3099664754672904721L;

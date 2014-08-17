@@ -11,6 +11,9 @@ import javax.persistence.PersistenceContext;
 import entities.*;
 import entities.entries.*;
 import entities.entries.Location.Coordinate;
+import entities.entries.contacts.CellPhone;
+import entities.entries.contacts.Email;
+import entities.entries.contacts.Telephone;
 import entities.entries.history.*;
 import entities.entries.images.*;
 import entities.events.*;
@@ -48,7 +51,7 @@ public class EJB_of_test {
 
 
 	private void createSuspectPerson_officer_incidentReport_Entry() {
-		Officer of = em.find(Officer.class, 18L);
+		Officer of = em.find(Officer.class, 20L);
 		SuspectPerson sp1 = new SuspectPerson(new PhysicalCharacteristic(
 				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],
 				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[0],
@@ -158,6 +161,8 @@ public class EJB_of_test {
 		date1.set(1991, 7, 19);
 
 		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1, "Al Hasa", "Male", "Saudi", null, "AA");
+		p1.addContact(new CellPhone(p1, "3069990084"));
+		p1.addContact(new Email(p1, "almarrih@uregina.ca"));
 		p1.setRace(new Race("Saudi Arabian"));
 		p1.setPhysicalCharacteristic(new PhysicalCharacteristic("Overweight", "Short", "Light", "Black"));
 

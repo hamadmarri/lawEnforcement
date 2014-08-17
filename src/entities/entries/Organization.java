@@ -31,7 +31,6 @@ public class Organization extends Entry {
 	}
 
 
-	
 
 	public String getOrganizationType() {
 		return organizationType;

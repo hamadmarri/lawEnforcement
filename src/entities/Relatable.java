@@ -22,7 +22,7 @@ public class Relatable implements Serializable {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	protected Long id;
 
 	@OneToMany(mappedBy = "something")
 	private List<Relation> relationsTo;

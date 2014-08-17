@@ -1,21 +1,26 @@
 package entities.entries;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import entities.entries.contacts.Contact;
 import entities.entries.images.FingerprintImage;
 import entities.entries.images.MugShotImage;
 import entities.entries.images.PhotographicImage;
+import entities.events.FieldInterview;
 
 
 /**
@@ -47,6 +52,10 @@ public class Person extends Entry {
 	private String Gender;
 	private String citizenship;
 	private Map<String, String> identifications;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Contact> contacts;
+
 	private List<String> aliasNamesOrMonikers;
 	private List<String> scars_marks_tattoos;
 	private String modusOperandi;
@@ -163,6 +172,27 @@ public class Person extends Entry {
 
 	public void setIdentifications(Map<String, String> identifications) {
 		this.identifications = identifications;
+	}
+
+
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+
+
+	public void addContact(Contact contact) {
+		if (this.contacts == null)
+			this.contacts = new ArrayList<Contact>();
+
+		this.contacts.add(contact);
 	}
 
 

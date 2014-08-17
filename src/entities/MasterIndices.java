@@ -18,7 +18,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class MasterIndices implements Serializable {
 
 	private static final long serialVersionUID = 7398053196433761468L;
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
