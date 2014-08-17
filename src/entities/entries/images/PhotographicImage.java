@@ -3,6 +3,7 @@ package entities.entries.images;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
@@ -14,25 +15,28 @@ public class PhotographicImage extends Image {
 
 	private static final long serialVersionUID = -2930081503693862012L;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Person> persons;
 
 
 
 	public PhotographicImage() {
 		super();
+		this.type = "PhotographicImage";
 	}
 
 
 
 	public PhotographicImage(String caption, String link) {
 		super(caption, link);
+		this.type = "PhotographicImage";
 	}
 
 
 
 	public PhotographicImage(String caption, String link, List<Person> persons) {
 		super(caption, link);
+		this.type = "PhotographicImage";
 		this.persons = persons;
 	}
 

@@ -42,6 +42,7 @@ public class Conveyance extends Entry {
 
 	public Conveyance() {
 		super();
+		this.type = "Conveyance";
 	}
 
 
@@ -50,6 +51,7 @@ public class Conveyance extends Entry {
 			Calendar licensePlateYear, String make, String model, Calendar year, String color, String style,
 			String attributes) {
 		super();
+		this.type = "Conveyance";
 		this.vehicleIdentificationNumber = vehicleIdentificationNumber;
 		this.licensePlateNumber = licensePlateNumber;
 		this.licensePlateState = licensePlateState;
@@ -192,6 +194,13 @@ public class Conveyance extends Entry {
 
 	public void setAttributes(String attributes) {
 		this.attributes = attributes;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.vehicleIdentificationNumber + " " + this.make + " " + this.model + this.year.get(Calendar.YEAR);
 	}
 
 }

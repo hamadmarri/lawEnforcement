@@ -1,21 +1,63 @@
 package entities.events;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 
 /**
  * Entity implementation class for Entity: ArrestReport
- * 
  */
 @Entity
 public class ArrestReport extends Event {
 
 	private static final long serialVersionUID = 2412353059380453755L;
 
+	private String document;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<IncidentReport> incidentReportsAccordingTo;
+
 
 
 	public ArrestReport() {
 		super();
+	}
+
+
+
+	public String getDocument() {
+		return document;
+	}
+
+
+
+	public void setDocument(String document) {
+		this.document = document;
+	}
+
+
+
+	public List<IncidentReport> getIncidentReportsAccordingTo() {
+		return incidentReportsAccordingTo;
+	}
+
+
+
+	public void setIncidentReportsAccordingTo(List<IncidentReport> incidentReportsAccordingTo) {
+		this.incidentReportsAccordingTo = incidentReportsAccordingTo;
+	}
+
+
+
+	public void addIncidentReportAccordingTo(IncidentReport incidentReportAccordingTo) {
+		if (this.incidentReportsAccordingTo == null)
+			this.incidentReportsAccordingTo = new ArrayList<IncidentReport>();
+
+		this.incidentReportsAccordingTo.add(incidentReportAccordingTo);
 	}
 
 }

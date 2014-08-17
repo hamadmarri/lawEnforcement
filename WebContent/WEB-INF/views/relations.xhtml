@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+	<h2>Relations</h2>
+	<h:dataTable value="#{relations}" var="r">
+		<h:column>
+			<f:facet name="header">first relatable</f:facet>
+			<h:outputLabel value="#{r.something.toString()}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">type of relation</f:facet>
+			<h:outputLabel value="#{r.typeOfRelation}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">second relatable</f:facet>
+			<h:outputLabel value="#{r.somethingElse.toString()}" />
+		</h:column>
+	</h:dataTable>
+</ui:composition>
+</html>

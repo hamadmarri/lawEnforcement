@@ -23,27 +23,13 @@ public class Entry extends Relatable implements Serializable, Describable {
 
 	private static final long serialVersionUID = 2034421404091295704L;
 
-	private String name;
-
 	@OneToOne(cascade = CascadeType.ALL)
 	private History history;
 
 
 
 	public Entry() {
-
-	}
-
-
-
-	public String getName() {
-		return name;
-	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
+		this.type = "Entry";
 	}
 
 

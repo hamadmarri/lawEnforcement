@@ -32,12 +32,14 @@ public class Address extends Entry {
 
 	public Address() {
 		super();
+		this.type = "Address";
 	}
 
 
 
 	public Address(String streetName, String aptNo, String city, String province, String country, String postalCode) {
 		super();
+		this.type = "Address";
 		setStreetName(streetName);
 		setAptNo(aptNo);
 		setCity(city);
@@ -124,4 +126,11 @@ public class Address extends Entry {
 		return locations;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.streetName + " " + this.getAptNo() + this.city + " " + this.province + " " + this.postalCode;
+	}
+	
 }

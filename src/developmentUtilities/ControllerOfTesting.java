@@ -7,11 +7,13 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
+
 import entities.Relatable;
+import entities.Relation;
 import entities.entries.Conveyance;
 import entities.entries.Entry;
 import entities.entries.Person;
-import entities.entries.Relation;
 
 
 @Named
@@ -23,10 +25,9 @@ public class ControllerOfTesting {
 
 
 
-	public String getView() {
-		return ((Person) ejb_of_test.getView()).getPersonName().getFirstName();
+	public Relatable getView() {
+		return ejb_of_test.getView().get(0);
 	}
-
 
 
 	public void test() {

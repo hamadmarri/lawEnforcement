@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import entities.entries.Relation;
-
 
 /**
  * Entity implementation class for Entity: Relatable
@@ -15,7 +13,7 @@ import entities.entries.Relation;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@NamedQueries({ @NamedQuery(name = "Relatable.findAll", query = "select r from Relatable r") })
+@NamedQueries({ @NamedQuery(name = "Relatable.findAll", query = "select r from Relatable r ORDER BY r.id") })
 public class Relatable implements Serializable {
 
 	private static final long serialVersionUID = -2946296455927470657L;
@@ -33,6 +31,8 @@ public class Relatable implements Serializable {
 	@Transient
 	private List<Relation> allRelations;
 
+	protected String type;
+
 
 
 	public Relatable() {
@@ -47,13 +47,26 @@ public class Relatable implements Serializable {
 
 
 
-	public List<Relation> getRelations() {
+	public List<Relation> getAllRelations() {
 		if (this.allRelations == null) {
 			allRelations = new ArrayList<Relation>();
 			allRelations.addAll(relationsTo);
 			allRelations.addAll(relationsWith);
 		}
 		return allRelations;
+	}
+
+
+
+	public String getType() {
+		return type;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Relatable";
 	}
 
 }

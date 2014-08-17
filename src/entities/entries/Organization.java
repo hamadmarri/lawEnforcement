@@ -16,18 +16,34 @@ public class Organization extends Entry {
 
 	private String organizationType;
 
+	private String name;
+
 
 
 	public Organization() {
 		super();
+		this.type = "Organization";
 	}
 
 
 
 	public Organization(String name, String organizationType) {
 		super();
-		setName(name);
+		this.type = "Organization";
+		this.name = name;
 		this.organizationType = organizationType;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -46,6 +62,13 @@ public class Organization extends Entry {
 
 	public static String[] getOrganizationTypeSuggestions() {
 		return organizationTypeSuggestions;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.name + " " + this.organizationType;
 	}
 
 }

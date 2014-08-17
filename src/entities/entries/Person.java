@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,7 +20,6 @@ import entities.entries.contacts.Contact;
 import entities.entries.images.FingerprintImage;
 import entities.entries.images.MugShotImage;
 import entities.entries.images.PhotographicImage;
-import entities.events.FieldInterview;
 
 
 /**
@@ -28,7 +27,11 @@ import entities.events.FieldInterview;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "Person.findAll", query = "select p from Person p") })
+@NamedQueries({
+		@NamedQuery(name = "Person.findAll", query = "select p from Person p"),
+		// join s.map m where KEY(m) = 'de'
+		@NamedQuery(name = "Person.findByIdentification", query = "select p from Person p"
+				+ " join p.identifications i WHERE VALUE(i) = :identification") })
 public class Person extends Entry {
 
 	/*
@@ -49,15 +52,21 @@ public class Person extends Entry {
 	private Calendar dateOfBirth;
 
 	private String birthPlace;
-	private String Gender;
+	private String gender;
 	private String citizenship;
+
+	@ElementCollection
 	private Map<String, String> identifications;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Contact> contacts;
 
+	@ElementCollection
 	private List<String> aliasNamesOrMonikers;
+
+	@ElementCollection
 	private List<String> scars_marks_tattoos;
+
 	private String modusOperandi;
 	private String NCIC_fingerprintClassification;
 
@@ -77,7 +86,7 @@ public class Person extends Entry {
 	private List<PhotographicImage> photographs;
 
 	@OneToMany(mappedBy = "registeredOwner")
-	private List<Conveyance> conveyance;
+	private List<Conveyance> conveyances;
 
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
@@ -86,6 +95,7 @@ public class Person extends Entry {
 
 	public Person() {
 		super();
+		this.type = "Person";
 	}
 
 
@@ -93,10 +103,11 @@ public class Person extends Entry {
 	public Person(PersonName personName, Calendar dateOfBirth, String birthPlace, String gender, String citizenship,
 			String modusOperandi, String nCIC_fingerprintClassification) {
 		super();
+		this.type = "Person";
 		this.personName = personName;
 		this.dateOfBirth = dateOfBirth;
 		this.birthPlace = birthPlace;
-		Gender = gender;
+		this.gender = gender;
 		this.citizenship = citizenship;
 		this.modusOperandi = modusOperandi;
 		NCIC_fingerprintClassification = nCIC_fingerprintClassification;
@@ -141,13 +152,13 @@ public class Person extends Entry {
 
 
 	public String getGender() {
-		return Gender;
+		return this.gender;
 	}
 
 
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 
 
@@ -209,6 +220,15 @@ public class Person extends Entry {
 
 
 
+	public void addAliasNameOrMoniker(String aliasNameOrMoniker) {
+		if (this.aliasNamesOrMonikers == null)
+			this.aliasNamesOrMonikers = new ArrayList<String>();
+
+		this.aliasNamesOrMonikers.add(aliasNameOrMoniker);
+	}
+
+
+
 	public List<String> getScars_marks_tattoos() {
 		return scars_marks_tattoos;
 	}
@@ -217,6 +237,15 @@ public class Person extends Entry {
 
 	public void setScars_marks_tattoos(List<String> scars_marks_tattoos) {
 		this.scars_marks_tattoos = scars_marks_tattoos;
+	}
+
+
+
+	public void addScars_mark_tattoo(String scar_mark_tattoo) {
+		if (this.scars_marks_tattoos == null)
+			this.scars_marks_tattoos = new ArrayList<String>();
+
+		this.scars_marks_tattoos.add(scar_mark_tattoo);
 	}
 
 
@@ -317,8 +346,15 @@ public class Person extends Entry {
 
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Conveyance> getConveyances() {
+		return conveyances;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.personName.toString();
 	}
 
 }

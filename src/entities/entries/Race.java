@@ -68,4 +68,11 @@ public class Race {
 		return raceSuggestions;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.race;
+	}
+
 }

@@ -38,12 +38,14 @@ public class Location extends Entry {
 
 	public Location() {
 		super();
+		this.type = "Location";
 	}
 
 
 
 	public Location(String area, Coordinate coordinate, String occupancy, String elevation, String premiseType) {
 		super();
+		this.type = "Location";
 		this.area = area;
 		this.coordinate = coordinate;
 		this.occupancy = occupancy;
@@ -141,6 +143,13 @@ public class Location extends Entry {
 
 	public void setPremiseType(String premiseType) {
 		this.premiseType = premiseType;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.area + " " + this.premiseType;
 	}
 
 	/**

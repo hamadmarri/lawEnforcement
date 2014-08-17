@@ -40,16 +40,21 @@ public class IncidentReport extends Event {
 	@ManyToOne
 	private InvestigativeCase assignedCase;
 
+	@ManyToMany(mappedBy = "incidentReportsAccordingTo")
+	private List<ArrestReport> arrestReports;
+
 
 
 	public IncidentReport() {
 		super();
+		this.type = "IncidentReport";
 	}
 
 
 
 	public IncidentReport(String offenseInformation, String caseStatus, String summary) {
 		super();
+		this.type = "IncidentReport";
 		this.offenseInformation = offenseInformation;
 		this.caseStatus = caseStatus;
 		this.summary = summary;
@@ -148,6 +153,25 @@ public class IncidentReport extends Event {
 
 	public static String[] getStatusOptions() {
 		return statusOptions;
+	}
+
+
+
+	public InvestigativeCase getAssignedCase() {
+		return assignedCase;
+	}
+
+
+
+	public List<ArrestReport> getArrestReports() {
+		return arrestReports;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.type + ": " + this.offenseInformation;
 	}
 
 }

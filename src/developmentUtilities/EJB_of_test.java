@@ -2,7 +2,9 @@ package developmentUtilities;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,11 +32,10 @@ public class EJB_of_test {
 
 
 
-	public Relatable getView() {
-		IncidentReport ir = em.find(IncidentReport.class, 26L);
-
-		Person p = (Person) ir.getRelations().get(1).getSomething();
-		return p;
+	@SuppressWarnings("unchecked")
+	public List<Relatable> getView() {
+		return em.createNamedQuery("Person.findByIdentification").setParameter("identification", "200294236")
+				.getResultList();
 	}
 
 
@@ -49,7 +50,19 @@ public class EJB_of_test {
 		createOfficer_Entry_Event();
 		createSuspectPerson_officer_incidentReport_Entry();
 		createFieldInterview();
+		createOfficer_InvestigativeCase_IncidentReport_Investigator();
 
+		IncidentReport ir = em.find(IncidentReport.class, 26L);
+		ArrestReport ar = new ArrestReport();
+		ar.addIncidentReportAccordingTo(ir);
+		ar.setDocument("bla bla bla");
+
+		em.persist(ar);
+	}
+
+
+
+	private void createOfficer_InvestigativeCase_IncidentReport_Investigator() {
 		Officer of = em.find(Officer.class, 20L);
 		IncidentReport ir = em.find(IncidentReport.class, 26L);
 		Investigator inv = new Investigator();
@@ -88,7 +101,7 @@ public class EJB_of_test {
 				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[0],
 				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), "ugly");
 		IncidentReport ir = new IncidentReport("flirting", IncidentReport.getStatusOptions()[0], "nothing yet");
-		Location l = em.find(Location.class, 10L);
+		Location l = em.find(Location.class, 12L);
 		Person complainant = new Person(new PersonName("Yara", null), null, null, "Female", "Libanies", null, null);
 		Relation r = new Relation(l, "happened in", ir);
 		Relation r2 = new Relation(complainant, "reported", ir);
@@ -108,8 +121,8 @@ public class EJB_of_test {
 		Officer of1 = new Officer(new PersonName("Jims", "Richard"), "Male");
 		Officer of2 = new Officer(new PersonName("Lorinda", "dfjkhld"), "Female");
 		Person p = em.find(Person.class, 1L);
-		IncidentReport ir = new IncidentReport();
-		Conveyance c = em.find(Conveyance.class, 13L);
+		IncidentReport ir = new IncidentReport("hitting car", "open", "");
+		Conveyance c = em.find(Conveyance.class, 15L);
 		Relation r1 = new Relation(c, "the car hit the cat", ir);
 		Relation r2 = new Relation(p, "the person who reported", ir);
 
@@ -136,8 +149,8 @@ public class EJB_of_test {
 
 
 	private void creatRelations() {
-		Person p = em.find(Person.class, 2L);
-		Conveyance c = em.find(Conveyance.class, 14L);
+		Person p = em.find(Person.class, 4L);
+		Conveyance c = em.find(Conveyance.class, 16L);
 		Relation r = new Relation(p, "drove", c);
 
 		em.persist(r);
@@ -183,13 +196,20 @@ public class EJB_of_test {
 		date1.set(1984, 7, 23);
 
 		Calendar date2 = Calendar.getInstance();
-		date1.set(1991, 7, 19);
+		date2.set(1991, 7, 19);
+
+		Map<String, String> ids = new HashMap<String, String>();
+		ids.put("SGI", "849839409");
+		ids.put("U of R", "200294236");
 
 		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1, "Al Hasa", "Male", "Saudi", null, "AA");
+		p1.setIdentifications(ids);
 		p1.addContact(new CellPhone(p1, "3069990084"));
 		p1.addContact(new Email(p1, "almarrih@uregina.ca"));
 		p1.setRace(new Race("Saudi Arabian"));
 		p1.setPhysicalCharacteristic(new PhysicalCharacteristic("Overweight", "Short", "Light", "Black"));
+		p1.addAliasNameOrMoniker("the monster");
+		p1.addScars_mark_tattoo("abu antar mark");
 
 		Person p2 = new Person(new PersonName("Mohammad", "Almarri"), date2, "Al Khobar", "Male", "Saudi", null, "PI");
 		Relation r = new Relation(p1, "brothers", p2);

@@ -110,4 +110,12 @@ public class PhysicalCharacteristic {
 		this.hairCharacteristics = hairCharacteristics;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.buildCharacteristics + " " + this.complexionCharacteristics + " " + this.heightCharacteristics
+				+ " " + this.heightCharacteristics;
+	}
+
 }

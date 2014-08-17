@@ -20,12 +20,14 @@ public class Image extends Entry {
 
 	public Image() {
 		super();
+		this.type = "Image";
 	}
 
 
 
 	public Image(String caption, String link) {
 		super();
+		this.type = "Image";
 		this.caption = caption;
 		this.link = link;
 	}

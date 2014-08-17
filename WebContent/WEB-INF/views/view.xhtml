@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition>
+
+
+		<h:outputLabel value="#{relatable.id}" /><br />
+		
+		<c:if test="#{relatable.type == 'Person'}">
+			<ui:include src="person.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+		<ui:include src="relations.xhtml">
+			<ui:param name="relations" value="#{relatable.allRelations}"></ui:param>
+		</ui:include>
+
+
+
+
+		<ui:remove>
+
+			<h:outputLabel value="passed param is #{relatable.get(0)}" />
+
+			<h:dataTable value="#{relatable}" var="r">
+				<h:column>#{r.id}</h:column>
+				<h:column>#{r.type}</h:column>
+				<h:column>
+					<h:outputLabel rendered="#{r.type == 'Person'}" value="#{r.gender}" />
+				</h:column>
+			</h:dataTable>
+
+
+		</ui:remove>
+
+	</ui:composition>
+</h:body>
+</html>

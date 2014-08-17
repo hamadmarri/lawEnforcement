@@ -22,12 +22,14 @@ public class Property extends Entry {
 
 	public Property() {
 		super();
+		this.type = "Property";
 	}
 
 
 
 	public Property(String serialNumber, String make, String model, String brand, String distinguishingCharacteristics) {
 		super();
+		this.type = "Property";
 		this.serialNumber = serialNumber;
 		this.make = make;
 		this.model = model;

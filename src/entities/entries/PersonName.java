@@ -47,4 +47,11 @@ public class PersonName {
 		this.lastName = lastName;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.firstName + " " + this.lastName;
+	}
+
 }
