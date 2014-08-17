@@ -23,8 +23,8 @@ public class ControllerOfTesting {
 
 
 
-	public List<Entry> getView() {
-		return ejb_of_test.getView();
+	public String getView() {
+		return ((Person) ejb_of_test.getView()).getPersonName().getFirstName();
 	}
 
 

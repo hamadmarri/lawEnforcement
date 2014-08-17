@@ -17,6 +17,8 @@ import entities.entries.contacts.Telephone;
 import entities.entries.history.*;
 import entities.entries.images.*;
 import entities.events.*;
+import entities.police.InvestigativeCase;
+import entities.police.Investigator;
 import entities.police.Officer;
 
 
@@ -28,10 +30,11 @@ public class EJB_of_test {
 
 
 
-	public List<Entry> getView() {
-		@SuppressWarnings("unchecked")
-		List<Entry> r = (List<Entry>) em.createNamedQuery("Address.findAll").getResultList();
-		return r;
+	public Relatable getView() {
+		IncidentReport ir = em.find(IncidentReport.class, 26L);
+
+		Person p = (Person) ir.getRelations().get(1).getSomething();
+		return p;
 	}
 
 
@@ -45,7 +48,29 @@ public class EJB_of_test {
 		createOrgAndProperty();
 		createOfficer_Entry_Event();
 		createSuspectPerson_officer_incidentReport_Entry();
+		createFieldInterview();
 
+		Officer of = em.find(Officer.class, 20L);
+		IncidentReport ir = em.find(IncidentReport.class, 26L);
+		Investigator inv = new Investigator();
+		InvestigativeCase invC = new InvestigativeCase();
+		invC.addIncidentReport(ir);
+		invC.addInvestigator(inv);
+		invC.setOfficerWhoCreatedIt(of);
+
+		em.persist(invC);
+	}
+
+
+
+	private void createFieldInterview() {
+		Officer of = em.find(Officer.class, 20L);
+		FieldInterview fi = new FieldInterview(em.find(Person.class, 1L), em.find(Person.class, 4L),
+				Calendar.getInstance(), "yes i saw him");
+
+		((IncidentReport) of.getEventsResponsibleFor().get(1)).addFieldInterview(fi);
+
+		em.merge(of);
 	}
 
 

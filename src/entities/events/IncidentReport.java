@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import entities.police.InvestigativeCase;
 
 
 /**
@@ -28,7 +32,13 @@ public class IncidentReport extends Event {
 	public static String[] statusOptions = { "open", "closed", "pending for approve", "under investigation" };
 	private String caseStatus;
 
+	@ElementCollection
+	private List<FieldInterview> fieldInterviews;
+
 	private String summary;
+
+	@ManyToOne
+	private InvestigativeCase assignedCase;
 
 
 
@@ -99,6 +109,27 @@ public class IncidentReport extends Event {
 
 	public void setCaseStatus(String caseStatus) {
 		this.caseStatus = caseStatus;
+	}
+
+
+
+	public List<FieldInterview> getFieldInterviews() {
+		return fieldInterviews;
+	}
+
+
+
+	public void setFieldInterviews(List<FieldInterview> fieldInterviews) {
+		this.fieldInterviews = fieldInterviews;
+	}
+
+
+
+	public void addFieldInterview(FieldInterview fieldInterview) {
+		if (this.fieldInterviews == null)
+			this.fieldInterviews = new ArrayList<FieldInterview>();
+
+		this.fieldInterviews.add(fieldInterview);
 	}
 
 

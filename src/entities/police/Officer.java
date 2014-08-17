@@ -35,6 +35,9 @@ public class Officer implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Event> eventsResponsibleFor;
 
+	@OneToMany(mappedBy = "officerWhoCreatedIt")
+	private List<InvestigativeCase> createdCases;
+
 
 
 	public Officer() {
@@ -111,4 +114,11 @@ public class Officer implements Serializable {
 
 		this.eventsResponsibleFor.add(eventResponsibleFor);
 	}
+
+
+
+	public List<InvestigativeCase> getCreatedCases() {
+		return createdCases;
+	}
+
 }
