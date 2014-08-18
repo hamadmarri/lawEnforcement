@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+	<h2>Conveyance</h2>
+
+
+	<h:outputLabel value="Vehicle identification number" />
+	<h:outputLabel value="#{relatable.vehicleIdentificationNumber}" />
+	<br />
+
+	<h:outputLabel value="License plate number" />
+	<h:outputLabel value="#{relatable.licensePlateNumber}" />
+	<br />
+
+	<h:outputLabel value="License plate state" />
+	<h:outputLabel value="#{relatable.licensePlateState}" />
+	<br />
+
+	<h:outputLabel value="License plate year" />
+	<h:outputLabel value="#{relatable.licensePlateYear.time}">
+		<f:convertDateTime pattern="YYYY" />
+	</h:outputLabel>
+	<br />
+
+	<h:outputLabel value="Registered owner" />
+	<h:outputLabel
+		value="#{relatable.registeredOwner.personName.firstName}" />
+	<br />
+
+
+	<h:outputLabel value="Make" />
+	<h:outputLabel value="#{relatable.make}" />
+	<br />
+
+	<h:outputLabel value="Model" />
+	<h:outputLabel value="#{relatable.model}" />
+	<br />
+
+	<h:outputLabel value="Year" />
+	<h:outputLabel value="#{relatable.year.time}">
+		<f:convertDateTime pattern="YYYY" />
+	</h:outputLabel>
+	<br />
+
+	<h:outputLabel value="Color" />
+	<h:outputLabel value="#{relatable.color}" />
+	<br />
+
+	<h:outputLabel value="Style" />
+	<h:outputLabel value="#{relatable.style}" />
+	<br />
+
+	<h:outputLabel value="Attributes" />
+	<h:outputLabel value="#{relatable.attributes}" />
+	<br />
+
+
+</ui:composition>
+</html>

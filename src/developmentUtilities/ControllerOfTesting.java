@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 
 import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
@@ -23,15 +24,33 @@ public class ControllerOfTesting {
 	@EJB
 	private EJB_of_test ejb_of_test;
 
+	private String id;
+
 
 
 	public Relatable getView() {
-		return ejb_of_test.getView().get(0);
+		if (this.id == null)
+			return null;
+
+		return ejb_of_test.getView(Long.parseLong(this.id)).get(0);
 	}
+
 
 
 	public void test() {
 		ejb_of_test.test();
+	}
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

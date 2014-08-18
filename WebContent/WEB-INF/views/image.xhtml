@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition>
+	<h2>Image</h2>
+
+	<h:outputLabel value="Caption" />
+	<h:outputLabel value="#{relatable.caption}" />
+	<br />
+
+	<h:outputLabel value="Link" />
+	<h:outputLabel value="#{relatable.link}" />
+	<br />
+
+
+	<c:if
+		test="#{relatable.type == 'MugShotImage' ||  relatable.type == 'FingerprintImage'}">
+		<h3>Person</h3>
+		<h:outputLabel value="#{relatable.person.toString()}" />
+		<br />
+	</c:if>
+
+
+	<c:if test="#{relatable.type == 'PhotographicImage'}">
+		<h3>Persons</h3>
+		<h:dataTable value="#{relatable.persons}" var="p">
+			<h:column>#{p.toString()}</h:column>
+		</h:dataTable>
+	</c:if>
+
+
+</ui:composition>
+</html>

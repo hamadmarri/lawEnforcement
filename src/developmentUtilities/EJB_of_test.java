@@ -33,9 +33,12 @@ public class EJB_of_test {
 
 
 	@SuppressWarnings("unchecked")
-	public List<Relatable> getView() {
-		return em.createNamedQuery("Person.findByIdentification").setParameter("identification", "200294236")
-				.getResultList();
+	public List<Relatable> getView(Long id) {
+		// return
+		// em.createNamedQuery("Person.findByIdentification").setParameter("identification",
+		// "200294236")
+		// .getResultList();
+		return em.createNamedQuery("Relatable.findById").setParameter("id", id).getResultList();
 	}
 
 

@@ -19,12 +19,14 @@ public class FingerprintImage extends Image {
 
 	public FingerprintImage() {
 		super();
+		this.type = "FingerprintImage";
 	}
 
 
 
 	public FingerprintImage(String caption, String link, Person person) {
 		super(caption, link);
+		this.type = "FingerprintImage";
 		this.person = person;
 	}
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerOfTesting.id}"></f:viewParam>
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h1>View</h1>
+		<c:set var="relatable" value="#{controllerOfTesting.view}"
+			scope="request" />
+
+		<h:outputLabel value="#{relatable.id}" />
+		<br />
+
+		<!-- ***** Person ***** -->
+		<c:if test="#{relatable.type == 'Person'}">
+			<ui:include src="/WEB-INF/views/person.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+
+		<!-- ***** Conveyance ***** -->
+		<c:if test="#{relatable.type == 'Conveyance'}">
+			<ui:include src="/WEB-INF/views/conveyance.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+
+		<!-- ***** Image (all types) ***** -->
+		<c:if
+			test="#{relatable.type == 'Image' || relatable.type == 'MugShotImage' 
+				|| relatable.type == 'PhotographicImage' || relatable.type == 'FingerprintImage'}">
+			<ui:include src="/WEB-INF/views/image.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+
+		<!-- ***** Location ***** -->
+		<c:if test="#{relatable.type == 'Location'}">
+			<ui:include src="/WEB-INF/views/location.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+
+		<!-- ***** Relations ***** -->
+		<ui:include src="/WEB-INF/views/relations.xhtml">
+			<ui:param name="relations" value="#{relatable.allRelations}"></ui:param>
+		</ui:include>
+
+	</ui:composition>
+</h:body>
+</html>

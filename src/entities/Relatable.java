@@ -13,7 +13,9 @@ import javax.persistence.*;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@NamedQueries({ @NamedQuery(name = "Relatable.findAll", query = "select r from Relatable r ORDER BY r.id") })
+@NamedQueries({ 
+	@NamedQuery(name = "Relatable.findAll", query = "select r from Relatable r ORDER BY r.id"),
+	@NamedQuery(name = "Relatable.findById", query = "select r from Relatable r WHERE r.id = :id")})
 public class Relatable implements Serializable {
 
 	private static final long serialVersionUID = -2946296455927470657L;
