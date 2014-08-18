@@ -52,6 +52,27 @@
 			</ui:include>
 		</c:if>
 
+		<!-- ***** Address ***** -->
+		<c:if test="#{relatable.type == 'Address'}">
+			<ui:include src="/WEB-INF/views/address.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+		
+		<!-- ***** Organization ***** -->
+		<c:if test="#{relatable.type == 'Organization'}">
+			<ui:include src="/WEB-INF/views/organization.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+		
+		<!-- ***** Property ***** -->
+		<c:if test="#{relatable.type == 'Property'}">
+			<ui:include src="/WEB-INF/views/property.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+		
 		<!-- ***** Relations ***** -->
 		<ui:include src="/WEB-INF/views/relations.xhtml">
 			<ui:param name="relations" value="#{relatable.allRelations}"></ui:param>

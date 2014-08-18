@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+	<h3>Address</h3>
+
+	<h:outputLabel value="StreetName" />
+	<h:outputLabel value="#{relatable.streetName}" />
+	<br />
+
+	<h:outputLabel value="Apt No." />
+	<h:outputLabel value="#{relatable.aptNo}" />
+	<br />
+
+	<h:outputLabel value="City" />
+	<h:outputLabel value="#{relatable.city}" />
+	<br />
+
+	<h:outputLabel value="Province" />
+	<h:outputLabel value="#{relatable.province}" />
+	<br />
+
+	<h:outputLabel value="Country" />
+	<h:outputLabel value="#{relatable.country}" />
+	<br />
+
+	<h:outputLabel value="PostalCode" />
+	<h:outputLabel value="#{relatable.postalCode}" />
+	<br />
+
+	<h3>Locations</h3>
+	<h:dataTable value="#{relatable.locations}" var="l">
+		<h:column>#{l.toString()}</h:column>
+	</h:dataTable>
+
+</ui:composition>
+</html>
