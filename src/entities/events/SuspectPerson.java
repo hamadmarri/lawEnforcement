@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import entities.Describable;
+import entities.entries.PersonName;
 import entities.entries.PhysicalCharacteristic;
 
 
@@ -23,7 +24,11 @@ public class SuspectPerson implements Serializable, Describable {
 	Long id;
 
 	@Embedded
+	private PersonName personName;
+
+	@Embedded
 	private PhysicalCharacteristic suspectPhysicalCharacteristic;
+
 	private String description;
 
 	@ManyToMany(mappedBy = "suspectPersons")
@@ -41,6 +46,18 @@ public class SuspectPerson implements Serializable, Describable {
 		super();
 		this.suspectPhysicalCharacteristic = suspectPhysicalCharacteristic;
 		this.description = description;
+	}
+
+
+
+	public PersonName getPersonName() {
+		return personName;
+	}
+
+
+
+	public void setPersonName(PersonName personName) {
+		this.personName = personName;
 	}
 
 

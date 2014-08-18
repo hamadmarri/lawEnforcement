@@ -25,6 +25,7 @@ public class ArrestReport extends Event {
 
 	public ArrestReport() {
 		super();
+		this.type = "ArrestReport";
 	}
 
 
@@ -58,6 +59,13 @@ public class ArrestReport extends Event {
 			this.incidentReportsAccordingTo = new ArrayList<IncidentReport>();
 
 		this.incidentReportsAccordingTo.add(incidentReportAccordingTo);
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.document;
 	}
 
 }

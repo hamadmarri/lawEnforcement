@@ -22,16 +22,17 @@
 		<h:outputLabel value="#{relatable.id}" />
 		<br />
 
+		<!-- ********** Entries ********** -->
 		<!-- ***** Person ***** -->
 		<c:if test="#{relatable.type == 'Person'}">
-			<ui:include src="/WEB-INF/views/person.xhtml">
+			<ui:include src="/WEB-INF/views/entries/person.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
 
 		<!-- ***** Conveyance ***** -->
 		<c:if test="#{relatable.type == 'Conveyance'}">
-			<ui:include src="/WEB-INF/views/conveyance.xhtml">
+			<ui:include src="/WEB-INF/views/entries/conveyance.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
@@ -40,43 +41,62 @@
 		<c:if
 			test="#{relatable.type == 'Image' || relatable.type == 'MugShotImage' 
 				|| relatable.type == 'PhotographicImage' || relatable.type == 'FingerprintImage'}">
-			<ui:include src="/WEB-INF/views/image.xhtml">
+			<ui:include src="/WEB-INF/views/entries/image.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
 
 		<!-- ***** Location ***** -->
 		<c:if test="#{relatable.type == 'Location'}">
-			<ui:include src="/WEB-INF/views/location.xhtml">
+			<ui:include src="/WEB-INF/views/entries/location.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
 
 		<!-- ***** Address ***** -->
 		<c:if test="#{relatable.type == 'Address'}">
-			<ui:include src="/WEB-INF/views/address.xhtml">
+			<ui:include src="/WEB-INF/views/entries/address.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
-		
+
 		<!-- ***** Organization ***** -->
 		<c:if test="#{relatable.type == 'Organization'}">
-			<ui:include src="/WEB-INF/views/organization.xhtml">
+			<ui:include src="/WEB-INF/views/entries/organization.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
-		
+
 		<!-- ***** Property ***** -->
 		<c:if test="#{relatable.type == 'Property'}">
-			<ui:include src="/WEB-INF/views/property.xhtml">
+			<ui:include src="/WEB-INF/views/entries/property.xhtml">
 				<ui:param name="relatable" value="#{relatable}"></ui:param>
 			</ui:include>
 		</c:if>
-		
+
+
+		<!-- ********** Events ********** -->
+		<!-- ***** IncidentReport ***** -->
+		<c:if test="#{relatable.type == 'IncidentReport'}">
+			<ui:include src="/WEB-INF/views/events/incidentReport.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+
+		<!-- ***** ArrestReport ***** -->
+		<c:if test="#{relatable.type == 'ArrestReport'}">
+			<ui:include src="/WEB-INF/views/events/arrestReport.xhtml">
+				<ui:param name="relatable" value="#{relatable}"></ui:param>
+			</ui:include>
+		</c:if>
+
+
 		<!-- ***** Relations ***** -->
-		<ui:include src="/WEB-INF/views/relations.xhtml">
-			<ui:param name="relations" value="#{relatable.allRelations}"></ui:param>
-		</ui:include>
+		<c:if test="#{relatable.allRelations.size() != 0}">
+			<ui:include src="/WEB-INF/views/entries/relations.xhtml">
+				<ui:param name="relations" value="#{relatable.allRelations}"></ui:param>
+			</ui:include>
+		</c:if>
 
 	</ui:composition>
 </h:body>

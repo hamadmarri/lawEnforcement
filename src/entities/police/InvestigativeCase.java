@@ -103,4 +103,11 @@ public class InvestigativeCase implements Serializable {
 		this.investigators.add(investigator);
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.officerWhoCreatedIt.toString();
+	}
+
 }

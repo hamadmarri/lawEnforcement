@@ -1,11 +1,9 @@
 package entities.events;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.persistence.Embeddable;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +27,7 @@ public class FieldInterview {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateAndTime;
 
-	private String Sayings;
+	private String sayings;
 
 
 
@@ -43,7 +41,7 @@ public class FieldInterview {
 		this.subscriber = subscriber;
 		this.inCaseOfEmergencyPerson = inCaseOfEmergencyPerson;
 		this.dateAndTime = dateAndTime;
-		Sayings = sayings;
+		this.sayings = sayings;
 	}
 
 
@@ -72,13 +70,6 @@ public class FieldInterview {
 
 
 
-	// public void addInCaseOfEmergencyPerson(Person inCaseOfEmergencyPerson) {
-	// if (this.inCaseOfEmergencyPersons == null)
-	// this.inCaseOfEmergencyPersons = new ArrayList<Person>();
-	//
-	// this.inCaseOfEmergencyPersons.add(inCaseOfEmergencyPerson);
-	// }
-
 	public Calendar getDateAndTime() {
 		return dateAndTime;
 	}
@@ -92,13 +83,22 @@ public class FieldInterview {
 
 
 	public String getSayings() {
-		return Sayings;
+		return sayings;
 	}
 
 
 
 	public void setSayings(String sayings) {
-		Sayings = sayings;
+		this.sayings = sayings;
+	}
+
+
+
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy hh:mm");
+		return this.subscriber.toString() + " " + this.inCaseOfEmergencyPerson.toString() + " "
+				+ sdf.format(this.dateAndTime.getTime()) + " " + this.sayings;
 	}
 
 }
