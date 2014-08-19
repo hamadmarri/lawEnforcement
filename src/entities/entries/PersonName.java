@@ -6,13 +6,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PersonName {
 
-	private String firstName;
+	private String firstName = new String("");
 	private String lastName;
 
 
 
 	public PersonName() {
-
 	}
 
 

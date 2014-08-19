@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerView.id}" />
+		<f:event listener="#{controllerView.getProperViewPage}" type="preRenderView" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h1>View</h1>
+	
+	<!-- <h:outputLabel value="#{controllerView.relatable.id}" />
+	<br />
+	<ui:include src="#{controllerView.properViewPage}" /> -->
+
+
+	<!-- ***** Relations ***** -->
+	<!-- <ui:include
+		src="/WEB-INF/composites/entries/relation/listRelations.xhtml">
+		<ui:param name="relations" value="#{controllerView.relatable.allRelations}"></ui:param>
+	</ui:include> -->
+
+</h:body>
+</html>

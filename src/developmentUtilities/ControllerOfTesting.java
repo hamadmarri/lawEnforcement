@@ -25,6 +25,7 @@ public class ControllerOfTesting {
 	private EJB_of_test ejb_of_test;
 
 	private String id;
+	private String mode = "";
 
 
 
@@ -37,8 +38,10 @@ public class ControllerOfTesting {
 
 
 
-	public void test() {
+	public String test() {
 		ejb_of_test.test();
+		return "success";
+		// return "fail";
 	}
 
 
@@ -51,6 +54,18 @@ public class ControllerOfTesting {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+
+	public String getMode() {
+		return mode;
+	}
+
+
+
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 
 }

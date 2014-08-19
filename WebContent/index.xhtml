@@ -22,8 +22,8 @@
 	</h:form>
 
 
-	<ui:remove>
 
+	<ui:remove>
 
 		<h:dataTable value="#{controllerOfTesting.view}" var="v">
 			<h:column>#{v.id}</h:column>
@@ -31,7 +31,6 @@
 
 	</ui:remove>
 
-	<ui:debug hotkey="D"
-		rendered="#{initParam['javax.faces.PROJECT_STAGE'] == 'Development'}" />
+	
 </h:body>
 </html>

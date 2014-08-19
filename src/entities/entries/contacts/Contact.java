@@ -53,6 +53,12 @@ public abstract class Contact implements Serializable {
 
 
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
 	public void setOwner(Person owner) {
 		this.owner = owner;
 	}

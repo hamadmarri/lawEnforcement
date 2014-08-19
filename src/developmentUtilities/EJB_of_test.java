@@ -196,16 +196,16 @@ public class EJB_of_test {
 	private void createpersons() {
 
 		Calendar date1 = Calendar.getInstance();
-		date1.set(1984, 7, 23);
+		date1.set(1984, 6, 23);
 
 		Calendar date2 = Calendar.getInstance();
-		date2.set(1991, 7, 19);
+		date2.set(1991, 6, 19);
 
 		Map<String, String> ids = new HashMap<String, String>();
 		ids.put("SGI", "849839409");
 		ids.put("U of R", "200294236");
 
-		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1, "Al Hasa", "Male", "Saudi", null, "AA");
+		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1.getTime(), "Al Hasa", "Male", "Saudi", null, "AA");
 		p1.setIdentifications(ids);
 		p1.addContact(new CellPhone(p1, "3069990084"));
 		p1.addContact(new Email(p1, "almarrih@uregina.ca"));
@@ -214,7 +214,7 @@ public class EJB_of_test {
 		p1.addAliasNameOrMoniker("the monster");
 		p1.addScars_mark_tattoo("abu antar mark");
 
-		Person p2 = new Person(new PersonName("Mohammad", "Almarri"), date2, "Al Khobar", "Male", "Saudi", null, "PI");
+		Person p2 = new Person(new PersonName("Mohammad", "Almarri"), date2.getTime(), "Al Khobar", "Male", "Saudi", null, "PI");
 		Relation r = new Relation(p1, "brothers", p2);
 
 		PhotographicImage pi = new PhotographicImage("both", "ldfjglh");

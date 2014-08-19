@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition>
+		<h2>Physical Characteristics</h2>
+		<h:outputLabel value="Build" />
+		<h:outputLabel
+			value="${person.physicalCharacteristic.buildCharacteristics}" />
+		<br />
+		<h:outputLabel value="Height" />
+		<h:outputLabel
+			value="${person.physicalCharacteristic.heightCharacteristics}" />
+		<br />
+		<h:outputLabel value="Complexion" />
+		<h:outputLabel
+			value="${person.physicalCharacteristic.complexionCharacteristics}" />
+		<br />
+		<h:outputLabel value="Hair" />
+		<h:outputLabel
+			value="${person.physicalCharacteristic.hairCharacteristics}" />
+	</ui:composition>
+</h:body>
+</html>

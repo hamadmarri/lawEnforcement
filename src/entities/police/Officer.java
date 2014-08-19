@@ -66,6 +66,13 @@ public class Officer implements Serializable {
 
 
 
+	public void setPersonName(String personName) {
+		this.personName.setFirstName(personName.substring(0, personName.indexOf(' ')));
+		this.personName.setLastName(personName.substring(personName.indexOf(' ') + 1));
+	}
+
+
+
 	public Calendar getDateOfBirth() {
 		return dateOfBirth;
 	}

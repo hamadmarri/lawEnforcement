@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition>
+		<h2>Conveyances</h2>
+		<h:dataTable value="#{conveyances}" var="c">
+			<h:column>
+				<f:facet name="header">Vehicle Identification Number</f:facet>
+				#{c.vehicleIdentificationNumber}
+			</h:column>
+			<h:column>
+				<f:facet name="header">License Plate Number</f:facet>
+				#{c.licensePlateNumber}
+			</h:column>
+			<h:column>
+				<f:facet name="header">License Plate State</f:facet>
+				#{c.licensePlateState}
+			</h:column>
+			<h:column>
+				<f:facet name="header">License Plate Year</f:facet>
+				<h:outputLabel value="#{c.licensePlateYear.time}">
+					<f:convertDateTime pattern="YYYY" />
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Registered Owner</f:facet>
+				#{c.registeredOwner.personName.firstName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Make</f:facet>
+				#{c.make}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Model</f:facet>
+				#{c.model}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Year</f:facet>
+				<h:outputLabel value="#{c.year.time}">
+					<f:convertDateTime pattern="YYYY" />
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Color</f:facet>
+				#{c.color}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Style</f:facet>
+				#{c.style}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Attributes</f:facet>
+				#{c.attributes}
+			</h:column>
+		</h:dataTable>
+
+	</ui:composition>
+</h:body>
+</html>

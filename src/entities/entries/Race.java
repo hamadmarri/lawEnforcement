@@ -36,7 +36,7 @@ public class Race {
 			"Togolese", "Akan", "Belizean", "Martinique", "Hmong", "Sierra Leonean", "Kashmiri", "Pacific Islander",
 			"Cornish", "Manx" };
 
-	private String race;
+	private String race = new String();
 
 
 
@@ -59,6 +59,8 @@ public class Race {
 
 
 	public void setRace(String race) {
+		if (this.race == null)
+			this.race = new String();
 		this.race = race;
 	}
 

@@ -2,6 +2,8 @@ package entities.entries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +51,8 @@ public class Person extends Entry {
 	private PersonName personName;
 
 	@Temporal(TemporalType.DATE)
-	private Calendar dateOfBirth;
+	private Date dateOfBirth;
+	// private Calendar dateOfBirth;
 
 	private String birthPlace;
 	private String gender;
@@ -74,7 +77,7 @@ public class Person extends Entry {
 	private PhysicalCharacteristic physicalCharacteristic;
 
 	@Embedded
-	private Race race;
+	private Race race = new Race();
 
 	@OneToMany(mappedBy = "person")
 	private List<MugShotImage> mugShots;
@@ -100,7 +103,7 @@ public class Person extends Entry {
 
 
 
-	public Person(PersonName personName, Calendar dateOfBirth, String birthPlace, String gender, String citizenship,
+	public Person(PersonName personName, Date dateOfBirth, String birthPlace, String gender, String citizenship,
 			String modusOperandi, String nCIC_fingerprintClassification) {
 		super();
 		this.type = "Person";
@@ -116,6 +119,8 @@ public class Person extends Entry {
 
 
 	public PersonName getPersonName() {
+		// if (this.personName == null)
+		// this.personName = new PersonName();
 		return personName;
 	}
 
@@ -127,13 +132,13 @@ public class Person extends Entry {
 
 
 
-	public Calendar getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 
 
-	public void setDateOfBirth(Calendar dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -183,6 +188,15 @@ public class Person extends Entry {
 
 	public void setIdentifications(Map<String, String> identifications) {
 		this.identifications = identifications;
+	}
+
+
+
+	public void addIdentification(String key, String value) {
+		if (this.identifications == null)
+			this.identifications = new HashMap<String, String>();
+
+		this.identifications.put(key, value);
 	}
 
 
@@ -287,7 +301,7 @@ public class Person extends Entry {
 
 
 	public Race getRace() {
-		return race;
+		return this.race;
 	}
 
 
