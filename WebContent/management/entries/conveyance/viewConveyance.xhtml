@@ -6,58 +6,71 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerConveyance.id}" />
+	</f:metadata>
+</h:head>
+
 <ui:composition>
 	<h2>Conveyance</h2>
 
+	<h:link value="edit"
+		outcome="editConveyance.xhtml?id=#{controllerConveyance.id}" />
+	<br />
 
 	<h:outputLabel value="Vehicle identification number" />
-	<h:outputLabel value="#{relatable.vehicleIdentificationNumber}" />
+	<h:outputLabel
+		value="#{controllerConveyance.relatable.vehicleIdentificationNumber}" />
 	<br />
 
 	<h:outputLabel value="License plate number" />
-	<h:outputLabel value="#{relatable.licensePlateNumber}" />
+	<h:outputLabel
+		value="#{controllerConveyance.relatable.licensePlateNumber}" />
 	<br />
 
 	<h:outputLabel value="License plate state" />
-	<h:outputLabel value="#{relatable.licensePlateState}" />
+	<h:outputLabel
+		value="#{controllerConveyance.relatable.licensePlateState}" />
 	<br />
 
 	<h:outputLabel value="License plate year" />
-	<h:outputLabel value="#{relatable.licensePlateYear.time}">
+	<h:outputLabel
+		value="#{controllerConveyance.relatable.licensePlateYear.time}">
 		<f:convertDateTime pattern="YYYY" />
 	</h:outputLabel>
 	<br />
 
 	<h:outputLabel value="Registered owner" />
 	<h:outputLabel
-		value="#{relatable.registeredOwner.personName.firstName}" />
+		value="#{controllerConveyance.relatable.registeredOwner.personName.firstName}" />
 	<br />
 
 
 	<h:outputLabel value="Make" />
-	<h:outputLabel value="#{relatable.make}" />
+	<h:outputLabel value="#{controllerConveyance.relatable.make}" />
 	<br />
 
 	<h:outputLabel value="Model" />
-	<h:outputLabel value="#{relatable.model}" />
+	<h:outputLabel value="#{controllerConveyance.relatable.model}" />
 	<br />
 
 	<h:outputLabel value="Year" />
-	<h:outputLabel value="#{relatable.year.time}">
+	<h:outputLabel value="#{controllerConveyance.relatable.year.time}">
 		<f:convertDateTime pattern="YYYY" />
 	</h:outputLabel>
 	<br />
 
 	<h:outputLabel value="Color" />
-	<h:outputLabel value="#{relatable.color}" />
+	<h:outputLabel value="#{controllerConveyance.relatable.color}" />
 	<br />
 
 	<h:outputLabel value="Style" />
-	<h:outputLabel value="#{relatable.style}" />
+	<h:outputLabel value="#{controllerConveyance.relatable.style}" />
 	<br />
 
 	<h:outputLabel value="Attributes" />
-	<h:outputLabel value="#{relatable.attributes}" />
+	<h:outputLabel value="#{controllerConveyance.relatable.attributes}" />
 	<br />
 
 

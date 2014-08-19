@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerConveyance.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h2>Conveyance</h2>
+
+	<h:form>
+		<h:outputLabel value="Vehicle identification number" />
+		<h:inputText
+			value="#{controllerConveyance.relatable.vehicleIdentificationNumber}" />
+		<br />
+
+		<h:outputLabel value="License plate number" />
+		<h:inputText
+			value="#{controllerConveyance.relatable.licensePlateNumber}" />
+		<br />
+
+		<h:outputLabel value="License plate state" />
+		<h:inputText
+			value="#{controllerConveyance.relatable.licensePlateState}" />
+		<br />
+
+		<h:outputLabel value="License plate year" />
+		<p:calendar value="#{controllerConveyance.relatable.licensePlateYear}" />
+		<br />
+
+		<h:outputLabel value="Registered owner" />
+		<h:inputText
+			value="#{controllerConveyance.relatable.registeredOwner.personName.firstName}" />
+		<br />
+
+
+		<h:outputLabel value="Make" />
+		<h:inputText value="#{controllerConveyance.relatable.make}" />
+		<br />
+
+		<h:outputLabel value="Model" />
+		<h:inputText value="#{controllerConveyance.relatable.model}" />
+		<br />
+
+		<h:outputLabel value="Year" />
+		<p:calendar value="#{controllerConveyance.relatable.year}" />
+		<br />
+
+		<h:outputLabel value="Color" />
+		<h:inputText value="#{controllerConveyance.relatable.color}" />
+		<br />
+
+		<h:outputLabel value="Style" />
+		<h:inputText value="#{controllerConveyance.relatable.style}" />
+		<br />
+
+		<h:outputLabel value="Attributes" />
+		<h:inputText value="#{controllerConveyance.relatable.attributes}" />
+		<br />
+
+		<h:commandButton value="save" action="#{controllerConveyance.submit}" />
+	</h:form>
+</h:body>
+</html>

@@ -16,6 +16,7 @@ import entities.events.Event;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Officer.findAll", query = "select o from Officer o") })
 public class Officer implements Serializable {
 
 	private static final long serialVersionUID = -5522696147922682708L;

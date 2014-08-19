@@ -39,6 +39,12 @@ public abstract class Contact implements Serializable {
 
 
 
+	public Long getId() {
+		return id;
+	}
+
+
+
 	public abstract String getContent();
 
 

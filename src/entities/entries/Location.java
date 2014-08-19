@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -14,6 +16,7 @@ import javax.persistence.ManyToMany;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Location.findAll", query = "select l from Location l") })
 public class Location extends Entry {
 
 	private static final long serialVersionUID = -5026404539659981489L;

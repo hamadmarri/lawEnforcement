@@ -1,10 +1,13 @@
 package entities.entries;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -14,6 +17,7 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Conveyance.findAll", query = "select c from Conveyance c") })
 public class Conveyance extends Entry {
 
 	private static final long serialVersionUID = -3541340568029240812L;
@@ -23,7 +27,7 @@ public class Conveyance extends Entry {
 	private String licensePlateState;
 
 	@Temporal(TemporalType.DATE)
-	private Calendar licensePlateYear;
+	private Date licensePlateYear;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Person registeredOwner;
@@ -32,7 +36,7 @@ public class Conveyance extends Entry {
 	private String model;
 
 	@Temporal(TemporalType.DATE)
-	private Calendar year;
+	private Date year;
 
 	private String color;
 	private String style;
@@ -48,8 +52,7 @@ public class Conveyance extends Entry {
 
 
 	public Conveyance(String vehicleIdentificationNumber, String licensePlateNumber, String licensePlateState,
-			Calendar licensePlateYear, String make, String model, Calendar year, String color, String style,
-			String attributes) {
+			Date licensePlateYear, String make, String model, Date year, String color, String style, String attributes) {
 		super();
 		this.type = "Conveyance";
 		this.vehicleIdentificationNumber = vehicleIdentificationNumber;
@@ -102,13 +105,13 @@ public class Conveyance extends Entry {
 
 
 
-	public Calendar getLicensePlateYear() {
+	public Date getLicensePlateYear() {
 		return licensePlateYear;
 	}
 
 
 
-	public void setLicensePlateYear(Calendar licensePlateYear) {
+	public void setLicensePlateYear(Date licensePlateYear) {
 		this.licensePlateYear = licensePlateYear;
 	}
 
@@ -150,13 +153,13 @@ public class Conveyance extends Entry {
 
 
 
-	public Calendar getYear() {
+	public Date getYear() {
 		return year;
 	}
 
 
 
-	public void setYear(Calendar year) {
+	public void setYear(Date year) {
 		this.year = year;
 	}
 
@@ -200,7 +203,7 @@ public class Conveyance extends Entry {
 
 	@Override
 	public String toString() {
-		return this.vehicleIdentificationNumber + " " + this.make + " " + this.model + this.year.get(Calendar.YEAR);
+		return this.vehicleIdentificationNumber + " " + this.make + " " + this.model;
 	}
 
 }

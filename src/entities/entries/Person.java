@@ -1,14 +1,10 @@
 package entities.entries;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -58,17 +54,17 @@ public class Person extends Entry {
 	private String gender;
 	private String citizenship;
 
-	@ElementCollection
-	private Map<String, String> identifications;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Identification> identifications;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Contact> contacts;
 
-	@ElementCollection
-	private List<String> aliasNamesOrMonikers;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<AliasNameOrMoniker> aliasNamesOrMonikers;
 
-	@ElementCollection
-	private List<String> scars_marks_tattoos;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<ScarMarkTattoo> scars_marks_tattoos;
 
 	private String modusOperandi;
 	private String NCIC_fingerprintClassification;
@@ -180,23 +176,23 @@ public class Person extends Entry {
 
 
 
-	public Map<String, String> getIdentifications() {
+	public List<Identification> getIdentifications() {
 		return identifications;
 	}
 
 
 
-	public void setIdentifications(Map<String, String> identifications) {
+	public void setIdentifications(List<Identification> identifications) {
 		this.identifications = identifications;
 	}
 
 
 
-	public void addIdentification(String key, String value) {
+	public void addIdentification(Identification identification) {
 		if (this.identifications == null)
-			this.identifications = new HashMap<String, String>();
+			this.identifications = new ArrayList<Identification>();
 
-		this.identifications.put(key, value);
+		this.identifications.add(identification);
 	}
 
 
@@ -222,42 +218,42 @@ public class Person extends Entry {
 
 
 
-	public List<String> getAliasNamesOrMonikers() {
+	public List<AliasNameOrMoniker> getAliasNamesOrMonikers() {
 		return aliasNamesOrMonikers;
 	}
 
 
 
-	public void setAliasNamesOrMonikers(List<String> aliasNamesOrMonikers) {
+	public void setAliasNamesOrMonikers(List<AliasNameOrMoniker> aliasNamesOrMonikers) {
 		this.aliasNamesOrMonikers = aliasNamesOrMonikers;
 	}
 
 
 
-	public void addAliasNameOrMoniker(String aliasNameOrMoniker) {
+	public void addAliasNameOrMoniker(AliasNameOrMoniker aliasNameOrMoniker) {
 		if (this.aliasNamesOrMonikers == null)
-			this.aliasNamesOrMonikers = new ArrayList<String>();
+			this.aliasNamesOrMonikers = new ArrayList<AliasNameOrMoniker>();
 
 		this.aliasNamesOrMonikers.add(aliasNameOrMoniker);
 	}
 
 
 
-	public List<String> getScars_marks_tattoos() {
+	public List<ScarMarkTattoo> getScars_marks_tattoos() {
 		return scars_marks_tattoos;
 	}
 
 
 
-	public void setScars_marks_tattoos(List<String> scars_marks_tattoos) {
+	public void setScars_marks_tattoos(List<ScarMarkTattoo> scars_marks_tattoos) {
 		this.scars_marks_tattoos = scars_marks_tattoos;
 	}
 
 
 
-	public void addScars_mark_tattoo(String scar_mark_tattoo) {
+	public void addScars_mark_tattoo(ScarMarkTattoo scar_mark_tattoo) {
 		if (this.scars_marks_tattoos == null)
-			this.scars_marks_tattoos = new ArrayList<String>();
+			this.scars_marks_tattoos = new ArrayList<ScarMarkTattoo>();
 
 		this.scars_marks_tattoos.add(scar_mark_tattoo);
 	}
