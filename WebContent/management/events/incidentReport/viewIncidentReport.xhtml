@@ -36,21 +36,15 @@
 				value="#{controllerIncidentReport.incidentReport.caseStatus}" />
 			<br />
 
-
-			<c:set var="suspectPersons"
-				value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
-
 			<ui:include src="/management/suspectPerson/listSuspectPersons.xhtml">
 				<ui:param name="suspectPersons"
 					value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
-				<ui:param name="included" value="true" />
 			</ui:include>
 
 			<ui:include
 				src="/management/fieldInterview/listFieldInterviews.xhtml">
 				<ui:param name="fieldInterviews"
 					value="#{controllerIncidentReport.incidentReport.fieldInterviews}" />
-				<ui:param name="included" value="true" />
 			</ui:include>
 
 			<h:outputLabel value="Summary" />
@@ -67,10 +61,8 @@
 				src="/management/events/arrestReport/listArrestReports.xhtml">
 				<ui:param name="arrestReports"
 					value="#{controllerIncidentReport.incidentReport.arrestReports}" />
-				<ui:param name="included" value="true" />
 			</ui:include>
 			
-
 		</ui:define>
 	</ui:composition>
 </h:body>

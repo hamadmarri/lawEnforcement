@@ -13,45 +13,50 @@
 	<ui:composition>
 		<h2>Addresses</h2>
 
-		<c:if test="${empty address}">
+		<c:if test="${empty addresses and not included}">
 			<c:set var="addresses" value="#{controllerAddress.addressesList}" />
 		</c:if>
 
-		<h:dataTable value="#{addresses}" var="a">
-			<h:column>
-				<h:link value="view"
-					outcome="/management/entries/address/viewAddress.xhtml?id=#{a.id}" />
-			</h:column>
-			<h:column>
-				<h:link value="edit"
-					outcome="/management/entries/address/editAddress.xhtml?id=#{a.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Street name</f:facet>
+		<c:if test="${empty addresses and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty addresses}">
+			<h:dataTable value="#{addresses}" var="a">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/entries/address/viewAddress.xhtml?id=#{a.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/entries/address/editAddress.xhtml?id=#{a.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Street name</f:facet>
 				#{a.streetName}
 			</h:column>
-			<h:column>
-				<f:facet name="header">Apt No.</f:facet>
+				<h:column>
+					<f:facet name="header">Apt No.</f:facet>
 				#{a.aptNo}
 			</h:column>
-			<h:column>
-				<f:facet name="header">City</f:facet>
+				<h:column>
+					<f:facet name="header">City</f:facet>
 				#{a.city}
 			</h:column>
-			<h:column>
-				<f:facet name="header">Province</f:facet>
+				<h:column>
+					<f:facet name="header">Province</f:facet>
 				#{a.province}
 			</h:column>
-			<h:column>
-				<f:facet name="header">Country</f:facet>
+				<h:column>
+					<f:facet name="header">Country</f:facet>
 				#{a.country}
 			</h:column>
-			<h:column>
-				<f:facet name="header">Postal code</f:facet>
+				<h:column>
+					<f:facet name="header">Postal code</f:facet>
 				#{a.postalCode}
 			</h:column>
-		</h:dataTable>
-
+			</h:dataTable>
+		</c:if>
 	</ui:composition>
 </h:body>
 </html>

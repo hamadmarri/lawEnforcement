@@ -8,29 +8,48 @@
 
 <h:head>
 	<f:metadata>
-		<ui:remove>
-			<f:event listener="#{controllerOfTesting.test()}"
-				type="preRenderView" />
-		</ui:remove>
 	</f:metadata>
 </h:head>
 
 <h:body>
+
+	<ul>
+		<li><h:link value="Addresses"
+				outcome="/management/entries/address/listAddresses.xhtml" /></li>
+		<li><h:link value="Conveyances"
+				outcome="/management/entries/conveyance/listConveyances.xhtml" /></li>
+		<li><h:link value="Locations"
+				outcome="/management/entries/location/listLocations.xhtml" /></li>
+		<li><h:link value="Organizations"
+				outcome="/management/entries/organization/listOrganizations.xhtml" /></li>
+		<li><h:link value="Persons"
+				outcome="/management/entries/person/listPersons.xhtml" /></li>
+		<li><h:link value="Property"
+				outcome="/management/entries/property/listProperties.xhtml" /></li>
+		<li><h:link value="Relations"
+				outcome="/management/entries/relation/listRelations.xhtml" /></li>
+		
+
+
+		<li><h:link value="Arrest Reportss"
+				outcome="/management/events/arrestReport/listArrestReports.xhtml" /></li>
+		<li><h:link value="Incident Reports"
+				outcome="/management/events/incidentReport/listIncidentReports.xhtml" /></li>
+		<li><h:link value="Field Interviews"
+				outcome="/management/fieldInterview/listFieldInterviews.xhtml" /></li>
+		<li><h:link value="Suspect Persons"
+				outcome="/management/suspectPerson/listSuspectPersons.xhtml" /></li>
+
+	</ul>
+
+	<br />
+	<br />
+	<br />
+
 	<h:form>
 		<h:commandButton action="#{controllerOfTesting.test()}"
 			value="fill up database" />
 	</h:form>
 
-
-
-	<ui:remove>
-
-		<h:dataTable value="#{controllerOfTesting.view}" var="v">
-			<h:column>#{v.id}</h:column>
-		</h:dataTable>
-
-	</ui:remove>
-
-	
 </h:body>
 </html>

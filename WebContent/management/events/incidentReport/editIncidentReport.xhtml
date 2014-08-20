@@ -8,7 +8,7 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{controllerProperty.id}" />
+		<f:viewParam name="id" value="#{controllerIncidentReport.id}" />
 	</f:metadata>
 </h:head>
 
@@ -17,28 +17,23 @@
 	<h2>Edit Incident Report</h2>
 
 	<h:form>
-		<h:outputLabel value="Serial number" />
-		<h:inputText value="#{controllerProperty.property.serialNumber}" />
-		<br />
-
-		<h:outputLabel value="Make" />
-		<h:inputText value="#{controllerProperty.property.make}" />
-		<br />
-
-		<h:outputLabel value="Model" />
-		<h:inputText value="#{controllerProperty.property.model}" />
-		<br />
-
-		<h:outputLabel value="Brand" />
-		<h:inputText value="#{controllerProperty.property.brand}" />
-		<br />
-
-		<h:outputLabel value="Distinguishing characteristics" />
+		<h:outputLabel value="Offense Information" />
 		<h:inputText
-			value="#{controllerProperty.property.distinguishingCharacteristics}" />
+			value="#{controllerIncidentReport.incidentReport.offenseInformation}" />
 		<br />
 
-		<h:commandButton value="save" action="#{controllerProperty.submit}" />
+		<h:outputLabel value="Case status" />
+		<h:inputText
+			value="#{controllerIncidentReport.incidentReport.caseStatus}" />
+		<br />
+
+		<h:outputLabel value="Summary" />
+		<h:inputText
+			value="#{controllerIncidentReport.incidentReport.summary}" />
+		<br />
+
+		<h:commandButton value="save"
+			action="#{controllerIncidentReport.submit}" />
 	</h:form>
 </h:body>
 </html>

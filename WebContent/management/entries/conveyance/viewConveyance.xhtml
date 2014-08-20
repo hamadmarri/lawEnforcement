@@ -51,6 +51,8 @@
 			<h:outputLabel value="Registered owner" />
 			<h:outputLabel
 				value="#{controllerConveyance.conveyance.registeredOwner.personName.firstName}" />
+			<h:link value="view"
+				outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerConveyance.conveyance.registeredOwner.id}" />
 			<br />
 
 
