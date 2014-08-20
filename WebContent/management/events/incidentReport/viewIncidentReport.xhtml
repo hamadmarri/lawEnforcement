@@ -17,6 +17,7 @@
 		<ui:define name="view">
 			<c:set var="relations"
 				value="#{controllerIncidentReport.incidentReport.allRelations}" />
+			<c:set var="included" value="true" />
 
 			<h3>Incident Report</h3>
 
@@ -42,32 +43,15 @@
 			<ui:include src="/management/suspectPerson/listSuspectPersons.xhtml">
 				<ui:param name="suspectPersons"
 					value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
+				<ui:param name="included" value="true" />
 			</ui:include>
 
-
-			<h4>Field interviews</h4>
-			<h:dataTable
-				value="#{controllerIncidentReport.incidentReport.fieldInterviews}"
-				var="fi">
-				<h:column>
-					<f:facet name="header">Subscriber</f:facet>
-					#{fi.subscriber.toString()}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Emergency Contact</f:facet>
-					#{fi.inCaseOfEmergencyPerson.toString()}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Date and time</f:facet>
-					<h:outputLabel value="#{fi.dateAndTime.time}">
-						<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
-					</h:outputLabel>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Sayings</f:facet>
-					#{fi.sayings}
-				</h:column>
-			</h:dataTable>
+			<ui:include
+				src="/management/fieldInterview/listFieldInterviews.xhtml">
+				<ui:param name="fieldInterviews"
+					value="#{controllerIncidentReport.incidentReport.fieldInterviews}" />
+				<ui:param name="included" value="true" />
+			</ui:include>
 
 			<h:outputLabel value="Summary" />
 			<h:outputLabel
@@ -79,12 +63,13 @@
 				value="#{controllerIncidentReport.incidentReport.assignedCase.toString()}" />
 			<br />
 
-			<h4>Arrest reports</h4>
-			<h:dataTable
-				value="#{controllerIncidentReport.incidentReport.arrestReports}"
-				var="ar">
-				<h:column>#{ar.toString()}</h:column>
-			</h:dataTable>
+			<ui:include
+				src="/management/events/arrestReport/listArrestReports.xhtml">
+				<ui:param name="arrestReports"
+					value="#{controllerIncidentReport.incidentReport.arrestReports}" />
+				<ui:param name="included" value="true" />
+			</ui:include>
+			
 
 		</ui:define>
 	</ui:composition>

@@ -14,32 +14,38 @@
 	<ui:composition>
 		<h3>Suspect Persons List</h3>
 
-		<c:if test="${empty suspectPersons}">
+		<c:if test="${empty suspectPersons and not included}">
 			<c:set var="suspectPersons"
 				value="#{controllerSuspectPerson.suspectPersonsList}" />
 		</c:if>
 
+		<c:if test="${empty suspectPersons and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
 
-		<h:dataTable value="#{suspectPersons}" var="sp">
-			<h:column>
-				<h:link value="view"
-					outcome="/management/suspectPerson/viewSuspectPerson.xhtml?id=#{sp.id}" />
-			</h:column>
-			<h:column>
-				<h:link value="edit"
-					outcome="/management/suspectPerson/editSuspectPerson.xhtml?id=#{sp.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Physical Characteristic</f:facet>
-				<h:outputLabel value="#{sp.physicalCharacteristic.toString()}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Description</f:facet>
-				<h:outputLabel value="#{sp.description}">
-					<f:convertDateTime pattern="MMMM dd, YYYY" />
-				</h:outputLabel>
-			</h:column>
-		</h:dataTable>
+		<c:if test="${not empty suspectPersons}">
+			<h:dataTable value="#{suspectPersons}" var="sp">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/suspectPerson/viewSuspectPerson.xhtml?id=#{sp.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/suspectPerson/editSuspectPerson.xhtml?id=#{sp.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Physical Characteristic</f:facet>
+					<h:outputLabel value="#{sp.physicalCharacteristic.toString()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Description</f:facet>
+					<h:outputLabel value="#{sp.description}">
+						<f:convertDateTime pattern="MMMM dd, YYYY" />
+					</h:outputLabel>
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
 	</ui:composition>
 </h:body>
 </html>

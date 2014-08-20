@@ -18,6 +18,7 @@
 		<ui:define name="view">
 			<c:set var="relations"
 				value="#{controllerPerson.person.allRelations}" />
+			<c:set var="included" value="true" />
 
 			<h1>Person</h1>
 
@@ -111,7 +112,7 @@
 				<ui:param name="conveyances"
 					value="#{controllerPerson.person.conveyances}"></ui:param>
 			</ui:include>
-			
+
 		</ui:define>
 	</ui:composition>
 </h:body>

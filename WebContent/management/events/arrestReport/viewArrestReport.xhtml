@@ -4,13 +4,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<ui:composition>
-	<h3>Arrest Report</h3>
-
-	<h:outputLabel value="Document" />
-	<h:outputLabel value="#{relatable.document}" />
-
-</ui:composition>
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerArrestReport.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relations"
+				value="#{controllerArrestReport.arrestReport.allRelations}" />
+			<c:set var="included" value="true" />
+			
+			<h3>Arrest Report</h3>
+			
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerArrestReport.id}" />
+			</h:link>
+			<br />
+			
+			<h:outputLabel value="Document" />
+			<h:outputLabel value="#{controllerArrestReport.arrestReport.document}" />
+			<br />
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerFieldInterview.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition>
+		<h3>Field Interview</h3>
+
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerFieldInterview.id}" />
+		</h:link>
+		<br />
+
+		<h:outputLabel value="Incident Report" />
+		<h:link value="view"
+			outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{controllerFieldInterview.fieldInterview.incidentReport.id}" />
+		<br />
+
+		<h:outputLabel value="Subscriber:" />
+		<br />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.subscriber.toString()}" />
+		<h:link value="view"
+			outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerFieldInterview.fieldInterview.subscriber.id}" />
+		<br />
+
+		<h:outputLabel value="In case of emergency contact" />
+		<br />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.inCaseOfEmergencyPerson.toString()}" />
+		<h:link value="view"
+			outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerFieldInterview.fieldInterview.inCaseOfEmergencyPerson.id}" />
+		<br />
+
+		<h:outputLabel value="Date and time " />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.dateAndTime}">
+			<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
+		</h:outputLabel>
+		<br />
+		
+		<h:outputLabel value="Sayings " />
+		<h:outputLabel value="#{controllerFieldInterview.fieldInterview.sayings}" />
+		
+	</ui:composition>
+</h:body>
+</html>

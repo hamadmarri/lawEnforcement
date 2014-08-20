@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Incident Reports List</h3>
+
+		<c:if test="${empty incidentReports and not included}">
+			<c:set var="incidentReports"
+				value="#{controllerIncidentReport.incidentReportsList}" />
+		</c:if>
+
+		<c:if test="${empty incidentReports and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty incidentReports}">
+			<h:dataTable value="#{incidentReports}" var="ir">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{ir.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/events/incidentReport/editIncidentReport.xhtml?id=#{ir.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Offense Information</f:facet>
+					<h:outputLabel value="#{ir.offenseInformation}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Case status</f:facet>
+					<h:outputLabel value="#{ir.caseStatus}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Summary</f:facet>
+					<h:outputLabel value="#{ir.summary}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+		
+	</ui:composition>
+</h:body>
+</html>

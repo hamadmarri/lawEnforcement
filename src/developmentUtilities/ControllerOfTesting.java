@@ -38,10 +38,8 @@ public class ControllerOfTesting {
 
 
 
-	public String test() {
+	public void test() {
 		ejb_of_test.test();
-		return "success";
-		// return "fail";
 	}
 
 

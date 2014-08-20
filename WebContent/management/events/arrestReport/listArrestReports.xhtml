@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Arrest Reports List</h3>
+
+		<c:if test="${empty arrestReports and not included}">
+			<c:set var="arrestReports"
+				value="#{controllerArrestReport.arrestReportsList}" />
+		</c:if>
+
+		<c:if test="${empty arrestReports and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty arrestReports}">
+			<h:dataTable value="#{arrestReports}" var="ar">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/events/arrestReport/viewArrestReport.xhtml?id=#{ar.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/events/arrestReport/editArrestReport.xhtml?id=#{ar.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Document</f:facet>
+					<h:outputLabel value="#{ar.document}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+		
+	</ui:composition>
+</h:body>
+</html>

@@ -198,7 +198,35 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
+
+	<!-- ********** ArrestReport ********** -->
+	<navigation-rule>
+		<from-view-id>/management/events/arrestReport/editArrestReport.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/events/arrestReport/viewArrestReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerArrestReport.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/events/arrestReport/viewArrestReport.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/management/events/arrestReport/editArrestReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+
 	<!-- ********** SuspectPerson ********** -->
 	<navigation-rule>
 		<from-view-id>/management/suspectPerson/editSuspectPerson.xhtml</from-view-id>
@@ -218,6 +246,34 @@
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
 			<to-view-id>/management/suspectPerson/editSuspectPerson.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- ********** FieldInterview ********** -->
+	<navigation-rule>
+		<from-view-id>/management/fieldInterview/editFieldInterview.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/fieldInterview/viewFieldInterview.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerFieldInterview.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/fieldInterview/viewFieldInterview.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/management/fieldInterview/editFieldInterview.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>

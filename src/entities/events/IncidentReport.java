@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import entities.police.InvestigativeCase;
 
@@ -32,7 +32,7 @@ public class IncidentReport extends Event {
 	public static String[] statusOptions = { "open", "closed", "pending for approve", "under investigation" };
 	private String caseStatus;
 
-	@ElementCollection
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<FieldInterview> fieldInterviews;
 
 	private String summary;

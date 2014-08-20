@@ -81,8 +81,8 @@ public class EJB_of_test {
 
 	private void createFieldInterview() {
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
-		FieldInterview fi = new FieldInterview(em.find(Person.class, 1L), em.find(Person.class, 4L),
-				Calendar.getInstance(), "yes i saw him");
+		FieldInterview fi = new FieldInterview((IncidentReport) of.getEventsResponsibleFor().get(1), em.find(
+				Person.class, 1L), em.find(Person.class, 4L), Calendar.getInstance().getTime(), "yes i saw him");
 
 		((IncidentReport) of.getEventsResponsibleFor().get(1)).addFieldInterview(fi);
 
@@ -169,10 +169,10 @@ public class EJB_of_test {
 		ca.set(1997, 0, 0);
 
 		Person p = em.find(Person.class, 1L);
-		Conveyance caprice = new Conveyance("1G1BN69H6GX181007", "155IZY", "SK", Calendar.getInstance().getTime(), "CHEV CAPRIC",
-				"LV", cc.getTime(), "RED", "FOOR DOOR CAR", "");
-		Conveyance honda = new Conveyance("1HGCD5631VA815858", "701HXJ", "SK", Calendar.getInstance().getTime(), "HONDA ACCORD",
-				"EX SERIES 4DR", ca.getTime(), "GREEN", "FOOR DOOR CAR", "");
+		Conveyance caprice = new Conveyance("1G1BN69H6GX181007", "155IZY", "SK", Calendar.getInstance().getTime(),
+				"CHEV CAPRIC", "LV", cc.getTime(), "RED", "FOOR DOOR CAR", "");
+		Conveyance honda = new Conveyance("1HGCD5631VA815858", "701HXJ", "SK", Calendar.getInstance().getTime(),
+				"HONDA ACCORD", "EX SERIES 4DR", ca.getTime(), "GREEN", "FOOR DOOR CAR", "");
 
 		caprice.setRegisteredOwner(p);
 		honda.setRegisteredOwner(p);
