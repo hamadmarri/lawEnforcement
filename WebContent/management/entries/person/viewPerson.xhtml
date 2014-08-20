@@ -18,91 +18,94 @@
 
 		<h1>Person</h1>
 		
-		<h:link value="edit" outcome="editPerson.xhtml?id=#{controllerPerson.id}" />
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerPerson.id}" />
+		</h:link>
+		<br />
 		
 		<h2>Person Information</h2>
 		<h:outputLabel value="First name" />
-		<h:outputLabel value="#{controllerPerson.relatable.personName.firstName}" />
+		<h:outputLabel value="#{controllerPerson.person.personName.firstName}" />
 		<br />
 		<h:outputLabel value="Last name" />
-		<h:outputLabel value="#{controllerPerson.relatable.personName.lastName}" />
+		<h:outputLabel value="#{controllerPerson.person.personName.lastName}" />
 		<br />
 		<h:outputLabel value="Data of birth" />
-		<h:outputLabel value="#{controllerPerson.relatable.dateOfBirth.time}">
+		<h:outputLabel value="#{controllerPerson.person.dateOfBirth}">
 			<f:convertDateTime pattern="MMMM dd, YYYY" />
 		</h:outputLabel>
 		<br />
 		<h:outputLabel value="Birth place" />
-		<h:outputLabel value="#{controllerPerson.relatable.birthPlace}" />
+		<h:outputLabel value="#{controllerPerson.person.birthPlace}" />
 		<br />
 		<h:outputLabel value="Gender" />
-		<h:outputLabel value="#{controllerPerson.relatable.gender}" />
+		<h:outputLabel value="#{controllerPerson.person.gender}" />
 		<br />
 		<h:outputLabel value="Citizenship" />
-		<h:outputLabel value="#{controllerPerson.relatable.citizenship}" />
+		<h:outputLabel value="#{controllerPerson.person.citizenship}" />
 		<br />
 
 		<h3>Identifications</h3>
-		<h:dataTable value="#{controllerPerson.relatable.identifications}"
+		<h:dataTable value="#{controllerPerson.person.identifications}"
 			var="id">
 			<h:column>#{id.name}</h:column>
 			<h:column>#{id.content}</h:column>
 		</h:dataTable>
 
 		<h3>Contacts</h3>
-		<h:dataTable value="#{controllerPerson.relatable.contacts}" var="c">
+		<h:dataTable value="#{controllerPerson.person.contacts}" var="c">
 			<h:column>#{c.name}</h:column>
 			<h:column>#{c.content}</h:column>
 		</h:dataTable>
 
 		<h3>Alias names and monikers</h3>
-		<h:dataTable value="#{controllerPerson.relatable.aliasNamesOrMonikers}"
+		<h:dataTable value="#{controllerPerson.person.aliasNamesOrMonikers}"
 			var="a">
 			<h:column>#{a.content}</h:column>
 		</h:dataTable>
 
 
 		<h3>Scars, marks, and tattoos</h3>
-		<h:dataTable value="#{controllerPerson.relatable.scars_marks_tattoos}"
+		<h:dataTable value="#{controllerPerson.person.scars_marks_tattoos}"
 			var="s">
 			<h:column>#{s.content}</h:column>
 		</h:dataTable>
 
-		<h:outputLabel value="${controllerPerson.relatable.modusOperandi}" />
+		<h:outputLabel value="${controllerPerson.person.modusOperandi}" />
 		<br />
 		<h:outputLabel
-			value="${controllerPerson.relatable.NCIC_fingerprintClassification}" />
+			value="${controllerPerson.person.NCIC_fingerprintClassification}" />
 
 
 		<ui:include
 			src="/management/physicalcharacteristic/viewPhysicalCharacteristic.xhtml">
 			<ui:param name="person"
-				value="#{controllerPerson.relatable}"></ui:param>
+				value="#{controllerPerson.person}"></ui:param>
 		</ui:include>
 
 		<h2>Race</h2>
-		<h:outputLabel value="${controllerPerson.relatable.race.race}" />
+		<h:outputLabel value="${controllerPerson.person.race.race}" />
 
 		<h2>Mug Shots</h2>
 		<ui:include src="/management/image/listImages.xhtml">
-			<ui:param name="images" value="#{controllerPerson.relatable.mugShots}"></ui:param>
+			<ui:param name="images" value="#{controllerPerson.person.mugShots}"></ui:param>
 		</ui:include>
 
 		<h2>Finger Prints</h2>
 		<ui:include src="/management/image/listImages.xhtml">
 			<ui:param name="images"
-				value="#{controllerPerson.relatable.fingerprintsImages}"></ui:param>
+				value="#{controllerPerson.person.fingerprintsImages}"></ui:param>
 		</ui:include>
 
 		<h2>Photographs</h2>
 		<ui:include src="/management/image/listImages.xhtml">
 			<ui:param name="images"
-				value="#{controllerPerson.relatable.photographs}"></ui:param>
+				value="#{controllerPerson.person.photographs}"></ui:param>
 		</ui:include>
 
 		<ui:include src="/management/entries/conveyance/listConveyances.xhtml">
 			<ui:param name="conveyances"
-				value="#{controllerPerson.relatable.conveyances}"></ui:param>
+				value="#{controllerPerson.person.conveyances}"></ui:param>
 		</ui:include>
 
 	</ui:composition>

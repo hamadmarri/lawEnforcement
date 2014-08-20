@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Persons List</h3>
+
+		<h:dataTable value="#{controllerPerson.personsList}" var="p">
+			<h:column>
+				<h:link value="view"
+					outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
+			</h:column>
+			<h:column>
+				<h:link value="edit"
+					outcome="/management/entries/person/editPerson.xhtml?id=#{p.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputLabel
+					value="#{p.personName.lastName}, #{p.personName.firstName}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data of birth</f:facet>
+				<h:outputLabel value="#{p.dateOfBirth}">
+					<f:convertDateTime pattern="MMMM dd, YYYY" />
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Birth place</f:facet>
+				<h:outputLabel value="#{p.birthPlace}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Gender</f:facet>
+				<h:outputLabel value="#{p.gender}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Citizenship</f:facet>
+				<h:outputLabel value="#{p.citizenship}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Race</f:facet>
+				<h:outputLabel value="#{p.race.race}" />
+			</h:column>
+		</h:dataTable>
+	</ui:composition>
+</h:body>
+</html>

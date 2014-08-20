@@ -25,7 +25,14 @@ public class EjbView {
 
 	public void save(Relatable r) {
 		em.merge(r);
-//		em.flush();
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public List<Relatable> getList(String type) {
+		System.out.println("*************** " + type);
+		return em.createNamedQuery("Relatable.findAllByType").setParameter("type", type).getResultList();
 	}
 
 }

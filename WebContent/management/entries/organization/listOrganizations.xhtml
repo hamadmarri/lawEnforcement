@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>organizations List</h3>
+		
+		<h:dataTable value="#{controllerOrganization.organizationsList}" var="o">
+			<h:column>
+				<h:link value="view"
+					outcome="/management/entries/organization/viewOrganization.xhtml?id=#{o.id}" />
+			</h:column>
+			<h:column>
+				<h:link value="edit"
+					outcome="/management/entries/organization/editOrganization.xhtml?id=#{o.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Organization name</f:facet>
+			#{o.name}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Organization type</f:facet>
+			#{o.organizationType} 
+		</h:column>
+		</h:dataTable>
+	</ui:composition>
+</h:body>
+</html>

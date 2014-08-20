@@ -11,35 +11,33 @@
 		<f:viewParam name="id" value="#{controllerProperty.id}" />
 	</f:metadata>
 </h:head>
+
 <h:body>
-	<ui:composition>
-		<h3>Property</h3>
+	<h2>Edit Property</h2>
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerProperty.id}" />
-		</h:link>
-		<br />
-
+	<h:form>
 		<h:outputLabel value="Serial number" />
-		<h:outputLabel value="#{controllerProperty.property.serialNumber}" />
+		<h:inputText value="#{controllerProperty.property.serialNumber}" />
 		<br />
 
 		<h:outputLabel value="Make" />
-		<h:outputLabel value="#{controllerProperty.property.make}" />
+		<h:inputText value="#{controllerProperty.property.make}" />
 		<br />
 
 		<h:outputLabel value="Model" />
-		<h:outputLabel value="#{controllerProperty.property.model}" />
+		<h:inputText value="#{controllerProperty.property.model}" />
 		<br />
 
 		<h:outputLabel value="Brand" />
-		<h:outputLabel value="#{controllerProperty.property.brand}" />
+		<h:inputText value="#{controllerProperty.property.brand}" />
 		<br />
 
 		<h:outputLabel value="Distinguishing characteristics" />
-		<h:outputLabel
+		<h:inputText
 			value="#{controllerProperty.property.distinguishingCharacteristics}" />
-
-	</ui:composition>
+		<br />
+		
+		<h:commandButton value="save" action="#{controllerProperty.submit}" />
+	</h:form>
 </h:body>
 </html>

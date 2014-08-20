@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,6 +18,8 @@ public class AbstarctController<T> {
 	protected EjbView ejbRelation;
 	protected String id;
 	protected T relatable;
+	protected String type;
+	protected List<T> list = null;
 
 
 
@@ -59,4 +63,21 @@ public class AbstarctController<T> {
 	public void setRelatable(T relatable) {
 		this.relatable = relatable;
 	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public List<T> getList() {
+		if (this.list == null)
+			this.list = (List<T>) ejbRelation.getList(this.type);
+
+		return list;
+	}
+
+
+
+	public void setList(List<T> list) {
+		this.list = list;
+	}
+
 }

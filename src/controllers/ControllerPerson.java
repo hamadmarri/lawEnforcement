@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,6 +18,13 @@ public class ControllerPerson extends AbstarctController<Person> implements Seri
 
 
 
+	@PostConstruct
+	public void init() {
+		this.type = "Person";
+	}
+
+
+
 	public Person getPerson() {
 		return super.getRelatable();
 	}
@@ -26,4 +35,15 @@ public class ControllerPerson extends AbstarctController<Person> implements Seri
 		this.relatable = person;
 	}
 
+
+
+	public List<Person> getPersonsList() {
+		return super.getList();
+	}
+
+
+
+	public void setPersonsList(List<Person> list) {
+		super.setList(list);
+	}
 }

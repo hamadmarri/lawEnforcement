@@ -11,25 +11,22 @@
 		<f:viewParam name="id" value="#{controllerOrganization.id}" />
 	</f:metadata>
 </h:head>
+
 <h:body>
-	<ui:composition>
+	<h2>Edit Organization</h2>
 
-		<h3>Organization</h3>
-
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerOrganization.id}" />
-		</h:link>
-		<br />
-
+	<h:form>
 		<h:outputLabel value="Organization name" />
-		<h:outputLabel value="#{controllerOrganization.organization.name}" />
+		<h:inputText value="#{controllerOrganization.organization.name}" />
 		<br />
 
 		<h:outputLabel value="Organization type" />
-		<h:outputLabel
+		<h:inputText
 			value="#{controllerOrganization.organization.organizationType}" />
 		<br />
 
-	</ui:composition>
+		<h:commandButton value="save"
+			action="#{controllerOrganization.submit}" />
+	</h:form>
 </h:body>
 </html>

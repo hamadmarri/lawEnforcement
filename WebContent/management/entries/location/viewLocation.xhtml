@@ -16,8 +16,9 @@
 	<ui:composition>
 		<h3>Location</h3>
 
-		<h:link value="edit"
-			outcome="/management/entries/location/editLocation.xhtml?id=#{controllerLocation.id}" />
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerLocation.id}" />
+		</h:link>
 		<br />
 
 		<h:outputLabel value="Area" />
