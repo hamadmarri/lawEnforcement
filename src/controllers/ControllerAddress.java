@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,6 +18,13 @@ public class ControllerAddress extends AbstarctController<Address> implements Se
 
 
 
+	@PostConstruct
+	public void init() {
+		this.type = "Address";
+	}
+
+
+
 	public Address getAddress() {
 		return super.getRelatable();
 	}
@@ -26,4 +35,15 @@ public class ControllerAddress extends AbstarctController<Address> implements Se
 		this.relatable = address;
 	}
 
+
+
+	public List<Address> getAddressesList() {
+		return super.getList();
+	}
+
+
+
+	public void setAddressesList(List<Address> list) {
+		super.setList(list);
+	}
 }

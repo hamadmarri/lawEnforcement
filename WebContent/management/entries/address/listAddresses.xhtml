@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head></h:head>
 
@@ -12,15 +13,9 @@
 	<ui:composition>
 		<h2>Addresses</h2>
 
-
-		<h:outputLabel value="Country" />
-		<h:outputLabel value="#{controllerAddress.address.country}" />
-		<br />
-
-		<h:outputLabel value="PostalCode" />
-		<h:outputLabel value="#{controllerAddress.address.postalCode}" />
-		<br />
-
+		<c:if test="${empty address}">
+			<c:set var="addresses" value="#{controllerAddress.addressesList}" />
+		</c:if>
 
 		<h:dataTable value="#{addresses}" var="a">
 			<h:column>

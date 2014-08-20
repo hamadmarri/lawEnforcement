@@ -8,25 +8,18 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
-	<f:metadata>
-		<f:viewParam name="id" value="#{controllerView.id}" />
-		<f:event listener="#{controllerView.getProperViewPage}" type="preRenderView" />
-	</f:metadata>
 </h:head>
 
 <h:body>
-	<h1>View</h1>
-	
-	<!-- <h:outputLabel value="#{controllerView.relatable.id}" />
-	<br />
-	<ui:include src="#{controllerView.properViewPage}" /> -->
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="content">
+			<ui:insert name="view" />
 
+			<ui:include src="/management/entries/relation/listRelations.xhtml">
+				<ui:param name="relations" value="#{relations}" />
+			</ui:include>
 
-	<!-- ***** Relations ***** -->
-	<!-- <ui:include
-		src="/WEB-INF/composites/entries/relation/listRelations.xhtml">
-		<ui:param name="relations" value="#{controllerView.relatable.allRelations}"></ui:param>
-	</ui:include> -->
-
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

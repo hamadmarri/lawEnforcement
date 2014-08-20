@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -13,67 +14,71 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>Conveyance</h2>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relations"
+				value="#{controllerConveyance.conveyance.allRelations}" />
 
-		<h:link value="edit"
-			outcome="editConveyance.xhtml?id=#{controllerConveyance.id}" />
-		<br />
+			<h2>Conveyance</h2>
 
-		<h:outputLabel value="Vehicle identification number" />
-		<h:outputLabel
-			value="#{controllerConveyance.relatable.vehicleIdentificationNumber}" />
-		<br />
+			<h:link value="edit"
+				outcome="editConveyance.xhtml?id=#{controllerConveyance.id}" />
+			<br />
 
-		<h:outputLabel value="License plate number" />
-		<h:outputLabel
-			value="#{controllerConveyance.relatable.licensePlateNumber}" />
-		<br />
+			<h:outputLabel value="Vehicle identification number" />
+			<h:outputLabel
+				value="#{controllerConveyance.conveyance.vehicleIdentificationNumber}" />
+			<br />
 
-		<h:outputLabel value="License plate state" />
-		<h:outputLabel
-			value="#{controllerConveyance.relatable.licensePlateState}" />
-		<br />
+			<h:outputLabel value="License plate number" />
+			<h:outputLabel
+				value="#{controllerConveyance.conveyance.licensePlateNumber}" />
+			<br />
 
-		<h:outputLabel value="License plate year" />
-		<h:outputLabel
-			value="#{controllerConveyance.relatable.licensePlateYear.time}">
-			<f:convertDateTime pattern="YYYY" />
-		</h:outputLabel>
-		<br />
+			<h:outputLabel value="License plate state" />
+			<h:outputLabel
+				value="#{controllerConveyance.conveyance.licensePlateState}" />
+			<br />
 
-		<h:outputLabel value="Registered owner" />
-		<h:outputLabel
-			value="#{controllerConveyance.relatable.registeredOwner.personName.firstName}" />
-		<br />
+			<h:outputLabel value="License plate year" />
+			<h:outputLabel
+				value="#{controllerConveyance.conveyance.licensePlateYear.time}">
+				<f:convertDateTime pattern="YYYY" />
+			</h:outputLabel>
+			<br />
+
+			<h:outputLabel value="Registered owner" />
+			<h:outputLabel
+				value="#{controllerConveyance.conveyance.registeredOwner.personName.firstName}" />
+			<br />
 
 
-		<h:outputLabel value="Make" />
-		<h:outputLabel value="#{controllerConveyance.relatable.make}" />
-		<br />
+			<h:outputLabel value="Make" />
+			<h:outputLabel value="#{controllerConveyance.conveyance.make}" />
+			<br />
 
-		<h:outputLabel value="Model" />
-		<h:outputLabel value="#{controllerConveyance.relatable.model}" />
-		<br />
+			<h:outputLabel value="Model" />
+			<h:outputLabel value="#{controllerConveyance.conveyance.model}" />
+			<br />
 
-		<h:outputLabel value="Year" />
-		<h:outputLabel value="#{controllerConveyance.relatable.year.time}">
-			<f:convertDateTime pattern="YYYY" />
-		</h:outputLabel>
-		<br />
+			<h:outputLabel value="Year" />
+			<h:outputLabel value="#{controllerConveyance.conveyance.year.time}">
+				<f:convertDateTime pattern="YYYY" />
+			</h:outputLabel>
+			<br />
 
-		<h:outputLabel value="Color" />
-		<h:outputLabel value="#{controllerConveyance.relatable.color}" />
-		<br />
+			<h:outputLabel value="Color" />
+			<h:outputLabel value="#{controllerConveyance.conveyance.color}" />
+			<br />
 
-		<h:outputLabel value="Style" />
-		<h:outputLabel value="#{controllerConveyance.relatable.style}" />
-		<br />
+			<h:outputLabel value="Style" />
+			<h:outputLabel value="#{controllerConveyance.conveyance.style}" />
+			<br />
 
-		<h:outputLabel value="Attributes" />
-		<h:outputLabel value="#{controllerConveyance.relatable.attributes}" />
-		<br />
-
+			<h:outputLabel value="Attributes" />
+			<h:outputLabel value="#{controllerConveyance.conveyance.attributes}" />
+			<br />
+		</ui:define>
 
 	</ui:composition>
 </h:body>

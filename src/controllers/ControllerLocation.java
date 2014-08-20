@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,6 +18,13 @@ public class ControllerLocation extends AbstarctController<Location> implements 
 
 
 
+	@PostConstruct
+	public void init() {
+		this.type = "Location";
+	}
+
+
+
 	public Location getLocation() {
 		return super.getRelatable();
 	}
@@ -26,4 +35,16 @@ public class ControllerLocation extends AbstarctController<Location> implements 
 		this.relatable = location;
 	}
 
+
+
+	public List<Location> getLocationsList() {
+		return super.getList();
+	}
+
+
+
+	public void setLocationsList(List<Location> list) {
+		super.setList(list);
+	}
+	
 }

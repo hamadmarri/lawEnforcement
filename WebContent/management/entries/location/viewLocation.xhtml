@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <h:head>
@@ -13,40 +14,45 @@
 	</f:metadata>
 </h:head>
 <h:body>
-	<ui:composition>
-		<h3>Location</h3>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relations"
+				value="#{controllerLocation.location.allRelations}" />
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerLocation.id}" />
-		</h:link>
-		<br />
+			<h3>Location</h3>
 
-		<h:outputLabel value="Area" />
-		<h:outputLabel value="#{controllerLocation.location.area}" />
-		<br />
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerLocation.id}" />
+			</h:link>
+			<br />
 
-		<h:outputLabel value="Coordinate" />
-		<h:outputLabel
-			value="x:#{controllerLocation.location.coordinate.x} y:#{controllerLocation.location.coordinate.y} z:#{controllerLocation.location.coordinate.z}" />
-		<br />
+			<h:outputLabel value="Area" />
+			<h:outputLabel value="#{controllerLocation.location.area}" />
+			<br />
 
-		<h:outputLabel value="Occupancy" />
-		<h:outputLabel value="#{controllerLocation.location.occupancy}" />
-		<br />
+			<h:outputLabel value="Coordinate" />
+			<h:outputLabel
+				value="x:#{controllerLocation.location.coordinate.x} y:#{controllerLocation.location.coordinate.y} z:#{controllerLocation.location.coordinate.z}" />
+			<br />
 
-		<h:outputLabel value="Elevation" />
-		<h:outputLabel value="#{controllerLocation.location.elevation}" />
-		<br />
+			<h:outputLabel value="Occupancy" />
+			<h:outputLabel value="#{controllerLocation.location.occupancy}" />
+			<br />
 
-		<h:outputLabel value="Premise type" />
-		<h:outputLabel value="#{controllerLocation.location.premiseType}" />
-		<br />
+			<h:outputLabel value="Elevation" />
+			<h:outputLabel value="#{controllerLocation.location.elevation}" />
+			<br />
 
-		<ui:include src="/management/entries/address/listAddresses.xhtml">
-			<ui:param name="addresses"
-				value="#{controllerLocation.location.addresses}"></ui:param>
-		</ui:include>
+			<h:outputLabel value="Premise type" />
+			<h:outputLabel value="#{controllerLocation.location.premiseType}" />
+			<br />
 
+			<ui:include src="/management/entries/address/listAddresses.xhtml">
+				<ui:param name="addresses"
+					value="#{controllerLocation.location.addresses}"></ui:param>
+			</ui:include>
+
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

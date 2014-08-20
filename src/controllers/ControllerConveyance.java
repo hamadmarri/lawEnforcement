@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,6 +18,13 @@ public class ControllerConveyance extends AbstarctController<Conveyance> impleme
 
 
 
+	@PostConstruct
+	public void init() {
+		this.type = "Conveyance";
+	}
+
+
+
 	public Conveyance getConveyance() {
 		return super.getRelatable();
 	}
@@ -24,6 +33,18 @@ public class ControllerConveyance extends AbstarctController<Conveyance> impleme
 
 	public void setConveyance(Conveyance conveyance) {
 		this.relatable = conveyance;
+	}
+
+
+
+	public List<Conveyance> getConveyancesList() {
+		return super.getList();
+	}
+
+
+
+	public void setConveyancesList(List<Conveyance> list) {
+		super.setList(list);
 	}
 
 }

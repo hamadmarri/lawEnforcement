@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -12,34 +13,38 @@
 	</f:metadata>
 </h:head>
 <h:body>
-	<ui:composition>
-		<h3>Property</h3>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relations"
+				value="#{controllerProperty.property.allRelations}" />
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerProperty.id}" />
-		</h:link>
-		<br />
+			<h3>Property</h3>
 
-		<h:outputLabel value="Serial number" />
-		<h:outputLabel value="#{controllerProperty.property.serialNumber}" />
-		<br />
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerProperty.id}" />
+			</h:link>
+			<br />
 
-		<h:outputLabel value="Make" />
-		<h:outputLabel value="#{controllerProperty.property.make}" />
-		<br />
+			<h:outputLabel value="Serial number" />
+			<h:outputLabel value="#{controllerProperty.property.serialNumber}" />
+			<br />
 
-		<h:outputLabel value="Model" />
-		<h:outputLabel value="#{controllerProperty.property.model}" />
-		<br />
+			<h:outputLabel value="Make" />
+			<h:outputLabel value="#{controllerProperty.property.make}" />
+			<br />
 
-		<h:outputLabel value="Brand" />
-		<h:outputLabel value="#{controllerProperty.property.brand}" />
-		<br />
+			<h:outputLabel value="Model" />
+			<h:outputLabel value="#{controllerProperty.property.model}" />
+			<br />
 
-		<h:outputLabel value="Distinguishing characteristics" />
-		<h:outputLabel
-			value="#{controllerProperty.property.distinguishingCharacteristics}" />
+			<h:outputLabel value="Brand" />
+			<h:outputLabel value="#{controllerProperty.property.brand}" />
+			<br />
 
+			<h:outputLabel value="Distinguishing characteristics" />
+			<h:outputLabel
+				value="#{controllerProperty.property.distinguishingCharacteristics}" />
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

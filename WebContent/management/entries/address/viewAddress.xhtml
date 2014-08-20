@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -13,44 +14,48 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h3>Address</h3>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relations"
+				value="#{controllerAddress.address.allRelations}" />
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerAddress.id}" />
-		</h:link>
-		<br />
+			<h3>Address</h3>
 
-		<h:outputLabel value="Street name" />
-		<h:outputLabel value="#{controllerAddress.address.streetName}" />
-		<br />
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerAddress.id}" />
+			</h:link>
+			<br />
 
-		<h:outputLabel value="Apt No." />
-		<h:outputLabel value="#{controllerAddress.address.aptNo}" />
-		<br />
+			<h:outputLabel value="Street name" />
+			<h:outputLabel value="#{controllerAddress.address.streetName}" />
+			<br />
 
-		<h:outputLabel value="City" />
-		<h:outputLabel value="#{controllerAddress.address.city}" />
-		<br />
+			<h:outputLabel value="Apt No." />
+			<h:outputLabel value="#{controllerAddress.address.aptNo}" />
+			<br />
 
-		<h:outputLabel value="Province" />
-		<h:outputLabel value="#{controllerAddress.address.province}" />
-		<br />
+			<h:outputLabel value="City" />
+			<h:outputLabel value="#{controllerAddress.address.city}" />
+			<br />
 
-		<h:outputLabel value="Country" />
-		<h:outputLabel value="#{controllerAddress.address.country}" />
-		<br />
+			<h:outputLabel value="Province" />
+			<h:outputLabel value="#{controllerAddress.address.province}" />
+			<br />
 
-		<h:outputLabel value="Postal code" />
-		<h:outputLabel value="#{controllerAddress.address.postalCode}" />
-		<br />
+			<h:outputLabel value="Country" />
+			<h:outputLabel value="#{controllerAddress.address.country}" />
+			<br />
 
-		<ui:include src="/management/entries/location/listLocations.xhtml">
-			<ui:param name="locations"
-				value="#{controllerAddress.address.locations}"></ui:param>
-		</ui:include>
+			<h:outputLabel value="Postal code" />
+			<h:outputLabel value="#{controllerAddress.address.postalCode}" />
+			<br />
 
+			<ui:include src="/management/entries/location/listLocations.xhtml">
+				<ui:param name="locations"
+					value="#{controllerAddress.address.locations}"></ui:param>
+			</ui:include>
 
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
