@@ -6,37 +6,50 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition>
-	<h3>Address</h3>
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerAddress.id}" />
+	</f:metadata>
+</h:head>
 
-	<h:outputLabel value="StreetName" />
-	<h:outputLabel value="#{relatable.streetName}" />
-	<br />
+<h:body>
+	<ui:composition>
+		<h3>Address</h3>
 
-	<h:outputLabel value="Apt No." />
-	<h:outputLabel value="#{relatable.aptNo}" />
-	<br />
+		<h:link value="edit"
+			outcome="/management/entries/address/editAddress.xhtml?id=#{controllerAddress.id}" />
+		<br />
 
-	<h:outputLabel value="City" />
-	<h:outputLabel value="#{relatable.city}" />
-	<br />
+		<h:outputLabel value="StreetName" />
+		<h:outputLabel value="#{controllerAddress.address.streetName}" />
+		<br />
 
-	<h:outputLabel value="Province" />
-	<h:outputLabel value="#{relatable.province}" />
-	<br />
+		<h:outputLabel value="Apt No." />
+		<h:outputLabel value="#{controllerAddress.address.aptNo}" />
+		<br />
 
-	<h:outputLabel value="Country" />
-	<h:outputLabel value="#{relatable.country}" />
-	<br />
+		<h:outputLabel value="City" />
+		<h:outputLabel value="#{controllerAddress.address.city}" />
+		<br />
 
-	<h:outputLabel value="PostalCode" />
-	<h:outputLabel value="#{relatable.postalCode}" />
-	<br />
+		<h:outputLabel value="Province" />
+		<h:outputLabel value="#{controllerAddress.address.province}" />
+		<br />
 
-	<h3>Locations</h3>
-	<h:dataTable value="#{relatable.locations}" var="l">
-		<h:column>#{l.toString()}</h:column>
-	</h:dataTable>
+		<h:outputLabel value="Country" />
+		<h:outputLabel value="#{controllerAddress.address.country}" />
+		<br />
 
-</ui:composition>
+		<h:outputLabel value="PostalCode" />
+		<h:outputLabel value="#{controllerAddress.address.postalCode}" />
+		<br />
+
+		<ui:include src="/management/entries/location/listLocations.xhtml">
+			<ui:param name="locations"
+				value="#{controllerAddress.address.locations}"></ui:param>
+		</ui:include>
+
+
+	</ui:composition>
+</h:body>
 </html>

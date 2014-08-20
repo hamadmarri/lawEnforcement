@@ -19,51 +19,51 @@
 	<h:form>
 		<h:outputLabel value="Vehicle identification number" />
 		<h:inputText
-			value="#{controllerConveyance.relatable.vehicleIdentificationNumber}" />
+			value="#{controllerConveyance.conveyance.vehicleIdentificationNumber}" />
 		<br />
 
 		<h:outputLabel value="License plate number" />
 		<h:inputText
-			value="#{controllerConveyance.relatable.licensePlateNumber}" />
+			value="#{controllerConveyance.conveyance.licensePlateNumber}" />
 		<br />
 
 		<h:outputLabel value="License plate state" />
 		<h:inputText
-			value="#{controllerConveyance.relatable.licensePlateState}" />
+			value="#{controllerConveyance.conveyance.licensePlateState}" />
 		<br />
 
 		<h:outputLabel value="License plate year" />
-		<p:calendar value="#{controllerConveyance.relatable.licensePlateYear}" />
+		<p:calendar value="#{controllerConveyance.conveyance.licensePlateYear}" />
 		<br />
 
 		<h:outputLabel value="Registered owner" />
 		<h:inputText
-			value="#{controllerConveyance.relatable.registeredOwner.personName.firstName}" />
+			value="#{controllerConveyance.conveyance.registeredOwner.personName.firstName}" />
 		<br />
 
 
 		<h:outputLabel value="Make" />
-		<h:inputText value="#{controllerConveyance.relatable.make}" />
+		<h:inputText value="#{controllerConveyance.conveyance.make}" />
 		<br />
 
 		<h:outputLabel value="Model" />
-		<h:inputText value="#{controllerConveyance.relatable.model}" />
+		<h:inputText value="#{controllerConveyance.conveyance.model}" />
 		<br />
 
 		<h:outputLabel value="Year" />
-		<p:calendar value="#{controllerConveyance.relatable.year}" />
+		<p:calendar value="#{controllerConveyance.conveyance.year}" />
 		<br />
 
 		<h:outputLabel value="Color" />
-		<h:inputText value="#{controllerConveyance.relatable.color}" />
+		<h:inputText value="#{controllerConveyance.conveyance.color}" />
 		<br />
 
 		<h:outputLabel value="Style" />
-		<h:inputText value="#{controllerConveyance.relatable.style}" />
+		<h:inputText value="#{controllerConveyance.conveyance.style}" />
 		<br />
 
 		<h:outputLabel value="Attributes" />
-		<h:inputText value="#{controllerConveyance.relatable.attributes}" />
+		<h:inputText value="#{controllerConveyance.conveyance.attributes}" />
 		<br />
 
 		<h:commandButton value="save" action="#{controllerConveyance.submit}" />

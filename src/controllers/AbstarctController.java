@@ -41,6 +41,7 @@ public class AbstarctController<T> {
 
 
 
+	@SuppressWarnings("unchecked")
 	public T getRelatable() {
 		if (this.relatable != null)
 			return this.relatable;

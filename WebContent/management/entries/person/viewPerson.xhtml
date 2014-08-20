@@ -101,8 +101,8 @@
 		</ui:include>
 
 		<ui:include src="/management/entries/conveyance/listConveyances.xhtml">
-			<ui:param name="controllerPerson.relatable"
-				value="#{controllerPerson.relatable}"></ui:param>
+			<ui:param name="conveyances"
+				value="#{controllerPerson.relatable.conveyances}"></ui:param>
 		</ui:include>
 
 	</ui:composition>

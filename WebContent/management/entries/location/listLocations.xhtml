@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+	<h3>Locations List</h3>
+	<h:dataTable value="#{locations}" var="l">
+		<h:column>
+			<h:link value="view" outcome="/management/entries/location/viewLocation.xhtml?id=#{l.id}" />
+		</h:column>
+		<h:column>
+			<h:link value="edit" outcome="/management/entries/location/editLocation.xhtml?id=#{l.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Area</f:facet>
+			#{l.area}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Coordinates</f:facet>
+			x:#{l.coordinate.x} y:#{l.coordinate.y} z:#{l.coordinate.z} 
+		</h:column>
+		<h:column>
+			<f:facet name="header">Occupancy</f:facet>
+			#{l.occupancy}
+			</h:column>
+		<h:column>
+			<f:facet name="header">Elevation</f:facet>
+			#{l.elevation}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Premise type</f:facet>
+			#{l.premiseType}
+		</h:column>
+	</h:dataTable>
+</ui:composition>
+</html>

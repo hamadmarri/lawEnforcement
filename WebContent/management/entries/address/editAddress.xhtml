@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerAddress.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h2>Address</h2>
+
+	<h:form>
+		<h:outputLabel value="StreetName" />
+		<h:inputText value="#{controllerAddress.address.streetName}" />
+		<br />
+
+		<h:outputLabel value="Apt No." />
+		<h:inputText value="#{controllerAddress.address.aptNo}" />
+		<br />
+
+		<h:outputLabel value="City" />
+		<h:inputText value="#{controllerAddress.address.city}" />
+		<br />
+
+		<h:outputLabel value="Province" />
+		<h:inputText value="#{controllerAddress.address.province}" />
+		<br />
+
+		<h:outputLabel value="Country" />
+		<h:inputText value="#{controllerAddress.address.country}" />
+		<br />
+
+		<h:outputLabel value="PostalCode" />
+		<h:inputText value="#{controllerAddress.address.postalCode}" />
+		<br />
+
+		<h:commandButton value="save" action="#{controllerAddress.submit}" />
+	</h:form>
+</h:body>
+</html>
