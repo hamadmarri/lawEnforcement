@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import entities.Describable;
 import entities.entries.PersonName;
@@ -15,6 +17,8 @@ import entities.entries.PhysicalCharacteristic;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "SuspectPerson.findAll", query = "select s from SuspectPerson s ORDER BY s.id"),
+		@NamedQuery(name = "SuspectPerson.findById", query = "select s from SuspectPerson s WHERE s.id = :id") })
 public class SuspectPerson implements Serializable, Describable {
 
 	private static final long serialVersionUID = 6230656995120526177L;
@@ -62,13 +66,13 @@ public class SuspectPerson implements Serializable, Describable {
 
 
 
-	public PhysicalCharacteristic getSuspectPhysicalCharacteristic() {
+	public PhysicalCharacteristic getPhysicalCharacteristic() {
 		return suspectPhysicalCharacteristic;
 	}
 
 
 
-	public void setSuspectPhysicalCharacteristic(PhysicalCharacteristic suspectPhysicalCharacteristic) {
+	public void setPhysicalCharacteristic(PhysicalCharacteristic suspectPhysicalCharacteristic) {
 		this.suspectPhysicalCharacteristic = suspectPhysicalCharacteristic;
 	}
 

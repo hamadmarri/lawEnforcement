@@ -7,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "Relation.findAll", query = "select r from Relation r ORDER BY r.id"),
+		@NamedQuery(name = "Relation.findById", query = "select r from Relation r WHERE r.id = :id") })
 public class Relation implements Serializable {
 
 	private static final long serialVersionUID = -8623094115473557995L;

@@ -1,6 +1,5 @@
 package entities.entries;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;

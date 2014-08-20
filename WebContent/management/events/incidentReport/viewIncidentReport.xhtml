@@ -4,66 +4,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<ui:composition>
-	<h3>Incident Report</h3>
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerIncidentReport.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relations"
+				value="#{controllerIncidentReport.incidentReport.allRelations}" />
 
-	<h:outputLabel value="Offense Information" />
-	<h:outputLabel value="#{relatable.offenseInformation}" />
-	<br />
+			<h3>Incident Report</h3>
 
-	<h:outputLabel value="Case status" />
-	<h:outputLabel value="#{relatable.caseStatus}" />
-	<br />
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerIncidentReport.id}" />
+			</h:link>
+			<br />
+
+			<h:outputLabel value="Offense Information" />
+			<h:outputLabel
+				value="#{controllerIncidentReport.incidentReport.offenseInformation}" />
+			<br />
+
+			<h:outputLabel value="Case status" />
+			<h:outputLabel
+				value="#{controllerIncidentReport.incidentReport.caseStatus}" />
+			<br />
 
 
-	<h4>Suspect persons</h4>
-	<h:dataTable value="#{relatable.suspectPersons}" var="sp">
-		<h:column>
-			<f:facet name="header">Description</f:facet>
-			#{sp.description}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Physical Characteristic</f:facet>
-			#{sp.suspectPhysicalCharacteristic.toString()}
-		</h:column>
-	</h:dataTable>
+			<c:set var="suspectPersons"
+				value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
 
-	<h4>Field interviews</h4>
-	<h:dataTable value="#{relatable.fieldInterviews}" var="fi">
-		<h:column>
-			<f:facet name="header">Subscriber</f:facet>
-			#{fi.subscriber.toString()}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Emergency Contact</f:facet>
-			#{fi.inCaseOfEmergencyPerson.toString()}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Date and time</f:facet>
-			<h:outputLabel value="#{fi.dateAndTime.time}">
-				<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
-			</h:outputLabel>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Sayings</f:facet>
-			#{fi.sayings}
-		</h:column>
-	</h:dataTable>
+			<ui:include src="/management/suspectPerson/listSuspectPersons.xhtml">
+				<ui:param name="suspectPersons"
+					value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
+			</ui:include>
 
-	<h:outputLabel value="Summary" />
-	<h:outputLabel value="#{relatable.summary}" />
-	<br />
 
-	<h:outputLabel value="Assigned case" />
-	<h:outputLabel value="#{relatable.assignedCase.toString()}" />
-	<br />
+			<h4>Field interviews</h4>
+			<h:dataTable
+				value="#{controllerIncidentReport.incidentReport.fieldInterviews}"
+				var="fi">
+				<h:column>
+					<f:facet name="header">Subscriber</f:facet>
+					#{fi.subscriber.toString()}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Emergency Contact</f:facet>
+					#{fi.inCaseOfEmergencyPerson.toString()}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date and time</f:facet>
+					<h:outputLabel value="#{fi.dateAndTime.time}">
+						<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
+					</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sayings</f:facet>
+					#{fi.sayings}
+				</h:column>
+			</h:dataTable>
 
-	<h4>Arrest reports</h4>
-	<h:dataTable value="#{relatable.arrestReports}" var="ar">
-		<h:column>#{ar.toString()}</h:column>
-	</h:dataTable>
+			<h:outputLabel value="Summary" />
+			<h:outputLabel
+				value="#{controllerIncidentReport.incidentReport.summary}" />
+			<br />
 
-</ui:composition>
+			<h:outputLabel value="Assigned case" />
+			<h:outputLabel
+				value="#{controllerIncidentReport.incidentReport.assignedCase.toString()}" />
+			<br />
+
+			<h4>Arrest reports</h4>
+			<h:dataTable
+				value="#{controllerIncidentReport.incidentReport.arrestReports}"
+				var="ar">
+				<h:column>#{ar.toString()}</h:column>
+			</h:dataTable>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>

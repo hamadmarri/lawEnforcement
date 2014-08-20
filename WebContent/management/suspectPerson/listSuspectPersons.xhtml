@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Suspect Persons List</h3>
+
+		<c:if test="${empty suspectPersons}">
+			<c:set var="suspectPersons"
+				value="#{controllerSuspectPerson.suspectPersonsList}" />
+		</c:if>
+
+
+		<h:dataTable value="#{suspectPersons}" var="sp">
+			<h:column>
+				<h:link value="view"
+					outcome="/management/suspectPerson/viewSuspectPerson.xhtml?id=#{sp.id}" />
+			</h:column>
+			<h:column>
+				<h:link value="edit"
+					outcome="/management/suspectPerson/editSuspectPerson.xhtml?id=#{sp.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Physical Characteristic</f:facet>
+				<h:outputLabel value="#{sp.physicalCharacteristic.toString()}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+				<h:outputLabel value="#{sp.description}">
+					<f:convertDateTime pattern="MMMM dd, YYYY" />
+				</h:outputLabel>
+			</h:column>
+		</h:dataTable>
+	</ui:composition>
+</h:body>
+</html>
