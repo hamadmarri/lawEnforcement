@@ -6,15 +6,45 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition>
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
-	<ui:define name="content">
-	    Add your content here or delete to use the default
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
-	</ui:define>
-</ui:composition>
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerLocation.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h2>Edit Location</h2>
+
+	<h:form>
+
+		<h:outputLabel value="Area" />
+		<h:inputText value="#{controllerLocation.location.area}" />
+		<br />
+
+		<h:outputLabel value="Coordinate" />
+		<h:outputLabel value="x:" />
+		<h:inputText value="#{controllerLocation.location.coordinate.x}" />
+		<br />
+		<h:outputLabel value="y:" />
+		<h:inputText value="#{controllerLocation.location.coordinate.y}" />
+		<br />
+		<h:outputLabel value="z:" />
+		<h:inputText value="#{controllerLocation.location.coordinate.z}" />
+		<br />
+
+		<h:outputLabel value="Occupancy" />
+		<h:inputText value="#{controllerLocation.location.occupancy}" />
+		<br />
+
+		<h:outputLabel value="Elevation" />
+		<h:inputText value="#{controllerLocation.location.elevation}" />
+		<br />
+
+		<h:outputLabel value="Premise type" />
+		<h:inputText value="#{controllerLocation.location.premiseType}" />
+		<br />
+
+		<h:commandButton value="save" action="#{controllerLocation.submit}" />
+	</h:form>
+</h:body>
 </html>

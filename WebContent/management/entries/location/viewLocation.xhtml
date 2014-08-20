@@ -6,38 +6,46 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition>
-	<h3>Location</h3>
 
-	<h:link value="edit"
-		outcome="/management/entries/location/editLocation.xhtml?id=#{.id}" />
-	<br />
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerLocation.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition>
+		<h3>Location</h3>
 
-	<h:outputLabel value="Area" />
-	<h:outputLabel value="#{relatable.area}" />
-	<br />
+		<h:link value="edit"
+			outcome="/management/entries/location/editLocation.xhtml?id=#{controllerLocation.id}" />
+		<br />
 
-	<h:outputLabel value="Coordinate" />
-	<h:outputLabel
-		value="x:#{relatable.coordinate.x} y:#{relatable.coordinate.y} z:#{relatable.coordinate.z}" />
-	<br />
+		<h:outputLabel value="Area" />
+		<h:outputLabel value="#{controllerLocation.location.area}" />
+		<br />
 
-	<h:outputLabel value="Occupancy" />
-	<h:outputLabel value="#{relatable.occupancy}" />
-	<br />
+		<h:outputLabel value="Coordinate" />
+		<h:outputLabel
+			value="x:#{controllerLocation.location.coordinate.x} y:#{controllerLocation.location.coordinate.y} z:#{controllerLocation.location.coordinate.z}" />
+		<br />
 
-	<h:outputLabel value="Elevation" />
-	<h:outputLabel value="#{relatable.elevation}" />
-	<br />
+		<h:outputLabel value="Occupancy" />
+		<h:outputLabel value="#{controllerLocation.location.occupancy}" />
+		<br />
 
-	<h:outputLabel value="Premise type" />
-	<h:outputLabel value="#{relatable.premiseType}" />
-	<br />
+		<h:outputLabel value="Elevation" />
+		<h:outputLabel value="#{controllerLocation.location.elevation}" />
+		<br />
 
-	<h3>Addresses</h3>
-	<h:dataTable value="#{relatable.addresses}" var="a">
-		<h:column>#{a.toString()}</h:column>
-	</h:dataTable>
+		<h:outputLabel value="Premise type" />
+		<h:outputLabel value="#{controllerLocation.location.premiseType}" />
+		<br />
 
-</ui:composition>
+		<ui:include src="/management/entries/address/listAddresses.xhtml">
+			<ui:param name="addresses"
+				value="#{controllerLocation.location.addresses}"></ui:param>
+		</ui:include>
+
+	</ui:composition>
+</h:body>
 </html>

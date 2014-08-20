@@ -43,5 +43,17 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-
+	<navigation-rule>
+		<from-view-id>/management/entries/location/editLocation.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/entries/location/viewLocation.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerLocation.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
