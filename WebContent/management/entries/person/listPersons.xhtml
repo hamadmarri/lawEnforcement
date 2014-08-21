@@ -46,6 +46,14 @@
 				<h:outputLabel value="#{p.citizenship}" />
 			</h:column>
 			<h:column>
+					<f:facet name="header">Physical Characteristic</f:facet>
+					<h:outputLabel value="#{p.physicalCharacteristic.toString()}" />
+				</h:column>
+			<h:column>
+				<f:facet name="header">Threat Assessment</f:facet>
+				<h:outputLabel value="#{p.threatAssessment.threatAssessmentLevel}" />
+			</h:column>
+			<h:column>
 				<f:facet name="header">Race</f:facet>
 				<h:outputLabel value="#{p.race.race}" />
 			</h:column>

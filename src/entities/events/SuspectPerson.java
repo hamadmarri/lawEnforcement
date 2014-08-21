@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import entities.Describable;
 import entities.entries.PersonName;
 import entities.entries.PhysicalCharacteristic;
+import entities.entries.ThreatAssessment;
 
 
 @Entity
@@ -31,7 +32,10 @@ public class SuspectPerson implements Serializable, Describable {
 	private PersonName personName;
 
 	@Embedded
-	private PhysicalCharacteristic suspectPhysicalCharacteristic;
+	private PhysicalCharacteristic physicalCharacteristic;
+
+	@Embedded
+	private ThreatAssessment threatAssessment;
 
 	private String description;
 
@@ -46,9 +50,11 @@ public class SuspectPerson implements Serializable, Describable {
 
 
 
-	public SuspectPerson(PhysicalCharacteristic suspectPhysicalCharacteristic, String description) {
+	public SuspectPerson(PhysicalCharacteristic physicalCharacteristic, ThreatAssessment threatAssessment,
+			String description) {
 		super();
-		this.suspectPhysicalCharacteristic = suspectPhysicalCharacteristic;
+		this.physicalCharacteristic = physicalCharacteristic;
+		this.threatAssessment = threatAssessment;
 		this.description = description;
 	}
 
@@ -67,13 +73,25 @@ public class SuspectPerson implements Serializable, Describable {
 
 
 	public PhysicalCharacteristic getPhysicalCharacteristic() {
-		return suspectPhysicalCharacteristic;
+		return physicalCharacteristic;
 	}
 
 
 
 	public void setPhysicalCharacteristic(PhysicalCharacteristic suspectPhysicalCharacteristic) {
-		this.suspectPhysicalCharacteristic = suspectPhysicalCharacteristic;
+		this.physicalCharacteristic = suspectPhysicalCharacteristic;
+	}
+
+
+
+	public ThreatAssessment getThreatAssessment() {
+		return threatAssessment;
+	}
+
+
+
+	public void setThreatAssessment(ThreatAssessment threatAssessment) {
+		this.threatAssessment = threatAssessment;
 	}
 
 

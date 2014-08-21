@@ -48,7 +48,6 @@ public class Person extends Entry {
 
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
-	// private Calendar dateOfBirth;
 
 	private String birthPlace;
 	private String gender;
@@ -71,6 +70,9 @@ public class Person extends Entry {
 
 	@Embedded
 	private PhysicalCharacteristic physicalCharacteristic;
+
+	@Embedded
+	private ThreatAssessment threatAssessment;
 
 	@Embedded
 	private Race race = new Race();
@@ -292,6 +294,18 @@ public class Person extends Entry {
 
 	public void setPhysicalCharacteristic(PhysicalCharacteristic physicalCharacteristic) {
 		this.physicalCharacteristic = physicalCharacteristic;
+	}
+
+
+
+	public ThreatAssessment getThreatAssessment() {
+		return threatAssessment;
+	}
+
+
+
+	public void setThreatAssessment(ThreatAssessment threatAssessment) {
+		this.threatAssessment = threatAssessment;
 	}
 
 

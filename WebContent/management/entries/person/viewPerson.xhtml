@@ -87,6 +87,10 @@
 				<ui:param name="person" value="#{controllerPerson.person}"></ui:param>
 			</ui:include>
 
+			<h2>Threat Assessment</h2>
+			<h:outputLabel
+				value="#{controllerPerson.person.threatAssessment.threatAssessmentLevel}" />
+
 			<h2>Race</h2>
 			<h:outputLabel value="${controllerPerson.person.race.race}" />
 

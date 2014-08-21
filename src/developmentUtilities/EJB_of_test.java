@@ -97,12 +97,12 @@ public class EJB_of_test {
 				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],
 				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[0],
 				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[3],
-				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[2]), "cool");
+				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[2]), new ThreatAssessment("high"), "cool");
 		SuspectPerson sp2 = new SuspectPerson(new PhysicalCharacteristic(
 				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[1],
 				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[3],
 				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[0],
-				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), "ugly");
+				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), new ThreatAssessment("medium"), "ugly");
 		IncidentReport ir = new IncidentReport("flirting", IncidentReport.getStatusOptions()[0], "nothing yet");
 		Location l = (Location) em.createNamedQuery("Location.findAll").getResultList().get(0);
 		Person complainant = new Person(new PersonName("Yara", null), null, null, "Female", "Libanies", null, null);
@@ -209,11 +209,13 @@ public class EJB_of_test {
 		p1.addContact(new Email(p1, "almarrih@uregina.ca"));
 		p1.setRace(new Race("Saudi Arabian"));
 		p1.setPhysicalCharacteristic(new PhysicalCharacteristic("Overweight", "Short", "Light", "Black"));
+		p1.setThreatAssessment(new ThreatAssessment("low"));
 		p1.addAliasNameOrMoniker(new AliasNameOrMoniker(p1, "the monster"));
 		p1.addScars_mark_tattoo(new ScarMarkTattoo(p1, "abu antar mark"));
 
 		Person p2 = new Person(new PersonName("Mohammad", "Almarri"), date2.getTime(), "Al Khobar", "Male", "Saudi",
 				null, "PI");
+		p2.setThreatAssessment(new ThreatAssessment("low"));
 		Relation r = new Relation(p1, "brothers", p2);
 
 		PhotographicImage pi = new PhotographicImage("both", "ldfjglh");
