@@ -15,8 +15,8 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relations"
-				value="#{controllerOrganization.organization.allRelations}" />
+			<c:set var="relatable"
+				value="#{controllerOrganization.organization}" />
 
 			<h3>Organization</h3>
 

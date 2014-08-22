@@ -5,13 +5,11 @@ import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import entities.Describable;
+import entities.entries.Entry;
 import entities.entries.PersonName;
 import entities.entries.PhysicalCharacteristic;
 import entities.entries.ThreatAssessment;
@@ -20,13 +18,9 @@ import entities.entries.ThreatAssessment;
 @Entity
 @NamedQueries({ @NamedQuery(name = "SuspectPerson.findAll", query = "select s from SuspectPerson s ORDER BY s.id"),
 		@NamedQuery(name = "SuspectPerson.findById", query = "select s from SuspectPerson s WHERE s.id = :id") })
-public class SuspectPerson implements Serializable, Describable {
+public class SuspectPerson extends Entry implements Serializable {
 
 	private static final long serialVersionUID = 6230656995120526177L;
-
-	@Id
-	@GeneratedValue
-	Long id;
 
 	@Embedded
 	private PersonName personName;
@@ -37,15 +31,14 @@ public class SuspectPerson implements Serializable, Describable {
 	@Embedded
 	private ThreatAssessment threatAssessment;
 
-	private String description;
-
 	@ManyToMany(mappedBy = "suspectPersons")
 	private List<IncidentReport> incidentReports;
 
 
 
 	public SuspectPerson() {
-
+		super();
+		this.type = "SuspectPerson";
 	}
 
 
@@ -53,9 +46,9 @@ public class SuspectPerson implements Serializable, Describable {
 	public SuspectPerson(PhysicalCharacteristic physicalCharacteristic, ThreatAssessment threatAssessment,
 			String description) {
 		super();
+		this.type = "SuspectPerson";
 		this.physicalCharacteristic = physicalCharacteristic;
 		this.threatAssessment = threatAssessment;
-		this.description = description;
 	}
 
 
@@ -98,20 +91,6 @@ public class SuspectPerson implements Serializable, Describable {
 
 	public Long getId() {
 		return id;
-	}
-
-
-
-	@Override
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-
-	@Override
-	public String getDescription() {
-		return this.description;
 	}
 
 }

@@ -117,8 +117,6 @@ public class Person extends Entry {
 
 
 	public PersonName getPersonName() {
-		// if (this.personName == null)
-		// this.personName = new PersonName();
 		return personName;
 	}
 

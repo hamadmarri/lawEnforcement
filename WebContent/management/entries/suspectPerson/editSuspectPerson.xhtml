@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerSuspectPerson.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:composition template="/management/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerSuspectPerson}" />
+			<c:set var="relatable"
+				value="#{controllerSuspectPerson.suspectPerson}" />
+
+			<h2>Edit Suspect Person</h2>
+
+			<ui:include
+				src="/management/physicalcharacteristic/editPhysicalCharacteristic.xhtml">
+				<ui:param name="person"
+					value="#{controllerSuspectPerson.suspectPerson}"></ui:param>
+			</ui:include>
+
+
+			<h4>Description</h4>
+			<h:inputText
+				value="#{controllerSuspectPerson.suspectPerson.description}" />
+
+			<h2>Threat Assessment</h2>
+			<h:inputText
+				value="#{controllerSuspectPerson.suspectPerson.threatAssessment.threatAssessmentLevel}" />
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

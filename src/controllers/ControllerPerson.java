@@ -46,4 +46,5 @@ public class ControllerPerson extends AbstarctController<Person> implements Seri
 	public void setPersonsList(List<Person> list) {
 		super.setList(list);
 	}
+	
 }

@@ -1,15 +1,17 @@
 package entities.entries;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
-import entities.Describable;
 import entities.Relatable;
 import entities.entries.history.History;
-import entities.events.Event;
 
 
 /**
@@ -19,7 +21,7 @@ import entities.events.Event;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({ @NamedQuery(name = "Entry.findAll", query = "SELECT e FROM Entry e") })
-public class Entry extends Relatable implements Serializable, Describable {
+public class Entry extends Relatable implements Serializable {
 
 	private static final long serialVersionUID = 2034421404091295704L;
 
@@ -42,22 +44,6 @@ public class Entry extends Relatable implements Serializable, Describable {
 
 	public void setHistory(History history) {
 		this.history = history;
-	}
-
-
-
-	@Override
-	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-	@Override
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

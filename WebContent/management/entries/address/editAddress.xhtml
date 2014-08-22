@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -13,34 +14,38 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Address</h2>
+	<ui:composition template="/management/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerAddress}" />
+			<c:set var="relatable" value="#{controllerAddress.address}" />
 
-	<h:form>
-		<h:outputLabel value="StreetName" />
-		<h:inputText value="#{controllerAddress.address.streetName}" />
-		<br />
+			<h2>Edit Address</h2>
 
-		<h:outputLabel value="Apt No." />
-		<h:inputText value="#{controllerAddress.address.aptNo}" />
-		<br />
+			<h:outputLabel value="StreetName" />
+			<h:inputText value="#{controllerAddress.address.streetName}" />
+			<br />
 
-		<h:outputLabel value="City" />
-		<h:inputText value="#{controllerAddress.address.city}" />
-		<br />
+			<h:outputLabel value="Apt No." />
+			<h:inputText value="#{controllerAddress.address.aptNo}" />
+			<br />
 
-		<h:outputLabel value="Province" />
-		<h:inputText value="#{controllerAddress.address.province}" />
-		<br />
+			<h:outputLabel value="City" />
+			<h:inputText value="#{controllerAddress.address.city}" />
+			<br />
 
-		<h:outputLabel value="Country" />
-		<h:inputText value="#{controllerAddress.address.country}" />
-		<br />
+			<h:outputLabel value="Province" />
+			<h:inputText value="#{controllerAddress.address.province}" />
+			<br />
 
-		<h:outputLabel value="PostalCode" />
-		<h:inputText value="#{controllerAddress.address.postalCode}" />
-		<br />
+			<h:outputLabel value="Country" />
+			<h:inputText value="#{controllerAddress.address.country}" />
+			<br />
 
-		<h:commandButton value="save" action="#{controllerAddress.submit}" />
-	</h:form>
+			<h:outputLabel value="PostalCode" />
+			<h:inputText value="#{controllerAddress.address.postalCode}" />
+			<br />
+		</ui:define>
+	</ui:composition>
+
 </h:body>
 </html>

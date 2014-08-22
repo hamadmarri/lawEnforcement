@@ -229,10 +229,10 @@
 
 	<!-- ********** SuspectPerson ********** -->
 	<navigation-rule>
-		<from-view-id>/management/suspectPerson/editSuspectPerson.xhtml</from-view-id>
+		<from-view-id>/management/entries/suspectPerson/editSuspectPerson.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/management/suspectPerson/viewSuspectPerson.xhtml</to-view-id>
+			<to-view-id>/management/entries/suspectPerson/viewSuspectPerson.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -242,10 +242,10 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/suspectPerson/viewSuspectPerson.xhtml</from-view-id>
+		<from-view-id>/management/entries/suspectPerson/viewSuspectPerson.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/suspectPerson/editSuspectPerson.xhtml</to-view-id>
+			<to-view-id>/management/entries/suspectPerson/editSuspectPerson.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>

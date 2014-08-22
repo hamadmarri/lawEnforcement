@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -13,38 +14,40 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Location</h2>
 
-	<h:form>
+	<ui:composition template="/management/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerLocation}" />
+			<c:set var="relatable" value="#{controllerLocation.location}" />
+			<h2>Edit Location</h2>
 
-		<h:outputLabel value="Area" />
-		<h:inputText value="#{controllerLocation.location.area}" />
-		<br />
 
-		<h:outputLabel value="Coordinate" />
-		<h:outputLabel value="x:" />
-		<h:inputText value="#{controllerLocation.location.coordinate.x}" />
-		<br />
-		<h:outputLabel value="y:" />
-		<h:inputText value="#{controllerLocation.location.coordinate.y}" />
-		<br />
-		<h:outputLabel value="z:" />
-		<h:inputText value="#{controllerLocation.location.coordinate.z}" />
-		<br />
+			<h:outputLabel value="Area" />
+			<h:inputText value="#{controllerLocation.location.area}" />
+			<br />
 
-		<h:outputLabel value="Occupancy" />
-		<h:inputText value="#{controllerLocation.location.occupancy}" />
-		<br />
+			<h:outputLabel value="Coordinate" />
+			<h:outputLabel value="x:" />
+			<h:inputText value="#{controllerLocation.location.coordinate.x}" />
+			<br />
+			<h:outputLabel value="y:" />
+			<h:inputText value="#{controllerLocation.location.coordinate.y}" />
+			<br />
+			<h:outputLabel value="z:" />
+			<h:inputText value="#{controllerLocation.location.coordinate.z}" />
+			<br />
 
-		<h:outputLabel value="Elevation" />
-		<h:inputText value="#{controllerLocation.location.elevation}" />
-		<br />
+			<h:outputLabel value="Occupancy" />
+			<h:inputText value="#{controllerLocation.location.occupancy}" />
+			<br />
 
-		<h:outputLabel value="Premise type" />
-		<h:inputText value="#{controllerLocation.location.premiseType}" />
-		<br />
+			<h:outputLabel value="Elevation" />
+			<h:inputText value="#{controllerLocation.location.elevation}" />
+			<br />
 
-		<h:commandButton value="save" action="#{controllerLocation.submit}" />
-	</h:form>
+			<h:outputLabel value="Premise type" />
+			<h:inputText value="#{controllerLocation.location.premiseType}" />
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

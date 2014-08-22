@@ -16,8 +16,8 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">	
 		<ui:define name="view">
-			<c:set var="relations"
-				value="#{controllerConveyance.conveyance.allRelations}" />
+			<c:set var="relatable"
+				value="#{controllerConveyance.conveyance}" />
 			<c:set var="included" value="true" />
 
 			<h2>Conveyance</h2>

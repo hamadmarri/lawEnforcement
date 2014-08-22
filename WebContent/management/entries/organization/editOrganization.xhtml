@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -13,20 +14,24 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Organization</h2>
 
-	<h:form>
-		<h:outputLabel value="Organization name" />
-		<h:inputText value="#{controllerOrganization.organization.name}" />
-		<br />
+	<ui:composition template="/management/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerOrganization}" />
+			<c:set var="relatable" value="#{controllerOrganization.organization}" />
+			
+			<h2>Edit Organization</h2>
 
-		<h:outputLabel value="Organization type" />
-		<h:inputText
-			value="#{controllerOrganization.organization.organizationType}" />
-		<br />
+			<h:outputLabel value="Organization name" />
+			<h:inputText value="#{controllerOrganization.organization.name}" />
+			<br />
 
-		<h:commandButton value="save"
-			action="#{controllerOrganization.submit}" />
-	</h:form>
+			<h:outputLabel value="Organization type" />
+			<h:inputText
+				value="#{controllerOrganization.organization.organizationType}" />
+			<br />
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

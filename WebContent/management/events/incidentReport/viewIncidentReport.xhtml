@@ -15,8 +15,8 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relations"
-				value="#{controllerIncidentReport.incidentReport.allRelations}" />
+			<c:set var="relatable"
+				value="#{controllerIncidentReport.incidentReport}" />
 			<c:set var="included" value="true" />
 
 			<h3>Incident Report</h3>
@@ -36,7 +36,7 @@
 				value="#{controllerIncidentReport.incidentReport.caseStatus}" />
 			<br />
 
-			<ui:include src="/management/suspectPerson/listSuspectPersons.xhtml">
+			<ui:include src="/management/entries/suspectPerson/listSuspectPersons.xhtml">
 				<ui:param name="suspectPersons"
 					value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
 			</ui:include>

@@ -17,7 +17,7 @@ import javax.persistence.*;
 		@NamedQuery(name = "Relatable.findAll", query = "select r from Relatable r ORDER BY r.id"),
 		@NamedQuery(name = "Relatable.findAllByType", query = "select r from Relatable r WHERE r.type = :type ORDER BY r.id"),
 		@NamedQuery(name = "Relatable.findById", query = "select r from Relatable r WHERE r.id = :id") })
-public class Relatable implements Serializable {
+public class Relatable implements Serializable, Describable {
 
 	private static final long serialVersionUID = -2946296455927470657L;
 
@@ -35,6 +35,8 @@ public class Relatable implements Serializable {
 	private List<Relation> allRelations;
 
 	protected String type;
+
+	protected String description = new String("");
 
 
 
@@ -70,6 +72,20 @@ public class Relatable implements Serializable {
 	@Override
 	public String toString() {
 		return "Relatable";
+	}
+
+
+
+	@Override
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	@Override
+	public String getDescription() {
+		return this.description;
 	}
 
 }

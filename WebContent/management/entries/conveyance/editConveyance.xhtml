@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -14,59 +15,64 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Conveyance</h2>
 
-	<h:form>
-		<h:outputLabel value="Vehicle identification number" />
-		<h:inputText
-			value="#{controllerConveyance.conveyance.vehicleIdentificationNumber}" />
-		<br />
+	<ui:composition template="/management/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerConveyance}" />
+			<c:set var="relatable" value="#{controllerConveyance.conveyance}" />
+			
+			<h2>Edit Conveyance</h2>
 
-		<h:outputLabel value="License plate number" />
-		<h:inputText
-			value="#{controllerConveyance.conveyance.licensePlateNumber}" />
-		<br />
+			<h:outputLabel value="Vehicle identification number" />
+			<h:inputText
+				value="#{controllerConveyance.conveyance.vehicleIdentificationNumber}" />
+			<br />
 
-		<h:outputLabel value="License plate state" />
-		<h:inputText
-			value="#{controllerConveyance.conveyance.licensePlateState}" />
-		<br />
+			<h:outputLabel value="License plate number" />
+			<h:inputText
+				value="#{controllerConveyance.conveyance.licensePlateNumber}" />
+			<br />
 
-		<h:outputLabel value="License plate year" />
-		<p:calendar value="#{controllerConveyance.conveyance.licensePlateYear}" />
-		<br />
+			<h:outputLabel value="License plate state" />
+			<h:inputText
+				value="#{controllerConveyance.conveyance.licensePlateState}" />
+			<br />
 
-		<h:outputLabel value="Registered owner" />
-		<h:inputText
-			value="#{controllerConveyance.conveyance.registeredOwner.personName.firstName}" />
-		<br />
+			<h:outputLabel value="License plate year" />
+			<p:calendar
+				value="#{controllerConveyance.conveyance.licensePlateYear}" />
+			<br />
+
+			<h:outputLabel value="Registered owner" />
+			<h:inputText
+				value="#{controllerConveyance.conveyance.registeredOwner.personName.firstName}" />
+			<br />
 
 
-		<h:outputLabel value="Make" />
-		<h:inputText value="#{controllerConveyance.conveyance.make}" />
-		<br />
+			<h:outputLabel value="Make" />
+			<h:inputText value="#{controllerConveyance.conveyance.make}" />
+			<br />
 
-		<h:outputLabel value="Model" />
-		<h:inputText value="#{controllerConveyance.conveyance.model}" />
-		<br />
+			<h:outputLabel value="Model" />
+			<h:inputText value="#{controllerConveyance.conveyance.model}" />
+			<br />
 
-		<h:outputLabel value="Year" />
-		<p:calendar value="#{controllerConveyance.conveyance.year}" />
-		<br />
+			<h:outputLabel value="Year" />
+			<p:calendar value="#{controllerConveyance.conveyance.year}" />
+			<br />
 
-		<h:outputLabel value="Color" />
-		<h:inputText value="#{controllerConveyance.conveyance.color}" />
-		<br />
+			<h:outputLabel value="Color" />
+			<h:inputText value="#{controllerConveyance.conveyance.color}" />
+			<br />
 
-		<h:outputLabel value="Style" />
-		<h:inputText value="#{controllerConveyance.conveyance.style}" />
-		<br />
+			<h:outputLabel value="Style" />
+			<h:inputText value="#{controllerConveyance.conveyance.style}" />
+			<br />
 
-		<h:outputLabel value="Attributes" />
-		<h:inputText value="#{controllerConveyance.conveyance.attributes}" />
-		<br />
-
-		<h:commandButton value="save" action="#{controllerConveyance.submit}" />
-	</h:form>
+			<h:outputLabel value="Attributes" />
+			<h:inputText value="#{controllerConveyance.conveyance.attributes}" />
+			<br />
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

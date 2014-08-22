@@ -14,7 +14,14 @@
 	<ui:composition template="/WEB-INF/template.xhtml">
 		<ui:define name="content">
 			<ui:insert name="view" />
-
+			
+			<h4>Description</h4>
+			<c:if test="${empty relatable.description}">
+				<h:outputLabel value="nothing" />
+			</c:if>
+			<h:outputLabel
+				value="#{relatable.description}" />
+				
 			<ui:include src="/management/entries/relation/listRelations.xhtml">
 				<ui:param name="relations" value="#{relations}" />
 			</ui:include>

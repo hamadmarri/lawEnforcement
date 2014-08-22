@@ -16,8 +16,8 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relations"
-				value="#{controllerLocation.location.allRelations}" />
+			<c:set var="relatable"
+				value="#{controllerLocation.location}" />
 			<c:set var="included" value="true" />
 
 			<h3>Location</h3>
