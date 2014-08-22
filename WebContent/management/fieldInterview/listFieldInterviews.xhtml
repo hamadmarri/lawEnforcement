@@ -23,44 +23,48 @@
 			<h:outputLabel value="nothing" />
 		</c:if>
 
-		<h:dataTable value="#{fieldInterviews}" var="fi">
-			<h:column>
-				<h:link value="view"
-					outcome="/management/fieldInterview/viewFieldInterview.xhtml?id=#{fi.id}" />
-			</h:column>
-			<h:column>
-				<h:link value="edit"
-					outcome="/management/fieldInterview/editFieldInterview.xhtml?id=#{fi.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Incident Report</f:facet>
-				<h:link value="view"
-					outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{fi.incidentReport.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Subscriber</f:facet>
-				<h:outputLabel value="#{fi.subscriber.toString()}" />
-				<h:link value="view"
-					outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.subscriber.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Emergency contact</f:facet>
-				<h:outputLabel value="#{fi.inCaseOfEmergencyPerson.toString()}" />
-				<h:link value="view"
-					outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.inCaseOfEmergencyPerson.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Date and time</f:facet>
-				<h:outputLabel value="#{fi.dateAndTime}">
-					<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
-				</h:outputLabel>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Sayings</f:facet>
-				<h:outputLabel value="#{fi.sayings}" />
-			</h:column>
+		<c:if test="${not empty fieldInterviews}">
+			<h:dataTable value="#{fieldInterviews}" var="fi">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/fieldInterview/viewFieldInterview.xhtml?id=#{fi.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/fieldInterview/editFieldInterview.xhtml?id=#{fi.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Incident Report</f:facet>
+					<h:link value="view"
+						outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{fi.incidentReport.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Subscriber</f:facet>
+					<h:outputLabel value="#{fi.subscriber.toString()}" />
+					<h:link value="view"
+						rendered="#{fi.subscriber ne null}"
+						outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.subscriber.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Emergency contact</f:facet>
+					<h:outputLabel value="#{fi.inCaseOfEmergencyPerson.toString()}" />
+					<h:link value="view"
+						rendered="#{fi.inCaseOfEmergencyPerson ne null}"
+						outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.inCaseOfEmergencyPerson.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date and time</f:facet>
+					<h:outputLabel value="#{fi.dateAndTime}">
+						<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
+					</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sayings</f:facet>
+					<h:outputLabel value="#{fi.sayings}" />
+				</h:column>
 
-		</h:dataTable>
+			</h:dataTable>
+		</c:if>
 	</ui:composition>
 </h:body>
 </html>

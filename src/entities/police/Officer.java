@@ -2,7 +2,7 @@ package entities.police;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -16,7 +16,8 @@ import entities.events.Event;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "Officer.findAll", query = "select o from Officer o") })
+@NamedQueries({ @NamedQuery(name = "Officer.findAll", query = "select o from Officer o"),
+		@NamedQuery(name = "Officer.findById", query = "select o from Officer o WHERE o.id = :id") })
 public class Officer implements Serializable {
 
 	private static final long serialVersionUID = -5522696147922682708L;
@@ -29,7 +30,7 @@ public class Officer implements Serializable {
 	private PersonName personName;
 
 	@Temporal(TemporalType.DATE)
-	private Calendar dateOfBirth;
+	private Date dateOfBirth;
 
 	private String Gender;
 
@@ -74,13 +75,13 @@ public class Officer implements Serializable {
 
 
 
-	public Calendar getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 
 
-	public void setDateOfBirth(Calendar dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -129,4 +130,11 @@ public class Officer implements Serializable {
 		return createdCases;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.personName.toString();
+	}
+	
 }

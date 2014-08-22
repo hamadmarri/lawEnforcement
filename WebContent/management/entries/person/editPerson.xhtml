@@ -13,12 +13,10 @@
 	<f:metadata>
 		<f:viewParam name="id" value="#{controllerPerson.id}" />
 	</f:metadata>
-
 </h:head>
 
 <h:body>
-
-	<ui:composition template="/management/edit.xhtml">
+	<ui:composition template="/management/entries/edit.xhtml">
 		<ui:define name="editContent">
 			<c:set var="controller" value="#{controllerPerson}" />
 			<c:set var="relatable" value="#{controllerPerson.person}" />

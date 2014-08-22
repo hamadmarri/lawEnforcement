@@ -10,6 +10,7 @@
 <h:head></h:head>
 <h:body>
 	<ui:composition>
+		<h2>Relations</h2>
 		<c:if test="${empty relatable and not included}">
 			<c:set var="relations" value="#{controllerRelation.relationsList}" />
 		</c:if>
@@ -18,7 +19,6 @@
 			<c:set var="relations" value="#{relatable.allRelations}" />
 		</c:if>
 
-		<h2>relatable</h2>
 		<c:if test="${empty relations and included}">
 			<h:outputLabel value="nothing" />
 		</c:if>

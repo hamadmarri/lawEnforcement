@@ -283,6 +283,34 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<!-- ********** Officer ********** -->
+	<navigation-rule>
+		<from-view-id>/management/police/officer/editOfficer.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/police/officer/viewOfficer.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerOfficer.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/police/officer/viewOfficer.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/management/police/officer/editOfficer.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	
 	<!-- ********** Relation ********** -->
 	<navigation-rule>
 		<from-view-id>/management/*</from-view-id>

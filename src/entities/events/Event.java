@@ -11,14 +11,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import entities.Describable;
 import entities.Relatable;
 import entities.police.Officer;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Event extends Relatable implements Serializable, Describable {
+public class Event extends Relatable implements Serializable {
 
 	private static final long serialVersionUID = -7653133964450866716L;
 
@@ -42,17 +41,8 @@ public class Event extends Relatable implements Serializable, Describable {
 
 
 
-	@Override
-	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-
+	public List<Officer> getOfficersResponsibleFor() {
+		return officersResponsibleFor;
 	}
 
-
-
-	@Override
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
