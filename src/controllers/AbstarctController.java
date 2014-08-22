@@ -15,11 +15,12 @@ import entities.Relatable;
 public class AbstarctController<T> {
 
 	@EJB
-	protected EjbView ejbRelation;
+	protected EjbView ejbRelatable;
 	protected String id;
 	protected T relatable;
 	protected String type;
 	protected List<T> list = null;
+	protected boolean newRelatable = false;
 
 
 
@@ -27,7 +28,12 @@ public class AbstarctController<T> {
 		// System.out.println("******** save ********");
 		// System.out.println("******** " +
 		// this.person.getPersonName().getFirstName());
-		ejbRelation.save((Relatable) this.relatable);
+
+		if (isNewRelatable())
+			ejbRelatable.add((Relatable) this.relatable);
+		else
+			ejbRelatable.save((Relatable) this.relatable);
+
 		return "success"; // ?faces-redirect=true";
 	}
 
@@ -53,7 +59,7 @@ public class AbstarctController<T> {
 		if (this.id == null)
 			return null;
 
-		this.relatable = (T) ejbRelation.getView(Long.parseLong(this.id)).get(0);
+		this.relatable = (T) ejbRelatable.getView(Long.parseLong(this.id)).get(0);
 
 		return this.relatable;
 	}
@@ -69,7 +75,7 @@ public class AbstarctController<T> {
 	@SuppressWarnings("unchecked")
 	public List<T> getList() {
 		if (this.list == null)
-			this.list = (List<T>) ejbRelation.getList(this.type);
+			this.list = (List<T>) ejbRelatable.getList(this.type);
 
 		return list;
 	}
@@ -78,6 +84,18 @@ public class AbstarctController<T> {
 
 	public void setList(List<T> list) {
 		this.list = list;
+	}
+
+
+
+	public boolean isNewRelatable() {
+		return newRelatable;
+	}
+
+
+
+	public void setNewRelatable(boolean newRelatable) {
+		this.newRelatable = newRelatable;
 	}
 
 }

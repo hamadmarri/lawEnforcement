@@ -25,6 +25,13 @@ public class ControllerAddress extends AbstarctController<Address> implements Se
 
 
 
+	public void createNewAddress() {
+		this.relatable = new Address();
+		setNewRelatable(true);
+	}
+
+
+
 	public Address getAddress() {
 		return super.getRelatable();
 	}

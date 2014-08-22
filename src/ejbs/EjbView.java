@@ -23,6 +23,12 @@ public class EjbView {
 
 
 
+	public void add(Relatable r) {
+		em.persist(r);
+	}
+
+
+
 	public void save(Relatable r) {
 		em.merge(r);
 	}

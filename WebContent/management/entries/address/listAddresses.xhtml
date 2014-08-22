@@ -13,6 +13,10 @@
 	<ui:composition>
 		<h2>Addresses</h2>
 
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
 		<c:if test="${empty addresses and not included}">
 			<c:set var="addresses" value="#{controllerAddress.addressesList}" />
 		</c:if>
@@ -20,6 +24,7 @@
 		<c:if test="${empty addresses and included}">
 			<h:outputLabel value="nothing" />
 		</c:if>
+
 
 		<c:if test="${not empty addresses}">
 			<h:dataTable value="#{addresses}" var="a">
