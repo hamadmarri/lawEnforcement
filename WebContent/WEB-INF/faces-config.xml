@@ -16,6 +16,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/entries/person/viewPerson.xhtml</from-view-id>
@@ -41,6 +51,16 @@
 				<view-param>
 					<name>id</name>
 					<value>#{controllerConveyance.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/conveyance/viewConveyance.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -72,6 +92,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/address/viewAddress.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/entries/address/viewAddress.xhtml</from-view-id>
@@ -97,6 +127,16 @@
 				<view-param>
 					<name>id</name>
 					<value>#{controllerLocation.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/location/viewLocation.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -128,6 +168,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/organization/viewOrganization.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/entries/organization/viewOrganization.xhtml</from-view-id>
@@ -153,6 +203,16 @@
 				<view-param>
 					<name>id</name>
 					<value>#{controllerProperty.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/property/viewProperty.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -184,6 +244,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</from-view-id>
@@ -209,6 +279,16 @@
 				<view-param>
 					<name>id</name>
 					<value>#{controllerArrestReport.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/events/arrestReport/viewArrestReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -240,6 +320,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/suspectPerson/viewSuspectPerson.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/entries/suspectPerson/viewSuspectPerson.xhtml</from-view-id>
@@ -268,6 +358,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/fieldInterview/viewFieldInterview.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/fieldInterview/viewFieldInterview.xhtml</from-view-id>
@@ -293,6 +393,16 @@
 				<view-param>
 					<name>id</name>
 					<value>#{controllerOfficer.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/police/officer/viewOfficer.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>

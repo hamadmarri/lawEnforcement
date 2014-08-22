@@ -18,7 +18,11 @@
 		<ui:define name="editContent">
 			<c:set var="controller" value="#{controllerAddress}" />
 			<c:set var="relatable" value="#{controllerAddress.address}" />
-
+			
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerAddress.id}" />
+			</h:link>
+			
 			<h2>Edit Address</h2>
 
 			<h:outputLabel value="StreetName" />

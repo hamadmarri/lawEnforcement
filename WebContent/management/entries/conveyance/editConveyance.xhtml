@@ -21,6 +21,10 @@
 			<c:set var="controller" value="#{controllerConveyance}" />
 			<c:set var="relatable" value="#{controllerConveyance.conveyance}" />
 			
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerConveyance.id}" />
+			</h:link>
+			
 			<h2>Edit Conveyance</h2>
 
 			<h:outputLabel value="Vehicle identification number" />

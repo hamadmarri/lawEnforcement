@@ -16,6 +16,10 @@
 <h:body>
 	<h2>Edit Incident Report</h2>
 
+	<h:link value="cancel" outcome="cancel">
+		<f:param name="id" value="#{controllerIncidentReport.id}" />
+	</h:link>
+	
 	<h:form>
 		<h:outputLabel value="Offense Information" />
 		<h:inputText

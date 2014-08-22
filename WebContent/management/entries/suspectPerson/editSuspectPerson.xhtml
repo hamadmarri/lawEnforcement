@@ -22,6 +22,10 @@
 
 			<h2>Edit Suspect Person</h2>
 
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerSuspectPerson.id}" />
+			</h:link>
+
 			<ui:include
 				src="/management/physicalcharacteristic/editPhysicalCharacteristic.xhtml">
 				<ui:param name="person"

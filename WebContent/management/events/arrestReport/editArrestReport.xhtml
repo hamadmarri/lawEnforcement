@@ -16,6 +16,10 @@
 <h:body>
 	<h2>Edit Arrest Report</h2>
 
+	<h:link value="cancel" outcome="cancel">
+		<f:param name="id" value="#{controllerArrestReport.id}" />
+	</h:link>
+	
 	<h:form>
 		<h:outputLabel value="Document" />
 		<h:inputText value="#{controllerArrestReport.arrestReport.document}" />

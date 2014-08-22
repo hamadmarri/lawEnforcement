@@ -21,6 +21,10 @@
 			<c:set var="controller" value="#{controllerPerson}" />
 			<c:set var="relatable" value="#{controllerPerson.person}" />
 
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerPerson.id}" />
+			</h:link>
+			
 			<h1>Edit Person</h1>
 
 			<h:outputLabel value="#{controllerPerson.id}" />
