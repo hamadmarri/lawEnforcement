@@ -16,8 +16,8 @@ public class AbstractEjb<T> {
 
 
 	@SuppressWarnings("unchecked")
-	public List<T> getView(Long id) {
-		return em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList();
+	public T getEntity(Long id) {
+		return (T) em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList().get(0);
 	}
 
 

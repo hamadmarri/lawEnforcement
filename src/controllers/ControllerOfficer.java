@@ -62,7 +62,7 @@ public class ControllerOfficer implements Serializable {
 		if (this.id == null)
 			return null;
 
-		this.Officer = ejbOfficer.getView(Long.parseLong(this.id)).get(0);
+		this.Officer = ejbOfficer.getEntity(Long.parseLong(this.id));
 
 		return this.Officer;
 	}

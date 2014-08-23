@@ -64,7 +64,7 @@ public class RelatableController<T> {
 		if (this.id == null)
 			return null;
 
-		this.relatable = (T) ejbRelatable.getView(Long.parseLong(this.id)).get(0);
+		this.relatable = (T) ejbRelatable.getEntity(Long.parseLong(this.id));
 
 		return this.relatable;
 	}

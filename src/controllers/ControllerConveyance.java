@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ejbs.AbstractEjb;
 import entities.entries.Conveyance;
+import entities.entries.Person;
 
 
 @ManagedBean(name = "controllerConveyance")
@@ -16,11 +19,29 @@ public class ControllerConveyance extends RelatableController<Conveyance> implem
 
 	private static final long serialVersionUID = -3709992694215689104L;
 
+	@EJB
+	AbstractEjb<Person> ejbPerson;
+
+	private Long registeredOwnerId = null;
+
 
 
 	@PostConstruct
 	public void init() {
 		this.type = "Conveyance";
+	}
+
+
+
+	@Override
+	public String submit() {
+		// update person based on its id
+		System.out.println(this.getRegisteredOwnerId());
+		Person p = (Person) this.ejbPerson.getEntity(this.getRegisteredOwnerId());
+		System.out.println(p.getPersonName().getFirstName());
+		this.getConveyance().setRegisteredOwner(p);
+
+		return super.submit();
 	}
 
 
@@ -33,7 +54,12 @@ public class ControllerConveyance extends RelatableController<Conveyance> implem
 
 
 	public Conveyance getConveyance() {
-		return super.getRelatable();
+		// hold the id of RegisteredOwner
+		Conveyance c = super.getRelatable();
+		if (this.registeredOwnerId == null && c != null && c.getRegisteredOwner() != null)
+			setRegisteredOwnerId(c.getRegisteredOwner().getId());
+
+		return c;
 	}
 
 
@@ -52,6 +78,18 @@ public class ControllerConveyance extends RelatableController<Conveyance> implem
 
 	public void setConveyancesList(List<Conveyance> list) {
 		super.setList(list);
+	}
+
+
+
+	public Long getRegisteredOwnerId() {
+		return registeredOwnerId;
+	}
+
+
+
+	public void setRegisteredOwnerId(Long registeredOwnerId) {
+		this.registeredOwnerId = registeredOwnerId;
 	}
 
 }

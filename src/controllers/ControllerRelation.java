@@ -63,7 +63,7 @@ public class ControllerRelation implements Serializable {
 		if (this.id == null)
 			return null;
 
-		this.relation = ejbRelation.getView(Long.parseLong(this.id)).get(0);
+		this.relation = ejbRelation.getEntity(Long.parseLong(this.id));
 
 		return this.relation;
 	}

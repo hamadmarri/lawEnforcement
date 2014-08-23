@@ -63,7 +63,7 @@ public class ControllerFieldInterview implements Serializable {
 		if (this.id == null)
 			return null;
 
-		this.FieldInterview = ejbFieldInterview.getView(Long.parseLong(this.id)).get(0);
+		this.FieldInterview = ejbFieldInterview.getEntity(Long.parseLong(this.id));
 
 		return this.FieldInterview;
 	}

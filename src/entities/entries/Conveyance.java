@@ -28,7 +28,7 @@ public class Conveyance extends Entry {
 	@Temporal(TemporalType.DATE)
 	private Date licensePlateYear;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Person registeredOwner;
 
 	private String make;
