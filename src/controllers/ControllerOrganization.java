@@ -12,7 +12,7 @@ import entities.entries.Organization;
 
 @ManagedBean(name = "controllerOrganization")
 @ViewScoped
-public class ControllerOrganization extends AbstarctController<Organization> implements Serializable {
+public class ControllerOrganization extends RelatableController<Organization> implements Serializable {
 
 	private static final long serialVersionUID = 1366618647447539994L;
 
@@ -21,6 +21,13 @@ public class ControllerOrganization extends AbstarctController<Organization> imp
 	@PostConstruct
 	public void init() {
 		this.type = "Organization";
+	}
+
+
+
+	public void createNewOrganization() {
+		this.relatable = new Organization();
+		super.setNewRelatable(true);
 	}
 
 

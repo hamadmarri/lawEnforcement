@@ -12,7 +12,7 @@ import entities.events.IncidentReport;
 
 @ManagedBean(name = "controllerIncidentReport")
 @ViewScoped
-public class ControllerIncidentReport extends AbstarctController<IncidentReport> implements Serializable {
+public class ControllerIncidentReport extends RelatableController<IncidentReport> implements Serializable {
 
 	private static final long serialVersionUID = 9039079017243262913L;
 
@@ -21,6 +21,13 @@ public class ControllerIncidentReport extends AbstarctController<IncidentReport>
 	@PostConstruct
 	public void init() {
 		this.type = "IncidentReport";
+	}
+
+
+
+	public void createNewIncidentReport() {
+		this.relatable = new IncidentReport();
+		super.setNewRelatable(true);
 	}
 
 

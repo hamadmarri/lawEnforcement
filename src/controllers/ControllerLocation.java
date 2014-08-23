@@ -12,7 +12,7 @@ import entities.entries.Location;
 
 @ManagedBean(name = "controllerLocation")
 @ViewScoped
-public class ControllerLocation extends AbstarctController<Location> implements Serializable {
+public class ControllerLocation extends RelatableController<Location> implements Serializable {
 
 	private static final long serialVersionUID = 2681043919446615802L;
 
@@ -21,6 +21,13 @@ public class ControllerLocation extends AbstarctController<Location> implements 
 	@PostConstruct
 	public void init() {
 		this.type = "Location";
+	}
+
+
+
+	public void createNewLocation() {
+		this.relatable = new Location();
+		super.setNewRelatable(true);
 	}
 
 
@@ -46,5 +53,5 @@ public class ControllerLocation extends AbstarctController<Location> implements 
 	public void setLocationsList(List<Location> list) {
 		super.setList(list);
 	}
-	
+
 }

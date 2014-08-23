@@ -12,7 +12,7 @@ import entities.entries.Address;
 
 @ManagedBean(name = "controllerAddress")
 @ViewScoped
-public class ControllerAddress extends AbstarctController<Address> implements Serializable {
+public class ControllerAddress extends RelatableController<Address> implements Serializable {
 
 	private static final long serialVersionUID = -6208826240564103804L;
 
@@ -27,7 +27,7 @@ public class ControllerAddress extends AbstarctController<Address> implements Se
 
 	public void createNewAddress() {
 		this.relatable = new Address();
-		setNewRelatable(true);
+		super.setNewRelatable(true);
 	}
 
 

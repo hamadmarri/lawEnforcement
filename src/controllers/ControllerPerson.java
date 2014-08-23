@@ -12,7 +12,7 @@ import entities.entries.Person;
 
 @ManagedBean(name = "controllerPerson")
 @ViewScoped
-public class ControllerPerson extends AbstarctController<Person> implements Serializable {
+public class ControllerPerson extends RelatableController<Person> implements Serializable {
 
 	private static final long serialVersionUID = -328811918930855338L;
 
@@ -21,6 +21,13 @@ public class ControllerPerson extends AbstarctController<Person> implements Seri
 	@PostConstruct
 	public void init() {
 		this.type = "Person";
+	}
+
+
+
+	public void createNewPerson() {
+		this.relatable = new Person();
+		super.setNewRelatable(true);
 	}
 
 
@@ -46,5 +53,5 @@ public class ControllerPerson extends AbstarctController<Person> implements Seri
 	public void setPersonsList(List<Person> list) {
 		super.setList(list);
 	}
-	
+
 }

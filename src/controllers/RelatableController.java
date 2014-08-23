@@ -2,20 +2,21 @@ package controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ejbs.EjbView;
+import ejbs.AbstractEjb;
 import entities.Relatable;
 
 
 @ManagedBean(name = "abstarctController")
 @ViewScoped
-public class AbstarctController<T> {
+public class RelatableController<T> {
 
 	@EJB
-	protected EjbView ejbRelatable;
+	protected AbstractEjb<Relatable> ejbRelatable;
 	protected String id;
 	protected T relatable;
 	protected String type;
@@ -24,17 +25,21 @@ public class AbstarctController<T> {
 
 
 
+	@PostConstruct
+	public void initAbstract() {
+		this.ejbRelatable.setEntityName("Relatable");
+	}
+
+
+
 	public String submit() {
-		// System.out.println("******** save ********");
-		// System.out.println("******** " +
-		// this.person.getPersonName().getFirstName());
 
 		if (isNewRelatable())
 			ejbRelatable.add((Relatable) this.relatable);
 		else
 			ejbRelatable.save((Relatable) this.relatable);
 
-		return "success"; // ?faces-redirect=true";
+		return "success";
 	}
 
 

@@ -12,7 +12,7 @@ import entities.entries.Conveyance;
 
 @ManagedBean(name = "controllerConveyance")
 @ViewScoped
-public class ControllerConveyance extends AbstarctController<Conveyance> implements Serializable {
+public class ControllerConveyance extends RelatableController<Conveyance> implements Serializable {
 
 	private static final long serialVersionUID = -3709992694215689104L;
 
@@ -21,6 +21,13 @@ public class ControllerConveyance extends AbstarctController<Conveyance> impleme
 	@PostConstruct
 	public void init() {
 		this.type = "Conveyance";
+	}
+
+
+
+	public void createNewConveyance() {
+		this.relatable = new Conveyance();
+		setNewRelatable(true);
 	}
 
 

@@ -3,11 +3,12 @@ package controllers;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ejbs.EjbFieldInterview;
+import ejbs.AbstractEjb;
 import entities.events.FieldInterview;
 
 
@@ -15,19 +16,29 @@ import entities.events.FieldInterview;
 @ViewScoped
 public class ControllerFieldInterview implements Serializable {
 
-
 	private static final long serialVersionUID = 4953095639244656668L;
-	
+
 	@EJB
-	protected EjbFieldInterview ejbFieldInterview;
+	protected AbstractEjb<FieldInterview> ejbFieldInterview;
 	protected String id;
 	protected FieldInterview FieldInterview;
 	protected List<FieldInterview> FieldInterviewsList = null;
+	protected boolean newEntity = false;
+
+
+
+	@PostConstruct
+	public void init() {
+		this.ejbFieldInterview.setEntityName("FieldInterview");
+	}
 
 
 
 	public String submit() {
-		ejbFieldInterview.save(this.FieldInterview);
+		if (isNewEntity())
+			ejbFieldInterview.add(this.FieldInterview);
+		else
+			ejbFieldInterview.save(this.FieldInterview);
 		return "success";
 	}
 
@@ -76,6 +87,18 @@ public class ControllerFieldInterview implements Serializable {
 
 	public void setFieldInterviewsList(List<FieldInterview> list) {
 		this.FieldInterviewsList = list;
+	}
+
+
+
+	public boolean isNewEntity() {
+		return newEntity;
+	}
+
+
+
+	public void setNewEntity(boolean newEntity) {
+		this.newEntity = newEntity;
 	}
 
 }

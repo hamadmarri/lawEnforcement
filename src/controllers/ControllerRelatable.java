@@ -12,7 +12,7 @@ import entities.Relatable;
 
 @ManagedBean(name = "controllerRelatable")
 @ViewScoped
-public class ControllerRelatable extends AbstarctController<Relatable> implements Serializable {
+public class ControllerRelatable extends RelatableController<Relatable> implements Serializable {
 
 	private static final long serialVersionUID = -216346142306245603L;
 

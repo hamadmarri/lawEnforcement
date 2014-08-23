@@ -3,11 +3,12 @@ package controllers;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ejbs.EjbRelation;
+import ejbs.AbstractEjb;
 import entities.Relation;
 
 
@@ -18,15 +19,26 @@ public class ControllerRelation implements Serializable {
 	private static final long serialVersionUID = -3794654476345847009L;
 
 	@EJB
-	protected EjbRelation ejbRelation;
+	protected AbstractEjb<Relation> ejbRelation;
 	protected String id;
 	protected Relation relation;
 	protected List<Relation> relationsList = null;
+	protected boolean newEntity = false;
+
+
+
+	@PostConstruct
+	public void init() {
+		this.ejbRelation.setEntityName("Relation");
+	}
 
 
 
 	public String submit() {
-		ejbRelation.save(this.relation);
+		if (isNewEntity())
+			ejbRelation.add(this.relation);
+		else
+			ejbRelation.save(this.relation);
 		return "success";
 	}
 
@@ -77,4 +89,16 @@ public class ControllerRelation implements Serializable {
 		this.relationsList = list;
 	}
 
+
+
+	public boolean isNewEntity() {
+		return newEntity;
+	}
+
+
+
+	public void setNewEntity(boolean newEntity) {
+		this.newEntity = newEntity;
+	}
+	
 }
