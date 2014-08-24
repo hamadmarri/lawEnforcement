@@ -8,15 +8,14 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="locationId" value="#{controllerAddress.locationId}" />
-		<f:event listener="#{controllerAddress.createNewAddress}"
+		<f:event listener="#{controllerLocation.createNewLocation}"
 			type="preRenderView" />
 	</f:metadata>
 </h:head>
 
 <h:body>
 
-	<ui:include src="/management/entries/address/editAddress.xhtml">
+	<ui:include src="/management/entries/location/editLocation.xhtml">
 	</ui:include>
 
 </h:body>

@@ -1,7 +1,7 @@
 package entities.entries.history;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
@@ -14,7 +14,7 @@ public class Action implements Serializable {
 	private static final long serialVersionUID = 1019588440452680728L;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateAndTime;
+	private Date dateAndTime;
 	private String oldData;
 	private String newData;
 
@@ -22,21 +22,23 @@ public class Action implements Serializable {
 
 	public Action() {
 		super();
-		this.dateAndTime = Calendar.getInstance();
+		this.dateAndTime = new Date();
+		this.oldData = new String();
+		this.newData = new String();
 	}
 
 
 
 	public Action(String oldDate, String newDate) {
 		super();
-		this.dateAndTime = Calendar.getInstance();
+		this.dateAndTime = new Date();
 		this.oldData = oldDate;
 		this.newData = newDate;
 	}
 
 
 
-	public Action(Calendar dateAndTime, String oldDate, String newDate) {
+	public Action(Date dateAndTime, String oldDate, String newDate) {
 		super();
 		this.dateAndTime = dateAndTime;
 		this.oldData = oldDate;
@@ -45,13 +47,13 @@ public class Action implements Serializable {
 
 
 
-	public Calendar getDateAndTime() {
+	public Date getDateAndTime() {
 		return dateAndTime;
 	}
 
 
 
-	public void setDateAndTime(Calendar dateAndTime) {
+	public void setDateAndTime(Date dateAndTime) {
 		this.dateAndTime = dateAndTime;
 	}
 

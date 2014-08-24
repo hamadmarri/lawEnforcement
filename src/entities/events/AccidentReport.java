@@ -20,6 +20,9 @@ public class AccidentReport extends Event {
 
 	public AccidentReport() {
 		super();
+		this.violation = new String();
+		this.severity = new String();
+		this.summary = new String();
 	}
 
 

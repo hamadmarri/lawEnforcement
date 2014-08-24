@@ -28,7 +28,8 @@ public abstract class Contact implements Serializable {
 
 
 	public Contact() {
-
+		this.name = new String();
+		this.content = new String();
 	}
 
 

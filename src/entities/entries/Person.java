@@ -97,6 +97,16 @@ public class Person extends Entry {
 	public Person() {
 		super();
 		this.type = "Person";
+		this.personName = new PersonName();
+		this.dateOfBirth = new Date();
+		this.birthPlace = new String();
+		this.gender = new String();
+		this.citizenship = new String();
+		this.modusOperandi = new String();
+		this.NCIC_fingerprintClassification = new String();
+		this.physicalCharacteristic = new PhysicalCharacteristic();
+		this.threatAssessment = new ThreatAssessment();
+		this.race = new Race();
 	}
 
 

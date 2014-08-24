@@ -25,6 +25,7 @@ public class AliasNameOrMoniker implements Serializable {
 
 
 	public AliasNameOrMoniker() {
+		this.content = new String();
 	}
 
 

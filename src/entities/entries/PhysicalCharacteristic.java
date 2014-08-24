@@ -25,7 +25,10 @@ public class PhysicalCharacteristic {
 
 
 	public PhysicalCharacteristic() {
-
+		this.buildCharacteristics = new String();
+		this.heightCharacteristics = new String();
+		this.complexionCharacteristics = new String();
+		this.hairCharacteristics = new String();
 	}
 
 

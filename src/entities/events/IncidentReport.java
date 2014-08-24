@@ -48,6 +48,10 @@ public class IncidentReport extends Event {
 	public IncidentReport() {
 		super();
 		this.type = "IncidentReport";
+		this.offenseInformation = new String();
+		this.caseStatus = new String();
+		this.summary = new String();
+		this.assignedCase = new InvestigativeCase();
 	}
 
 

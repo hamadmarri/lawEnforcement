@@ -32,7 +32,7 @@ public class Officer implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
-	private String Gender;
+	private String gender;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Event> eventsResponsibleFor;
@@ -44,6 +44,9 @@ public class Officer implements Serializable {
 
 	public Officer() {
 		super();
+		this.personName = new PersonName();
+		this.dateOfBirth = new Date();
+		this.gender = new String();
 	}
 
 
@@ -51,7 +54,7 @@ public class Officer implements Serializable {
 	public Officer(PersonName personName, String gender) {
 		super();
 		this.personName = personName;
-		Gender = gender;
+		this.gender = gender;
 	}
 
 
@@ -88,13 +91,13 @@ public class Officer implements Serializable {
 
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
 
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 
 

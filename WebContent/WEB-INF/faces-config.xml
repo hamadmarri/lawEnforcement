@@ -155,6 +155,16 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>successForLocation</from-outcome>
+			<to-view-id>/management/entries/location/viewLocation.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerAddress.locationId}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>/management/entries/address/listAddresses.xhtml</to-view-id>
 			<redirect include-view-params="true" />
@@ -226,6 +236,20 @@
 			<to-view-id>
 				/management/entries/location/addLocation.xhtml</to-view-id>
 			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/entries/location/viewLocation.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addAddress</from-outcome>
+			<to-view-id>
+				/management/entries/address/addAddress.xhtml</to-view-id>
+			<redirect>
+				<view-param>
+					<name>locationId</name>
+					<value>#{param['locationId']}</value>
+				</view-param>
+			</redirect>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -584,7 +608,7 @@
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-	/management/entries/fieldInterview/addFieldInterview.xhtml</to-view-id>
+				/management/entries/fieldInterview/addFieldInterview.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -644,7 +668,7 @@
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-	/management/police/officer/addOfficer.xhtml</to-view-id>
+				/management/police/officer/addOfficer.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

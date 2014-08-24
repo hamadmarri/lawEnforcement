@@ -36,12 +36,12 @@ public class Race {
 			"Togolese", "Akan", "Belizean", "Martinique", "Hmong", "Sierra Leonean", "Kashmiri", "Pacific Islander",
 			"Cornish", "Manx" };
 
-	private String race = new String();
+	private String race;
 
 
 
 	public Race() {
-
+		this.race = new String();
 	}
 
 

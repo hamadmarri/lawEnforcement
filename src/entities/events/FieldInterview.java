@@ -50,6 +50,8 @@ public class FieldInterview implements Serializable {
 
 
 	public FieldInterview() {
+		this.dateAndTime = new Date();
+		this.sayings = new String();
 	}
 
 

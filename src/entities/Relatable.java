@@ -36,12 +36,14 @@ public class Relatable implements Serializable, Describable {
 
 	protected String type;
 
-	protected String description = new String("");
+	protected String description;
 
 
 
 	public Relatable() {
 		super();
+		this.type = new String();
+		this.description = new String();
 	}
 
 

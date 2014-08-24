@@ -23,6 +23,8 @@ public class Organization extends Entry {
 	public Organization() {
 		super();
 		this.type = "Organization";
+		this.organizationType = new String();
+		this.name = new String();
 	}
 
 

@@ -13,7 +13,7 @@ public class Property extends Entry {
 	private static final long serialVersionUID = -3977967330523305535L;
 
 	private String serialNumber;
-	String make;
+	private String make;
 	private String model;
 	private String brand;
 	private String distinguishingCharacteristics;
@@ -23,6 +23,11 @@ public class Property extends Entry {
 	public Property() {
 		super();
 		this.type = "Property";
+		this.serialNumber = new String();
+		this.make = new String();
+		this.model = new String();
+		this.brand = new String();
+		this.distinguishingCharacteristics = new String();
 	}
 
 

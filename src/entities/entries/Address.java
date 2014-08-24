@@ -33,6 +33,12 @@ public class Address extends Entry {
 	public Address() {
 		super();
 		this.type = "Address";
+		this.streetName = new String();
+		this.aptNo = new String();
+		this.city = new String();
+		this.province = new String();
+		this.country = new String();
+		this.postalCode = new String();
 	}
 
 
@@ -132,5 +138,5 @@ public class Address extends Entry {
 	public String toString() {
 		return this.streetName + " " + this.getAptNo() + this.city + " " + this.province + " " + this.postalCode;
 	}
-	
+
 }

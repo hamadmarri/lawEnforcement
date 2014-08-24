@@ -42,6 +42,7 @@ public class Location extends Entry {
 	public Location() {
 		super();
 		this.type = "Location";
+		this.coordinate = new Coordinate();
 	}
 
 

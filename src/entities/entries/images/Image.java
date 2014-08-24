@@ -21,6 +21,8 @@ public class Image extends Entry {
 	public Image() {
 		super();
 		this.type = "Image";
+		this.caption = new String();
+		this.link = new String();
 	}
 
 

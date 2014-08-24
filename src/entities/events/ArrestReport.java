@@ -26,6 +26,7 @@ public class ArrestReport extends Event {
 	public ArrestReport() {
 		super();
 		this.type = "ArrestReport";
+		this.document = new String();
 	}
 
 

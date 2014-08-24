@@ -28,6 +28,8 @@ public class Identification implements Serializable {
 
 	public Identification() {
 		super();
+		this.name = new String();
+		this.content = new String();
 	}
 
 

@@ -25,6 +25,7 @@ public class ScarMarkTattoo implements Serializable {
 
 
 	public ScarMarkTattoo() {
+		this.content = new String();
 	}
 
 

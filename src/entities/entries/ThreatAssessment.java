@@ -13,6 +13,7 @@ public class ThreatAssessment {
 
 	public ThreatAssessment() {
 		super();
+		this.threatAssessmentLevel = new String();
 	}
 
 

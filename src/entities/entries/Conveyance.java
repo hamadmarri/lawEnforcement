@@ -46,6 +46,16 @@ public class Conveyance extends Entry {
 	public Conveyance() {
 		super();
 		this.type = "Conveyance";
+		this.vehicleIdentificationNumber = new String();
+		this.licensePlateNumber = new String();
+		this.licensePlateState = new String();
+		this.licensePlateYear = new Date();
+		this.make = new String();
+		this.model = new String();
+		this.year = new Date();
+		this.color = new String();
+		this.style = new String();
+		this.attributes = new String();
 	}
 
 

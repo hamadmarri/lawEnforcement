@@ -1,7 +1,7 @@
 package entities.events;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,20 +22,26 @@ public class Event extends Relatable implements Serializable {
 	private static final long serialVersionUID = -7653133964450866716L;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateAndTime;
+	private Date dateAndTime;
 
 	@ManyToMany(mappedBy = "eventsResponsibleFor")
 	private List<Officer> officersResponsibleFor;
 
 
 
-	public Calendar getDateAndTime() {
+	public Event() {
+		this.dateAndTime = new Date();
+	}
+
+
+
+	public Date getDateAndTime() {
 		return dateAndTime;
 	}
 
 
 
-	public void setDateAndTime(Calendar dateAndTime) {
+	public void setDateAndTime(Date dateAndTime) {
 		this.dateAndTime = dateAndTime;
 	}
 

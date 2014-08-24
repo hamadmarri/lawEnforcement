@@ -10,11 +10,14 @@
 <ui:composition>
 
 	<c:if test="${empty locations}">
-		<c:set var="locations"
-			value="#{controllerLocation.locationsList}" />
+		<c:set var="locations" value="#{controllerLocation.locationsList}" />
 	</c:if>
 
 	<h3>Locations List</h3>
+	<c:if test="${not included}">
+		<h:link value="add" outcome="add" />
+	</c:if>
+
 	<h:dataTable value="#{locations}" var="l">
 		<h:column>
 			<h:link value="view"
