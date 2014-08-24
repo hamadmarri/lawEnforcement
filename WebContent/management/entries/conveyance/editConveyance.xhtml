@@ -20,12 +20,15 @@
 		<ui:define name="editContent">
 			<c:set var="controller" value="#{controllerConveyance}" />
 			<c:set var="relatable" value="#{controllerConveyance.conveyance}" />
-			
+
 			<h:link value="cancel" outcome="cancel">
 				<f:param name="id" value="#{controllerConveyance.id}" />
 			</h:link>
-			
-			<h2>Edit Conveyance</h2>
+
+
+			<ui:insert name="editHeader">
+				<h2>Edit Conveyance</h2>
+			</ui:insert>
 
 			<h:outputLabel value="Vehicle identification number" />
 			<h:inputText
@@ -48,8 +51,7 @@
 			<br />
 
 			<h:outputLabel value="Registered owner" />
-			<h:inputText
-				value="#{controllerConveyance.registeredOwnerId}" />
+			<h:inputText value="#{controllerConveyance.registeredOwnerId}" />
 			<br />
 
 

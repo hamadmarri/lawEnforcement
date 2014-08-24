@@ -13,7 +13,7 @@ import entities.entries.Address;
 import entities.entries.Location;
 
 
-@ManagedBean(name = "controllerAddress")
+@ManagedBean(name = "controllerAddress", eager = true)
 @ViewScoped
 public class ControllerAddress extends RelatableController<Address> implements Serializable {
 

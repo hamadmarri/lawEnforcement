@@ -14,6 +14,10 @@
 	<ui:composition>
 		<h3>Arrest Reports List</h3>
 
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
 		<c:if test="${empty arrestReports and not included}">
 			<c:set var="arrestReports"
 				value="#{controllerArrestReport.arrestReportsList}" />
@@ -39,7 +43,7 @@
 				</h:column>
 			</h:dataTable>
 		</c:if>
-		
+
 	</ui:composition>
 </h:body>
 </html>

@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -12,8 +13,13 @@
 <h:body>
 	<ui:composition>
 		<h3>organizations List</h3>
-		
-		<h:dataTable value="#{controllerOrganization.organizationsList}" var="o">
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+		<h:dataTable value="#{controllerOrganization.organizationsList}"
+			var="o">
 			<h:column>
 				<h:link value="view"
 					outcome="/management/entries/organization/viewOrganization.xhtml?id=#{o.id}" />

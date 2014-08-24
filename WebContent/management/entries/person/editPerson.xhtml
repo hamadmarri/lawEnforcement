@@ -25,7 +25,9 @@
 				<f:param name="id" value="#{controllerPerson.id}" />
 			</h:link>
 			
-			<h1>Edit Person</h1>
+			<ui:insert name="editHeader">
+				<h1>Edit Person</h1>
+			</ui:insert>
 
 			<h:outputLabel value="#{controllerPerson.id}" />
 			<br />
@@ -76,22 +78,28 @@
 				</h:column>
 			</h:dataTable>
 
-			<h3>Alias names and monikers</h3>
-			<h:dataTable value="#{controllerPerson.person.aliasNamesOrMonikers}"
-				var="a">
-				<h:column>
-					<h:inputText value="#{a.content}" />
-				</h:column>
-			</h:dataTable>
+
+			<c:if
+				test="${not empty controllerPerson.person.aliasNamesOrMonikers}">
+				<h3>Alias names and monikers</h3>
+				<h:dataTable value="#{controllerPerson.person.aliasNamesOrMonikers}"
+					var="a">
+					<h:column>
+						<h:inputText value="#{a.content}" />
+					</h:column>
+				</h:dataTable>
+			</c:if>
 
 
-			<h3>Scars, marks, and tattoos</h3>
-			<h:dataTable value="#{controllerPerson.person.scars_marks_tattoos}"
-				var="s">
-				<h:column>
-					<h:inputText value="#{s.content}" />
-				</h:column>
-			</h:dataTable>
+			<c:if test="${not empty controllerPerson.person.scars_marks_tattoos}">
+				<h3>Scars, marks, and tattoos</h3>
+				<h:dataTable value="#{controllerPerson.person.scars_marks_tattoos}"
+					var="s">
+					<h:column>
+						<h:inputText value="#{s.content}" />
+					</h:column>
+				</h:dataTable>
+			</c:if>
 
 			<h:outputLabel value="Modus operandi" />
 			<h:inputText value="${controllerPerson.person.modusOperandi}" />

@@ -20,7 +20,9 @@
 			<c:set var="relatable"
 				value="#{controllerSuspectPerson.suspectPerson}" />
 
-			<h2>Edit Suspect Person</h2>
+			<ui:insert name="editHeader">
+				<h2>Edit Suspect Person</h2>
+			</ui:insert>
 
 			<h:link value="cancel" outcome="cancel">
 				<f:param name="id" value="#{controllerSuspectPerson.id}" />

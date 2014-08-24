@@ -8,17 +8,17 @@
 
 <h:head>
 	<f:metadata>
-		<f:event listener="#{controllerConveyance.createNewConveyance}"
+		<f:event listener="#{controllerOrganization.createNewOrganization}"
 			type="preRenderView" />
 	</f:metadata>
 </h:head>
 
 <h:body>
-	<ui:composition
-		template="/management/entries/conveyance/editConveyance.xhtml">
+<ui:composition
+		template="/management/entries/organization/editOrganization.xhtml">
 
 		<ui:define name="editHeader">
-			<h2>Add Conveyance</h2>
+			<h2>Add Organization</h2>
 		</ui:define>
 
 	</ui:composition>

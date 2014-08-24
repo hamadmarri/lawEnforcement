@@ -19,11 +19,14 @@
 			<c:set var="controller" value="#{controllerProperty}" />
 			<c:set var="relatable" value="#{controllerProperty.property}" />
 
-			<h2>Edit Property</h2>
+			<ui:insert name="editHeader">
+				<h2>Edit Property</h2>
+			</ui:insert>
 
 			<h:link value="cancel" outcome="cancel">
 				<f:param name="id" value="#{controllerProperty.id}" />
 			</h:link>
+			<br />
 
 			<h:outputLabel value="Serial number" />
 			<h:inputText value="#{controllerProperty.property.serialNumber}" />
@@ -45,6 +48,7 @@
 			<h:inputText
 				value="#{controllerProperty.property.distinguishingCharacteristics}" />
 			<br />
+
 
 		</ui:define>
 	</ui:composition>

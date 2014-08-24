@@ -445,6 +445,28 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/events/incidentReport/listIncidentReports.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>add</from-outcome>
+			<to-view-id>
+				/management/events/incidentReport/addIncidentReport.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/events/incidentReport/addIncidentReport.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/events/incidentReport/listIncidentReports.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/events/incidentReport/listIncidentReports.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- ********** ArrestReport ********** -->
 	<navigation-rule>
@@ -471,24 +493,24 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/arrestReport/addArrestReport.xhtml</from-view-id>
+		<from-view-id>/management/events/arrestReport/addArrestReport.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/management/entries/arrestReport/listArrestReports.xhtml</to-view-id>
+			<to-view-id>/management/events/arrestReport/listArrestReports.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/arrestReport/listArrestReports.xhtml</to-view-id>
+			<to-view-id>/management/events/arrestReport/listArrestReports.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/arrestReport/listArrestReports.xhtml</from-view-id>
+		<from-view-id>/management/events/arrestReport/listArrestReports.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-				/management/entries/arrestReport/addArrestReport.xhtml</to-view-id>
+				/management/events/arrestReport/addArrestReport.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

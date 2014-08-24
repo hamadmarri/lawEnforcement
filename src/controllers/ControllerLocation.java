@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 import entities.entries.Location;
 
 
-@ManagedBean(name = "controllerLocation")
+@ManagedBean(name = "controllerLocation", eager = true)
 @ViewScoped
 public class ControllerLocation extends RelatableController<Location> implements Serializable {
 

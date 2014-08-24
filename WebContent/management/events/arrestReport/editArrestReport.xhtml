@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
@@ -14,19 +15,25 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Arrest Report</h2>
+	<ui:composition template="/management/events/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerArrestReport}" />
+			<c:set var="relatable" value="#{controllerArrestReport.arrestReport}" />
 
-	<h:link value="cancel" outcome="cancel">
-		<f:param name="id" value="#{controllerArrestReport.id}" />
-	</h:link>
-	
-	<h:form>
-		<h:outputLabel value="Document" />
-		<h:inputText value="#{controllerArrestReport.arrestReport.document}" />
-		<br />
+			<ui:insert name="editHeader">
+				<h2>Edit Arrest Report</h2>
+			</ui:insert>
 
-		<h:commandButton value="save"
-			action="#{controllerArrestReport.submit}" />
-	</h:form>
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerArrestReport.id}" />
+			</h:link>
+			<br />
+
+			<h:outputLabel value="Document" />
+			<h:inputText value="#{controllerArrestReport.arrestReport.document}" />
+			<br />
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

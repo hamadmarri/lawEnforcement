@@ -39,6 +39,9 @@ public class SuspectPerson extends Entry implements Serializable {
 	public SuspectPerson() {
 		super();
 		this.type = "SuspectPerson";
+		this.personName = new PersonName();
+		this.physicalCharacteristic = new PhysicalCharacteristic();
+		this.threatAssessment = new ThreatAssessment();
 	}
 
 

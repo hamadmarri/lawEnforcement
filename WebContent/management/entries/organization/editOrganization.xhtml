@@ -20,11 +20,14 @@
 			<c:set var="controller" value="#{controllerOrganization}" />
 			<c:set var="relatable" value="#{controllerOrganization.organization}" />
 
-			<h2>Edit Organization</h2>
+			<ui:insert name="editHeader">
+				<h2>Edit Organization</h2>
+			</ui:insert>
 
 			<h:link value="cancel" outcome="cancel">
 				<f:param name="id" value="#{controllerOrganization.id}" />
 			</h:link>
+			<br />
 
 			<h:outputLabel value="Organization name" />
 			<h:inputText value="#{controllerOrganization.organization.name}" />

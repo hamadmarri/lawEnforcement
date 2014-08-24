@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -12,6 +13,10 @@
 <h:body>
 	<ui:composition>
 		<h3>Properties List</h3>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
 
 		<h:dataTable value="#{controllerProperty.propertiesList}" var="p">
 			<h:column>

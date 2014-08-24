@@ -51,7 +51,6 @@ public class IncidentReport extends Event {
 		this.offenseInformation = new String();
 		this.caseStatus = new String();
 		this.summary = new String();
-		this.assignedCase = new InvestigativeCase();
 	}
 
 

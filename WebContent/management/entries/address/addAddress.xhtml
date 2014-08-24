@@ -16,8 +16,14 @@
 
 <h:body>
 
-	<ui:include src="/management/entries/address/editAddress.xhtml">
-	</ui:include>
+	<ui:composition
+		template="/management/entries/address/editAddress.xhtml">
+
+		<ui:define name="editHeader">
+			<h2>Add Address</h2>
+		</ui:define>
+
+	</ui:composition>
 
 </h:body>
 </html>

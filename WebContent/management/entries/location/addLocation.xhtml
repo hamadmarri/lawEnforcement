@@ -14,9 +14,13 @@
 </h:head>
 
 <h:body>
+	<ui:composition
+		template="/management/entries/location/editLocation.xhtml">
 
-	<ui:include src="/management/entries/location/editLocation.xhtml">
-	</ui:include>
+		<ui:define name="editHeader">
+			<h2>Add Location</h2>
+		</ui:define>
 
+	</ui:composition>
 </h:body>
 </html>
