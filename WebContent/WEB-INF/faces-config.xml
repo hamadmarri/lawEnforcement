@@ -411,24 +411,24 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/incidentReport/addIncidentReport.xhtml</from-view-id>
+		<from-view-id>/management/events/incidentReport/addIncidentReport.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/management/entries/incidentReport/listIncidentReports.xhtml</to-view-id>
+			<to-view-id>/management/events/incidentReport/listIncidentReports.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/incidentReport/listIncidentReports.xhtml</to-view-id>
+			<to-view-id>/management/events/incidentReport/listIncidentReports.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/incidentReport/listIncidentReports.xhtml</from-view-id>
+		<from-view-id>/management/events/incidentReport/listIncidentReports.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-				/management/entries/incidentReport/addIncidentReport.xhtml</to-view-id>
+				/management/events/incidentReport/addIncidentReport.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -441,6 +441,28 @@
 				<view-param>
 					<name>id</name>
 					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addSuspectPerson</from-outcome>
+			<to-view-id>
+				/management/entries/suspectPerson/addSuspectPerson.xhtml</to-view-id>
+			<redirect>
+				<view-param>
+					<name>incidentReportId</name>
+					<value>#{param['incidentReportId']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addFieldInterview</from-outcome>
+			<to-view-id>
+				/management/fieldInterview/addFieldInterview.xhtml</to-view-id>
+			<redirect>
+				<view-param>
+					<name>incidentReportId</name>
+					<value>#{param['incidentReportId']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -498,6 +520,16 @@
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/events/arrestReport/listArrestReports.xhtml</to-view-id>
 			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>successForIncidentReport</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerArrestReport.incidentReportId}</value>
+				</view-param>
+			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
@@ -560,6 +592,16 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>successForIncidentReport</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerSuspectPerson.incidentReportId}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>/management/entries/suspectPerson/listSuspectPersons.xhtml</to-view-id>
 			<redirect include-view-params="true" />
@@ -588,6 +630,7 @@
 		</navigation-case>
 	</navigation-rule>
 
+
 	<!-- ********** FieldInterview ********** -->
 	<navigation-rule>
 		<from-view-id>/management/fieldInterview/editFieldInterview.xhtml</from-view-id>
@@ -613,24 +656,34 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/fieldInterview/addFieldInterview.xhtml</from-view-id>
+		<from-view-id>/management/fieldInterview/addFieldInterview.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/management/entries/fieldInterview/listFieldInterviews.xhtml</to-view-id>
+			<to-view-id>/management/fieldInterview/listFieldInterviews.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>successForIncidentReport</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerFieldInterview.incidentReportId}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/fieldInterview/listFieldInterviews.xhtml</to-view-id>
+			<to-view-id>/management/fieldInterview/listFieldInterviews.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/fieldInterview/listFieldInterviews.xhtml</from-view-id>
+		<from-view-id>/management/fieldInterview/listFieldInterviews.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-				/management/entries/fieldInterview/addFieldInterview.xhtml</to-view-id>
+				/management/fieldInterview/addFieldInterview.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

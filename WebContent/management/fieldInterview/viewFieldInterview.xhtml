@@ -26,7 +26,14 @@
 			outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{controllerFieldInterview.fieldInterview.incidentReport.id}" />
 		<br />
 
-		<h:outputLabel value="Subscriber:" />
+		<h:outputLabel value="Date and time " />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.dateAndTime}">
+			<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
+		</h:outputLabel>
+		<br />
+
+		<h:outputLabel value="Subscriber" />
 		<br />
 		<h:outputLabel
 			value="#{controllerFieldInterview.fieldInterview.subscriber.toString()}" />
@@ -42,16 +49,11 @@
 			outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerFieldInterview.fieldInterview.inCaseOfEmergencyPerson.id}" />
 		<br />
 
-		<h:outputLabel value="Date and time " />
-		<h:outputLabel
-			value="#{controllerFieldInterview.fieldInterview.dateAndTime}">
-			<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
-		</h:outputLabel>
-		<br />
-		
+
 		<h:outputLabel value="Sayings " />
-		<h:outputLabel value="#{controllerFieldInterview.fieldInterview.sayings}" />
-		
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.sayings}" />
+
 	</ui:composition>
 </h:body>
 </html>

@@ -9,18 +9,19 @@
 <h:head>
 	<f:metadata>
 		<f:viewParam name="incidentReportId"
-			value="#{controllerSuspectPerson.incidentReportId}" />
-		<f:event listener="#{controllerSuspectPerson.createNewSuspectPerson}"
+			value="#{controllerFieldInterview.incidentReportId}" />
+		<f:event
+			listener="#{controllerFieldInterview.createNewFieldInterview}"
 			type="preRenderView" />
 	</f:metadata>
 </h:head>
 
 <h:body>
 	<ui:composition
-		template="/management/entries/suspectPerson/editSuspectPerson.xhtml">
+		template="/management/fieldInterview/editFieldInterview.xhtml">
 
 		<ui:define name="editHeader">
-			<h2>Add Suspect Person</h2>
+			<h2>Add FieldInterview</h2>
 		</ui:define>
 
 	</ui:composition>

@@ -14,17 +14,29 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Field Interview</h2>
+	<ui:insert name="editHeader">
+		<h2>Edit Field Interview</h2>
+	</ui:insert>
 
 	<h:link value="cancel" outcome="cancel">
 		<f:param name="id" value="#{controllerFieldInterview.id}" />
 	</h:link>
 
 	<h:form>
-
 		<h:outputLabel value="Date and time " />
 		<p:calendar
 			value="#{controllerFieldInterview.fieldInterview.dateAndTime}" />
+		<br />
+
+		<h:outputLabel value="Subscriber" />
+		<br />
+		<h:inputText value="#{controllerFieldInterview.subscriberId}" />
+		<br />
+
+		<h:outputLabel value="In case of emergency contact" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.inCaseOfEmergencyPersonId}" />
 		<br />
 
 		<h:outputLabel value="Sayings " />
@@ -34,5 +46,6 @@
 		<h:commandButton value="save"
 			action="#{controllerFieldInterview.submit}" />
 	</h:form>
+
 </h:body>
 </html>

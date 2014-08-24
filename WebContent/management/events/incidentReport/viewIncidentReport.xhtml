@@ -44,15 +44,25 @@
 					value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
 			</ui:include>
 			<br />
-			
+			<h:link value="add" outcome="addSuspectPerson">
+				<f:param name="incidentReportId"
+					value="#{controllerIncidentReport.incidentReport.id}" />
+			</h:link>
+			<br />
+
 			<ui:include
 				src="/management/fieldInterview/listFieldInterviews.xhtml">
 				<ui:param name="fieldInterviews"
 					value="#{controllerIncidentReport.incidentReport.fieldInterviews}" />
 			</ui:include>
 			<br />
-			
-			<h:outputLabel value="Summary" />
+			<h:link value="add" outcome="addFieldInterview">
+				<f:param name="incidentReportId"
+					value="#{controllerIncidentReport.incidentReport.id}" />
+			</h:link>
+			<br />
+
+			<h4>Summary</h4>
 			<h:outputLabel
 				value="#{controllerIncidentReport.incidentReport.summary}" />
 			<br />
@@ -67,6 +77,11 @@
 				<ui:param name="arrestReports"
 					value="#{controllerIncidentReport.incidentReport.arrestReports}" />
 			</ui:include>
+			<br />
+			<h:link value="add" outcome="addArrestReport">
+				<f:param name="incidentReportId"
+					value="#{controllerIncidentReport.incidentReport.id}" />
+			</h:link>
 
 		</ui:define>
 	</ui:composition>

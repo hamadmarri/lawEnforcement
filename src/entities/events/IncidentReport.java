@@ -32,7 +32,7 @@ public class IncidentReport extends Event {
 	public static String[] statusOptions = { "open", "closed", "pending for approve", "under investigation" };
 	private String caseStatus;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	private List<FieldInterview> fieldInterviews;
 
 	private String summary;

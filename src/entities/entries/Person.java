@@ -18,6 +18,7 @@ import entities.entries.contacts.Contact;
 import entities.entries.images.FingerprintImage;
 import entities.entries.images.MugShotImage;
 import entities.entries.images.PhotographicImage;
+import entities.events.FieldInterview;
 
 
 /**
@@ -88,6 +89,12 @@ public class Person extends Entry {
 
 	@OneToMany(mappedBy = "registeredOwner")
 	private List<Conveyance> conveyances;
+
+	@OneToMany(mappedBy = "subscriber")
+	private List<FieldInterview> fieldInterviewsAsSubscriber;
+
+	@OneToMany(mappedBy = "inCaseOfEmergencyPerson")
+	private List<FieldInterview> fieldInterviewsAsInCaseOfEmergencyPerson;
 
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
@@ -380,6 +387,18 @@ public class Person extends Entry {
 
 	public List<Conveyance> getConveyances() {
 		return conveyances;
+	}
+
+
+
+	public List<FieldInterview> getFieldInterviewsAsSubscriber() {
+		return fieldInterviewsAsSubscriber;
+	}
+
+
+
+	public List<FieldInterview> getFieldInterviewsAsInCaseOfEmergencyPerson() {
+		return fieldInterviewsAsInCaseOfEmergencyPerson;
 	}
 
 

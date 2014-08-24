@@ -36,9 +36,11 @@ public class ControllerConveyance extends RelatableController<Conveyance> implem
 	@Override
 	public String submit() {
 		// update person based on its id
-		Person p = (Person) this.ejbPerson.getEntity(this.getRegisteredOwnerId());
-		this.getConveyance().setRegisteredOwner(p);
-
+		if (this.registeredOwnerId != null) {
+			Person p = (Person) this.ejbPerson.getEntity(this.registeredOwnerId);
+			this.getConveyance().setRegisteredOwner(p);
+		}
+		
 		return super.submit();
 	}
 

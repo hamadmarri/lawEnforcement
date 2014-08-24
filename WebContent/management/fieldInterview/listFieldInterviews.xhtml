@@ -13,7 +13,11 @@
 <h:body>
 	<ui:composition>
 		<h3>Field Interviews List</h3>
-
+		
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+		
 		<c:if test="${empty fieldInterviews and not included}">
 			<c:set var="fieldInterviews"
 				value="#{controllerFieldInterview.fieldInterviewsList}" />
