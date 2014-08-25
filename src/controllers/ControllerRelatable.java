@@ -1,50 +1,106 @@
 package controllers;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ejbs.AbstractEjb;
 import entities.Relatable;
 
 
-@ManagedBean(name = "controllerRelatable")
+@ManagedBean(name = "abstarctController")
 @ViewScoped
-public class ControllerRelatable extends RelatableController<Relatable> implements Serializable {
+public class ControllerRelatable<T> {
 
-	private static final long serialVersionUID = -216346142306245603L;
+	@EJB
+	protected AbstractEjb<Relatable> ejbRelatable;
+	protected String id;
+	protected T relatable;
+	protected String type;
+	protected List<T> list = null;
+	protected boolean newRelatable = false;
 
 
 
 	@PostConstruct
-	public void init() {
-		this.type = "Relatable";
+	public void initAbstract() {
+		this.ejbRelatable.setEntityName("Relatable");
 	}
 
 
 
-	public Relatable getRelatable() {
-		return super.getRelatable();
+	public String submit() {
+
+		if (isNewRelatable())
+			ejbRelatable.add((Relatable) this.relatable);
+		else
+			ejbRelatable.save((Relatable) this.relatable);
+
+		return "success";
 	}
 
 
 
-	public void setRelatable(Relatable Relatable) {
-		this.relatable = Relatable;
+	public String getId() {
+		return id;
 	}
 
 
 
-	public List<Relatable> getRelatableesList() {
-		return super.getList();
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
 
-	public void setRelatableesList(List<Relatable> list) {
-		super.setList(list);
+	@SuppressWarnings("unchecked")
+	public T getRelatable() {
+		if (this.relatable != null)
+			return this.relatable;
+
+		if (this.id == null)
+			return null;
+
+		this.relatable = (T) ejbRelatable.getEntity(Long.parseLong(this.id));
+
+		return this.relatable;
+	}
+
+
+
+	public void setRelatable(T relatable) {
+		this.relatable = relatable;
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public List<T> getList() {
+		if (this.list == null)
+			this.list = (List<T>) ejbRelatable.getList(this.type);
+
+		return list;
+	}
+
+
+
+	public void setList(List<T> list) {
+		this.list = list;
+	}
+
+
+
+	public boolean isNewRelatable() {
+		return newRelatable;
+	}
+
+
+
+	public void setNewRelatable(boolean newRelatable) {
+		this.newRelatable = newRelatable;
 	}
 
 }

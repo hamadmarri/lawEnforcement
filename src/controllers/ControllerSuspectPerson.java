@@ -15,7 +15,7 @@ import entities.events.SuspectPerson;
 
 @ManagedBean(name = "controllerSuspectPerson")
 @ViewScoped
-public class ControllerSuspectPerson extends RelatableController<SuspectPerson> implements Serializable {
+public class ControllerSuspectPerson extends ControllerRelatable<SuspectPerson> implements Serializable {
 
 	private static final long serialVersionUID = -3794654476345847009L;
 

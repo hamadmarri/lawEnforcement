@@ -22,12 +22,12 @@ public class Relation implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Relatable something;
 
 	private String typeOfRelation;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Relatable somethingElse;
 
 

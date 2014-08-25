@@ -12,7 +12,7 @@ import entities.entries.Location;
 
 @ManagedBean(name = "controllerLocation", eager = true)
 @ViewScoped
-public class ControllerLocation extends RelatableController<Location> implements Serializable {
+public class ControllerLocation extends ControllerRelatable<Location> implements Serializable {
 
 	private static final long serialVersionUID = 2681043919446615802L;
 

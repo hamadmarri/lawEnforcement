@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerRelation.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition>
+		<h3>Relation# #{controllerRelation.id}</h3>
+
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerRelation.id}" />
+		</h:link>
+		<br />
+
+		<h4>First Relatable</h4>
+		<h:outputLabel
+			value="#{controllerRelation.relation.something.toString()} " />
+		<h:link value="view"
+			outcome="#{controllerRelation.relation.something.type}">
+			<f:param name="id"
+				value="#{controllerRelation.relation.something.id}" />
+		</h:link>
+
+
+		<h4>Type of Relation</h4>
+		<h:outputLabel value="#{controllerRelation.relation.typeOfRelation}" />
+
+
+		<h4>Second Relatable</h4>
+		<h:outputLabel
+			value="#{controllerRelation.relation.somethingElse.toString()} " />
+		<h:link value="view"
+			outcome="#{controllerRelation.relation.somethingElse.type}">
+			<f:param name="id"
+				value="#{controllerRelation.relation.somethingElse.id}" />
+		</h:link>
+
+
+	</ui:composition>
+</h:body>
+</html>

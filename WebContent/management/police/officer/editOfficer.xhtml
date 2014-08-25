@@ -14,7 +14,10 @@
 </h:head>
 
 <h:body>
-	<h2>Edit Officer</h2>
+	<ui:insert name="editHeader">
+		<h2>Edit Officer</h2>
+	</ui:insert>
+
 
 	<h:link value="cancel" outcome="cancel">
 		<f:param name="id" value="#{controllerOfficer.id}" />
@@ -22,7 +25,6 @@
 
 
 	<h:form>
-
 		<h4>Person Information</h4>
 		<h:outputLabel value="First name" />
 		<h:inputText value="#{controllerOfficer.officer.personName.firstName}" />

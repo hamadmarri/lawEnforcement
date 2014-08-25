@@ -11,6 +11,12 @@
 <h:body>
 	<ui:composition>
 		<h2>Relations</h2>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+
 		<c:if test="${empty relatable and not included}">
 			<c:set var="relations" value="#{controllerRelation.relationsList}" />
 		</c:if>
@@ -25,6 +31,14 @@
 
 		<c:if test="${not empty relations}">
 			<h:dataTable value="#{relations}" var="r">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/relation/viewRelation.xhtml?id=#{r.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/relation/editRelation.xhtml?id=#{r.id}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">first relatable</f:facet>
 					<h:outputLabel value="#{r.something.toString()} " />

@@ -50,10 +50,14 @@ public class ControllerOfficer implements Serializable {
 
 
 
-	public void addOfficerForEvent(Event e) {
-		// System.out.println(this.officerId);
-		// System.out.println(e.getId());
+	public void createNewOfficer() {
+		this.Officer = new Officer();
+		this.setNewEntity(true);
+	}
 
+
+
+	public void addOfficerForEvent(Event e) {
 		Officer of = this.ejbOfficer.getEntity(Long.parseLong(officerId));
 		of.addEventResponsibleFor(e);
 		e.addOfficerResponsibleFor(of);
