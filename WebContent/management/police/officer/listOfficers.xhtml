@@ -14,9 +14,14 @@
 	<ui:composition>
 		<h3>Officers</h3>
 
-		<c:if test="${empty officers and not included}">
+		<c:if test="${empty event and not included}">
 			<c:set var="officers" value="#{controllerOfficer.officersList}" />
 		</c:if>
+
+		<c:if test="${not empty event}">
+			<c:set var="officers" value="#{event.officersResponsibleFor}" />
+		</c:if>
+
 
 		<c:if test="${empty officers and included}">
 			<h:outputLabel value="nothing" />
@@ -48,6 +53,14 @@
 					<h:outputLabel value="#{o.gender}" />
 				</h:column>
 			</h:dataTable>
+		</c:if>
+
+		<c:if test="${included}">
+			<h:form>
+				<h:inputText value="#{controllerOfficer.officerId}" />
+				<h:commandButton value="add"
+					action="#{controllerOfficer.addOfficerForEvent(event)}" />
+			</h:form>
 		</c:if>
 
 	</ui:composition>

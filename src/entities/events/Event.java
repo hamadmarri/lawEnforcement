@@ -1,6 +1,7 @@
 package entities.events;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +50,15 @@ public class Event extends Relatable implements Serializable {
 
 	public List<Officer> getOfficersResponsibleFor() {
 		return officersResponsibleFor;
+	}
+
+
+
+	public void addOfficerResponsibleFor(Officer of) {
+		if (this.officersResponsibleFor == null)
+			this.officersResponsibleFor = new ArrayList<Officer>();
+
+		this.officersResponsibleFor.add(of);
 	}
 
 }
