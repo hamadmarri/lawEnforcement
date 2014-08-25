@@ -18,7 +18,7 @@ public class ArrestReport extends Event {
 
 	private String document;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<IncidentReport> incidentReportsAccordingTo;
 
 

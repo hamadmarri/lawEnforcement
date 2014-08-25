@@ -58,9 +58,6 @@ public class ControllerFieldInterview implements Serializable {
 			return "successForIncidentReport";
 
 		} else {
-			// if (isNewEntity())
-			// ejbFieldInterview.add(this.fieldInterview);
-			// else
 			ejbFieldInterview.save(this.fieldInterview);
 			return "success";
 		}

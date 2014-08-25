@@ -172,6 +172,15 @@ public class IncidentReport extends Event {
 
 
 
+	public void addArrestReport(ArrestReport arrestReport) {
+		if (this.arrestReports == null)
+			this.arrestReports = new ArrayList<ArrestReport>();
+
+		this.arrestReports.add(arrestReport);
+	}
+
+
+
 	@Override
 	public String toString() {
 		return this.type + ": " + this.offenseInformation;

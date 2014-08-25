@@ -466,6 +466,17 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>addArrestReport</from-outcome>
+			<to-view-id>
+				/management/events/arrestReport/addArrestReport.xhtml</to-view-id>
+			<redirect>
+				<view-param>
+					<name>incidentReportId</name>
+					<value>#{param['incidentReportId']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/events/incidentReport/listIncidentReports.xhtml</from-view-id>

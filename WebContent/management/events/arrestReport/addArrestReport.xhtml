@@ -8,6 +8,8 @@
 
 <h:head>
 	<f:metadata>
+		<f:viewParam name="incidentReportId"
+			value="#{controllerArrestReport.incidentReportId}" />
 		<f:event listener="#{controllerArrestReport.createNewArrestReport}"
 			type="preRenderView" />
 	</f:metadata>

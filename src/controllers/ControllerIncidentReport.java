@@ -33,7 +33,8 @@ public class ControllerIncidentReport extends RelatableController<IncidentReport
 
 
 	public IncidentReport getIncidentReport() {
-		return super.getRelatable();
+		IncidentReport ir = super.getRelatable();
+		return ir;
 	}
 
 

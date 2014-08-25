@@ -34,6 +34,12 @@ public class AbstractEjb<T> {
 
 
 
+	public void refresh(T t) {
+		em.refresh(t);
+	}
+
+
+
 	@SuppressWarnings("unchecked")
 	public List<T> getList() {
 		return em.createNamedQuery(this.entityName + ".findAll").getResultList();
