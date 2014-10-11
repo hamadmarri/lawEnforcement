@@ -2,6 +2,7 @@ package entities.police;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import entities.events.IncidentReport;
 
@@ -28,7 +31,7 @@ public class InvestigativeCase implements Serializable {
 	@GeneratedValue
 	Long id;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "assignedCase")
 	private List<IncidentReport> incidentReports;
 
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -36,6 +39,18 @@ public class InvestigativeCase implements Serializable {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Investigator> investigators;
+
+	@Temporal(TemporalType.DATE)
+	private Date dueDate;
+
+	@OneToMany(mappedBy = "investigativeCase")
+	private List<Activity> activities;
+
+	@OneToMany(mappedBy = "investigativeCase")
+	private List<Task> tasks;
+
+	private static String[] statusSuggestions = { "Open", "Pending", "In progress", "Refuded", "Closed" };
+	private String status;
 
 
 
@@ -101,6 +116,24 @@ public class InvestigativeCase implements Serializable {
 			this.investigators = new ArrayList<Investigator>();
 
 		this.investigators.add(investigator);
+	}
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+	public static String[] getStatusSuggestions() {
+		return statusSuggestions;
 	}
 
 

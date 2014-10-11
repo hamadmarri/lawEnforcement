@@ -92,6 +92,9 @@ public class EJB_of_test {
 
 
 	private void createSuspectPerson_officer_incidentReport_Entry() {
+		Calendar dateYara = Calendar.getInstance();
+		dateYara.set(1988, 4, 8);
+		
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		SuspectPerson sp1 = new SuspectPerson(new PhysicalCharacteristic(
 				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],
@@ -105,7 +108,7 @@ public class EJB_of_test {
 				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), new ThreatAssessment("medium"), "ugly");
 		IncidentReport ir = new IncidentReport("flirting", IncidentReport.getStatusOptions()[0], "nothing yet");
 		Location l = (Location) em.createNamedQuery("Location.findAll").getResultList().get(0);
-		Person complainant = new Person(new PersonName("Yara", null), null, null, "Female", "Libanies", null, null);
+		Person complainant = new Person(new PersonName("Yara", ""), null, null, "Female", "Libanies", null, null);
 		Relation r = new Relation(l, "happened in", ir);
 		Relation r2 = new Relation(complainant, "reported", ir);
 		ir.addSuspectPerson(sp1);
@@ -113,6 +116,7 @@ public class EJB_of_test {
 
 		of.addEventResponsibleFor(ir);
 
+		em.persist(complainant);
 		em.persist(r);
 		em.persist(r2);
 		em.persist(of);

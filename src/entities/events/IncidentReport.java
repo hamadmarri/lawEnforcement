@@ -37,7 +37,7 @@ public class IncidentReport extends Event {
 
 	private String summary;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private InvestigativeCase assignedCase;
 
 	@ManyToMany(mappedBy = "incidentReportsAccordingTo")
