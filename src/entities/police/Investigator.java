@@ -1,9 +1,18 @@
 package entities.police;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+import entities.entries.PersonName;
 
 
 /**
@@ -11,6 +20,8 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Investigator.findAll", query = "select i from Investigator i"),
+		@NamedQuery(name = "Investigator.findById", query = "select i from Investigator i WHERE i.id = :id") })
 public class Investigator implements Serializable {
 
 	private static final long serialVersionUID = 8113176629170268715L;
@@ -20,12 +31,21 @@ public class Investigator implements Serializable {
 	Long id;
 
 	@ManyToMany(mappedBy = "investigators")
-	private List<InvestigativeCase> cases;
+	private List<InvestigativeCase> investigativeCases;
+
+	@Embedded
+	private PersonName personName;
 
 
 
 	public Investigator() {
 		super();
+	}
+
+
+
+	public Investigator(PersonName personName) {
+		this.personName = personName;
 	}
 
 
@@ -36,8 +56,36 @@ public class Investigator implements Serializable {
 
 
 
-	public List<InvestigativeCase> getCases() {
-		return cases;
+	public PersonName getPersonName() {
+		return personName;
+	}
+
+
+
+	public void setPersonName(PersonName personName) {
+		this.personName = personName;
+	}
+
+
+
+	public void setPersonName(String personName) {
+		this.personName.setFirstName(personName.substring(0, personName.indexOf(' ')));
+		this.personName.setLastName(personName.substring(personName.indexOf(' ') + 1));
+	}
+
+
+
+	public List<InvestigativeCase> getInvestigativeCases() {
+		return investigativeCases;
+	}
+
+
+
+	public void addInvestigativeCases(InvestigativeCase ic) {
+		if (this.investigativeCases == null)
+			this.investigativeCases = new ArrayList<InvestigativeCase>();
+
+		this.investigativeCases.add(ic);
 	}
 
 }

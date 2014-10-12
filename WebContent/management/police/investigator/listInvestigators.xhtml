@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h2>Investigators</h2>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+		<c:if test="${empty investigativeCase and not included}">
+			<c:set var="investigators"
+				value="#{controllerInvestigator.investigatorsList}" />
+		</c:if>
+		
+		<c:if test="${not empty investigativeCase and included}">
+			<c:set var="investigators"
+				value="#{investigativeCase.investigators}" />
+		</c:if>
+
+		<c:if test="${empty investigators and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty investigators}">
+			<h:dataTable value="#{investigators}" var="i">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/entries/conveyance/viewConveyance.xhtml?id=#{i.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/entries/conveyance/editConveyance.xhtml?id=#{i.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">id</f:facet>
+					#{i.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputLabel
+						value="#{i.personName.lastName}, #{i.personName.firstName}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
+		<c:if test="${included != null and included}">
+			<h:form>
+				<h:inputText value="#{controllerInvestigator.newInvestigatorId}" />
+				<h:commandButton value="add"
+					action="#{controllerInvestigator.addInvestigatorForInvestigativeCase(investigativeCase)}" />
+			</h:form>
+		</c:if>
+
+	</ui:composition>
+</h:body>
+</html>

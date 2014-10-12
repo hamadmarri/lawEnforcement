@@ -71,12 +71,13 @@ public class EJB_of_test {
 		
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(1);
-		Investigator inv = new Investigator();
+		Investigator inv = new Investigator(new PersonName("Cannon", "m."));
 		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test", "open");
 		invC.addIncidentReport(ir);
 		invC.addInvestigator(inv);
 		invC.setOfficerWhoCreatedIt(of);
 
+		em.persist(inv);
 		em.persist(invC);
 	}
 

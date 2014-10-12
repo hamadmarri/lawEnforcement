@@ -26,8 +26,8 @@ public class ControllerOfficer implements Serializable {
 	private AbstractEjb<Relatable> ejbRelatable;
 
 	protected String id;
-	protected Officer Officer;
-	protected List<Officer> OfficersList = null;
+	protected Officer officer;
+	protected List<Officer> officersList = null;
 	protected boolean newEntity = false;
 	private String officerId;
 
@@ -42,16 +42,16 @@ public class ControllerOfficer implements Serializable {
 
 	public String submit() {
 		if (isNewEntity())
-			ejbOfficer.add(this.Officer);
+			ejbOfficer.add(this.officer);
 		else
-			ejbOfficer.save(this.Officer);
+			ejbOfficer.save(this.officer);
 		return "success";
 	}
 
 
 
 	public void createNewOfficer() {
-		this.Officer = new Officer();
+		this.officer = new Officer();
 		this.setNewEntity(true);
 	}
 
@@ -81,36 +81,36 @@ public class ControllerOfficer implements Serializable {
 
 
 	public Officer getOfficer() {
-		if (this.Officer != null)
-			return this.Officer;
+		if (this.officer != null)
+			return this.officer;
 
 		if (this.id == null)
 			return null;
 
-		this.Officer = ejbOfficer.getEntity(Long.parseLong(this.id));
+		this.officer = ejbOfficer.getEntity(Long.parseLong(this.id));
 
-		return this.Officer;
+		return this.officer;
 	}
 
 
 
 	public void setOfficer(Officer Officer) {
-		this.Officer = Officer;
+		this.officer = Officer;
 	}
 
 
 
 	public List<Officer> getOfficersList() {
-		if (this.OfficersList == null)
-			this.OfficersList = ejbOfficer.getList();
+		if (this.officersList == null)
+			this.officersList = ejbOfficer.getList();
 
-		return OfficersList;
+		return officersList;
 	}
 
 
 
 	public void setOfficersList(List<Officer> list) {
-		this.OfficersList = list;
+		this.officersList = list;
 	}
 
 
