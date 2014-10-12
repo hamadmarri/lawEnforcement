@@ -17,8 +17,25 @@
 		<c:if test="${not included}">
 			<h:link value="add" outcome="add" />
 		</c:if>
+		
+		
+		<c:if test="${empty investigativeCase and not included}">
+			<c:set var="activities"
+				value="#{controllerActivity.list}" />
+		</c:if>
+		
+		<c:if test="${not empty investigativeCase and included}">
+			<c:set var="activities"
+				value="#{investigativeCase.activities}" />
+		</c:if>
 
-		<h:dataTable value="#{controllerActivity.list}" var="a">
+		<c:if test="${empty activities and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+		
+		
+
+		<h:dataTable value="#{activities}" var="a">
 			<h:column>
 				<h:link value="view"
 					outcome="/management/police/investigativeCase/activity/viewActivity.xhtml?id=#{a.id}" />

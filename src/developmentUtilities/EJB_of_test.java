@@ -63,12 +63,26 @@ public class EJB_of_test {
 
 
 	private void createActivity_InvCase_Inv() {
-		InvestigativeCase ic = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
+		InvestigativeCase ic1 = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
 				.get(0);
+		InvestigativeCase ic2 = new InvestigativeCase(Calendar.getInstance().getTime(), Calendar.getInstance()
+				.getTime(), "test", "opened");
 		Investigator i = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
-		Activity a = new Activity(ic, "evidence", "testing data");
-		a.setInvestigator(i);
-		em.persist(a);
+
+		Activity a1 = new Activity(ic1, "evidence", "testing data");
+		Activity a2 = new Activity(ic1, "supplemental reports", "testing data");
+		Activity a3 = new Activity(ic2, "requesting warrants", "testing data");
+
+		ic2.setOfficerWhoCreatedIt(ic1.getOfficerWhoCreatedIt());
+		ic2.addInvestigator(ic1.getInvestigators().get(0));
+		a1.setInvestigator(i);
+		a2.setInvestigator(i);
+		a3.setInvestigator(i);
+
+		em.persist(ic2);
+		em.persist(a1);
+		em.persist(a2);
+		em.persist(a3);
 	}
 
 

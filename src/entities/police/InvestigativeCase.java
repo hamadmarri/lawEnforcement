@@ -25,7 +25,8 @@ import entities.events.IncidentReport;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "InvestigativeCase.findAll", query = "select ic from InvestigativeCase ic"),
+@NamedQueries({
+		@NamedQuery(name = "InvestigativeCase.findAll", query = "select ic from InvestigativeCase ic"),
 		@NamedQuery(name = "InvestigativeCase.findById", query = "select ic from InvestigativeCase ic WHERE ic.id = :id") })
 public class InvestigativeCase implements Serializable {
 
@@ -189,6 +190,12 @@ public class InvestigativeCase implements Serializable {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+
+
+	public List<Activity> getActivities() {
+		return activities;
 	}
 
 
