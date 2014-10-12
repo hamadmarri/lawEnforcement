@@ -9,10 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
-import entities.Relatable;
-import entities.entries.Conveyance;
-import entities.entries.Person;
-import entities.events.Event;
 import entities.police.InvestigativeCase;
 import entities.police.Officer;
 

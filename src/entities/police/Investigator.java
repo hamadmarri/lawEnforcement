@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import entities.entries.PersonName;
 
@@ -32,6 +33,9 @@ public class Investigator implements Serializable {
 
 	@ManyToMany(mappedBy = "investigators")
 	private List<InvestigativeCase> investigativeCases;
+
+	@OneToMany(mappedBy = "investigator")
+	private List<Activity> activities;
 
 	@Embedded
 	private PersonName personName;
@@ -86,6 +90,21 @@ public class Investigator implements Serializable {
 			this.investigativeCases = new ArrayList<InvestigativeCase>();
 
 		this.investigativeCases.add(ic);
+	}
+
+
+
+	public List<Activity> getActivities() {
+		return activities;
+	}
+
+
+
+	public void addActivities(Activity a) {
+		if (this.activities == null)
+			this.activities = new ArrayList<Activity>();
+
+		this.activities.add(a);
 	}
 
 }

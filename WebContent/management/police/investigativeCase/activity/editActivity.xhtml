@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerProperty.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:composition template="/management/entries/edit.xhtml">
+		<ui:define name="editContent">
+			<c:set var="controller" value="#{controllerProperty}" />
+			<c:set var="relatable" value="#{controllerProperty.property}" />
+
+			<ui:insert name="editHeader">
+				<h2>Edit Property</h2>
+			</ui:insert>
+
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerProperty.id}" />
+			</h:link>
+			<br />
+
+			<h:outputLabel value="Serial number" />
+			<h:inputText value="#{controllerProperty.property.serialNumber}" />
+			<br />
+
+			<h:outputLabel value="Make" />
+			<h:inputText value="#{controllerProperty.property.make}" />
+			<br />
+
+			<h:outputLabel value="Model" />
+			<h:inputText value="#{controllerProperty.property.model}" />
+			<br />
+
+			<h:outputLabel value="Brand" />
+			<h:inputText value="#{controllerProperty.property.brand}" />
+			<br />
+
+			<h:outputLabel value="Distinguishing characteristics" />
+			<h:inputText
+				value="#{controllerProperty.property.distinguishingCharacteristics}" />
+			<br />
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

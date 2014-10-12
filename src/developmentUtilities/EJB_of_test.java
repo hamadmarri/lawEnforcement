@@ -19,6 +19,7 @@ import entities.entries.contacts.Telephone;
 import entities.entries.history.*;
 import entities.entries.images.*;
 import entities.events.*;
+import entities.police.Activity;
 import entities.police.InvestigativeCase;
 import entities.police.Investigator;
 import entities.police.Officer;
@@ -54,7 +55,25 @@ public class EJB_of_test {
 		createSuspectPerson_officer_incidentReport_Entry();
 		createFieldInterview();
 		createOfficer_InvestigativeCase_IncidentReport_Investigator();
+		createArrestReportAccordingToIncidentReport();
+		createActivity_InvCase_Inv();
 
+	}
+
+
+
+	private void createActivity_InvCase_Inv() {
+		InvestigativeCase ic = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
+				.get(0);
+		Investigator i = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
+		Activity a = new Activity(ic, "evidence", "testing data");
+		a.setInvestigator(i);
+		em.persist(a);
+	}
+
+
+
+	private void createArrestReportAccordingToIncidentReport() {
 		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(1);
 		ArrestReport ar = new ArrestReport();
 		ar.addIncidentReportAccordingTo(ir);
@@ -68,11 +87,12 @@ public class EJB_of_test {
 	private void createOfficer_InvestigativeCase_IncidentReport_Investigator() {
 		Calendar dueDate = Calendar.getInstance();
 		dueDate.set(2013, 11, 30);
-		
+
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(1);
 		Investigator inv = new Investigator(new PersonName("Cannon", "m."));
-		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test", "open");
+		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test",
+				"open");
 		invC.addIncidentReport(ir);
 		invC.addInvestigator(inv);
 		invC.setOfficerWhoCreatedIt(of);
@@ -98,7 +118,7 @@ public class EJB_of_test {
 	private void createSuspectPerson_officer_incidentReport_Entry() {
 		Calendar dateYara = Calendar.getInstance();
 		dateYara.set(1988, 4, 8);
-		
+
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		SuspectPerson sp1 = new SuspectPerson(new PhysicalCharacteristic(
 				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],

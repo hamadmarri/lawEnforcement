@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Activityies List</h3>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+		<h:dataTable value="#{controllerActivity.list}" var="a">
+			<h:column>
+				<h:link value="view"
+					outcome="/management/police/investigativeCase/activity/viewActivity.xhtml?id=#{a.id}" />
+			</h:column>
+			<h:column>
+				<h:link value="edit"
+					outcome="/management/police/investigativeCase/activity/editActivity.xhtml?id=#{a.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Type</f:facet>
+				<h:outputLabel value="#{a.type}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Date and Time</f:facet>
+				<h:outputLabel value="#{a.dateAndTime}">
+					<f:convertDateTime pattern="MMMM dd, YYYY hh:mm:ss" />
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				<h:outputLabel value="#{a.data}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Investigator</f:facet>
+				<h:outputLabel value="#{a.investigator.personName.lastName}, #{a.investigator.personName.firstName}" />
+			</h:column>
+		</h:dataTable>
+	</ui:composition>
+</h:body>
+</html>

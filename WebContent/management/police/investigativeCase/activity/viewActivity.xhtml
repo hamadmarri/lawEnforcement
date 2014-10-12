@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerProperty.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition template="/management/entries/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relatable"
+				value="#{controllerProperty.property}" />
+			<c:set var="included" value="true" />
+
+			<h3>Property</h3>
+
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerProperty.id}" />
+			</h:link>
+			<br />
+
+			<h:outputLabel value="Serial number" />
+			<h:outputLabel value="#{controllerProperty.property.serialNumber}" />
+			<br />
+
+			<h:outputLabel value="Make" />
+			<h:outputLabel value="#{controllerProperty.property.make}" />
+			<br />
+
+			<h:outputLabel value="Model" />
+			<h:outputLabel value="#{controllerProperty.property.model}" />
+			<br />
+
+			<h:outputLabel value="Brand" />
+			<h:outputLabel value="#{controllerProperty.property.brand}" />
+			<br />
+
+			<h:outputLabel value="Distinguishing characteristics" />
+			<h:outputLabel
+				value="#{controllerProperty.property.distinguishingCharacteristics}" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
