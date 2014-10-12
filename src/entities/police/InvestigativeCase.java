@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +25,8 @@ import entities.events.IncidentReport;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "InvestigativeCase.findAll", query = "select ic from InvestigativeCase ic"),
+		@NamedQuery(name = "InvestigativeCase.findById", query = "select ic from InvestigativeCase ic WHERE ic.id = :id") })
 public class InvestigativeCase implements Serializable {
 
 	private static final long serialVersionUID = 4471453776931939442L;
@@ -34,11 +38,14 @@ public class InvestigativeCase implements Serializable {
 	@OneToMany(mappedBy = "assignedCase")
 	private List<IncidentReport> incidentReports;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Officer officerWhoCreatedIt;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Investigator> investigators;
+
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
 
 	@Temporal(TemporalType.DATE)
 	private Date dueDate;
@@ -49,6 +56,8 @@ public class InvestigativeCase implements Serializable {
 	@OneToMany(mappedBy = "investigativeCase")
 	private List<Task> tasks;
 
+	private String description;
+
 	private static String[] statusSuggestions = { "Open", "Pending", "In progress", "Refuded", "Closed" };
 	private String status;
 
@@ -56,6 +65,16 @@ public class InvestigativeCase implements Serializable {
 
 	public InvestigativeCase() {
 		super();
+	}
+
+
+
+	public InvestigativeCase(Date startDate, Date dueDate, String description, String status) {
+		super();
+		this.startDate = startDate;
+		this.dueDate = dueDate;
+		this.description = description;
+		this.status = status;
 	}
 
 
@@ -120,6 +139,18 @@ public class InvestigativeCase implements Serializable {
 
 
 
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
 	public String getStatus() {
 		return status;
 	}
@@ -134,6 +165,30 @@ public class InvestigativeCase implements Serializable {
 
 	public static String[] getStatusSuggestions() {
 		return statusSuggestions;
+	}
+
+
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
 

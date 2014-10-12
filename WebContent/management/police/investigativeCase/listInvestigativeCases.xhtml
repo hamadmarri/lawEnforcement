@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Officers</h3>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+		
+		<c:if test="${empty event and not included}">
+			<c:set var="officers" value="#{controllerOfficer.officersList}" />
+		</c:if>
+
+		<c:if test="${not empty event}">
+			<c:set var="officers" value="#{event.officersResponsibleFor}" />
+		</c:if>
+
+		<c:if test="${empty officers and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+
+		<c:if test="${not empty officers}">
+			<h:dataTable value="#{officers}" var="o">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/police/officer/viewOfficer.xhtml?id=#{o.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/police/officer/editOfficer.xhtml?id=#{o.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputLabel
+						value="#{o.personName.lastName}, #{o.personName.firstName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Data of birth</f:facet>
+					<h:outputLabel value="#{o.dateOfBirth}">
+						<f:convertDateTime pattern="MMMM dd, YYYY" />
+					</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Gender</f:facet>
+					<h:outputLabel value="#{o.gender}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
+		<c:if test="${included != null and included}">
+			<h:form>
+				<h:inputText value="#{controllerOfficer.officerId}" />
+				<h:commandButton value="add"
+					action="#{controllerOfficer.addOfficerForEvent(event)}" />
+			</h:form>
+		</c:if>
+
+
+	</ui:composition>
+</h:body>
+</html>

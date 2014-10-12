@@ -22,6 +22,13 @@ public class AbstractEjb<T> {
 
 
 
+	@SuppressWarnings("unchecked")
+	public T getEntity(Long id, String entityName) {
+		return (T) em.createNamedQuery(entityName + ".findById").setParameter("id", id).getResultList().get(0);
+	}
+
+
+
 	public void add(T t) {
 		em.persist(t);
 	}
@@ -43,6 +50,13 @@ public class AbstractEjb<T> {
 	@SuppressWarnings("unchecked")
 	public List<T> getList() {
 		return em.createNamedQuery(this.entityName + ".findAll").getResultList();
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public List<T> getListByEntityName(String entityName) {
+		return em.createNamedQuery(entityName + ".findAll").getResultList();
 	}
 
 

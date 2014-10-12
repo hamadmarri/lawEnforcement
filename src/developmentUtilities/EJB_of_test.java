@@ -66,10 +66,13 @@ public class EJB_of_test {
 
 
 	private void createOfficer_InvestigativeCase_IncidentReport_Investigator() {
+		Calendar dueDate = Calendar.getInstance();
+		dueDate.set(2013, 11, 30);
+		
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(1);
 		Investigator inv = new Investigator();
-		InvestigativeCase invC = new InvestigativeCase();
+		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test", "open");
 		invC.addIncidentReport(ir);
 		invC.addInvestigator(inv);
 		invC.setOfficerWhoCreatedIt(of);
