@@ -113,6 +113,13 @@ public class EJB_of_test {
 
 		em.persist(inv);
 		em.persist(invC);
+
+		Officer of2 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
+		InvestigativeCase ic = new InvestigativeCase(Calendar.getInstance().getTime(),
+				Calendar.getInstance().getTime(), "test", "opened");
+		ic.setOfficerWhoCreatedIt(of2);
+
+		em.persist(ic);
 	}
 
 

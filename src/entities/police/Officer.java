@@ -38,7 +38,7 @@ public class Officer implements Serializable {
 	private List<Event> eventsResponsibleFor;
 
 	@OneToMany(mappedBy = "officerWhoCreatedIt")
-	private List<InvestigativeCase> createdCases;
+	private List<InvestigativeCase> createdInvestigativeCases;
 
 
 
@@ -129,8 +129,8 @@ public class Officer implements Serializable {
 
 
 
-	public List<InvestigativeCase> getCreatedCases() {
-		return createdCases;
+	public List<InvestigativeCase> getCreatedInvestigativeCases() {
+		return createdInvestigativeCases;
 	}
 
 

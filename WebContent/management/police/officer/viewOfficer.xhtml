@@ -15,6 +15,10 @@
 <h:body>
 	<ui:composition>
 		<h3>Officer</h3>
+		
+		<c:set var="investigativeCases"
+			value="#{controllerOfficer.officer.createdInvestigativeCases}" />
+		<c:set var="included" value="true" />
 
 		<h:link value="edit" outcome="edit">
 			<f:param name="id" value="#{controllerOfficer.id}" />
@@ -46,12 +50,9 @@
 			</h:column>
 		</h:dataTable>
 
-		<h4>Created Cases</h4>
-		<h:dataTable value="#{controllerOfficer.officer.createdCases}" var="c">
-			<h:column>
-				<h:outputLabel value="#{c.toString()}" />
-			</h:column>
-		</h:dataTable>
+
+		<ui:include
+			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
 
 	</ui:composition>
 </h:body>

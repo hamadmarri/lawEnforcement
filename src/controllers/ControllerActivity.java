@@ -8,7 +8,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import entities.events.Event;
 import entities.police.Activity;
+import entities.police.InvestigativeCase;
+import entities.police.Officer;
 
 
 @ManagedBean(name = "controllerActivity")

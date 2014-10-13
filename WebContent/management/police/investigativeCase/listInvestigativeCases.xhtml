@@ -12,61 +12,66 @@
 
 <h:body>
 	<ui:composition>
-		<h3>Officers</h3>
+		<h3>Investigative Cases</h3>
 
 		<c:if test="${not included}">
 			<h:link value="add" outcome="add" />
 		</c:if>
-		
-		<c:if test="${empty event and not included}">
-			<c:set var="officers" value="#{controllerOfficer.officersList}" />
+
+		<c:if test="${empty investigativeCases and not included}">
+			<c:set var="investigativeCases"
+				value="#{controllerInvestigativeCase.investigativeCasesList}" />
 		</c:if>
 
-		<c:if test="${not empty event}">
-			<c:set var="officers" value="#{event.officersResponsibleFor}" />
-		</c:if>
+		<ui:remove>
+			<c:if test="${not empty investigativeCases}">
+				<c:set var="investigativeCases}"
+					value="#{controllerInvestigativeCase.investigativeCasesList}" />
+			</c:if>
+		</ui:remove>
 
-		<c:if test="${empty officers and included}">
+		<c:if test="${empty investigativeCases and included}">
 			<h:outputLabel value="nothing" />
 		</c:if>
 
 
-		<c:if test="${not empty officers}">
-			<h:dataTable value="#{officers}" var="o">
+		<c:if test="${not empty investigativeCases}">
+			<h:dataTable value="#{investigativeCases}" var="ic">
 				<h:column>
 					<h:link value="view"
-						outcome="/management/police/officer/viewOfficer.xhtml?id=#{o.id}" />
+						outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{ic.id}" />
 				</h:column>
 				<h:column>
 					<h:link value="edit"
-						outcome="/management/police/officer/editOfficer.xhtml?id=#{o.id}" />
+						outcome="/management/police/investigativeCase/editInvestigativeCase.xhtml?id=#{ic.id}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Name</f:facet>
-					<h:outputLabel
-						value="#{o.personName.lastName}, #{o.personName.firstName}" />
+					<f:facet name="header">Description</f:facet>
+					<h:outputLabel value="#{ic.description}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Data of birth</f:facet>
-					<h:outputLabel value="#{o.dateOfBirth}">
+					<f:facet name="header">Status</f:facet>
+					<h:outputLabel value="#{ic.status}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Start Date</f:facet>
+					<h:outputLabel value="#{ic.startDate}">
 						<f:convertDateTime pattern="MMMM dd, YYYY" />
 					</h:outputLabel>
 				</h:column>
 				<h:column>
-					<f:facet name="header">Gender</f:facet>
-					<h:outputLabel value="#{o.gender}" />
+					<f:facet name="header">Due Date</f:facet>
+					<h:outputLabel value="#{ic.dueDate}">
+						<f:convertDateTime pattern="MMMM dd, YYYY" />
+					</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Officer</f:facet>
+					<h:outputLabel
+						value="#{ic.officerWhoCreatedIt.personName.lastName}, #{ic.officerWhoCreatedIt.personName.firstName}" />
 				</h:column>
 			</h:dataTable>
 		</c:if>
-
-		<c:if test="${included != null and included}">
-			<h:form>
-				<h:inputText value="#{controllerOfficer.officerId}" />
-				<h:commandButton value="add"
-					action="#{controllerOfficer.addOfficerForEvent(event)}" />
-			</h:form>
-		</c:if>
-
 
 	</ui:composition>
 </h:body>
