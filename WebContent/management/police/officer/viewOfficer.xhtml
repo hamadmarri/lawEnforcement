@@ -15,7 +15,7 @@
 <h:body>
 	<ui:composition>
 		<h3>Officer</h3>
-		
+
 		<c:set var="investigativeCases"
 			value="#{controllerOfficer.officer.createdInvestigativeCases}" />
 		<c:set var="included" value="true" />
@@ -51,6 +51,7 @@
 		</h:dataTable>
 
 
+		<!-- Investigative Cases -->
 		<ui:include
 			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
 

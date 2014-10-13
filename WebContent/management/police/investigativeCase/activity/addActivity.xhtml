@@ -8,17 +8,17 @@
 
 <h:head>
 	<f:metadata>
-		<f:event listener="#{controllerProperty.createNewProperty}"
+		<f:event listener="#{controllerActivity.createNewActivity}"
 			type="preRenderView" />
 	</f:metadata>
 </h:head>
 
 <h:body>
 	<ui:composition
-		template="/management/entries/property/editProperty.xhtml">
+		template="/management/police/investigativeCase/activity/editActivity.xhtml">
 
 		<ui:define name="editHeader">
-			<h2>Add Property</h2>
+			<h2>Add Activity</h2>
 		</ui:define>
 
 	</ui:composition>

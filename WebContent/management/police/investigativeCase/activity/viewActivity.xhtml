@@ -9,42 +9,38 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{controllerProperty.id}" />
+		<f:viewParam name="id" value="#{controllerActivity.id}" />
 	</f:metadata>
 </h:head>
 <h:body>
-	<ui:composition template="/management/entries/view.xhtml">
-		<ui:define name="view">
-			<c:set var="relatable"
-				value="#{controllerProperty.property}" />
-			<c:set var="included" value="true" />
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="content">
 
-			<h3>Property</h3>
+			<h3>Activity</h3>
 
 			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerProperty.id}" />
+				<f:param name="id" value="#{controllerActivity.id}" />
 			</h:link>
 			<br />
 
-			<h:outputLabel value="Serial number" />
-			<h:outputLabel value="#{controllerProperty.property.serialNumber}" />
+			<h:outputLabel value="Type" />
+			<h:outputLabel value="#{controllerActivity.activity.type}" />
 			<br />
 
-			<h:outputLabel value="Make" />
-			<h:outputLabel value="#{controllerProperty.property.make}" />
+			<h:outputLabel value="Date and Time" />
+			<h:outputLabel value="#{controllerActivity.activity.dateAndTime}" />
 			<br />
 
-			<h:outputLabel value="Model" />
-			<h:outputLabel value="#{controllerProperty.property.model}" />
+			<h:outputLabel value="Data" />
+			<h:outputLabel value="#{controllerActivity.activity.data}" />
 			<br />
 
-			<h:outputLabel value="Brand" />
-			<h:outputLabel value="#{controllerProperty.property.brand}" />
-			<br />
-
-			<h:outputLabel value="Distinguishing characteristics" />
+			<h:outputLabel value="Investigator" />
 			<h:outputLabel
-				value="#{controllerProperty.property.distinguishingCharacteristics}" />
+				value="#{controllerActivity.activity.investigator.personName.lastName},
+			 #{controllerActivity.activity.investigator.personName.firstName}" />
+			<br />
+
 		</ui:define>
 	</ui:composition>
 </h:body>

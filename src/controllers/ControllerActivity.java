@@ -8,10 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
-import entities.events.Event;
 import entities.police.Activity;
 import entities.police.InvestigativeCase;
-import entities.police.Officer;
+import entities.police.Investigator;
 
 
 @ManagedBean(name = "controllerActivity")
@@ -21,10 +20,18 @@ public class ControllerActivity {
 	@EJB
 	protected AbstractEjb<Activity> ejbActivity;
 
+	@EJB
+	private AbstractEjb<Investigator> ejbInvestigator;
+
+	@EJB
+	private AbstractEjb<InvestigativeCase> ejbInvestigativeCase;
+
 	protected String id;
 	protected Activity activity;
 	protected List<Activity> list = null;
 	protected boolean newActivity = false;
+	private Long investigatorId = null;
+	private Long investigativeCaseId = null;
 
 
 
@@ -36,6 +43,19 @@ public class ControllerActivity {
 
 
 	public String submit() {
+
+		// update investigator based on its id
+		if (this.investigatorId != null) {
+			Investigator inv = (Investigator) this.ejbInvestigator.getEntity(this.investigatorId, "Investigator");
+			this.getActivity().setInvestigator(inv);
+		}
+
+		// update investigativeCase based on its id
+		if (this.investigativeCaseId != null) {
+			InvestigativeCase invCase = (InvestigativeCase) this.ejbInvestigativeCase.getEntity(
+					this.investigativeCaseId, "InvestigativeCase");
+			this.getActivity().setInvestigativeCase(invCase);
+		}
 
 		if (isNewActivity())
 			ejbActivity.add(this.activity);
@@ -59,6 +79,13 @@ public class ControllerActivity {
 
 
 
+	public void createNewActivity() {
+		this.activity = new Activity();
+		this.setNewActivity(true);
+	}
+
+
+
 	public Activity getActivity() {
 		if (this.activity != null)
 			return this.activity;
@@ -67,6 +94,14 @@ public class ControllerActivity {
 			return null;
 
 		this.activity = (Activity) ejbActivity.getEntity(Long.parseLong(this.id));
+
+		// hold the id of investigator
+		if (this.investigatorId == null && this.activity != null && this.activity.getInvestigator() != null)
+			setInvestigatorId(this.activity.getInvestigator().getId());
+
+		// hold the id of investigativeCase
+		if (this.investigativeCaseId == null && this.activity != null && this.activity.getInvestigativeCase() != null)
+			setInvestigativeCaseId(this.activity.getInvestigativeCase().getId());
 
 		return this.activity;
 	}
@@ -102,6 +137,30 @@ public class ControllerActivity {
 
 	public void setNewActivity(boolean newActivity) {
 		this.newActivity = newActivity;
+	}
+
+
+
+	public Long getInvestigatorId() {
+		return investigatorId;
+	}
+
+
+
+	public void setInvestigatorId(Long investigatorId) {
+		this.investigatorId = investigatorId;
+	}
+
+
+
+	public Long getInvestigativeCaseId() {
+		return investigativeCaseId;
+	}
+
+
+
+	public void setInvestigativeCaseId(Long investigativeCaseId) {
+		this.investigativeCaseId = investigativeCaseId;
 	}
 
 }
