@@ -23,13 +23,6 @@
 				value="#{controllerInvestigativeCase.investigativeCasesList}" />
 		</c:if>
 
-		<ui:remove>
-			<c:if test="${not empty investigativeCases}">
-				<c:set var="investigativeCases}"
-					value="#{controllerInvestigativeCase.investigativeCasesList}" />
-			</c:if>
-		</ui:remove>
-
 		<c:if test="${empty investigativeCases and included}">
 			<h:outputLabel value="nothing" />
 		</c:if>

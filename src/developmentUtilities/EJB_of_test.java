@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import security.Permission;
 import entities.*;
 import entities.entries.*;
 import entities.entries.Location.Coordinate;
@@ -21,6 +22,7 @@ import entities.entries.images.*;
 import entities.events.*;
 import entities.police.Activity;
 import entities.police.InvestigativeCase;
+import entities.police.InvestigativeGroup;
 import entities.police.Investigator;
 import entities.police.Officer;
 
@@ -57,6 +59,32 @@ public class EJB_of_test {
 		createOfficer_InvestigativeCase_IncidentReport_Investigator();
 		createArrestReportAccordingToIncidentReport();
 		createActivity_InvCase_Inv();
+		createInvestigativeGroup_Permission();
+
+	}
+
+
+
+	private void createInvestigativeGroup_Permission() {
+		Officer o1 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
+		Officer o2 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
+		Investigator i1 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
+		InvestigativeGroup ig = new InvestigativeGroup();
+		Permission p = new Permission();
+		InvestigativeCase ic = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
+				.get(0);
+
+		ig.addAuthorizable(o2);
+		ig.addAuthorizable(i1);
+
+		p.setOwner(o1);
+		p.setAuthorizable(ig);
+		p.setRelatable(ic);
+
+		p.setPermissions(true, false);
+
+		em.persist(ig);
+		em.persist(p);
 
 	}
 

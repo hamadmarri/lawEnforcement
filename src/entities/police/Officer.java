@@ -1,12 +1,20 @@
 package entities.police;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import security.Authorizable;
 import entities.entries.PersonName;
 import entities.events.Event;
 
@@ -18,13 +26,13 @@ import entities.events.Event;
 @Entity
 @NamedQueries({ @NamedQuery(name = "Officer.findAll", query = "select o from Officer o"),
 		@NamedQuery(name = "Officer.findById", query = "select o from Officer o WHERE o.id = :id") })
-public class Officer implements Serializable {
+public class Officer extends Authorizable {
 
 	private static final long serialVersionUID = -5522696147922682708L;
 
-	@Id
-	@GeneratedValue
-	Long id;
+	// @Id
+	// @GeneratedValue
+	// Long id;
 
 	@Embedded
 	private PersonName personName;
@@ -102,11 +110,9 @@ public class Officer implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
-
-
+	// public Long getId() {
+	// return id;
+	// }
 
 	public List<Event> getEventsResponsibleFor() {
 		return eventsResponsibleFor;
@@ -139,5 +145,5 @@ public class Officer implements Serializable {
 	public String toString() {
 		return this.personName.toString();
 	}
-	
+
 }

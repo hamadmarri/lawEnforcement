@@ -1,18 +1,16 @@
 package entities.police;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import security.Authorizable;
 import entities.entries.PersonName;
 
 
@@ -23,13 +21,13 @@ import entities.entries.PersonName;
 @Entity
 @NamedQueries({ @NamedQuery(name = "Investigator.findAll", query = "select i from Investigator i"),
 		@NamedQuery(name = "Investigator.findById", query = "select i from Investigator i WHERE i.id = :id") })
-public class Investigator implements Serializable {
+public class Investigator extends Authorizable {
 
 	private static final long serialVersionUID = 8113176629170268715L;
 
-	@Id
-	@GeneratedValue
-	Long id;
+//	@Id
+//	@GeneratedValue
+//	Long id;
 
 	@ManyToMany(mappedBy = "investigators")
 	private List<InvestigativeCase> investigativeCases;
@@ -54,9 +52,9 @@ public class Investigator implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
 
 
 

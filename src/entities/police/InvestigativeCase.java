@@ -1,14 +1,11 @@
 package entities.police;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -17,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import entities.Relatable;
 import entities.events.IncidentReport;
 
 
@@ -28,13 +26,13 @@ import entities.events.IncidentReport;
 @NamedQueries({
 		@NamedQuery(name = "InvestigativeCase.findAll", query = "select ic from InvestigativeCase ic"),
 		@NamedQuery(name = "InvestigativeCase.findById", query = "select ic from InvestigativeCase ic WHERE ic.id = :id") })
-public class InvestigativeCase implements Serializable {
+public class InvestigativeCase extends Relatable {
 
 	private static final long serialVersionUID = 4471453776931939442L;
 
-	@Id
-	@GeneratedValue
-	Long id;
+//	@Id
+//	@GeneratedValue
+//	Long id;
 
 	@OneToMany(mappedBy = "assignedCase")
 	private List<IncidentReport> incidentReports;
@@ -66,12 +64,14 @@ public class InvestigativeCase implements Serializable {
 
 	public InvestigativeCase() {
 		super();
+		this.type = "InvestigativeCase";
 	}
 
 
 
 	public InvestigativeCase(Date startDate, Date dueDate, String description, String status) {
 		super();
+		this.type = "InvestigativeCase";
 		this.startDate = startDate;
 		this.dueDate = dueDate;
 		this.description = description;
@@ -80,9 +80,9 @@ public class InvestigativeCase implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
 
 
 
