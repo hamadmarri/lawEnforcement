@@ -8,10 +8,14 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import security.Authorizable;
 import security.Permission;
 import ejbs.AbstractEjb;
 import entities.Relatable;
+import entities.police.Officer;
 
+
+//import entities.Relatable;
 
 @ManagedBean(name = "controllerPermission")
 @ViewScoped
@@ -24,12 +28,22 @@ public class ControllerPermission implements Serializable {
 
 	@EJB
 	AbstractEjb<Relatable> ejbRelatable;
-	
+
+	@EJB
+	AbstractEjb<Officer> ejbOfficer;
+
+	@EJB
+	AbstractEjb<Authorizable> ejbAuthorizable;
+
 	protected String id;
 	protected Permission permission = null;
 	protected List<Permission> permissionsList = null;
 	protected boolean newEntity = false;
-//	private String newPermissionId;
+	private String ownerId;
+	private String relatableId;
+	private String authorizableId;
+	private String readPermission;
+	private String writePermission;
 
 
 
@@ -41,11 +55,57 @@ public class ControllerPermission implements Serializable {
 
 
 	public String submit() {
+		updatePermission();
+
 		if (isNewEntity())
 			ejbPermission.add(this.permission);
 		else
 			ejbPermission.save(this.permission);
 		return "success";
+	}
+
+
+
+	private void updatePermission() {
+		Long ownerId = Long.parseLong(this.ownerId);
+		Long relatableId = Long.parseLong(this.relatableId);
+		Long authorizableId = Long.parseLong(this.authorizableId);
+		Officer owner;
+		Relatable relatable;
+		Authorizable authorizable;
+
+		if (this.newEntity) {
+			owner = this.ejbOfficer.getEntity(ownerId, "Officer");
+			relatable = this.ejbRelatable.getEntity(relatableId, "Relatable");
+			authorizable = this.ejbAuthorizable.getEntity(authorizableId, "Authorizable");
+			
+			this.permission.setOwner(owner);
+			this.permission.setRelatable(relatable);
+			this.permission.setAuthorizable(authorizable);
+		}
+		
+		if (!this.newEntity && ownerId != this.permission.getOwner().getId()) {
+			owner = this.ejbOfficer.getEntity(ownerId, "Officer");
+			this.permission.setOwner(owner);
+		}
+
+		if (!this.newEntity && relatableId != this.permission.getRelatable().getId()) {
+			relatable = this.ejbRelatable.getEntity(relatableId, "Relatable");
+			this.permission.setRelatable(relatable);
+		}
+
+		if (!this.newEntity && authorizableId != this.permission.getAuthorizable().getId()) {
+			authorizable = this.ejbAuthorizable.getEntity(authorizableId, "Authorizable");
+			this.permission.setAuthorizable(authorizable);
+		}
+
+		if (readPermission.equals("T") || readPermission.equals("F")) {
+			permission.setReadPermission(readPermission);
+		}
+
+		if (writePermission.equals("T") || writePermission.equals("F")) {
+			permission.setWritePermission(writePermission);
+		}
 	}
 
 
@@ -56,19 +116,6 @@ public class ControllerPermission implements Serializable {
 	}
 
 
-
-//	public void addPermissionForRelatable(Relatable ic) {
-//		Permission inv = this.ejbPermission.getEntity(Long.parseLong(newPermissionId));
-//
-//		ic.addPermission(inv);
-//		ic.setStatus("pending");
-//		
-//		this.ejbRelatable.save(ic);
-//		this.newPermissionId = null;
-//	}
-
-
-
 	public Permission getPermission() {
 		if (this.permission != null)
 			return this.permission;
@@ -77,7 +124,12 @@ public class ControllerPermission implements Serializable {
 			return null;
 
 		this.permission = ejbPermission.getEntity(Long.parseLong(this.id));
-
+		this.ownerId = this.permission.getOwner().getId().toString();
+		this.relatableId = this.permission.getRelatable().getId().toString();
+		this.authorizableId = this.permission.getAuthorizable().getId().toString();
+		this.readPermission = this.permission.getReadPermission();
+		this.writePermission = this.permission.getWritePermission();
+		
 		return this.permission;
 	}
 
@@ -110,15 +162,63 @@ public class ControllerPermission implements Serializable {
 
 
 
-//	public String getNewPermissionId() {
-//		return newPermissionId;
-//	}
-//
-//
-//
-//	public void setNewPermissionId(String newPermissionId) {
-//		this.newPermissionId = newPermissionId;
-//	}
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+
+
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+
+
+	public String getRelatableId() {
+		return relatableId;
+	}
+
+
+
+	public void setRelatableId(String relatableId) {
+		this.relatableId = relatableId;
+	}
+
+
+
+	public String getAuthorizableId() {
+		return authorizableId;
+	}
+
+
+
+	public void setAuthorizableId(String authorizableId) {
+		this.authorizableId = authorizableId;
+	}
+
+
+
+	public String getReadPermission() {
+		return readPermission;
+	}
+
+
+
+	public void setReadPermission(String readPermission) {
+		this.readPermission = readPermission;
+	}
+
+
+
+	public String getWritePermission() {
+		return writePermission;
+	}
+
+
+
+	public void setWritePermission(String writePermission) {
+		this.writePermission = writePermission;
+	}
 
 
 

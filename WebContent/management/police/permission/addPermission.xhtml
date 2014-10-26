@@ -8,16 +8,16 @@
 
 <h:head>
 	<f:metadata>
-		<f:event listener="#{controllerOfficer.createNewOfficer}"
+		<f:event listener="#{controllerPermission.createNewPermission}"
 			type="preRenderView" />
 	</f:metadata>
 </h:head>
 
 <h:body>
-	<ui:composition template="/management/police/officer/editOfficer.xhtml">
+	<ui:composition template="/management/police/permission/editPermission.xhtml">
 
 		<ui:define name="editHeader">
-			<h2>Add Officer</h2>
+			<h2>Add Permission</h2>
 		</ui:define>
 
 	</ui:composition>

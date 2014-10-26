@@ -9,38 +9,40 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{controllerOfficer.id}" />
+		<f:viewParam name="id" value="#{controllerPermission.id}" />
 	</f:metadata>
 </h:head>
 
 <h:body>
 	<ui:insert name="editHeader">
-		<h2>Edit Officer</h2>
+		<h2>Edit Permission #{controllerPermission.permission.id}</h2>
 	</ui:insert>
 
 
 	<h:link value="cancel" outcome="cancel">
-		<f:param name="id" value="#{controllerOfficer.id}" />
+		<f:param name="id" value="#{controllerPermission.id}" />
 	</h:link>
 
 
 	<h:form>
-		<h4>Person Information</h4>
-		<h:outputLabel value="First name" />
-		<h:inputText value="#{controllerOfficer.officer.personName.firstName}" />
+		<h:outputLabel value="Read Permission" />
+		<h:inputText value="#{controllerPermission.readPermission}" />
 		<br />
-		<h:outputLabel value="Last name" />
-		<h:inputText value="#{controllerOfficer.officer.personName.lastName}" />
+		<h:outputLabel value="Write Permission" />
+		<h:inputText value="#{controllerPermission.writePermission}" />
 		<br />
-		<h:outputLabel value="Data of birth" />
-		<p:calendar value="#{controllerOfficer.officer.dateOfBirth}" />
+		<h:outputLabel value="Owner" />
+		<h:inputText value="#{controllerPermission.ownerId}" />
 		<br />
-		<h:outputLabel value="Gender" />
-		<h:inputText value="#{controllerOfficer.officer.gender}" />
+		<h:outputLabel value="Relatable" />
+		<h:inputText value="#{controllerPermission.relatableId}" />
+		<br />
+		<h:outputLabel value="Authorizable" />
+		<h:inputText value="#{controllerPermission.authorizableId}" />
 		<br />
 
 		<br />
-		<h:commandButton value="save" action="#{controllerOfficer.submit}" />
+		<h:commandButton value="save" action="#{controllerPermission.submit}" />
 	</h:form>
 </h:body>
 </html>
