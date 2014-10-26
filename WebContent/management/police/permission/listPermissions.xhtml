@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h2>Permissions</h2>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+		<c:if test="${empty relatables and not included}">
+			<c:set var="permissions"
+				value="#{controllerPermission.permissionsList}" />
+		</c:if>
+
+		<c:if test="${not empty relatables and included}">
+			<c:set var="permissions" value="#{relatables.permissions}" />
+		</c:if>
+
+		<c:if test="${empty permissions and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty permissions}">
+			<h:dataTable value="#{permissions}" var="p">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/police/permission/viewPermission.xhtml?id=#{p.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/police/permission/editPermission.xhtml?id=#{p.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">id</f:facet>
+					#{p.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Read Permission</f:facet>
+					<h:outputLabel value="#{p.readPermission}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Write Permission</f:facet>
+					<h:outputLabel value="#{p.writePermission}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Owner</f:facet>
+					<h:outputLabel value="#{p.owner.id}:#{p.owner}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Relatable id</f:facet>
+					<h:outputLabel value="#{p.relatable.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Authorizable id</f:facet>
+					<h:outputLabel value="#{p.authorizable.id}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
+		<ui:remove>
+			<!-- 		<c:if test="${included != null and included}">
+			<h:form>
+				<h:inputText value="#{controllerPermission.newPermissionId}" />
+				<h:commandButton value="add"
+					action="#{controllerPermission.addPermissionForInvestigativeCase(relatables)}" />
+			</h:form>
+		</c:if> -->
+		</ui:remove>
+
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerInvestigator.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition>
+		<h3>Investigator</h3>
+		
+		<c:set var="investigativeCases"
+			value="#{controllerInvestigator.investigator.investigativeCases}" />
+		<c:set var="included" value="true" />
+
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerInvestigator.id}" />
+		</h:link>
+		<br />
+
+		<h:outputLabel value="Name" />
+		<h:outputLabel
+			value="#{controllerInvestigator.investigator.personName.lastName},
+			 #{controllerInvestigator.investigator.personName.firstName}" />
+
+		<!-- Investigative Cases -->
+		<ui:include
+			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
+
+	</ui:composition>
+</h:body>
+</html>

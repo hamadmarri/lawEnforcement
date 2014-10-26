@@ -91,8 +91,8 @@ public class Permission implements Serializable {
 
 
 	public void setPermissions(boolean read, boolean write) {
-		setReadPermission(read);
-		setWritePermission(write);
+		setReadPermissionBoolean(read);
+		setWritePermissionBoolean(write);
 	}
 
 
@@ -106,7 +106,7 @@ public class Permission implements Serializable {
 
 
 
-	public void setReadPermission(boolean read) {
+	public void setReadPermissionBoolean(boolean read) {
 		if (read)
 			this.readPermission = "T";
 		else
@@ -124,7 +124,7 @@ public class Permission implements Serializable {
 
 
 
-	public void setWritePermission(boolean write) {
+	public void setWritePermissionBoolean(boolean write) {
 		if (write)
 			this.writePermission = "T";
 		else
