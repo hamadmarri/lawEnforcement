@@ -938,4 +938,17 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/*</from-view-id>
+		<navigation-case>
+			<from-outcome>InvestigativeCase</from-outcome>
+			<to-view-id>/management/police/investigativeCase/viewInvestigativeCase</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

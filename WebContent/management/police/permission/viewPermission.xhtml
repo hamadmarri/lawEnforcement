@@ -9,30 +9,56 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{controllerInvestigator.id}" />
+		<f:viewParam name="id" value="#{controllerPermission.id}" />
 	</f:metadata>
 </h:head>
 <h:body>
 	<ui:composition>
-		<h3>Investigator</h3>
-		
-		<c:set var="investigativeCases"
-			value="#{controllerInvestigator.investigator.investigativeCases}" />
-		<c:set var="included" value="true" />
+		<h3>Permission</h3>
+
+		<ui:remove>
+			<!-- 		<c:set var="investigativeCases"
+			value="#{controllerPermission.permission.investigativeCases}" />
+		<c:set var="included" value="true" /> -->
+		</ui:remove>
 
 		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerInvestigator.id}" />
+			<f:param name="id" value="#{controllerPermission.id}" />
 		</h:link>
 		<br />
 
-		<h:outputLabel value="Name" />
-		<h:outputLabel
-			value="#{controllerInvestigator.investigator.personName.lastName},
-			 #{controllerInvestigator.investigator.personName.firstName}" />
+		<h:outputLabel value="id" />
+		<h:outputLabel value="#{controllerPermission.permission.id}" />
+		<br />
 
-		<!-- Investigative Cases -->
-		<ui:include
-			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
+		<h:outputLabel value="Read Permission" />
+		<h:outputLabel
+			value="#{controllerPermission.permission.readPermission}" />
+		<br />
+
+		<h:outputLabel value="Write Permission" />
+		<h:outputLabel
+			value="#{controllerPermission.permission.writePermission}" />
+		<br />
+
+		<h:outputLabel value="Owner" />
+		<h:link value="#{controllerPermission.permission.owner.id}:"
+			outcome="/management/police/officer/viewOfficer.xhtml?id=#{controllerPermission.permission.owner.id}" />
+		<h:outputLabel
+			value="#{controllerPermission.permission.owner.personName}" />
+		<br />
+
+		<h:outputLabel value="Relatable" />
+		<h:link value="#{controllerPermission.permission.relatable.id}:"
+			outcome="#{controllerPermission.permission.relatable.type}">
+			<f:param name="id"
+				value="#{controllerPermission.permission.relatable.id}" />
+		</h:link>
+		<br />
+
+		<h:outputLabel value="Authorizable" />
+		<h:outputLabel value="#{controllerPermission.permission.authorizable}" />
+		<br />
 
 	</ui:composition>
 </h:body>
