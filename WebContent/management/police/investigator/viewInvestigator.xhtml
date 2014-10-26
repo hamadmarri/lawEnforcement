@@ -15,7 +15,7 @@
 <h:body>
 	<ui:composition>
 		<h3>Investigator</h3>
-		
+
 		<c:set var="investigativeCases"
 			value="#{controllerInvestigator.investigator.investigativeCases}" />
 		<c:set var="included" value="true" />
@@ -29,6 +29,7 @@
 		<h:outputLabel
 			value="#{controllerInvestigator.investigator.personName.lastName},
 			 #{controllerInvestigator.investigator.personName.firstName}" />
+		<br />
 
 		<!-- Investigative Cases -->
 		<ui:include

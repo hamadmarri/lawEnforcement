@@ -25,9 +25,6 @@ public class Investigator extends Authorizable {
 
 	private static final long serialVersionUID = 8113176629170268715L;
 
-//	@Id
-//	@GeneratedValue
-//	Long id;
 
 	@ManyToMany(mappedBy = "investigators")
 	private List<InvestigativeCase> investigativeCases;
@@ -42,6 +39,7 @@ public class Investigator extends Authorizable {
 
 	public Investigator() {
 		super();
+		this.personName = new PersonName();
 	}
 
 
