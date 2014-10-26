@@ -42,19 +42,14 @@ public class Authorizable implements Serializable {
 
 
 
-	// public void setPermissions(List<Permission> permissions) {
-	// this.permissions = permissions;
-	// }
-
 	public List<Permission> getPermissions() {
 		return this.permissions;
 	}
 
-	// public void addPermission(Permission permission) {
-	// if (this.permissions == null)
-	// this.permissions = new ArrayList<Permission>();
-	//
-	// this.permissions.add(permission);
-	// }
+
+
+	public List<InvestigativeGroup> getInvestigativeGroups() {
+		return investigativeGroups;
+	}
 
 }

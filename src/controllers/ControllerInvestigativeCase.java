@@ -25,9 +25,6 @@ public class ControllerInvestigativeCase implements Serializable {
 	@EJB
 	private AbstractEjb<Officer> ejbOfficer;
 
-	// @EJB
-	// private AbstractEjb<Relatable> ejbRelatable;
-
 	protected String id;
 	protected InvestigativeCase investigativeCase;
 	protected List<InvestigativeCase> InvestigativeCasesList = null;
@@ -66,16 +63,6 @@ public class ControllerInvestigativeCase implements Serializable {
 	}
 
 
-
-	// public void addInvestigativeCaseForEvent(Event e) {
-	// InvestigativeCase of =
-	// this.ejbInvestigativeCase.getEntity(Long.parseLong(officerId));
-	// of.addEventResponsibleFor(e);
-	// e.addInvestigativeCaseResponsibleFor(of);
-	// this.ejbInvestigativeCase.save(of);
-	// this.ejbRelatable.save(e);
-	// this.officerId = null;
-	// }
 
 	public String getId() {
 		return id;

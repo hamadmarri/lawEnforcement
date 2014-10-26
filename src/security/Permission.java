@@ -3,7 +3,6 @@ package security;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -99,7 +98,7 @@ public class Permission implements Serializable {
 
 
 	public boolean isReadPermission() {
-		if (this.readPermission == "T")
+		if (this.readPermission.equals("T"))
 			return true;
 
 		return false;
@@ -117,7 +116,7 @@ public class Permission implements Serializable {
 
 
 	public boolean isWritePermission() {
-		if (this.writePermission == "T")
+		if (this.writePermission.equals("T"))
 			return true;
 
 		return false;

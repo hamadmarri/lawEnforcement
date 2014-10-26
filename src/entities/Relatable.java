@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import security.Permission;
+
 
 /**
  * Entity implementation class for Entity: Relatable
@@ -38,6 +40,9 @@ public class Relatable implements Serializable, Describable {
 
 	protected String description;
 
+	@OneToMany(mappedBy = "relatable")
+	private List<Permission> permissions;
+
 
 
 	public Relatable() {
@@ -67,6 +72,12 @@ public class Relatable implements Serializable, Describable {
 
 	public String getType() {
 		return type;
+	}
+
+
+
+	public List<Permission> getPermissions() {
+		return permissions;
 	}
 
 
