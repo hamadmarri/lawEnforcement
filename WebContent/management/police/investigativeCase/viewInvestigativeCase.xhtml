@@ -21,6 +21,8 @@
 
 		<c:set var="investigativeCase"
 			value="#{controllerInvestigativeCase.investigativeCase}" />
+		<c:set var="incidentReports"
+			value="#{controllerInvestigativeCase.investigativeCase.incidentReports}" />
 		<c:set var="included" value="true" />
 
 		<h:link value="edit" outcome="edit">
@@ -49,6 +51,14 @@
 			value="#{controllerInvestigativeCase.investigativeCase.officerWhoCreatedIt.personName}" />
 		<br />
 
+		<!-- incident reports list -->
+		<ui:include
+			src="/management/events/incidentReport/listIncidentReports.xhtml" />
+		<h:form>
+			<h:inputText
+				value="#{controllerInvestigativeCase.newIncidentReportId}" />
+			<h:commandButton value="add" action="#{controllerInvestigativeCase.addIncidentReport}" />
+		</h:form>
 
 		<!-- investigators responsible for -->
 		<ui:include

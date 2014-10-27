@@ -19,7 +19,8 @@ import entities.police.InvestigativeCase;
  * care of witnesses, victims, complainants
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "IncidentReport.findAll", query = "select i from IncidentReport i") })
+@NamedQueries({ @NamedQuery(name = "IncidentReport.findAll", query = "select i from IncidentReport i"),
+		@NamedQuery(name = "IncidentReport.findById", query = "select i from IncidentReport i WHERE i.id = :id") })
 public class IncidentReport extends Event {
 
 	private static final long serialVersionUID = 5529985766700573423L;
@@ -37,7 +38,7 @@ public class IncidentReport extends Event {
 
 	private String summary;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private InvestigativeCase assignedCase;
 
 	@ManyToMany(mappedBy = "incidentReportsAccordingTo")
@@ -156,6 +157,12 @@ public class IncidentReport extends Event {
 
 	public static String[] getStatusOptions() {
 		return statusOptions;
+	}
+
+
+
+	public void setAssignedCase(InvestigativeCase assignedCase) {
+		this.assignedCase = assignedCase;
 	}
 
 

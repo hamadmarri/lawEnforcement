@@ -39,6 +39,7 @@ public class Investigator extends Authorizable {
 	public Investigator() {
 		super();
 		this.type = "Investigator";
+//		this.investigativeCases = new ArrayList<InvestigativeCase>();
 		this.personName = new PersonName();
 	}
 
@@ -47,6 +48,7 @@ public class Investigator extends Authorizable {
 	public Investigator(PersonName personName) {
 		super();
 		this.type = "Investigator";
+//		this.investigativeCases = new ArrayList<InvestigativeCase>();
 		this.personName = personName;
 	}
 
@@ -77,7 +79,7 @@ public class Investigator extends Authorizable {
 
 
 
-	public void addInvestigativeCases(InvestigativeCase ic) {
+	public void addInvestigativeCase(InvestigativeCase ic) {
 		if (this.investigativeCases == null)
 			this.investigativeCases = new ArrayList<InvestigativeCase>();
 

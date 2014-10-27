@@ -17,8 +17,7 @@
 		<ui:define name="view">
 			<c:set var="relatable"
 				value="#{controllerIncidentReport.incidentReport}" />
-			<c:set var="event"
-				value="#{controllerIncidentReport.incidentReport}" />
+			<c:set var="event" value="#{controllerIncidentReport.incidentReport}" />
 			<c:set var="included" value="true" />
 
 			<h3>Incident Report</h3>
@@ -67,11 +66,8 @@
 				value="#{controllerIncidentReport.incidentReport.summary}" />
 			<br />
 
-			<h:outputLabel value="Assigned case" />
-			<h:outputLabel
-				value="#{controllerIncidentReport.incidentReport.assignedCase.toString()}" />
-			<br />
 
+			<!-- ArrestReports list -->
 			<ui:include
 				src="/management/events/arrestReport/listArrestReports.xhtml">
 				<ui:param name="arrestReports"
@@ -82,6 +78,14 @@
 				<f:param name="incidentReportId"
 					value="#{controllerIncidentReport.incidentReport.id}" />
 			</h:link>
+			<br />
+
+			<!-- investigave case -->
+			<h4>Assigned case</h4>
+			<h:link value="view"
+				outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{controllerIncidentReport.incidentReport.assignedCase.id}" />
+			<h:outputLabel
+				value="#{controllerIncidentReport.incidentReport.assignedCase}" />
 			<br />
 
 		</ui:define>

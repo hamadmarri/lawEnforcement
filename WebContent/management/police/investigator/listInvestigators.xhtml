@@ -35,7 +35,7 @@
 		<c:if test="${not empty investigators}">
 			<h:dataTable value="#{investigators}" var="i">
 				<h:column>
-					<h:link value="view"
+					<h:link value="view" 
 						outcome="/management/police/investigator/viewInvestigator.xhtml?id=#{i.id}" />
 				</h:column>
 				<h:column>

@@ -17,7 +17,7 @@
 		<c:if test="${not included}">
 			<h:link value="add" outcome="add" />
 		</c:if>
-		
+
 		<c:if test="${empty incidentReports and not included}">
 			<c:set var="incidentReports"
 				value="#{controllerIncidentReport.incidentReportsList}" />
@@ -51,7 +51,17 @@
 				</h:column>
 			</h:dataTable>
 		</c:if>
-		
+
+		<ui:remove>
+			<!-- 		<c:if test="${included != null and included}">
+			<h:form>
+				<h:inputText value="#{controllerInvestigativeCase.newIncidentReportId}" />
+				<h:commandButton value="add"
+					action="#{controllerInvestigativeCase.}" />
+			</h:form>
+		</c:if> -->
+		</ui:remove>
+
 	</ui:composition>
 </h:body>
 </html>

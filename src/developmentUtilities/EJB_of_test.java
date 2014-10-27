@@ -94,7 +94,7 @@ public class EJB_of_test {
 		InvestigativeCase ic1 = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
 				.get(0);
 		InvestigativeCase ic2 = new InvestigativeCase(Calendar.getInstance().getTime(), Calendar.getInstance()
-				.getTime(), "test", "opened");
+				.getTime(), "test", "Open");
 		Investigator i = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
 
 		Activity a1 = new Activity(ic1, "evidence", "testing data");
@@ -134,20 +134,22 @@ public class EJB_of_test {
 		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(1);
 		Investigator inv = new Investigator(new PersonName("Cannon", "m."));
 		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test",
-				"open");
-		invC.addIncidentReport(ir);
+				"Open");
+//		invC.addIncidentReport(ir);
+		ir.setAssignedCase(invC);
 		invC.addInvestigator(inv);
 		invC.setOfficerWhoCreatedIt(of);
 
 		em.persist(inv);
 		em.persist(invC);
+		em.persist(ir);
 
 		Officer of2 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
-		InvestigativeCase ic = new InvestigativeCase(Calendar.getInstance().getTime(),
-				Calendar.getInstance().getTime(), "test", "opened");
-		ic.setOfficerWhoCreatedIt(of2);
+		InvestigativeCase invC2 = new InvestigativeCase(Calendar.getInstance().getTime(),
+				Calendar.getInstance().getTime(), "test", "Open");
+		invC2.setOfficerWhoCreatedIt(of2);
 
-		em.persist(ic);
+		em.persist(invC2);
 	}
 
 

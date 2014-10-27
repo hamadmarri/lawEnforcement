@@ -42,7 +42,7 @@ public class AccessManager implements Serializable {
 
 
 	public void manage() {
-		System.out.println("******* manage ******");
+//		System.out.println("******* manage ******");
 		Relatable r = this.ejbRelatable.getEntity(Long.parseLong(this.RelatableId));
 		Authorizable a = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId), "Authorizable");
 		List<InvestigativeGroup> igs = a.getInvestigativeGroups();
@@ -50,10 +50,10 @@ public class AccessManager implements Serializable {
 		List<Permission> permissions = r.getPermissions();
 
 		if (permissions == null || permissions.size() == 0) {
-			System.out.println("******** it is public ***********");
+//			System.out.println("******** it is public ***********");
 			return;
 		} else {
-			System.out.println("******** it is not public ***********");
+//			System.out.println("******** it is not public ***********");
 			for (Permission p : permissions) {
 				System.out.println(p.getId());
 				System.out.println(p.getOwner().getId());
@@ -62,22 +62,22 @@ public class AccessManager implements Serializable {
 				System.out.println(p.isWritePermission());
 
 				if (p.getOwner().getId() == a.getId()) {
-					System.out.println("user is the owner of this relatable");
+//					System.out.println("user is the owner of this relatable");
 					return;
 				} else if (a.getId() == p.getAuthorizable().getId()) {
-					System.out.println("user has access to this relatable");
+//					System.out.println("user has access to this relatable");
 					return;
 				} else if (igs != null && igs.size() > 0) {
 					for (InvestigativeGroup ig : igs) {
 						if (ig.getId() == p.getAuthorizable().getId()) {
-							System.out.println("user in a group that has access to this relatable");
+//							System.out.println("user in a group that has access to this relatable");
 							return;
 						}
 					}
 				}
 			}
 		}
-		System.out.println("Access denied !!!!");
+//		System.out.println("Access denied !!!!");
 		FacesContext fc = FacesContext.getCurrentInstance();
 		try {
 			fc.getExternalContext().redirect("/lawEnforcement");

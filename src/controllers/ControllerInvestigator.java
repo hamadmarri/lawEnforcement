@@ -24,7 +24,7 @@ public class ControllerInvestigator implements Serializable {
 
 	@EJB
 	AbstractEjb<InvestigativeCase> ejbInvestigativeCase;
-	
+
 	protected String id;
 	protected Investigator investigator = null;
 	protected List<Investigator> investigatorsList = null;
@@ -57,13 +57,19 @@ public class ControllerInvestigator implements Serializable {
 
 
 
-	public void addInvestigatorForInvestigativeCase(InvestigativeCase ic) {
+	public void addInvestigatorForInvestigativeCase(InvestigativeCase icArg) {
+		InvestigativeCase ic = this.ejbInvestigativeCase.getEntity(icArg.getId(), "InvestigativeCase");
 		Investigator inv = this.ejbInvestigator.getEntity(Long.parseLong(newInvestigatorId));
 
 		ic.addInvestigator(inv);
-		ic.setStatus("pending");
-		
+		ic.setStatus("Pending");
+
 		this.ejbInvestigativeCase.save(ic);
+		
+//		this.investigator.addInvestigativeCase(ic);
+//		this.ejbInvestigator.save(investigator);
+//		this.ejbInvestigator.refresh(investigator); 
+		
 		this.newInvestigatorId = null;
 	}
 

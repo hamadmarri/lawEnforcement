@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import entities.events.IncidentReport;
 import entities.police.InvestigativeCase;
 import entities.police.Officer;
 
@@ -25,11 +26,15 @@ public class ControllerInvestigativeCase implements Serializable {
 	@EJB
 	private AbstractEjb<Officer> ejbOfficer;
 
+	@EJB
+	private AbstractEjb<IncidentReport> ejbIncidentReport;
+
 	protected String id;
 	protected InvestigativeCase investigativeCase;
 	protected List<InvestigativeCase> InvestigativeCasesList = null;
 	protected boolean newEntity = false;
 	private Long officerWhoCreatedItId = null;
+	private String newIncidentReportId;
 
 
 
@@ -95,6 +100,16 @@ public class ControllerInvestigativeCase implements Serializable {
 
 
 
+	public void addIncidentReport() {
+		IncidentReport ir = this.ejbIncidentReport.getEntity(Long.parseLong(newIncidentReportId), "IncidentReport");
+		ir.setAssignedCase(this.investigativeCase);
+		this.ejbIncidentReport.save(ir);
+		this.investigativeCase.addIncidentReport(ir);
+		this.ejbInvestigativeCase.save(investigativeCase);
+	}
+
+
+
 	public void setInvestigativeCase(InvestigativeCase InvestigativeCase) {
 		this.investigativeCase = InvestigativeCase;
 	}
@@ -136,6 +151,18 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public void setOfficerWhoCreatedItId(Long officerWhoCreatedItId) {
 		this.officerWhoCreatedItId = officerWhoCreatedItId;
+	}
+
+
+
+	public String getNewIncidentReportId() {
+		return newIncidentReportId;
+	}
+
+
+
+	public void setNewIncidentReportId(String newIncidentReportId) {
+		this.newIncidentReportId = newIncidentReportId;
 	}
 
 }
