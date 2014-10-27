@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h3>Investigative Groups</h3>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+		<c:if test="${empty investigativeGroups and not included}">
+			<c:set var="investigativeGroups"
+				value="#{controllerInvestigativeGroup.investigativeGroupsList}" />
+		</c:if>
+
+		<c:if test="${empty investigativeGroups and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+
+		<c:if test="${not empty investigativeGroups}">
+			<h:dataTable value="#{investigativeGroups}" var="ig">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/police/investigativeGroup/viewInvestigativeGroup.xhtml?id=#{ig.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/police/investigativeGroup/editInvestigativeGroup.xhtml?id=#{ig.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Group Name</f:facet>
+					<h:outputLabel value="#{ig.name}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
+	</ui:composition>
+</h:body>
+</html>

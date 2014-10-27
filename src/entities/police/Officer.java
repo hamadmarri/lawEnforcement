@@ -52,6 +52,7 @@ public class Officer extends Authorizable {
 
 	public Officer() {
 		super();
+		this.type = "Officer";
 		this.personName = new PersonName();
 		this.dateOfBirth = new Date();
 		this.gender = new String();
@@ -61,6 +62,7 @@ public class Officer extends Authorizable {
 
 	public Officer(PersonName personName, String gender) {
 		super();
+		this.type = "Officer";
 		this.personName = personName;
 		this.gender = gender;
 	}
@@ -144,6 +146,13 @@ public class Officer extends Authorizable {
 	@Override
 	public String toString() {
 		return this.personName.toString();
+	}
+
+
+
+	@Override
+	public String getName() {
+		return this.toString();
 	}
 
 }

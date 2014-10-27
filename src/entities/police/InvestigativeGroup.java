@@ -23,6 +23,23 @@ public class InvestigativeGroup extends Authorizable {
 	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Authorizable> authorizables;
 
+	private String name;
+
+
+
+	public InvestigativeGroup() {
+		super();
+		this.type = "InvestigativeGroup";
+	}
+
+
+
+	public InvestigativeGroup(String name) {
+		super();
+		this.type = "InvestigativeGroup";
+		this.name = name;
+	}
+
 
 
 	public List<Authorizable> getAuthorizables() {
@@ -42,6 +59,26 @@ public class InvestigativeGroup extends Authorizable {
 			this.authorizables = new ArrayList<Authorizable>();
 
 		this.authorizables.add(authorizable);
+	}
+
+
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+
+
+	@Override
+	public String getName() {
+		return this.toString();
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

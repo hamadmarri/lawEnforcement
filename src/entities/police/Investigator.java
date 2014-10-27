@@ -25,7 +25,6 @@ public class Investigator extends Authorizable {
 
 	private static final long serialVersionUID = 8113176629170268715L;
 
-
 	@ManyToMany(mappedBy = "investigators")
 	private List<InvestigativeCase> investigativeCases;
 
@@ -39,20 +38,17 @@ public class Investigator extends Authorizable {
 
 	public Investigator() {
 		super();
+		this.type = "Investigator";
 		this.personName = new PersonName();
 	}
 
 
 
 	public Investigator(PersonName personName) {
+		super();
+		this.type = "Investigator";
 		this.personName = personName;
 	}
-
-
-
-//	public Long getId() {
-//		return id;
-//	}
 
 
 
@@ -103,4 +99,17 @@ public class Investigator extends Authorizable {
 		this.activities.add(a);
 	}
 
+
+
+	@Override
+	public String toString() {
+		return this.personName.toString();
+	}
+
+
+
+	@Override
+	public String getName() {
+		return this.toString();
+	}
 }

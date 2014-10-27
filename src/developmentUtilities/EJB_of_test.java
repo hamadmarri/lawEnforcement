@@ -69,7 +69,7 @@ public class EJB_of_test {
 		Officer o1 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 //		Officer o2 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
 		Investigator i1 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
-		InvestigativeGroup ig = new InvestigativeGroup();
+		InvestigativeGroup ig = new InvestigativeGroup("First Group");
 		Permission p = new Permission();
 		InvestigativeCase ic = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
 				.get(0);

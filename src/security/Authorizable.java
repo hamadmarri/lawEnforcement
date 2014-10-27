@@ -34,6 +34,8 @@ public class Authorizable implements Serializable {
 	@ManyToMany(mappedBy = "authorizables")
 	protected List<InvestigativeGroup> investigativeGroups;
 
+	protected String type;
+
 
 
 	public Long getId() {
@@ -50,6 +52,18 @@ public class Authorizable implements Serializable {
 
 	public List<InvestigativeGroup> getInvestigativeGroups() {
 		return investigativeGroups;
+	}
+
+
+
+	public String getName() {
+		return "";
+	}
+
+
+
+	public String getType() {
+		return type;
 	}
 
 }

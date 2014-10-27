@@ -788,7 +788,7 @@
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<to-view-id>
-	/management/relation/viewRelation.xhtml</to-view-id>
+				/management/relation/viewRelation.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -951,4 +951,34 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
+
+
+	<!-- ********** Authorizables ********** -->
+	<navigation-rule>
+		<from-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Investigator</from-outcome>
+			<to-view-id>/management/police/investigator/viewInvestigator</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Officer</from-outcome>
+			<to-view-id>/management/police/officer/viewOfficer</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>
