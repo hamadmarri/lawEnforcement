@@ -6,12 +6,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import developmentUtilities.EJB_of_test;
 import entities.Relatable;
-import entities.entries.Person;
 
 
 /**

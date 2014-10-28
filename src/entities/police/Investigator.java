@@ -3,8 +3,10 @@ package entities.police;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -18,14 +20,15 @@ import entities.entries.PersonName;
  * Entity implementation class for Entity: Investigator
  * 
  */
-@Entity
+@Entity 
 @NamedQueries({ @NamedQuery(name = "Investigator.findAll", query = "select i from Investigator i"),
 		@NamedQuery(name = "Investigator.findById", query = "select i from Investigator i WHERE i.id = :id") })
 public class Investigator extends Authorizable {
 
 	private static final long serialVersionUID = 8113176629170268715L;
 
-	@ManyToMany(mappedBy = "investigators")
+	@ManyToMany(mappedBy = "investigators", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//	@JoinFetch(value = JoinFetchType.OUTER)
 	private List<InvestigativeCase> investigativeCases;
 
 	@OneToMany(mappedBy = "investigator")
@@ -39,7 +42,7 @@ public class Investigator extends Authorizable {
 	public Investigator() {
 		super();
 		this.type = "Investigator";
-//		this.investigativeCases = new ArrayList<InvestigativeCase>();
+		// this.investigativeCases = new ArrayList<InvestigativeCase>();
 		this.personName = new PersonName();
 	}
 
@@ -48,7 +51,7 @@ public class Investigator extends Authorizable {
 	public Investigator(PersonName personName) {
 		super();
 		this.type = "Investigator";
-//		this.investigativeCases = new ArrayList<InvestigativeCase>();
+		// this.investigativeCases = new ArrayList<InvestigativeCase>();
 		this.personName = personName;
 	}
 

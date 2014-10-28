@@ -35,8 +35,8 @@ public class AbstractEjb<T> {
 
 
 
-	public void save(T t) {
-		em.merge(t);
+	public T save(T t) {
+		return em.merge(t);
 	}
 
 

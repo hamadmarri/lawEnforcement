@@ -6,6 +6,49 @@
 	<persistence-unit name="lawEnforcementPersistenceUnit"
 		transaction-type="JTA">
 		<jta-data-source>jdbc/lawEnforcement</jta-data-source>
+		<class>entities.MasterIndices</class>
+		<class>entities.Relatable</class>
+		<class>entities.Relation</class>
+		<class>entities.entries.Address</class>
+		<class>entities.entries.AliasNameOrMoniker</class>
+		<class>entities.entries.Conveyance</class>
+		<class>entities.entries.Entry</class>
+		<class>entities.entries.Identification</class>
+		<class>entities.entries.Location</class>
+		<class>entities.entries.Organization</class>
+		<class>entities.entries.Person</class>
+		<class>entities.entries.PersonName</class>
+		<class>entities.entries.PhysicalCharacteristic</class>
+		<class>entities.entries.Property</class>
+		<class>entities.entries.Race</class>
+		<class>entities.entries.ScarMarkTattoo</class>
+		<class>entities.entries.ThreatAssessment</class>
+		<class>entities.entries.contacts.CellPhone</class>
+		<class>entities.entries.contacts.Contact</class>
+		<class>entities.entries.contacts.Email</class>
+		<class>entities.entries.contacts.Telephone</class>
+		<class>entities.entries.history.Action</class>
+		<class>entities.entries.history.History</class>
+		<class>entities.entries.images.FingerprintImage</class>
+		<class>entities.entries.images.Image</class>
+		<class>entities.entries.images.MugShotImage</class>
+		<class>entities.entries.images.PhotographicImage</class>
+		<class>entities.events.AccidentReport</class>
+		<class>entities.events.ArrestReport</class>
+		<class>entities.events.Event</class>
+		<class>entities.events.FieldInterview</class>
+		<class>entities.events.IncidentReport</class>
+		<class>entities.events.License</class>
+		<class>entities.events.Permit</class>
+		<class>entities.events.SuspectPerson</class>
+		<class>entities.police.Activity</class>
+		<class>entities.police.InvestigativeCase</class>
+		<class>entities.police.InvestigativeGroup</class>
+		<class>entities.police.Investigator</class>
+		<class>entities.police.Officer</class>
+		<class>entities.police.Task</class>
+		<class>security.Authorizable</class>
+		<class>security.Permission</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
 		</properties>

@@ -64,10 +64,10 @@ public class ControllerInvestigator implements Serializable {
 		ic.addInvestigator(inv);
 		ic.setStatus("Pending");
 
-		this.ejbInvestigativeCase.save(ic);
+		ic = this.ejbInvestigativeCase.save(ic);
 		
-//		this.investigator.addInvestigativeCase(ic);
-//		this.ejbInvestigator.save(investigator);
+		inv.addInvestigativeCase(ic);
+		this.ejbInvestigator.save(inv); 
 //		this.ejbInvestigator.refresh(investigator); 
 		
 		this.newInvestigatorId = null;

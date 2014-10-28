@@ -1,20 +1,10 @@
 package developmentUtilities;
 
-import java.util.Calendar;
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 
-import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
-
 import entities.Relatable;
-import entities.Relation;
-import entities.entries.Conveyance;
-import entities.entries.Entry;
-import entities.entries.Person;
 
 
 @Named

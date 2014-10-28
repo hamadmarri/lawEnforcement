@@ -2,24 +2,39 @@ package developmentUtilities;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import security.Permission;
-import entities.*;
-import entities.entries.*;
-import entities.entries.Location.Coordinate;
+import entities.Relatable;
+import entities.Relation;
+import entities.entries.Address;
+import entities.entries.AliasNameOrMoniker;
+import entities.entries.Conveyance;
+import entities.entries.Entry;
+import entities.entries.Identification;
+import entities.entries.Location;
+import entities.entries.Organization;
+import entities.entries.Person;
+import entities.entries.PersonName;
+import entities.entries.PhysicalCharacteristic;
+import entities.entries.Property;
+import entities.entries.Race;
+import entities.entries.ScarMarkTattoo;
+import entities.entries.ThreatAssessment;
 import entities.entries.contacts.CellPhone;
 import entities.entries.contacts.Email;
-import entities.entries.contacts.Telephone;
-import entities.entries.history.*;
-import entities.entries.images.*;
-import entities.events.*;
+import entities.entries.history.Action;
+import entities.entries.history.History;
+import entities.entries.images.MugShotImage;
+import entities.entries.images.PhotographicImage;
+import entities.events.ArrestReport;
+import entities.events.FieldInterview;
+import entities.events.IncidentReport;
+import entities.events.SuspectPerson;
 import entities.police.Activity;
 import entities.police.InvestigativeCase;
 import entities.police.InvestigativeGroup;
@@ -135,6 +150,9 @@ public class EJB_of_test {
 		Investigator inv = new Investigator(new PersonName("Cannon", "m."));
 		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test",
 				"Open");
+		Investigator patric = new Investigator(new PersonName("Patric", "Lencon"));
+		
+		
 //		invC.addIncidentReport(ir);
 		ir.setAssignedCase(invC);
 		invC.addInvestigator(inv);
@@ -150,6 +168,7 @@ public class EJB_of_test {
 		invC2.setOfficerWhoCreatedIt(of2);
 
 		em.persist(invC2);
+		em.persist(patric);
 	}
 
 

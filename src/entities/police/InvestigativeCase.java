@@ -30,10 +30,6 @@ public class InvestigativeCase extends Relatable {
 
 	private static final long serialVersionUID = 4471453776931939442L;
 
-//	@Id
-//	@GeneratedValue
-//	Long id;
-
 	@OneToMany(mappedBy = "assignedCase")
 	private List<IncidentReport> incidentReports;
 
@@ -80,11 +76,9 @@ public class InvestigativeCase extends Relatable {
 
 
 
-//	public Long getId() {
-//		return id;
-//	}
-
-
+	// public Long getId() {
+	// return id;
+	// }
 
 	public List<IncidentReport> getIncidentReports() {
 		return incidentReports;
