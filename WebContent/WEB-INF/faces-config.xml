@@ -1016,6 +1016,68 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	
+	<!-- ********** InvestigativeGroup ********** -->
+	<navigation-rule>
+		<from-view-id>/management/police/investigativeGroup/editInvestigativeGroup.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerInvestigativeGroup.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/police/investigativeGroup/addInvestigativeGroup.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/listInvestigativeGroups.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/listInvestigativeGroups.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/police/investigativeGroup/listInvestigativeGroups.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>add</from-outcome>
+			<to-view-id>
+				/management/police/investigativeGroup/addInvestigativeGroup.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/editInvestigativeGroup.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	
 	<!-- ********** Relation ********** -->
 	<navigation-rule>
 		<from-view-id>/management/relation/editRelation.xhtml</from-view-id>
