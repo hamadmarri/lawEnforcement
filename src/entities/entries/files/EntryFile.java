@@ -13,7 +13,7 @@ import entities.entries.Entry;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({ @NamedQuery(name = "EntryFile.findAll", query = "select e from EntryFile e"),
-	@NamedQuery(name = "EntryFile.findById", query = "select e from EntryFile e WHERE e.id = :id") }) 
+		@NamedQuery(name = "EntryFile.findById", query = "select e from EntryFile e WHERE e.id = :id") })
 public class EntryFile extends Entry {
 
 	private static final long serialVersionUID = 998978197930518505L;
@@ -72,6 +72,12 @@ public class EntryFile extends Entry {
 
 	public String getRelativeLink() {
 		return relativeLink;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 

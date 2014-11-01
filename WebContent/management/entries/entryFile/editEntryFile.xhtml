@@ -9,40 +9,30 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{controllerPermission.id}" />
+		<f:viewParam name="id" value="#{controllerEntryFile.id}" />
 	</f:metadata>
 </h:head>
 
 <h:body>
 	<ui:insert name="editHeader">
-		<h2>Edit Permission #{controllerPermission.permission.id}</h2>
+		<h2>Edit EntryFile #{controllerEntryFile.entryFile.id}</h2>
 	</ui:insert>
 
 
 	<h:link value="cancel" outcome="cancel">
-		<f:param name="id" value="#{controllerPermission.id}" />
+		<f:param name="id" value="#{controllerEntryFile.id}" />
 	</h:link>
 
 
 	<h:form>
-		<h:outputLabel value="Read Permission" />
-		<h:inputText value="#{controllerPermission.readPermission}" />
+		<h:outputLabel value="Caption" />
+		<h:inputText value="#{controllerEntryFile.entryFile.caption}" />
 		<br />
-		<h:outputLabel value="Write Permission" />
-		<h:inputText value="#{controllerPermission.writePermission}" />
-		<br />
-		<h:outputLabel value="Owner" />
-		<h:inputText value="#{controllerPermission.ownerId}" />
-		<br />
-		<h:outputLabel value="Relatable" />
-		<h:inputText value="#{controllerPermission.relatableId}" />
-		<br />
-		<h:outputLabel value="Authorizable" />
-		<h:inputText value="#{controllerPermission.authorizableId}" />
-		<br />
+		<h:outputLabel value="type" />
+		<h:inputText value="#{controllerEntryFile.entryFile.type}" />
 
 		<br />
-		<h:commandButton value="save" action="#{controllerPermission.submit}" />
+		<h:commandButton value="save" action="#{controllerEntryFile.submit}" />
 	</h:form>
 </h:body>
 </html>
