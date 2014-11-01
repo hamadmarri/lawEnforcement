@@ -34,10 +34,11 @@ public class ControllerEntryFile implements Serializable {
 	@EJB
 	private AbstractEjb<EntryFile> ejbEntryFile;
 
+	private String id;
 	private String path = "upload";
 	private EntryFile entryFile = null;
 	private boolean newEntity = false;
-	protected List<EntryFile> entryFilesList = null;
+	private List<EntryFile> entryFilesList = null;
 
 
 
@@ -107,6 +108,15 @@ public class ControllerEntryFile implements Serializable {
 
 
 	public EntryFile getEntryFile() {
+
+		if (this.entryFile != null)
+			return this.entryFile;
+
+		if (this.id == null)
+			return null;
+
+		this.entryFile = ejbEntryFile.getEntity(Long.parseLong(this.id));
+
 		return entryFile;
 	}
 
@@ -141,6 +151,18 @@ public class ControllerEntryFile implements Serializable {
 
 	public void setEntryFilesList(List<EntryFile> entryFilesList) {
 		this.entryFilesList = entryFilesList;
+	}
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
