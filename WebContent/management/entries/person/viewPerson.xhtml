@@ -60,7 +60,7 @@
 
 				<h3>Contacts</h3>
 				<h:dataTable value="#{controllerPerson.person.contacts}" var="c">
-					<h:column>#{c.name}</h:column>
+					<h:column>#{c.type}</h:column>
 					<h:column>#{c.content}</h:column>
 				</h:dataTable>
 
@@ -98,8 +98,11 @@
 				<h:commandButton value="add"
 					action="#{controllerPerson.addNewScarMarkTattoo()}" />
 
+				<h3>Modus operandi</h3>
 				<h:outputLabel value="${controllerPerson.person.modusOperandi}" />
-				<br />
+				
+
+				<h3>NCIC fingerprint Classification</h3>
 				<h:outputLabel
 					value="${controllerPerson.person.NCIC_fingerprintClassification}" />
 

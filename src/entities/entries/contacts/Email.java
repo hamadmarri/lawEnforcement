@@ -13,14 +13,14 @@ public class Email extends Contact {
 
 
 	public Email() {
-		this.name = "Email";
+		this.type = "Email";
 	}
 
 
 
 	public Email(Person p, String content) {
 		super(p);
-		this.name = "Email";
+		this.type = "Email";
 		setContent(content);
 	}
 

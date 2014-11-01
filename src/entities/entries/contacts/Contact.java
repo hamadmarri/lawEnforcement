@@ -2,15 +2,19 @@ package entities.entries.contacts;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 import entities.entries.Person;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Contact implements Serializable {
 
 	private static final long serialVersionUID = 2529485375399002589L;
@@ -19,23 +23,23 @@ public abstract class Contact implements Serializable {
 	@GeneratedValue
 	protected Long id;
 
-	protected String name;
+	protected String type;
 	protected String content;
 
-	@ManyToOne
-	protected Person owner;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	protected Person person;
 
 
 
 	public Contact() {
-		this.name = new String();
+		this.type = new String();
 		this.content = new String();
 	}
 
 
 
 	public Contact(Person p) {
-		this.owner = p;
+		this.person = p;
 	}
 
 
@@ -54,26 +58,26 @@ public abstract class Contact implements Serializable {
 
 
 
-	public String getName() {
-		return this.name;
+	public String getType() {
+		return type;
 	}
 
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 
 
-	public void setOwner(Person owner) {
-		this.owner = owner;
+	public void setPerson(Person owner) {
+		this.person = owner;
 	}
 
 
 
-	public Person getOwner() {
-		return owner;
+	public Person getPerson() {
+		return person;
 	}
 
 }

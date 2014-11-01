@@ -1,4 +1,4 @@
-package entities.entries.images;
+package entities.entries.files.images;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class PhotographicImage extends Image {
 
 	private static final long serialVersionUID = -2930081503693862012L;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Person> persons;
 
 

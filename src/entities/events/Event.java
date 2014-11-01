@@ -17,7 +17,7 @@ import entities.police.Officer;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Event extends Relatable implements Serializable {
 
 	private static final long serialVersionUID = -7653133964450866716L;

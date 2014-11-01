@@ -1,4 +1,4 @@
-package entities.entries.images;
+package entities.entries.files.images;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ public class FingerprintImage extends Image {
 
 	private static final long serialVersionUID = 2076018071218735536L;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Person person;
 
 

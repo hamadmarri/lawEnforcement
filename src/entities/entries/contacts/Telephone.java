@@ -13,14 +13,14 @@ public class Telephone extends Contact {
 
 
 	public Telephone() {
-		this.name = "Telephone";
+		this.type = "Telephone";
 	}
 
 
 
 	public Telephone(Person p, String content) {
 		super(p);
-		this.name = "Telephone";
+		this.type = "Telephone";
 		setContent(content);
 	}
 

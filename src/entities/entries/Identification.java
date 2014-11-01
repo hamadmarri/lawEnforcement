@@ -21,8 +21,8 @@ public class Identification implements Serializable {
 	private String name;
 	private String content;
 
-	@ManyToOne
-	private Person owner;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private Person person;
 
 
 
@@ -34,14 +34,14 @@ public class Identification implements Serializable {
 
 
 
-	public Identification(Person owner) {
-		this.owner = owner;
+	public Identification(Person person) {
+		this.person = person;
 	}
 
 
 
-	public Identification(Person owner, String name, String content) {
-		this.owner = owner;
+	public Identification(Person person, String name, String content) {
+		this.person = person;
 		this.name = name;
 		this.content = content;
 	}
@@ -68,6 +68,18 @@ public class Identification implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+
+
+	public Person getPerson() {
+		return person;
+	}
+
+
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 

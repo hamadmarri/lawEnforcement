@@ -29,10 +29,10 @@
 		<class>entities.entries.contacts.Telephone</class>
 		<class>entities.entries.history.Action</class>
 		<class>entities.entries.history.History</class>
-		<class>entities.entries.images.FingerprintImage</class>
-		<class>entities.entries.images.Image</class>
-		<class>entities.entries.images.MugShotImage</class>
-		<class>entities.entries.images.PhotographicImage</class>
+		<class>entities.entries.files.images.FingerprintImage</class>
+		<class>entities.entries.files.images.Image</class>
+		<class>entities.entries.files.images.MugShotImage</class>
+		<class>entities.entries.files.images.PhotographicImage</class>
 		<class>entities.events.AccidentReport</class>
 		<class>entities.events.ArrestReport</class>
 		<class>entities.events.Event</class>
@@ -51,6 +51,7 @@
 		<class>security.Permission</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
 		</properties>
 	</persistence-unit>
 </persistence>

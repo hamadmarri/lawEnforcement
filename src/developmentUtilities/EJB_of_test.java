@@ -26,11 +26,12 @@ import entities.entries.Race;
 import entities.entries.ScarMarkTattoo;
 import entities.entries.ThreatAssessment;
 import entities.entries.contacts.CellPhone;
+import entities.entries.contacts.Contact;
 import entities.entries.contacts.Email;
+import entities.entries.files.images.MugShotImage;
+import entities.entries.files.images.PhotographicImage;
 import entities.entries.history.Action;
 import entities.entries.history.History;
-import entities.entries.images.MugShotImage;
-import entities.entries.images.PhotographicImage;
 import entities.events.ArrestReport;
 import entities.events.FieldInterview;
 import entities.events.IncidentReport;
@@ -82,14 +83,15 @@ public class EJB_of_test {
 
 	private void createInvestigativeGroup_Permission() {
 		Officer o1 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
-//		Officer o2 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
+		// Officer o2 = (Officer)
+		// em.createNamedQuery("Officer.findAll").getResultList().get(1);
 		Investigator i1 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
 		InvestigativeGroup ig = new InvestigativeGroup("First Group");
 		Permission p = new Permission();
 		InvestigativeCase ic = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
 				.get(0);
 
-//		ig.addAuthorizable(o2);
+		// ig.addAuthorizable(o2);
 		ig.addAuthorizable(i1);
 
 		p.setOwner(o1);
@@ -151,9 +153,8 @@ public class EJB_of_test {
 		InvestigativeCase invC = new InvestigativeCase(Calendar.getInstance().getTime(), dueDate.getTime(), "test",
 				"Open");
 		Investigator patric = new Investigator(new PersonName("Patric", "Lencon"));
-		
-		
-//		invC.addIncidentReport(ir);
+
+		// invC.addIncidentReport(ir);
 		ir.setAssignedCase(invC);
 		invC.addInvestigator(inv);
 		invC.setOfficerWhoCreatedIt(of);
@@ -163,8 +164,8 @@ public class EJB_of_test {
 		em.persist(ir);
 
 		Officer of2 = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
-		InvestigativeCase invC2 = new InvestigativeCase(Calendar.getInstance().getTime(),
-				Calendar.getInstance().getTime(), "test", "Open");
+		InvestigativeCase invC2 = new InvestigativeCase(Calendar.getInstance().getTime(), Calendar.getInstance()
+				.getTime(), "test", "Open");
 		invC2.setOfficerWhoCreatedIt(of2);
 
 		em.persist(invC2);
@@ -299,12 +300,19 @@ public class EJB_of_test {
 		Calendar date2 = Calendar.getInstance();
 		date2.set(1991, 6, 19);
 
+		Identification id1;
+		Identification id2;
+		Contact c1;
+		Contact c2;
+		PhotographicImage pi;
+		List<MugShotImage> msi;
+
 		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1.getTime(), "Al Hasa", "Male", "Saudi", null,
 				"AA");
-		p1.addIdentification(new Identification(p1, "SGI", "849839409"));
-		p1.addIdentification(new Identification(p1, "U of R", "200294236"));
-		p1.addContact(new CellPhone(p1, "3069990084"));
-		p1.addContact(new Email(p1, "almarrih@uregina.ca"));
+		// p1.addIdentification(new Identification(p1, "SGI", "849839409"));
+		// p1.addIdentification(new Identification(p1, "U of R", "200294236"));
+		// p1.addContact(new CellPhone(p1, "3069990084"));
+		// p1.addContact(new Email(p1, "almarrih@uregina.ca"));
 		p1.setRace(new Race("Saudi Arabian"));
 		p1.setPhysicalCharacteristic(new PhysicalCharacteristic("Overweight", "Short", "Light", "Black"));
 		p1.setThreatAssessment(new ThreatAssessment("low"));
@@ -316,17 +324,29 @@ public class EJB_of_test {
 		p2.setThreatAssessment(new ThreatAssessment("low"));
 		Relation r = new Relation(p1, "brothers", p2);
 
-		PhotographicImage pi = new PhotographicImage("both", "ldfjglh");
+		id1 = new Identification(p1, "SGI", "849839409");
+		id2 = new Identification(p1, "U of R", "200294236");
+		c1 = new CellPhone(p1, "3069990084");
+		c2 = new Email(p1, "almarrih@uregina.ca");
+
+		pi = new PhotographicImage("both", "link0");
 		pi.addPerson(p1);
 		pi.addPerson(p2);
 
-		List<MugShotImage> msi = new ArrayList<MugShotImage>();
-		msi.add(new MugShotImage("fron", "dfgdfg", p1));
-		msi.add(new MugShotImage("right", "dfgdfg", p1));
-		msi.add(new MugShotImage("left", "dfgdfg", p1));
+		msi = new ArrayList<MugShotImage>();
+		msi.add(new MugShotImage("fron", "link1", p1));
+		msi.add(new MugShotImage("right", "link2", p1));
+		msi.add(new MugShotImage("left", "link3", p1));
 
 		em.persist(p1);
 		em.persist(p2);
+
+		em.persist(id1);
+		em.persist(id2);
+
+		em.persist(c1);
+		em.persist(c2);
+
 		em.persist(r);
 		em.persist(pi);
 

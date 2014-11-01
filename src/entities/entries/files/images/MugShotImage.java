@@ -1,11 +1,11 @@
-package entities.entries.images;
+package entities.entries.files.images;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import entities.entries.Person;
-import entities.entries.images.Image;
+import entities.entries.files.images.Image;
 
 
 @Entity
@@ -13,7 +13,7 @@ public class MugShotImage extends Image {
 
 	private static final long serialVersionUID = 3574723745426542751L;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Person person;
 
 

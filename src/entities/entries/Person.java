@@ -15,9 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import entities.entries.contacts.Contact;
-import entities.entries.images.FingerprintImage;
-import entities.entries.images.MugShotImage;
-import entities.entries.images.PhotographicImage;
+import entities.entries.files.images.FingerprintImage;
+import entities.entries.files.images.MugShotImage;
+import entities.entries.files.images.PhotographicImage;
 import entities.events.FieldInterview;
 
 
@@ -54,10 +54,10 @@ public class Person extends Entry {
 	private String gender;
 	private String citizenship;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person")
 	private List<Identification> identifications;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person")
 	private List<Contact> contacts;
 
 	@OneToMany(cascade = CascadeType.ALL)
