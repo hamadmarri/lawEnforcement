@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h2>EntryFiles</h2>
+
+		<c:if test="${not included}">
+			<h:link value="add" outcome="add" />
+		</c:if>
+
+		<c:if test="${empty relatables and not included}">
+			<c:set var="entryFiles"
+				value="#{controllerEntryFile.entryFilesList}" />
+		</c:if>
+
+		<c:if test="${not empty relatables and included}">
+			<c:set var="entryFiles" value="#{relatables.entryFiles}" />
+		</c:if>
+
+		<c:if test="${empty entryFiles and included}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty entryFiles}">
+			<h:dataTable value="#{entryFiles}" var="e">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/entries/entryFile/viewEntryFile.xhtml?id=#{e.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/entries/entryFile/editEntryFile.xhtml?id=#{e.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">id</f:facet>
+					#{e.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Caption</f:facet>
+					<h:outputLabel value="#{e.caption}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+	</ui:composition>
+</h:body>
+</html>

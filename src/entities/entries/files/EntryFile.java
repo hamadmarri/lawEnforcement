@@ -4,12 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import entities.entries.Entry;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NamedQueries({ @NamedQuery(name = "EntryFile.findAll", query = "select e from EntryFile e"),
+	@NamedQuery(name = "EntryFile.findById", query = "select e from EntryFile e WHERE e.id = :id") }) 
 public class EntryFile extends Entry {
 
 	private static final long serialVersionUID = 998978197930518505L;

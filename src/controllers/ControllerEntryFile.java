@@ -6,12 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FileUploadEvent;
@@ -24,9 +25,9 @@ import entities.entries.files.EntryFile;
  * 
  * @author hamadalmarri
  */
-@ManagedBean(name = "controllerUploadFile")
-@SessionScoped
-public class ControllerUploadFile implements Serializable {
+@ManagedBean(name = "controllerEntryFile")
+@ViewScoped
+public class ControllerEntryFile implements Serializable {
 
 	private static final long serialVersionUID = -1093413444855839377L;
 
@@ -34,8 +35,9 @@ public class ControllerUploadFile implements Serializable {
 	private AbstractEjb<EntryFile> ejbEntryFile;
 
 	private String path = "upload";
-	private EntryFile entryFile = new EntryFile();
-	private boolean newEntity = true;
+	private EntryFile entryFile = null;
+	private boolean newEntity = false;
+	protected List<EntryFile> entryFilesList = null;
 
 
 
@@ -57,13 +59,15 @@ public class ControllerUploadFile implements Serializable {
 
 
 
-	private static int getRandom() {
+	private int getRandom() {
 		return (int) (new Random(System.currentTimeMillis()).nextDouble() * 100000000);
 	}
 
 
 
-	public void handleFileUpload(FileUploadEvent event) {
+	public synchronized void handleFileUpload(FileUploadEvent event) {
+
+		// System.out.println("******* handleFileUpload *********");
 
 		try {
 			String randomFileName = getRandom() + "_" + event.getFile().getFileName();
@@ -83,10 +87,21 @@ public class ControllerUploadFile implements Serializable {
 			out.flush();
 			out.close();
 
-			submit();
+			ejbEntryFile.add(this.entryFile);
+			// System.out.println("******* added *********");
+			this.entryFile = new EntryFile();
+			// System.out.println("******* new *********");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+
+	public void createNewEntryFile() {
+		this.entryFile = new EntryFile();
+		this.setNewEntity(true);
 	}
 
 
@@ -111,6 +126,21 @@ public class ControllerUploadFile implements Serializable {
 
 	public void setNewEntity(boolean newEntity) {
 		this.newEntity = newEntity;
+	}
+
+
+
+	public List<EntryFile> getEntryFilesList() {
+		if (this.entryFilesList == null)
+			this.entryFilesList = ejbEntryFile.getList();
+
+		return entryFilesList;
+	}
+
+
+
+	public void setEntryFilesList(List<EntryFile> entryFilesList) {
+		this.entryFilesList = entryFilesList;
 	}
 
 }
