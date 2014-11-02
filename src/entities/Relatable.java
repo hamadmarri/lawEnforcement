@@ -115,6 +115,20 @@ public class Relatable implements Serializable, Describable {
 
 
 
+	public void removeEntryFile(Long efId) {
+		if (this.entryFiles == null)
+			return;
+
+		for (EntryFile ef : this.entryFiles) {
+			if (ef.getId() == efId) {
+				this.entryFiles.remove(ef);
+				break;
+			}
+		}
+	}
+
+
+
 	@Override
 	public String getDescription() {
 		return this.description;

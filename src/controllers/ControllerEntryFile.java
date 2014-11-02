@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -20,6 +22,7 @@ import org.primefaces.event.FileUploadEvent;
 import ejbs.AbstractEjb;
 import entities.Relatable;
 import entities.entries.files.EntryFile;
+import entities.entries.files.images.Image;
 
 
 /**
@@ -77,10 +80,18 @@ public class ControllerEntryFile implements Serializable {
 
 		try {
 			String randomFileName = getRandom() + "_" + event.getFile().getFileName();
+			randomFileName = randomFileName.replaceAll("[~#@*+%{}<>\\[\\]|\"\\^' ]", "_");
+
 			String absoluteDiskPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 			File targetFolder = new File(absoluteDiskPath + this.path);
 			InputStream inputStream = event.getFile().getInputstream();
 			OutputStream out = new FileOutputStream(new File(targetFolder, randomFileName));
+
+			if (isImage(randomFileName))
+				this.entryFile = new Image();
+			else
+				this.entryFile = new EntryFile();
+
 			this.entryFile.setAbsoluteLink(absoluteDiskPath + this.path + "/" + randomFileName);
 
 			int read = 0;
@@ -94,9 +105,6 @@ public class ControllerEntryFile implements Serializable {
 			out.close();
 
 			ejbEntryFile.add(this.entryFile);
-			// System.out.println("******* added *********");
-			this.entryFile = new EntryFile();
-			// System.out.println("******* new *********");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -105,8 +113,15 @@ public class ControllerEntryFile implements Serializable {
 
 
 
+	private boolean isImage(String filename) {
+		Pattern p = Pattern.compile("([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)");
+		Matcher m = p.matcher(filename);
+		return m.matches();
+	}
+
+
+
 	public void createNewEntryFile() {
-		this.entryFile = new EntryFile();
 		this.setNewEntity(true);
 	}
 
@@ -140,7 +155,22 @@ public class ControllerEntryFile implements Serializable {
 
 
 	public void removeEntryFile(Long entryFileId) {
+		EntryFile ef = this.ejbEntryFile.getEntity(entryFileId);
+		
+		if (ef.getRelatable() == null)
+			this.ejbEntryFile.remove(entryFileId);
+		else
+			removeEntryFile(entryFileId, ef.getRelatable().getId());
+	}
+
+
+
+	private void removeEntryFile(Long entryFileId, Long relatableID) {
+		Relatable r = this.ejbRelatable.getEntity(relatableID, "Relatable");
+		r.removeEntryFile(entryFileId);
+
 		this.ejbEntryFile.remove(entryFileId);
+		this.ejbRelatable.save(r);
 	}
 
 
