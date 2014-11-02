@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import entities.entries.files.EntryFile;
+
 
 @Stateless
 public class AbstractEjb<T> {
@@ -37,6 +39,12 @@ public class AbstractEjb<T> {
 
 	public T save(T t) {
 		return em.merge(t);
+	}
+
+
+
+	public void flush() {
+		em.flush();
 	}
 
 
@@ -76,6 +84,13 @@ public class AbstractEjb<T> {
 
 	public void setEntityName(String entityName) {
 		this.entityName = entityName;
+	}
+
+
+
+	public void remove(Long entityId) {
+		T entity = this.getEntity(entityId);
+		em.remove(entity);
 	}
 
 }

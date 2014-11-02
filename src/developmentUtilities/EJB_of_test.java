@@ -304,8 +304,8 @@ public class EJB_of_test {
 		Identification id2;
 		Contact c1;
 		Contact c2;
-		PhotographicImage pi;
-		List<MugShotImage> msi;
+//		PhotographicImage pi;
+//		List<MugShotImage> msi;
 
 		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1.getTime(), "Al Hasa", "Male", "Saudi", null,
 				"AA");
@@ -329,14 +329,14 @@ public class EJB_of_test {
 		c1 = new CellPhone(p1, "3069990084");
 		c2 = new Email(p1, "almarrih@uregina.ca");
 
-		pi = new PhotographicImage("both", "link0");
-		pi.addPerson(p1);
-		pi.addPerson(p2);
-
-		msi = new ArrayList<MugShotImage>();
-		msi.add(new MugShotImage("fron", "link1", p1));
-		msi.add(new MugShotImage("right", "link2", p1));
-		msi.add(new MugShotImage("left", "link3", p1));
+//		pi = new PhotographicImage("both", "link0");
+//		pi.addPerson(p1);
+//		pi.addPerson(p2);
+//
+//		msi = new ArrayList<MugShotImage>();
+//		msi.add(new MugShotImage("fron", "link1", p1));
+//		msi.add(new MugShotImage("right", "link2", p1));
+//		msi.add(new MugShotImage("left", "link3", p1));
 
 		em.persist(p1);
 		em.persist(p2);
@@ -348,10 +348,10 @@ public class EJB_of_test {
 		em.persist(c2);
 
 		em.persist(r);
-		em.persist(pi);
+//		em.persist(pi);
 
-		for (MugShotImage mugShotImage : msi)
-			em.persist(mugShotImage);
+//		for (MugShotImage mugShotImage : msi)
+//			em.persist(mugShotImage);
 
 	}
 

@@ -10,10 +10,12 @@
 <h:head>
 </h:head>
 
-<h:body>
+<h:body> 
 	<ui:composition template="/WEB-INF/template.xhtml">
 		<ui:define name="content">
 			<ui:insert name="view" />
+			
+			<c:set var="included" value="true" />
 			
 			<h4>Description</h4>
 			<c:if test="${empty relatable.description}">
@@ -26,6 +28,9 @@
 				<ui:param name="relations" value="#{relations}" />
 			</ui:include>
 
+			<ui:include src="/management/entries/entryFile/listEntryFiles.xhtml">
+				<ui:param name="relatable" value="#{relatable}" />
+			</ui:include>
 		</ui:define>
 	</ui:composition>
 </h:body>

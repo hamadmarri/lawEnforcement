@@ -15,7 +15,7 @@ import entities.entries.Person;
 
 @ManagedBean(name = "controllerConveyance")
 @ViewScoped
-public class ControllerConveyance extends ControllerRelatable<Conveyance> implements Serializable {
+public class ControllerConveyance extends AbstractController<Conveyance> implements Serializable {
 
 	private static final long serialVersionUID = -3709992694215689104L;
 

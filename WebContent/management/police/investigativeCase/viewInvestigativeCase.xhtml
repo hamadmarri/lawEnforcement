@@ -16,58 +16,64 @@
 	</f:metadata>
 </h:head>
 <h:body>
-	<ui:composition>
-		<h3>Investigative Case</h3>
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
 
-		<c:set var="investigativeCase"
-			value="#{controllerInvestigativeCase.investigativeCase}" />
-		<c:set var="incidentReports"
-			value="#{controllerInvestigativeCase.investigativeCase.incidentReports}" />
-		<c:set var="included" value="true" />
+			<h3>Investigative Case</h3>
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerInvestigativeCase.id}" />
-		</h:link>
-		<br />
+			<c:set var="investigativeCase"
+				value="#{controllerInvestigativeCase.investigativeCase}" />
+			<c:set var="incidentReports"
+				value="#{controllerInvestigativeCase.investigativeCase.incidentReports}" />
+			<c:set var="relatable"
+				value="#{controllerInvestigativeCase.investigativeCase}" />
+			<c:set var="included" value="true" />
 
-		<h:outputLabel value="Description" />
-		<h:outputLabel
-			value="#{controllerInvestigativeCase.investigativeCase.description}" />
-		<br />
-		<h:outputLabel value="Status" />
-		<h:outputLabel
-			value="#{controllerInvestigativeCase.investigativeCase.status}" />
-		<br />
-		<h:outputLabel value="Start Date" />
-		<h:outputLabel
-			value="#{controllerInvestigativeCase.investigativeCase.startDate}" />
-		<br />
-		<h:outputLabel value="Due Date" />
-		<h:outputLabel
-			value="#{controllerInvestigativeCase.investigativeCase.dueDate}" />
-		<br />
-		<h:outputLabel value="Officer who created it" />
-		<h:outputLabel
-			value="#{controllerInvestigativeCase.investigativeCase.officerWhoCreatedIt.personName}" />
-		<br />
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerInvestigativeCase.id}" />
+			</h:link>
+			<br />
 
-		<!-- incident reports list -->
-		<ui:include
-			src="/management/events/incidentReport/listIncidentReports.xhtml" />
-		<h:form>
-			<h:inputText
-				value="#{controllerInvestigativeCase.newIncidentReportId}" />
-			<h:commandButton value="add" action="#{controllerInvestigativeCase.addIncidentReport}" />
-		</h:form>
+			<h:outputLabel value="Description" />
+			<h:outputLabel
+				value="#{controllerInvestigativeCase.investigativeCase.description}" />
+			<br />
+			<h:outputLabel value="Status" />
+			<h:outputLabel
+				value="#{controllerInvestigativeCase.investigativeCase.status}" />
+			<br />
+			<h:outputLabel value="Start Date" />
+			<h:outputLabel
+				value="#{controllerInvestigativeCase.investigativeCase.startDate}" />
+			<br />
+			<h:outputLabel value="Due Date" />
+			<h:outputLabel
+				value="#{controllerInvestigativeCase.investigativeCase.dueDate}" />
+			<br />
+			<h:outputLabel value="Officer who created it" />
+			<h:outputLabel
+				value="#{controllerInvestigativeCase.investigativeCase.officerWhoCreatedIt.personName}" />
+			<br />
 
-		<!-- investigators responsible for -->
-		<ui:include
-			src="/management/police/investigator/listInvestigators.xhtml" />
+			<!-- incident reports list -->
+			<ui:include
+				src="/management/events/incidentReport/listIncidentReports.xhtml" />
+			<h:form>
+				<h:inputText
+					value="#{controllerInvestigativeCase.newIncidentReportId}" />
+				<h:commandButton value="add"
+					action="#{controllerInvestigativeCase.addIncidentReport}" />
+			</h:form>
 
-		<!-- Activity list -->
-		<ui:include
-			src="/management/police/investigativeCase/activity/listActivities.xhtml" />
+			<!-- investigators responsible for -->
+			<ui:include
+				src="/management/police/investigator/listInvestigators.xhtml" />
 
+			<!-- Activity list -->
+			<ui:include
+				src="/management/police/investigativeCase/activity/listActivities.xhtml" />
+
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

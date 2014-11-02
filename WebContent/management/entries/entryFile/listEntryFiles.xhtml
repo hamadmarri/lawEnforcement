@@ -18,39 +18,60 @@
 			<h:link value="add" outcome="add" />
 		</c:if>
 
-		<c:if test="${empty relatables and not included}">
-			<c:set var="entryFiles"
-				value="#{controllerEntryFile.entryFilesList}" />
+		<c:if test="${empty relatable and not included}">
+			<c:set var="entryFiles" value="#{controllerEntryFile.entryFilesList}" />
 		</c:if>
 
-		<c:if test="${not empty relatables and included}">
-			<c:set var="entryFiles" value="#{relatables.entryFiles}" />
+		<c:if test="${not empty relatable and included}">
+			<c:set var="entryFiles" value="#{relatable.entryFiles}" />
 		</c:if>
+
 
 		<c:if test="${empty entryFiles and included}">
 			<h:outputLabel value="nothing" />
 		</c:if>
 
 		<c:if test="${not empty entryFiles}">
-			<h:dataTable value="#{entryFiles}" var="e">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/entries/entryFile/viewEntryFile.xhtml?id=#{e.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/entries/entryFile/editEntryFile.xhtml?id=#{e.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">id</f:facet>
+			<h:form>
+				<h:dataTable value="#{entryFiles}" var="e">
+					<h:column>
+						<h:link value="view"
+							outcome="/management/entries/entryFile/viewEntryFile.xhtml?id=#{e.id}" />
+					</h:column>
+					<h:column>
+						<h:link value="edit"
+							outcome="/management/entries/entryFile/editEntryFile.xhtml?id=#{e.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">id</f:facet>
 					#{e.id}
 				</h:column>
-				<h:column>
-					<f:facet name="header">Caption</f:facet>
-					<h:outputLabel value="#{e.caption}" />
-				</h:column>
-			</h:dataTable>
+					<h:column>
+						<f:facet name="header">Caption</f:facet>
+						<h:outputLabel value="#{e.caption}" />
+					</h:column>
+					<h:column>
+						<h:commandButton value="remove"
+							action="#{controllerEntryFile.removeEntryFile(e.id)}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
 		</c:if>
+
+		<c:if test="${not empty relatable and included}">
+			<c:set var="entryFiles" value="#{relatable.entryFiles}" />
+		</c:if>
+
+
+		<c:if test="${included != null and included}">
+			<h:form>
+				<h:inputText value="#{controllerEntryFile.mergeEntryFileId}" />
+				<h:commandButton value="add"
+					action="#{controllerEntryFile.addEntryFileToRelatable(relatable.id)}" />
+			</h:form>
+		</c:if>
+
+
 	</ui:composition>
 </h:body>
 </html>

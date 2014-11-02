@@ -13,7 +13,7 @@ import entities.events.IncidentReport;
 
 @ManagedBean(name = "controllerArrestReport")
 @ViewScoped
-public class ControllerArrestReport extends ControllerRelatable<ArrestReport> implements Serializable {
+public class ControllerArrestReport extends AbstractController<ArrestReport> implements Serializable {
 
 	private static final long serialVersionUID = 8531943717512800497L;
 	private String incidentReportId;

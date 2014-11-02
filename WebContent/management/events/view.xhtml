@@ -27,6 +27,10 @@
 			<!-- officers responsible for -->
 			<ui:include src="/management/police/officer/listOfficers.xhtml" />
 
+			<!-- EntryFiles -->
+			<ui:include src="/management/entries/entryFile/listEntryFiles.xhtml">
+				<ui:param name="relatable" value="#{relatable}" />
+			</ui:include>
 		</ui:define>
 	</ui:composition>
 </h:body>

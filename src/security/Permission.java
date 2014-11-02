@@ -52,7 +52,7 @@ public class Permission implements Serializable {
 		return id;
 	}
 
-
+ 
 
 	public Officer getOwner() {
 		return owner;

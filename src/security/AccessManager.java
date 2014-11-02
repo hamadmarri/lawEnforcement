@@ -28,7 +28,7 @@ public class AccessManager implements Serializable {
 	@EJB
 	AbstractEjb<Authorizable> ejbAuthorizable;
 
-	private String RelatableId;
+	private String relatableId;
 	private String userId;
 
 
@@ -43,7 +43,7 @@ public class AccessManager implements Serializable {
 
 	public void manage() {
 //		System.out.println("******* manage ******");
-		Relatable r = this.ejbRelatable.getEntity(Long.parseLong(this.RelatableId));
+		Relatable r = this.ejbRelatable.getEntity(Long.parseLong(this.relatableId));
 		Authorizable a = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId), "Authorizable");
 		List<InvestigativeGroup> igs = a.getInvestigativeGroups();
 
@@ -89,13 +89,13 @@ public class AccessManager implements Serializable {
 
 
 	public String getRelatableId() {
-		return RelatableId;
+		return relatableId;
 	}
-
+ 
 
 
 	public void setRelatableId(String relatableId) {
-		RelatableId = relatableId;
+		this.relatableId = relatableId;
 	}
 
 

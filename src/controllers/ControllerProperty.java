@@ -12,7 +12,7 @@ import entities.entries.Property;
 
 @ManagedBean(name = "controllerProperty")
 @ViewScoped
-public class ControllerProperty extends ControllerRelatable<Property> implements Serializable {
+public class ControllerProperty extends AbstractController<Property> implements Serializable {
 
 	private static final long serialVersionUID = 4575708242261456175L;
 

@@ -11,9 +11,9 @@ import ejbs.AbstractEjb;
 import entities.Relatable;
 
 
-@ManagedBean(name = "abstarctController")
+@ManagedBean(name = "abstractController")
 @ViewScoped
-public class ControllerRelatable<T> {
+public class AbstractController<T> {
 
 	@EJB
 	protected AbstractEjb<Relatable> ejbRelatable;

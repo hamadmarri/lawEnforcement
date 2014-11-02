@@ -18,6 +18,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 
 import ejbs.AbstractEjb;
+import entities.Relatable;
 import entities.entries.files.EntryFile;
 
 
@@ -34,11 +35,15 @@ public class ControllerEntryFile implements Serializable {
 	@EJB
 	private AbstractEjb<EntryFile> ejbEntryFile;
 
+	@EJB
+	private AbstractEjb<Relatable> ejbRelatable;
+
 	private String id;
 	private String path = "upload";
 	private EntryFile entryFile = null;
 	private boolean newEntity = false;
 	private List<EntryFile> entryFilesList = null;
+	private String mergeEntryFileId;
 
 
 
@@ -122,6 +127,24 @@ public class ControllerEntryFile implements Serializable {
 
 
 
+	public void addEntryFileToRelatable(Long relatableID) {
+		Relatable r = this.ejbRelatable.getEntity(relatableID, "Relatable");
+		EntryFile ef = this.ejbEntryFile.getEntity(Long.parseLong(this.mergeEntryFileId));
+
+		ef.setRelatable(r);
+		r.addEntryFile(ef);
+
+		this.ejbEntryFile.save(ef);
+	}
+
+
+
+	public void removeEntryFile(Long entryFileId) {
+		this.ejbEntryFile.remove(entryFileId);
+	}
+
+
+
 	public void setEntryFile(EntryFile entryFile) {
 		this.entryFile = entryFile;
 	}
@@ -163,6 +186,18 @@ public class ControllerEntryFile implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+
+	public String getMergeEntryFileId() {
+		return mergeEntryFileId;
+	}
+
+
+
+	public void setMergeEntryFileId(String mergeEntryFileId) {
+		this.mergeEntryFileId = mergeEntryFileId;
 	}
 
 }

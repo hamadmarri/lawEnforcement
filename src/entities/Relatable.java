@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import entities.entries.files.EntryFile;
 import security.Permission;
 
 
@@ -42,6 +43,9 @@ public class Relatable implements Serializable, Describable {
 
 	@OneToMany(mappedBy = "relatable")
 	private List<Permission> permissions;
+
+	@OneToMany(mappedBy = "relatable")
+	protected List<EntryFile> entryFiles;
 
 
 
@@ -92,6 +96,21 @@ public class Relatable implements Serializable, Describable {
 	@Override
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+
+	public List<EntryFile> getEntryFiles() {
+		return entryFiles;
+	}
+
+
+
+	public void addEntryFile(EntryFile ef) {
+		if (this.entryFiles == null)
+			this.entryFiles = new ArrayList<EntryFile>();
+
+		this.entryFiles.add(ef);
 	}
 
 

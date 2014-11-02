@@ -1,12 +1,15 @@
 package entities.entries.files;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import entities.Relatable;
 import entities.entries.Entry;
 
 
@@ -24,6 +27,9 @@ public class EntryFile extends Entry {
 	protected String absoluteLink;
 
 	protected String relativeLink;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	protected Relatable relatable; 
 
 
 
@@ -78,6 +84,18 @@ public class EntryFile extends Entry {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+
+
+	public Relatable getRelatable() {
+		return relatable;
+	}
+
+
+
+	public void setRelatable(Relatable relatable) {
+		this.relatable = relatable;
 	}
 
 

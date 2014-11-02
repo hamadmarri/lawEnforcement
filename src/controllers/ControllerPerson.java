@@ -14,7 +14,7 @@ import entities.entries.ScarMarkTattoo;
 
 @ManagedBean(name = "controllerPerson")
 @ViewScoped
-public class ControllerPerson extends ControllerRelatable<Person> implements Serializable {
+public class ControllerPerson extends AbstractController<Person> implements Serializable {
 
 	private static final long serialVersionUID = -328811918930855338L;
 	private AliasNameOrMoniker newAliasNameOrMoniker = new AliasNameOrMoniker();
