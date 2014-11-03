@@ -39,6 +39,9 @@ public class Relatable implements Serializable, Describable {
 
 	protected String type;
 
+	
+	@Lob
+	@Column(length = 20000)
 	protected String description;
 
 	@OneToMany(mappedBy = "relatable")

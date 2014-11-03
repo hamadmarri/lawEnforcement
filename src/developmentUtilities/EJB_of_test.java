@@ -177,8 +177,8 @@ public class EJB_of_test {
 	private void createFieldInterview() {
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		FieldInterview fi = new FieldInterview((IncidentReport) of.getEventsResponsibleFor().get(1), em.find(
-				Person.class, 1L), em.find(Person.class, 4L), Calendar.getInstance().getTime(), "yes i saw him");
-
+				Person.class, 1L), em.find(Person.class, 4L), Calendar.getInstance().getTime());
+		
 		((IncidentReport) of.getEventsResponsibleFor().get(1)).addFieldInterview(fi);
 
 		em.merge(of);

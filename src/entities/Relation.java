@@ -3,9 +3,11 @@ package entities;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,6 +27,8 @@ public class Relation implements Serializable {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Relatable something;
 
+	@Lob
+	@Column(name="CONTENT", length=20000)
 	private String typeOfRelation;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

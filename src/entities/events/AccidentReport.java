@@ -1,6 +1,8 @@
 package entities.events;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 
 /**
@@ -14,6 +16,9 @@ public class AccidentReport extends Event {
 
 	private String violation;
 	private String severity; // low, midume, high
+	
+	@Lob
+	@Column(length = 20000)
 	private String summary;
 
 

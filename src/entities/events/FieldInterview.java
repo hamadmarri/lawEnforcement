@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,7 +35,7 @@ public class FieldInterview implements Serializable {
 	@GeneratedValue
 	protected Long id;
 
-	@ManyToOne
+	@ManyToOne()
 	private IncidentReport incidentReport;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -45,25 +47,75 @@ public class FieldInterview implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAndTime;
 
-	private String sayings;
+	@Lob
+	@Column(length = 20000)
+	private String exactlyWhatOccurred;
+
+	@Lob
+	@Column(length = 20000)
+	private String whenDidIthappen;
+
+	@Lob
+	@Column(length = 20000)
+	private String whereDidItHappen;
+
+	@Lob
+	@Column(length = 20000)
+	private String whoWasPresent;
+
+	@Lob
+	@Column(length = 20000)
+	private String whoElseMayKnowRelevantInformation;
+
+	@Lob
+	@Column(length = 20000)
+	private String howDidItHappen;
+
+	@Lob
+	@Column(length = 20000)
+	private String whyDidItHappenAndCouldItHaveBeenAvoided;
+
+	@Lob
+	@Column(length = 20000)
+	private String areThereNotes_documents_phone_messages_or_other_evidence;
+
+	@Lob
+	@Column(length = 20000)
+	private String otherSayings;
 
 
 
 	public FieldInterview() {
 		this.dateAndTime = new Date();
-		this.sayings = new String();
+		this.areThereNotes_documents_phone_messages_or_other_evidence = new String();
+		this.exactlyWhatOccurred = new String();
+		this.howDidItHappen = new String();
+		this.whenDidIthappen = new String();
+		this.whereDidItHappen = new String();
+		this.whoElseMayKnowRelevantInformation = new String();
+		this.whoWasPresent = new String();
+		this.whyDidItHappenAndCouldItHaveBeenAvoided = new String();
+		this.otherSayings = new String();
 	}
 
 
 
 	public FieldInterview(IncidentReport incidentReport, Person subscriber, Person inCaseOfEmergencyPerson,
-			Date dateAndTime, String sayings) {
+			Date dateAndTime) {
 		super();
 		this.incidentReport = incidentReport;
 		this.subscriber = subscriber;
 		this.inCaseOfEmergencyPerson = inCaseOfEmergencyPerson;
 		this.dateAndTime = dateAndTime;
-		this.sayings = sayings;
+		this.areThereNotes_documents_phone_messages_or_other_evidence = new String();
+		this.exactlyWhatOccurred = new String();
+		this.howDidItHappen = new String();
+		this.whenDidIthappen = new String();
+		this.whereDidItHappen = new String();
+		this.whoElseMayKnowRelevantInformation = new String();
+		this.whoWasPresent = new String();
+		this.whyDidItHappenAndCouldItHaveBeenAvoided = new String();
+		this.otherSayings = new String();
 	}
 
 
@@ -122,14 +174,111 @@ public class FieldInterview implements Serializable {
 
 
 
-	public String getSayings() {
-		return sayings;
+	public String getExactlyWhatOccurred() {
+		return exactlyWhatOccurred;
 	}
 
 
 
-	public void setSayings(String sayings) {
-		this.sayings = sayings;
+	public void setExactlyWhatOccurred(String exactlyWhatOccurred) {
+		this.exactlyWhatOccurred = exactlyWhatOccurred;
+	}
+
+
+
+	public String getWhenDidIthappen() {
+		return whenDidIthappen;
+	}
+
+
+
+	public void setWhenDidIthappen(String whenDidIthappen) {
+		this.whenDidIthappen = whenDidIthappen;
+	}
+
+
+
+	public String getWhereDidItHappen() {
+		return whereDidItHappen;
+	}
+
+
+
+	public void setWhereDidItHappen(String whereDidItHappen) {
+		this.whereDidItHappen = whereDidItHappen;
+	}
+
+
+
+	public String getWhoWasPresent() {
+		return whoWasPresent;
+	}
+
+
+
+	public void setWhoWasPresent(String whoWasPresent) {
+		this.whoWasPresent = whoWasPresent;
+	}
+
+
+
+	public String getWhoElseMayKnowRelevantInformation() {
+		return whoElseMayKnowRelevantInformation;
+	}
+
+
+
+	public void setWhoElseMayKnowRelevantInformation(String whoElseMayKnowRelevantInformation) {
+		this.whoElseMayKnowRelevantInformation = whoElseMayKnowRelevantInformation;
+	}
+
+
+
+	public String getHowDidItHappen() {
+		return howDidItHappen;
+	}
+
+
+
+	public void setHowDidItHappen(String howDidItHappen) {
+		this.howDidItHappen = howDidItHappen;
+	}
+
+
+
+	public String getWhyDidItHappenAndCouldItHaveBeenAvoided() {
+		return whyDidItHappenAndCouldItHaveBeenAvoided;
+	}
+
+
+
+	public void setWhyDidItHappenAndCouldItHaveBeenAvoided(String whyDidItHappenAndCouldItHaveBeenAvoided) {
+		this.whyDidItHappenAndCouldItHaveBeenAvoided = whyDidItHappenAndCouldItHaveBeenAvoided;
+	}
+
+
+
+	public String getAreThereNotes_documents_phone_messages_or_other_evidence() {
+		return areThereNotes_documents_phone_messages_or_other_evidence;
+	}
+
+
+
+	public void setAreThereNotes_documents_phone_messages_or_other_evidence(
+			String areThereNotes_documents_phone_messages_or_other_evidence) {
+		this.areThereNotes_documents_phone_messages_or_other_evidence = areThereNotes_documents_phone_messages_or_other_evidence;
+	}
+
+
+
+	public String getOtherSayings() {
+		return otherSayings;
+	}
+
+
+
+	public void setOtherSayings(String otherSayings) {
+		this.otherSayings = otherSayings;
 	}
 
 
@@ -138,7 +287,7 @@ public class FieldInterview implements Serializable {
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy hh:mm");
 		return this.subscriber.toString() + " " + this.inCaseOfEmergencyPerson.toString() + " "
-				+ sdf.format(this.dateAndTime.getTime()) + " " + this.sayings;
+				+ sdf.format(this.dateAndTime.getTime());
 	}
 
 }

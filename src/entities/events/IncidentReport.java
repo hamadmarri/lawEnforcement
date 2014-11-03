@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,6 +27,8 @@ public class IncidentReport extends Event {
 
 	private static final long serialVersionUID = 5529985766700573423L;
 
+	@Lob
+	@Column(length = 20000)
 	private String offenseInformation;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -36,6 +40,8 @@ public class IncidentReport extends Event {
 	@OneToMany(cascade = CascadeType.MERGE)
 	private List<FieldInterview> fieldInterviews;
 
+	@Lob
+	@Column(length = 20000)
 	private String summary;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

@@ -23,6 +23,12 @@
 	</h:link>
 
 	<h:form>
+
+		<h:outputLabel value="Incident Report id" />
+		<br />
+		<h:inputText value="#{controllerFieldInterview.incidentReportId}" />
+		<br />
+
 		<h:outputLabel value="Date and time " />
 		<p:calendar
 			value="#{controllerFieldInterview.fieldInterview.dateAndTime}" />
@@ -39,10 +45,62 @@
 			value="#{controllerFieldInterview.inCaseOfEmergencyPersonId}" />
 		<br />
 
-		<h:outputLabel value="Sayings " />
+		<br />
+		<h:outputLabel value="Exactly what occurred" />
+		<br />
 		<h:inputText
-			value="#{controllerFieldInterview.fieldInterview.sayings}" />
+			value="#{controllerFieldInterview.fieldInterview.exactlyWhatOccurred}" />
 
+		<br />
+		<h:outputLabel value="When did it happen" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.whenDidIthappen}" />
+
+		<br />
+		<h:outputLabel value="Where did it happen" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.whereDidItHappen}" />
+
+		<br />
+		<h:outputLabel value="Who was present" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.whoWasPresent}" />
+
+		<br />
+		<h:outputLabel value="Who else may know relevant information" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.whoElseMayKnowRelevantInformation}" />
+
+		<br />
+		<h:outputLabel value="How did it happen" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.howDidItHappen}" />
+
+		<br />
+		<h:outputLabel value="Why did it happen? Could it have been avoided" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.whyDidItHappenAndCouldItHaveBeenAvoided}" />
+
+		<br />
+		<h:outputLabel
+			value="Are there notes, documents, phone messages, or other evidence" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.areThereNotes_documents_phone_messages_or_other_evidence}" />
+
+		<br />
+		<h:outputLabel value="Other sayings" />
+		<br />
+		<h:inputText
+			value="#{controllerFieldInterview.fieldInterview.otherSayings}" />
+
+		<br />
 		<h:commandButton value="save"
 			action="#{controllerFieldInterview.submit}" />
 	</h:form>

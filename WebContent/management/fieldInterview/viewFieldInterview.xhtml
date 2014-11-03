@@ -47,12 +47,52 @@
 			value="#{controllerFieldInterview.fieldInterview.inCaseOfEmergencyPerson.toString()}" />
 		<h:link value="view"
 			outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerFieldInterview.fieldInterview.inCaseOfEmergencyPerson.id}" />
+
 		<br />
-
-
-		<h:outputLabel value="Sayings " />
+		<h:outputLabel value="Exactly what occurred" />
 		<h:outputLabel
-			value="#{controllerFieldInterview.fieldInterview.sayings}" />
+			value="#{controllerFieldInterview.fieldInterview.exactlyWhatOccurred}" />
+
+		<br />
+		<h:outputLabel value="When did it happen" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.whenDidIthappen}" />
+
+		<br />
+		<h:outputLabel value="Where did it happen" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.whereDidItHappen}" />
+
+		<br />
+		<h:outputLabel value="Who was present" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.whoWasPresent}" />
+
+		<br />
+		<h:outputLabel value="Who else may know relevant information" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.whoElseMayKnowRelevantInformation}" />
+
+		<br />
+		<h:outputLabel value="How did it happen" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.howDidItHappen}" />
+
+		<br />
+		<h:outputLabel value="Why did it happen? Could it have been avoided" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.whyDidItHappenAndCouldItHaveBeenAvoided}" />
+
+		<br />
+		<h:outputLabel
+			value="Are there notes, documents, phone messages, or other evidence" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.areThereNotes_documents_phone_messages_or_other_evidence}" />
+
+		<br />
+		<h:outputLabel value="Other sayings" />
+		<h:outputLabel
+			value="#{controllerFieldInterview.fieldInterview.otherSayings}" />
 
 	</ui:composition>
 </h:body>
