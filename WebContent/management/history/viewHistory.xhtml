@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerPermission.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition>
+		<h3>Permission</h3>
+
+		<ui:remove>
+			<!-- 		<c:set var="investigativeCases"
+			value="#{controllerPermission.permission.investigativeCases}" />
+		<c:set var="included" value="true" /> -->
+		</ui:remove>
+
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerPermission.id}" />
+		</h:link>
+		<br />
+
+		<h:outputLabel value="id" />
+		<h:outputLabel value="#{controllerPermission.permission.id}" />
+		<br />
+
+		<h:outputLabel value="Read Permission" />
+		<h:outputLabel
+			value="#{controllerPermission.permission.readPermission}" />
+		<br />
+
+		<h:outputLabel value="Write Permission" />
+		<h:outputLabel
+			value="#{controllerPermission.permission.writePermission}" />
+		<br />
+
+		<h:outputLabel value="Owner" />
+		<h:link value="#{controllerPermission.permission.owner.id}:"
+			outcome="/management/police/officer/viewOfficer.xhtml?id=#{controllerPermission.permission.owner.id}" />
+		<h:outputLabel
+			value="#{controllerPermission.permission.owner.personName}" />
+		<br />
+
+		<h:outputLabel value="Relatable" />
+		<h:link value="#{controllerPermission.permission.relatable.id}:"
+			outcome="#{controllerPermission.permission.relatable.type}">
+			<f:param name="id"
+				value="#{controllerPermission.permission.relatable.id}" />
+		</h:link>
+		<br />
+
+		<h:outputLabel value="Authorizable" />
+		<h:outputLabel value="#{controllerPermission.permission.authorizable}" />
+		<br />
+
+	</ui:composition>
+</h:body>
+</html>

@@ -8,12 +8,14 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
-
-import entities.Relatable;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "History.findAll", query = "select h from History h"),
+	@NamedQuery(name = "History.findById", query = "select h from History h WHERE h.id = :id") })
 public class History implements Serializable {
 
 	private static final long serialVersionUID = 1899017063886895301L;
