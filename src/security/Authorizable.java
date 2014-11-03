@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import entities.entries.history.Changeable;
 import entities.police.InvestigativeGroup;
 
 
@@ -20,13 +21,13 @@ import entities.police.InvestigativeGroup;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({ @NamedQuery(name = "Authorizable.findAll", query = "select a from Authorizable a"),
 		@NamedQuery(name = "Authorizable.findById", query = "select a from Authorizable a WHERE a.id = :id") })
-public class Authorizable implements Serializable {
+public class Authorizable extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = -2605602317234236536L;
 
-	@Id
-	@GeneratedValue
-	Long id;
+//	@Id
+//	@GeneratedValue
+//	Long id;
 
 	@OneToMany(mappedBy = "authorizable")
 	protected List<Permission> permissions;
@@ -38,9 +39,9 @@ public class Authorizable implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
 
 
 
@@ -64,6 +65,14 @@ public class Authorizable implements Serializable {
 
 	public String getType() {
 		return type;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

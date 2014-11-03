@@ -6,25 +6,26 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import entities.entries.history.Action;
+import entities.entries.history.Changeable;
+
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Activity.findAll", query = "select a from Activity a"),
 		@NamedQuery(name = "Activity.findById", query = "select a from Activity a WHERE a.id = :id") })
-public class Activity implements Serializable {
+public class Activity extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = -4496487588138153339L;
 
-	@Id
-	@GeneratedValue
-	Long id;
+	// @Id
+	// @GeneratedValue
+	// Long id;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private InvestigativeCase investigativeCase;
@@ -71,11 +72,10 @@ public class Activity implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
-
-
+	//
+	// public Long getId() {
+	// return id;
+	// }
 
 	public InvestigativeCase getInvestigativeCase() {
 		return investigativeCase;
@@ -147,6 +147,36 @@ public class Activity implements Serializable {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		Activity oldAct = (Activity) old;
+
+		if (!this.type.equals(oldAct.type))
+			this.getHistory().addAction(new Action("type", this.type, oldAct.type));
+
+		if (!this.Data.equals(oldAct.Data))
+			this.getHistory().addAction(new Action("Data", this.Data, oldAct.Data));
+
+		if (this.DateAndTime != null && oldAct.DateAndTime != null
+				&& this.DateAndTime.compareTo(oldAct.DateAndTime) != 0)
+			this.getHistory().addAction(
+					new Action("DateAndTime", this.DateAndTime.toString(), oldAct.DateAndTime.toString()));
+
+		if (this.investigativeCase != null & oldAct.investigativeCase != null
+				&& this.investigativeCase.getId().compareTo(oldAct.investigativeCase.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("investigativeCase id", this.investigativeCase.getId().toString(),
+							oldAct.investigativeCase.getId().toString()));
+
+		if (this.investigator != null & oldAct.investigator != null
+				&& this.investigator.getId().compareTo(oldAct.investigator.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("investigativeCase id", this.investigator.getId().toString(), oldAct.investigator
+							.getId().toString()));
 	}
 
 }

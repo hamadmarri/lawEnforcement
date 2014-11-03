@@ -2,6 +2,9 @@ package entities.entries;
 
 import javax.persistence.Entity;
 
+import entities.Relatable;
+import entities.entries.history.Action;
+
 
 /**
  * Entity implementation class for Entity: Property
@@ -100,6 +103,30 @@ public class Property extends Entry {
 
 	public void setDistinguishingCharacteristics(String distinguishingCharacteristics) {
 		this.distinguishingCharacteristics = distinguishingCharacteristics;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		Property oldP = (Property) old;
+
+		if (!this.serialNumber.equals(oldP.serialNumber))
+			this.getHistory().addAction(new Action("serialNumber", this.serialNumber, oldP.serialNumber));
+
+		if (!this.make.equals(oldP.make))
+			this.getHistory().addAction(new Action("make", this.make, oldP.make));
+
+		if (!this.model.equals(oldP.model))
+			this.getHistory().addAction(new Action("model", this.model, oldP.model));
+
+		if (!this.brand.equals(oldP.brand))
+			this.getHistory().addAction(new Action("brand", this.brand, oldP.brand));
+
+		if (!this.distinguishingCharacteristics.equals(oldP.distinguishingCharacteristics))
+			this.getHistory().addAction(
+					new Action("distinguishingCharacteristics", this.distinguishingCharacteristics,
+							oldP.distinguishingCharacteristics));
 	}
 
 }

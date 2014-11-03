@@ -10,6 +10,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import entities.Relatable;
+import entities.entries.history.Action;
+
 
 /**
  * Entity implementation class for Entity: Location
@@ -20,14 +23,6 @@ import javax.persistence.NamedQuery;
 public class Location extends Entry {
 
 	private static final long serialVersionUID = -5026404539659981489L;
-
-	// specificAddress
-	// rangeOfAddresses
-	// area (i.e., as defined in the agency geofile)
-	// locations based on X/Y/Z coordinates.
-	// occupancy
-	// elevation (e.g., floor)
-	// premise type (e.g., residence versus business).
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Address> addresses;
@@ -152,6 +147,29 @@ public class Location extends Entry {
 
 
 	@Override
+	public void logChanges(Object old) {
+		Location oldL = (Location) old;
+
+		if (!this.area.equals(oldL.area))
+			this.getHistory().addAction(new Action("area", this.area, oldL.area));
+
+		if (!this.coordinate.isEqual(oldL.coordinate))
+			this.getHistory().addAction(
+					new Action("coordinate", this.coordinate.toString(), oldL.coordinate.toString()));
+
+		if (!this.occupancy.equals(oldL.occupancy))
+			this.getHistory().addAction(new Action("occupancy", this.occupancy, oldL.occupancy));
+
+		if (!this.elevation.equals(oldL.elevation))
+			this.getHistory().addAction(new Action("elevation", this.elevation, oldL.elevation));
+
+		if (!this.premiseType.equals(oldL.premiseType))
+			this.getHistory().addAction(new Action("streetName", this.premiseType, oldL.premiseType));
+	}
+
+
+
+	@Override
 	public String toString() {
 		return this.area + " " + this.premiseType;
 	}
@@ -214,6 +232,18 @@ public class Location extends Entry {
 			this.z = z;
 		}
 
+
+
+		public boolean isEqual(Coordinate another) {
+			return (this.x == another.x && this.y == another.y && this.z == another.z);
+		}
+
+
+
+		@Override
+		public String toString() {
+			return "x=" + this.x + " y=" + this.y + " z=" + this.z;
+		}
 	}
 
 }

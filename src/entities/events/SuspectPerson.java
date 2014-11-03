@@ -10,9 +10,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import entities.entries.Entry;
+import entities.entries.Person;
 import entities.entries.PersonName;
 import entities.entries.PhysicalCharacteristic;
 import entities.entries.ThreatAssessment;
+import entities.entries.history.Action;
 
 
 @Entity
@@ -92,8 +94,31 @@ public class SuspectPerson extends Entry implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
+	@Override
+	public void logChanges(Object old) {
+		SuspectPerson oldP = (SuspectPerson) old;
+
+		if (oldP.personName != null && !this.personName.getFirstName().equals(oldP.personName.getFirstName()))
+			this.getHistory().addAction(
+					new Action("first name", this.personName.getFirstName(), oldP.personName.getFirstName()));
+
+		if (oldP.personName != null && !this.personName.getLastName().equals(oldP.personName.getLastName()))
+			this.getHistory().addAction(
+					new Action("last name", this.personName.getLastName(), oldP.personName.getLastName()));
+
+		if (!this.physicalCharacteristic.isEqual(oldP.physicalCharacteristic))
+			this.getHistory().addAction(
+					new Action("physical characteristic", this.physicalCharacteristic.toString(),
+							oldP.physicalCharacteristic.toString()));
+
+		if (!this.threatAssessment.getThreatAssessmentLevel().equals(oldP.threatAssessment.getThreatAssessmentLevel()))
+			this.getHistory().addAction(
+					new Action("threat assessment", this.threatAssessment.getThreatAssessmentLevel(),
+							oldP.threatAssessment.getThreatAssessmentLevel()));
 	}
+
+	// public Long getId() {
+	// return id;
+	// }
 
 }

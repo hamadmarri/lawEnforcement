@@ -11,24 +11,26 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+
+import entities.entries.Property;
+import entities.entries.history.Action;
+import entities.entries.history.Changeable;
+import entities.entries.history.History;
 
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Relation.findAll", query = "select r from Relation r ORDER BY r.id"),
 		@NamedQuery(name = "Relation.findById", query = "select r from Relation r WHERE r.id = :id") })
-public class Relation implements Serializable {
+public class Relation extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = -8623094115473557995L;
-
-	@Id
-	@GeneratedValue
-	private Long id;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Relatable something;
 
 	@Lob
-	@Column(name="CONTENT", length=20000)
+	@Column(length = 20000)
 	private String typeOfRelation;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -47,18 +49,6 @@ public class Relation implements Serializable {
 		this.something = something;
 		this.typeOfRelation = typeOfRelation;
 		this.somethingElse = somethingElse;
-	}
-
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 
@@ -97,4 +87,24 @@ public class Relation implements Serializable {
 		this.somethingElse = somethingElse;
 	}
 
+
+
+	@Override
+	public void logChanges(Object old) {
+		Relation oldR = (Relation) old;
+
+		if (!this.typeOfRelation.equals(oldR.typeOfRelation))
+			this.getHistory().addAction(new Action("typeOfRelation", this.typeOfRelation, oldR.typeOfRelation));
+
+		if (this.something != null & oldR.something != null
+				&& this.something.getId().compareTo(oldR.something.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("something id", this.something.getId().toString(), oldR.something.getId().toString()));
+
+		if (this.somethingElse != null & oldR.somethingElse != null
+				&& this.somethingElse.getId().compareTo(oldR.somethingElse.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("somethingElse id", this.somethingElse.getId().toString(), oldR.somethingElse.getId()
+							.toString()));
+	}
 }

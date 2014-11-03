@@ -10,7 +10,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import security.Authorizable;
-
+import entities.entries.history.Action;
+ 
 
 @Entity
 @NamedQueries({
@@ -79,6 +80,38 @@ public class InvestigativeGroup extends Authorizable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+
+		InvestigativeGroup oldInvGrp = (InvestigativeGroup) old;
+
+		if (!this.name.equals(oldInvGrp.name))
+			this.getHistory().addAction(new Action("name", this.name, oldInvGrp.name));
+
+		if (this.authorizables.size() != oldInvGrp.authorizables.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (Authorizable id : this.authorizables)
+				newData.append(id.toString() + " ");
+
+			for (Authorizable id : oldInvGrp.authorizables)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("authorizables", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.authorizables.size(); i++) {
+				if (this.authorizables.get(i).getId().compareTo(oldInvGrp.authorizables.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("authorizables", this.authorizables.get(i).toString(), oldInvGrp.authorizables
+									.get(i).toString()));
+			}
+		}
+
 	}
 
 }

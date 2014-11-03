@@ -88,4 +88,17 @@ public class Identification implements Serializable {
 		return id;
 	}
 
+
+
+	public boolean isEqual(Identification another) {
+		return (this.name.equals(another.name) && this.content.equals(another.content));
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.name + " " + this.content;
+	}
+
 }

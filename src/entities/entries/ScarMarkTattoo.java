@@ -66,4 +66,17 @@ public class ScarMarkTattoo implements Serializable {
 		return id;
 	}
 
+
+
+	public boolean isEqual(ScarMarkTattoo another) {
+		return (this.content.equals(another.content));
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.content;
+	}
+
 }

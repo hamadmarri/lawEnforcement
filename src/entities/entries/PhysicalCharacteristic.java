@@ -115,6 +115,15 @@ public class PhysicalCharacteristic {
 
 
 
+	public boolean isEqual(PhysicalCharacteristic another) {
+		return (this.buildCharacteristics.equals(another.buildCharacteristics)
+				&& this.complexionCharacteristics.equals(another.complexionCharacteristics)
+				&& this.hairCharacteristics.equals(another.hairCharacteristics) 
+				&& this.heightCharacteristics.equals(another.heightCharacteristics));
+	}
+
+
+
 	@Override
 	public String toString() {
 		return this.buildCharacteristics + " " + this.complexionCharacteristics + " " + this.heightCharacteristics

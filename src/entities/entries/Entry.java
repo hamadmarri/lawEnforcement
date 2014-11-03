@@ -25,25 +25,19 @@ public class Entry extends Relatable implements Serializable {
 
 	private static final long serialVersionUID = 2034421404091295704L;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private History history;
-
 
 
 	public Entry() {
+		super();
 		this.type = "Entry";
 	}
 
 
 
-	public History getHistory() {
-		return history;
-	}
+	@Override
+	public void logChanges(Object old) {
+		// TODO Auto-generated method stub
 
-
-
-	public void setHistory(History history) {
-		this.history = history;
 	}
 
 }

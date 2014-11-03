@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import entities.entries.ScarMarkTattoo;
+import entities.entries.files.EntryFile;
+import entities.entries.history.Action;
+
 
 /**
  * Entity implementation class for Entity: ArrestReport
@@ -64,6 +68,39 @@ public class ArrestReport extends Event {
 			this.incidentReportsAccordingTo = new ArrayList<IncidentReport>();
 
 		this.incidentReportsAccordingTo.add(incidentReportAccordingTo);
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		ArrestReport oldAr = (ArrestReport) old;
+
+		if (!this.document.equals(oldAr.document))
+			this.getHistory().addAction(new Action("document", this.document, oldAr.document));
+
+		if (this.incidentReportsAccordingTo.size() != oldAr.incidentReportsAccordingTo.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (IncidentReport id : this.incidentReportsAccordingTo)
+				newData.append(id.toString() + " ");
+
+			for (IncidentReport id : oldAr.incidentReportsAccordingTo)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(
+					new Action("incidentReportsAccordingTo", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.incidentReportsAccordingTo.size(); i++) {
+				if (this.incidentReportsAccordingTo.get(i).getId()
+						.compareTo(oldAr.incidentReportsAccordingTo.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("incidentReportsAccordingTo", this.incidentReportsAccordingTo.get(i).toString(),
+									oldAr.incidentReportsAccordingTo.get(i).toString()));
+			}
+		}
+
 	}
 
 

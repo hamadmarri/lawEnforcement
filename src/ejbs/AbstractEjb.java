@@ -6,7 +6,11 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import entities.Relatable;
+import entities.entries.Entry;
 import entities.entries.files.EntryFile;
+import entities.entries.history.Changeable;
+import entities.events.Event;
 
 
 @Stateless
@@ -38,6 +42,17 @@ public class AbstractEjb<T> {
 
 
 	public T save(T t) {
+//		System.out.println("*********** " + t.getClass().getSuperclass().getSuperclass().getSuperclass());
+
+		if (t.getClass().getSuperclass() == Changeable.class
+				|| t.getClass().getSuperclass().getSuperclass() == Changeable.class
+				|| t.getClass().getSuperclass().getSuperclass().getSuperclass() == Changeable.class
+				|| t.getClass().getSuperclass().getSuperclass().getSuperclass().getSuperclass() == Changeable.class) {
+			Changeable chngNew = (Changeable) t;
+			Changeable chngOld = em.find(Changeable.class, chngNew.getId());
+			chngNew.logChanges(chngOld);
+		}
+
 		return em.merge(t);
 	}
 

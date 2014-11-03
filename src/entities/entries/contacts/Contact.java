@@ -80,4 +80,17 @@ public abstract class Contact implements Serializable {
 		return person;
 	}
 
+
+
+	public boolean isEqual(Contact another) {
+		return (this.type.equals(another.type) && this.content.equals(another.content));
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.type + " " + this.content;
+	}
+
 }

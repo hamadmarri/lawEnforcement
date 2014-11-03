@@ -15,6 +15,7 @@ public class Action implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAndTime;
+	private String field;
 	private String oldData;
 	private String newData;
 
@@ -29,18 +30,20 @@ public class Action implements Serializable {
 
 
 
-	public Action(String oldDate, String newDate) {
+	public Action(String field, String newDate, String oldDate) {
 		super();
 		this.dateAndTime = new Date();
+		this.field = field;
 		this.oldData = oldDate;
 		this.newData = newDate;
 	}
 
 
 
-	public Action(Date dateAndTime, String oldDate, String newDate) {
+	public Action(Date dateAndTime, String field, String newDate, String oldDate) {
 		super();
 		this.dateAndTime = dateAndTime;
+		this.field = field;
 		this.oldData = oldDate;
 		this.newData = newDate;
 	}
@@ -55,6 +58,18 @@ public class Action implements Serializable {
 
 	public void setDateAndTime(Date dateAndTime) {
 		this.dateAndTime = dateAndTime;
+	}
+
+
+
+	public String getField() {
+		return field;
+	}
+
+
+
+	public void setField(String field) {
+		this.field = field;
 	}
 
 

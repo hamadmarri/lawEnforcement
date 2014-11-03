@@ -14,10 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import entities.Relatable;
 import entities.entries.contacts.Contact;
 import entities.entries.files.images.FingerprintImage;
 import entities.entries.files.images.MugShotImage;
 import entities.entries.files.images.PhotographicImage;
+import entities.entries.history.Action;
 import entities.events.FieldInterview;
 
 
@@ -99,21 +101,34 @@ public class Person extends Entry {
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
 
-
-
-	public Person() {
-		super();
+	{
 		this.type = "Person";
+		this.physicalCharacteristic = new PhysicalCharacteristic();
 		this.personName = new PersonName();
-		this.dateOfBirth = new Date();
+		// this.dateOfBirth = new Date();
 		this.birthPlace = new String();
 		this.gender = new String();
 		this.citizenship = new String();
 		this.modusOperandi = new String();
 		this.NCIC_fingerprintClassification = new String();
-		this.physicalCharacteristic = new PhysicalCharacteristic();
 		this.threatAssessment = new ThreatAssessment();
 		this.race = new Race();
+		this.identifications = new ArrayList<Identification>();
+		this.contacts = new ArrayList<Contact>();
+		this.aliasNamesOrMonikers = new ArrayList<AliasNameOrMoniker>();
+		this.scars_marks_tattoos = new ArrayList<ScarMarkTattoo>();
+		this.mugShots = new ArrayList<MugShotImage>();
+		this.fingerprintsImages = new ArrayList<FingerprintImage>();
+		this.photographs = new ArrayList<PhotographicImage>();
+		this.conveyances = new ArrayList<Conveyance>();
+		this.fieldInterviewsAsSubscriber = new ArrayList<FieldInterview>();
+		this.fieldInterviewsAsInCaseOfEmergencyPerson = new ArrayList<FieldInterview>();
+	}
+
+
+
+	public Person() {
+		super();
 	}
 
 
@@ -121,7 +136,6 @@ public class Person extends Entry {
 	public Person(PersonName personName, Date dateOfBirth, String birthPlace, String gender, String citizenship,
 			String modusOperandi, String nCIC_fingerprintClassification) {
 		super();
-		this.type = "Person";
 		this.personName = personName;
 		this.dateOfBirth = dateOfBirth;
 		this.birthPlace = birthPlace;
@@ -302,6 +316,9 @@ public class Person extends Entry {
 
 
 	public PhysicalCharacteristic getPhysicalCharacteristic() {
+		// if (this.physicalCharacteristic == null)
+		// this.physicalCharacteristic = new PhysicalCharacteristic();
+
 		return physicalCharacteristic;
 	}
 
@@ -399,6 +416,212 @@ public class Person extends Entry {
 
 	public List<FieldInterview> getFieldInterviewsAsInCaseOfEmergencyPerson() {
 		return fieldInterviewsAsInCaseOfEmergencyPerson;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+
+		Person oldP = (Person) old;
+
+		if (!this.personName.getFirstName().equals(oldP.personName.getFirstName()))
+			this.getHistory().addAction(
+					new Action("first name", this.personName.getFirstName(), oldP.personName.getFirstName()));
+
+		if (!this.personName.getLastName().equals(oldP.personName.getLastName()))
+			this.getHistory().addAction(
+					new Action("last name", this.personName.getLastName(), oldP.personName.getLastName()));
+
+		if (this.dateOfBirth != null && oldP.dateOfBirth != null && this.dateOfBirth.compareTo(oldP.dateOfBirth) != 0)
+			this.getHistory().addAction(
+					new Action("date of birth", this.dateOfBirth.toString(), oldP.dateOfBirth.toString()));
+
+		if (!this.birthPlace.equals(oldP.birthPlace))
+			this.getHistory().addAction(new Action("birth place", this.birthPlace, oldP.birthPlace));
+
+		if (!this.citizenship.equals(oldP.citizenship))
+			this.getHistory().addAction(new Action("citizenship", this.citizenship, oldP.citizenship));
+
+		if (!this.modusOperandi.equals(oldP.modusOperandi))
+			this.getHistory().addAction(new Action("modusOperandi", this.modusOperandi, oldP.modusOperandi));
+
+		if (!this.NCIC_fingerprintClassification.equals(oldP.NCIC_fingerprintClassification))
+			this.getHistory().addAction(
+					new Action("NCIC fingerprint classification", this.NCIC_fingerprintClassification,
+							oldP.NCIC_fingerprintClassification));
+
+		if (!this.physicalCharacteristic.isEqual(oldP.physicalCharacteristic))
+			this.getHistory().addAction(
+					new Action("physical characteristic", this.physicalCharacteristic.toString(),
+							oldP.physicalCharacteristic.toString()));
+
+		if (!this.threatAssessment.getThreatAssessmentLevel().equals(oldP.threatAssessment.getThreatAssessmentLevel()))
+			this.getHistory().addAction(
+					new Action("threat assessment", this.threatAssessment.getThreatAssessmentLevel(),
+							oldP.threatAssessment.getThreatAssessmentLevel()));
+
+		if (!this.race.getRace().equals(oldP.race.getRace()))
+			this.getHistory().addAction(new Action("race", this.race.getRace(), oldP.race.getRace()));
+
+		if (this.identifications.size() != oldP.identifications.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (Identification id : this.identifications)
+				newData.append(id.toString() + " ");
+
+			for (Identification id : oldP.identifications)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("identifications", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.identifications.size(); i++) {
+				if (!this.identifications.get(i).isEqual(oldP.identifications.get(i)))
+					this.getHistory().addAction(
+							new Action("identification", this.identifications.get(i).toString(), oldP.identifications
+									.get(i).toString()));
+			}
+		}
+
+		if (this.contacts.size() != oldP.contacts.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (Contact id : this.contacts)
+				newData.append(id.toString() + " ");
+
+			for (Contact id : oldP.contacts)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("contacts", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.contacts.size(); i++) {
+				if (!this.contacts.get(i).isEqual(oldP.contacts.get(i)))
+					this.getHistory().addAction(
+							new Action("contacts", this.contacts.get(i).toString(), oldP.contacts.get(i).toString()));
+			}
+		}
+
+		if (this.aliasNamesOrMonikers.size() != oldP.aliasNamesOrMonikers.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (AliasNameOrMoniker id : this.aliasNamesOrMonikers)
+				newData.append(id.toString() + " ");
+
+			for (AliasNameOrMoniker id : oldP.aliasNamesOrMonikers)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("aliasNamesOrMonikers", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.aliasNamesOrMonikers.size(); i++) {
+				if (!this.aliasNamesOrMonikers.get(i).isEqual(oldP.aliasNamesOrMonikers.get(i)))
+					this.getHistory().addAction(
+							new Action("aliasNamesOrMonikers", this.aliasNamesOrMonikers.get(i).toString(),
+									oldP.aliasNamesOrMonikers.get(i).toString()));
+			}
+		}
+
+		if (this.scars_marks_tattoos.size() != oldP.scars_marks_tattoos.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (ScarMarkTattoo id : this.scars_marks_tattoos)
+				newData.append(id.toString() + " ");
+
+			for (ScarMarkTattoo id : oldP.scars_marks_tattoos)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("scars_marks_tattoos", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.scars_marks_tattoos.size(); i++) {
+				if (!this.scars_marks_tattoos.get(i).isEqual(oldP.scars_marks_tattoos.get(i)))
+					this.getHistory().addAction(
+							new Action("scars_marks_tattoos", this.scars_marks_tattoos.get(i).toString(),
+									oldP.scars_marks_tattoos.get(i).toString()));
+			}
+		}
+
+		if (this.mugShots.size() != oldP.mugShots.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (MugShotImage id : this.mugShots)
+				newData.append(id.toString() + " ");
+
+			for (MugShotImage id : oldP.mugShots)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("mugShots", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.mugShots.size(); i++) {
+				if (!this.mugShots.get(i).isEqual(oldP.mugShots.get(i)))
+					this.getHistory().addAction(
+							new Action("mugShots", this.mugShots.get(i).toString(), oldP.mugShots.get(i).toString()));
+			}
+		}
+
+		if (this.fingerprintsImages.size() != oldP.fingerprintsImages.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (FingerprintImage id : this.fingerprintsImages)
+				newData.append(id.toString() + " ");
+
+			for (FingerprintImage id : oldP.fingerprintsImages)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("fingerprintsImages", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.fingerprintsImages.size(); i++) {
+				if (!this.fingerprintsImages.get(i).isEqual(oldP.fingerprintsImages.get(i)))
+					this.getHistory().addAction(
+							new Action("fingerprintsImages", this.fingerprintsImages.get(i).toString(),
+									oldP.fingerprintsImages.get(i).toString()));
+			}
+		}
+
+		if (this.photographs.size() != oldP.photographs.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (PhotographicImage id : this.photographs)
+				newData.append(id.toString() + " ");
+
+			for (PhotographicImage id : oldP.photographs)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("photographs", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.photographs.size(); i++) {
+				if (!this.photographs.get(i).isEqual(oldP.photographs.get(i)))
+					this.getHistory().addAction(
+							new Action("photographs", this.photographs.get(i).toString(), oldP.photographs.get(i)
+									.toString()));
+			}
+		}
+
+		if (this.conveyances.size() != oldP.conveyances.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (Conveyance id : this.conveyances)
+				newData.append("id:" + id.getId() + " ");
+
+			for (Conveyance id : oldP.conveyances)
+				oldData.append("id:" + id.getId() + " ");
+
+			this.getHistory().addAction(new Action("conveyances", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.conveyances.size(); i++) {
+				if (this.conveyances.get(i).getId().compareTo(oldP.conveyances.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("conveyances", this.conveyances.get(i).getId().toString(), oldP.conveyances
+									.get(i).getId().toString()));
+			}
+		}
+
 	}
 
 

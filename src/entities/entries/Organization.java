@@ -2,6 +2,9 @@ package entities.entries;
 
 import javax.persistence.Entity;
 
+import entities.Relatable;
+import entities.entries.history.Action;
+
 
 /**
  * Entity implementation class for Entity: Organization
@@ -64,6 +67,20 @@ public class Organization extends Entry {
 
 	public static String[] getOrganizationTypeSuggestions() {
 		return organizationTypeSuggestions;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		Organization oldO = (Organization) old;
+
+		if (!this.organizationType.equals(oldO.organizationType))
+			this.getHistory().addAction(new Action("organizationType", this.organizationType, oldO.organizationType));
+
+		if (!this.name.equals(oldO.name))
+			this.getHistory().addAction(new Action("name", this.name, oldO.name));
+
 	}
 
 

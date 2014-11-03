@@ -7,6 +7,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import entities.Relatable;
+import entities.entries.history.Action;
+
 
 /**
  * Entity implementation class for Entity: Address
@@ -130,6 +133,31 @@ public class Address extends Entry {
 
 	public List<Location> getLocations() {
 		return locations;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		Address oldA = (Address) old;
+
+		if (!this.streetName.equals(oldA.streetName))
+			this.getHistory().addAction(new Action("streetName", this.streetName, oldA.streetName));
+
+		if (!this.aptNo.equals(oldA.aptNo))
+			this.getHistory().addAction(new Action("aptNo", this.aptNo, oldA.aptNo));
+
+		if (!this.city.equals(oldA.city))
+			this.getHistory().addAction(new Action("city", this.city, oldA.city));
+
+		if (!this.province.equals(oldA.province))
+			this.getHistory().addAction(new Action("province", this.province, oldA.province));
+
+		if (!this.country.equals(oldA.country))
+			this.getHistory().addAction(new Action("country", this.country, oldA.country));
+
+		if (!this.postalCode.equals(oldA.postalCode))
+			this.getHistory().addAction(new Action("postalCode", this.postalCode, oldA.postalCode));
 	}
 
 

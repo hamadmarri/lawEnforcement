@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import entities.entries.Entry;
+import entities.Relatable;
 
 
 @Entity
@@ -23,7 +23,7 @@ public class History implements Serializable {
 	private Long id;
 
 	@OneToOne(mappedBy = "history")
-	private Entry entry;
+	private Changeable changeable;
 
 	@ElementCollection
 	private List<Action> actions;
@@ -36,14 +36,8 @@ public class History implements Serializable {
 
 
 
-	public Entry getEntry() {
-		return entry;
-	}
-
-
-
-	public void setEntry(Entry entry) {
-		this.entry = entry;
+	public Changeable getChangeable() {
+		return changeable;
 	}
 
 

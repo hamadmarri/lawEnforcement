@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import entities.entries.files.EntryFile;
+import entities.entries.history.Changeable;
+import entities.entries.history.History;
 import security.Permission;
 
 
@@ -20,13 +22,13 @@ import security.Permission;
 		@NamedQuery(name = "Relatable.findAll", query = "select r from Relatable r ORDER BY r.id"),
 		@NamedQuery(name = "Relatable.findAllByType", query = "select r from Relatable r WHERE r.type = :type ORDER BY r.id"),
 		@NamedQuery(name = "Relatable.findById", query = "select r from Relatable r WHERE r.id = :id") })
-public class Relatable implements Serializable, Describable {
+public abstract class Relatable extends Changeable implements Serializable, Describable {
 
 	private static final long serialVersionUID = -2946296455927470657L;
 
-	@Id
-	@GeneratedValue
-	protected Long id;
+//	@Id
+//	@GeneratedValue
+//	protected Long id;
 
 	@OneToMany(mappedBy = "something")
 	private List<Relation> relationsTo;
@@ -39,7 +41,6 @@ public class Relatable implements Serializable, Describable {
 
 	protected String type;
 
-	
 	@Lob
 	@Column(length = 20000)
 	protected String description;
@@ -52,6 +53,9 @@ public class Relatable implements Serializable, Describable {
 
 
 
+	// @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	// private History history;
+
 	public Relatable() {
 		super();
 		this.type = new String();
@@ -60,9 +64,9 @@ public class Relatable implements Serializable, Describable {
 
 
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
 
 
 
@@ -131,6 +135,21 @@ public class Relatable implements Serializable, Describable {
 	}
 
 
+
+	// public History getHistory() {
+	// if (this.history == null)
+	// this.history = new History();
+	//
+	// return history;
+	// }
+	//
+	//
+	//
+	// public void setHistory(History history) {
+	// this.history = history;
+	// }
+
+	// abstract public void logChanges(Relatable old);
 
 	@Override
 	public String getDescription() {

@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 
 import entities.Relatable;
 import entities.entries.Entry;
+import entities.entries.history.Action;
 
 
 @Entity
@@ -29,7 +30,7 @@ public class EntryFile extends Entry {
 	protected String relativeLink;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	protected Relatable relatable; 
+	protected Relatable relatable;
 
 
 
@@ -101,8 +102,37 @@ public class EntryFile extends Entry {
 
 
 	@Override
+	public void logChanges(Object old) {
+		EntryFile oldEf = (EntryFile) old;
+
+		if (!this.caption.equals(oldEf.caption))
+			this.getHistory().addAction(new Action("caption", this.caption, oldEf.caption));
+
+		if (!this.absoluteLink.equals(oldEf.absoluteLink))
+			this.getHistory().addAction(new Action("absoluteLink", this.absoluteLink, oldEf.absoluteLink));
+
+		if (!this.relativeLink.equals(oldEf.relativeLink))
+			this.getHistory().addAction(new Action("relativeLink", this.relativeLink, oldEf.relativeLink));
+
+		if (this.relatable != null & oldEf.relatable != null
+				&& this.relatable.getId().compareTo(oldEf.relatable.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("relatable id", this.relatable.getId().toString(), oldEf.relatable.getId().toString()));
+	}
+
+
+
+	public boolean isEqual(EntryFile another) {
+		return (this.caption.equals(another.caption) && this.absoluteLink.equals(another.absoluteLink)
+				&& this.relativeLink.equals(another.relativeLink) && this.relatable.getId()
+				.compareTo(another.relatable.getId()) == 0);
+	}
+
+
+
+	@Override
 	public String toString() {
-		return this.caption;
+		return this.caption + ", " + this.relativeLink;
 	}
 
 }

@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import entities.entries.history.Action;
 import entities.police.InvestigativeCase;
 
 
@@ -190,6 +191,70 @@ public class IncidentReport extends Event {
 			this.arrestReports = new ArrayList<ArrestReport>();
 
 		this.arrestReports.add(arrestReport);
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		IncidentReport oldInc = (IncidentReport) old;
+
+		if (!this.offenseInformation.equals(oldInc.offenseInformation))
+			this.getHistory().addAction(
+					new Action("offenseInformation", this.offenseInformation, oldInc.offenseInformation));
+
+		if (!this.caseStatus.equals(oldInc.caseStatus))
+			this.getHistory().addAction(new Action("caseStatus", this.caseStatus, oldInc.caseStatus));
+
+		if (!this.summary.equals(oldInc.summary))
+			this.getHistory().addAction(new Action("summary", this.summary, oldInc.summary));
+
+		if (this.assignedCase != null & oldInc.assignedCase != null
+				&& this.assignedCase.getId().compareTo(oldInc.assignedCase.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("assignedCase id", this.assignedCase.getId().toString(), oldInc.assignedCase.getId()
+							.toString()));
+
+		if (this.suspectPersons.size() != oldInc.suspectPersons.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (SuspectPerson id : this.suspectPersons)
+				newData.append(id.toString() + " ");
+
+			for (SuspectPerson id : oldInc.suspectPersons)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("suspectPersons", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.suspectPersons.size(); i++) {
+				if (this.suspectPersons.get(i).getId().compareTo(oldInc.suspectPersons.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("suspectPersons", this.suspectPersons.get(i).toString(), oldInc.suspectPersons
+									.get(i).toString()));
+			}
+		}
+
+		if (this.fieldInterviews.size() != oldInc.fieldInterviews.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (FieldInterview id : this.fieldInterviews)
+				newData.append(id.toString() + " ");
+
+			for (FieldInterview id : oldInc.fieldInterviews)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("fieldInterviews", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.fieldInterviews.size(); i++) {
+				if (this.fieldInterviews.get(i).getId().compareTo(oldInc.fieldInterviews.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("fieldInterviews", this.fieldInterviews.get(i).toString(),
+									oldInc.fieldInterviews.get(i).toString()));
+			}
+		}
+
 	}
 
 

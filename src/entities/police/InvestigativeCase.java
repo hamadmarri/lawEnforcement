@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import entities.Relatable;
+import entities.entries.history.Action;
 import entities.events.IncidentReport;
 
 
@@ -197,6 +198,53 @@ public class InvestigativeCase extends Relatable {
 	@Override
 	public String toString() {
 		return "id: " + this.id + this.officerWhoCreatedIt.toString();
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+		InvestigativeCase oldinvC = (InvestigativeCase) old;
+
+		if (!this.status.equals(oldinvC.status))
+			this.getHistory().addAction(new Action("status", this.status, oldinvC.status));
+
+		if (!this.description.equals(oldinvC.description))
+			this.getHistory().addAction(new Action("description", this.description, oldinvC.description));
+
+		if (this.startDate != null && oldinvC.startDate != null && this.startDate.compareTo(oldinvC.startDate) != 0)
+			this.getHistory().addAction(
+					new Action("startDate", this.startDate.toString(), oldinvC.startDate.toString()));
+
+		if (this.dueDate != null && oldinvC.dueDate != null && this.dueDate.compareTo(oldinvC.startDate) != 0)
+			this.getHistory().addAction(new Action("dueDate", this.dueDate.toString(), oldinvC.dueDate.toString()));
+
+		if (this.officerWhoCreatedIt != null & oldinvC.officerWhoCreatedIt != null
+				&& this.officerWhoCreatedIt.getId().compareTo(oldinvC.officerWhoCreatedIt.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("officerWhoCreatedIt id", this.officerWhoCreatedIt.getId().toString(),
+							oldinvC.officerWhoCreatedIt.getId().toString()));
+
+		if (this.investigators.size() != oldinvC.investigators.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (Investigator id : this.investigators)
+				newData.append(id.toString() + " ");
+
+			for (Investigator id : oldinvC.investigators)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("investigators", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.investigators.size(); i++) {
+				if (this.investigators.get(i).getId().compareTo(oldinvC.investigators.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("investigators", this.investigators.get(i).toString(), oldinvC.investigators
+									.get(i).toString()));
+			}
+		}
+
 	}
 
 }

@@ -178,7 +178,7 @@ public class EJB_of_test {
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
 		FieldInterview fi = new FieldInterview((IncidentReport) of.getEventsResponsibleFor().get(1), em.find(
 				Person.class, 1L), em.find(Person.class, 4L), Calendar.getInstance().getTime());
-		
+
 		((IncidentReport) of.getEventsResponsibleFor().get(1)).addFieldInterview(fi);
 
 		em.merge(of);
@@ -304,8 +304,8 @@ public class EJB_of_test {
 		Identification id2;
 		Contact c1;
 		Contact c2;
-//		PhotographicImage pi;
-//		List<MugShotImage> msi;
+		// PhotographicImage pi;
+		// List<MugShotImage> msi;
 
 		Person p1 = new Person(new PersonName("Hamad", "Almarri"), date1.getTime(), "Al Hasa", "Male", "Saudi", null,
 				"AA");
@@ -329,14 +329,14 @@ public class EJB_of_test {
 		c1 = new CellPhone(p1, "3069990084");
 		c2 = new Email(p1, "almarrih@uregina.ca");
 
-//		pi = new PhotographicImage("both", "link0");
-//		pi.addPerson(p1);
-//		pi.addPerson(p2);
-//
-//		msi = new ArrayList<MugShotImage>();
-//		msi.add(new MugShotImage("fron", "link1", p1));
-//		msi.add(new MugShotImage("right", "link2", p1));
-//		msi.add(new MugShotImage("left", "link3", p1));
+		// pi = new PhotographicImage("both", "link0");
+		// pi.addPerson(p1);
+		// pi.addPerson(p2);
+		//
+		// msi = new ArrayList<MugShotImage>();
+		// msi.add(new MugShotImage("fron", "link1", p1));
+		// msi.add(new MugShotImage("right", "link2", p1));
+		// msi.add(new MugShotImage("left", "link3", p1));
 
 		em.persist(p1);
 		em.persist(p2);
@@ -348,34 +348,26 @@ public class EJB_of_test {
 		em.persist(c2);
 
 		em.persist(r);
-//		em.persist(pi);
+		// em.persist(pi);
 
-//		for (MugShotImage mugShotImage : msi)
-//			em.persist(mugShotImage);
+		// for (MugShotImage mugShotImage : msi)
+		// em.persist(mugShotImage);
 
 	}
 
 
 
 	private void createEntity_History_Actions() {
-		Entry e = new Entry();
+		Person p = em.find(Person.class, 1L);
 		History h = new History();
-		List<Action> actions = new ArrayList<Action>();
 
-		e.setHistory(h);
+		p.setHistory(h);
+		h.addAction(new Action("first name", "dfg", "Dfgd"));
+		h.addAction(new Action("ldkjfgl", "dfg", "Dfgd"));
+		h.addAction(new Action("first name", "dfg", "Dfgd"));
 
-		// actions.add(new Action("dfg", "Dfgd", h));
-		// actions.add(new Action("dfg", "Dfgd", h));
-		// actions.add(new Action("dfg", "Dfgd", h));
-		// h.setActions(actions);
-		h.addAction(new Action("dfg", "Dfgd"));
-		h.addAction(new Action("dfg", "Dfgd"));
-		h.addAction(new Action("dfg", "Dfgd"));
+		em.persist(p);
 
-		em.persist(e);
-
-		// for (Action action : actions)
-		// em.persist(action);
 	}
 
 }

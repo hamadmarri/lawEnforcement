@@ -4,26 +4,26 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import entities.Relatable;
+import entities.entries.history.Action;
+import entities.entries.history.Changeable;
 import entities.police.Officer;
 
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Permission.findAll", query = "select p from Permission p"),
 		@NamedQuery(name = "Permission.findById", query = "select p from Permission p WHERE p.id = :id") })
-public class Permission implements Serializable {
+public class Permission extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = 4848790233272623774L;
 
-	@Id
-	@GeneratedValue
-	Long id;
+	// @Id
+	// @GeneratedValue
+	// Long id;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Officer owner;
@@ -34,10 +34,8 @@ public class Permission implements Serializable {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Authorizable authorizable;
 
-	// @Column(columnDefinition = "INT(1)")
 	private String readPermission;
 
-	// @Column(columnDefinition = "INT(1)")
 	private String writePermission;
 
 
@@ -48,11 +46,9 @@ public class Permission implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
-
- 
+	// public Long getId() {
+	// return id;
+	// }
 
 	public Officer getOwner() {
 		return owner;
@@ -153,6 +149,37 @@ public class Permission implements Serializable {
 
 	public void setWritePermission(String writePermission) {
 		this.writePermission = writePermission;
+	}
+
+
+
+	@Override
+	public void logChanges(Object old) {
+
+		Permission oldPerm = (Permission) old;
+
+		if (!this.readPermission.equals(oldPerm.readPermission))
+			this.getHistory().addAction(new Action("readPermission", this.readPermission, oldPerm.readPermission));
+
+		if (!this.writePermission.equals(oldPerm.writePermission))
+			this.getHistory().addAction(new Action("writePermission", this.writePermission, oldPerm.writePermission));
+
+		if (this.owner != null & oldPerm.owner != null && this.owner.getId().compareTo(oldPerm.owner.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("owner id", this.owner.getId().toString(), oldPerm.owner.getId().toString()));
+
+		if (this.relatable != null & oldPerm.relatable != null
+				&& this.relatable.getId().compareTo(oldPerm.relatable.getId()) != 0)
+			this.getHistory()
+					.addAction(
+							new Action("relatable id", this.relatable.getId().toString(), oldPerm.relatable.getId()
+									.toString()));
+
+		if (this.authorizable != null & oldPerm.authorizable != null
+				&& this.authorizable.getId().compareTo(oldPerm.authorizable.getId()) != 0)
+			this.getHistory().addAction(
+					new Action("authorizable id", this.authorizable.getId().toString(), oldPerm.authorizable.getId()
+							.toString()));
 	}
 
 }

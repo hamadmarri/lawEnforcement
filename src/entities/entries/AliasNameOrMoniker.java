@@ -66,4 +66,17 @@ public class AliasNameOrMoniker implements Serializable {
 		return id;
 	}
 
+
+
+	public boolean isEqual(AliasNameOrMoniker another) {
+		return (this.content.equals(another.content));
+	}
+
+
+
+	@Override
+	public String toString() {
+		return this.content;
+	}
+
 }
