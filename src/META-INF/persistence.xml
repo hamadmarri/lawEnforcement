@@ -51,7 +51,6 @@
 		<class>security.Permission</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
-			<property name="eclipselink.ddl-generation" value="create-tables"/>
 		</properties>
 	</persistence-unit>
 </persistence>
