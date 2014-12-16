@@ -13,35 +13,75 @@ import entities.police.InvestigativeCase;
 import entities.police.Investigator;
 
 
+/**
+ * @author hamadalmarri
+ * 
+ * @Pages
+ *        - listActivities.xhtml
+ *        - viewActivity.xhtml
+ *        - addActivity.xhtml
+ *        - editActivity.xhtml
+ * 
+ * @Relative_Objects
+ *                   - Invistigator who owen this Activity
+ *                   - InvisigativeCase that this Activity is for
+ * 
+ */
 @ManagedBean(name = "controllerActivity")
 @ViewScoped
 public class ControllerActivity {
 
+	// EJB for Activity object
 	@EJB
 	protected AbstractEjb<Activity> ejbActivity;
 
+	// EJB for Investigator object
 	@EJB
 	private AbstractEjb<Investigator> ejbInvestigator;
 
+	// EJB for InvestigativeCase object
 	@EJB
 	private AbstractEjb<InvestigativeCase> ejbInvestigativeCase;
 
+	// the id of a Activity object
 	protected String id;
+
+	// the Activity object
 	protected Activity activity;
+
+	// list of Activity objects
 	protected List<Activity> list = null;
+
+	// to indicate if the operation is to add
+	// new activity or not
 	protected boolean newActivity = false;
+
+	// the id of investigator who owen this activity
 	private Long investigatorId = null;
+
+	// the id of investigativeCase which is this activity for
 	private Long investigativeCaseId = null;
 
 
 
+	/**
+	 * will be called automatically right after the class is constructed since
+	 * it has the PostConstruct annotation
+	 */
 	@PostConstruct
 	public void initAbstract() {
+		// at the beginning, set the entitiy name to be Activity
 		this.ejbActivity.setEntityName("Activity");
 	}
 
 
 
+	/**
+	 * to submit changes on the Activity object
+	 * 
+	 * @return "success" which is used for navigation engine to redirect to the
+	 *         proper page
+	 */
 	public String submit() {
 
 		// update investigator based on its id
@@ -57,11 +97,14 @@ public class ControllerActivity {
 			this.getActivity().setInvestigativeCase(invCase);
 		}
 
+		// if new object it will add the object to DB,
+		// otherwise, it will just update it in DB
 		if (isNewActivity())
 			ejbActivity.add(this.activity);
 		else
 			ejbActivity.save(this.activity);
 
+		// return "success" for navigation engine
 		return "success";
 	}
 
@@ -79,6 +122,10 @@ public class ControllerActivity {
 
 
 
+	/**
+	 * to initiate new object of Activity. This function will be called from
+	 * addActivity.xhtml page at preRenderView phase
+	 */
 	public void createNewActivity() {
 		this.activity = new Activity();
 		this.setNewActivity(true);
@@ -86,13 +133,24 @@ public class ControllerActivity {
 
 
 
+	/**
+	 * it will load the object from DB if it is not loaded yet otherwise, it
+	 * will return the Activity object
+	 * 
+	 * @return the Activity object
+	 */
 	public Activity getActivity() {
+
+		// if the object was loaded already, just return it
 		if (this.activity != null)
 			return this.activity;
 
+		// if the id is null do not try to load it from DB, just return null
 		if (this.id == null)
 			return null;
 
+		// at this point object must be null but id is not,
+		// so load it from DB
 		this.activity = (Activity) ejbActivity.getEntity(Long.parseLong(this.id));
 
 		// hold the id of investigator
