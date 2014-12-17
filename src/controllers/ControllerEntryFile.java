@@ -186,8 +186,7 @@ public class ControllerEntryFile implements Serializable {
 	 * @param filename
 	 *            through the file name extension, the function will decide
 	 *            whether the file is an image or not
-	 * @return
-	 *         true if it is an image, false otherwise
+	 * @return true if it is an image, false otherwise
 	 */
 	private boolean isImage(String filename) {
 		// pattern for these types jpg|png|gif|bmp

@@ -58,19 +58,19 @@ public class ControllerArrestReport extends AbstractController<ArrestReport> imp
 	/**
 	 * to submit changes on the ArrestReport object
 	 * 
-	 * @return
-	 * 
-	 *         "success" which is used for navigation engine to redirect to the
+	 * @return "success"
+	 *         which is used for navigation engine to redirect to the
 	 *         proper page
 	 * 
-	 *         "successForIncidentReport" to redirect page to incident report
+	 * @return "successForIncidentReport"
+	 *         to redirect page to incident report
 	 *         page
 	 */
 	@Override
 	public String submit() {
-		
+
 		// check if incident report id is not null to
-		// add it to this arrest report 
+		// add it to this arrest report
 		if (this.incidentReportId != null) {
 			// add the incident report to this arrest report
 			IncidentReport ir = (IncidentReport) this.ejbRelatable.getEntity(Long.parseLong(this.incidentReportId));

@@ -14,18 +14,36 @@ import entities.police.InvestigativeGroup;
 import entities.police.Officer;
 
 
+/**
+ * @author hamadalmarri
+ * 
+ * @Pages
+ *        - listInvestigativeGroups.xhtml
+ *        - viewInvestigativeGroup.xhtml
+ *        - addInvestigativeGroup.xhtml
+ *        - editInvestigativeGroup.xhtml
+ * 
+ * @Relative_Objects
+ *                   - Officer who created this InvestigativeGroup
+ *                   - Authorizable list of authorizable objects that this group
+ *                   consists of
+ * 
+ */
 @ManagedBean(name = "controllerInvestigativeGroup")
 @ViewScoped
 public class ControllerInvestigativeGroup implements Serializable {
 
 	private static final long serialVersionUID = 6798573244651897782L;
 
+	// EJB for InvestigativeGroup object
 	@EJB
 	protected AbstractEjb<InvestigativeGroup> ejbInvestigativeGroup;
 
+	// EJB for Officer object
 	@EJB
 	private AbstractEjb<Officer> ejbOfficer;
 
+	// EJB for Authorizable object
 	@EJB
 	private AbstractEjb<Authorizable> ejbAuthorizable;
 

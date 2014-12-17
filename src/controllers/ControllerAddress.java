@@ -63,16 +63,16 @@ public class ControllerAddress extends AbstractController<Address> implements Se
 	/**
 	 * to submit changes on the Address object
 	 * 
-	 * @return
-	 * 
-	 *         "success" which is used for navigation engine to redirect to the
+	 * @return "success"
+	 *         which is used for navigation engine to redirect to the
 	 *         proper page
-	 *         
-	 *         "successForLocation" to redirect to location page
+	 * 
+	 * @return "successForLocation"
+	 *         to redirect to location page
 	 */
 	@Override
 	public String submit() {
-		
+
 		// submit Address first
 		super.submit();
 
