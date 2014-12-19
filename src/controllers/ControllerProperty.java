@@ -10,6 +10,16 @@ import javax.faces.bean.ViewScoped;
 import entities.entries.Property;
 
 
+/**
+ * @author hamadalmarri
+ * 
+ * @Pages
+ *        - listProperties.xhtml
+ *        - viewProperty.xhtml
+ *        - addProperty.xhtml
+ *        - editProperty.xhtml
+ * 
+ */
 @ManagedBean(name = "controllerProperty")
 @ViewScoped
 public class ControllerProperty extends AbstractController<Property> implements Serializable {
@@ -18,13 +28,22 @@ public class ControllerProperty extends AbstractController<Property> implements 
 
 
 
+	/**
+	 * will be called automatically right after the class is constructed since
+	 * it has the PostConstruct annotation
+	 */
 	@PostConstruct
 	public void init() {
+		// at the beginning, set the entitiy name to be Property
 		this.type = "Property";
 	}
 
 
 
+	/**
+	 * to initiate new object of Property. This function will be called from
+	 * addProperty.xhtml page at preRenderView phase
+	 */
 	public void createNewProperty() {
 		this.relatable = new Property();
 		super.setNewRelatable(true);

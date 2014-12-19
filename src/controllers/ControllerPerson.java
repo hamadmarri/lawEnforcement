@@ -12,6 +12,20 @@ import entities.entries.Person;
 import entities.entries.ScarMarkTattoo;
 
 
+/**
+ * @author hamadalmarri
+ * 
+ * @Pages
+ *        - listPersons.xhtml
+ *        - viewPerson.xhtml
+ *        - addPerson.xhtml
+ *        - editPerson.xhtml
+ * 
+ * @Relative_Objects
+ *                   - AliasNameOrMoniker
+ *                   - ScarMarkTattoo
+ * 
+ */
 @ManagedBean(name = "controllerPerson")
 @ViewScoped
 public class ControllerPerson extends AbstractController<Person> implements Serializable {
@@ -22,13 +36,22 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 
 
 
+	/**
+	 * will be called automatically right after the class is constructed since
+	 * it has the PostConstruct annotation
+	 */
 	@PostConstruct
 	public void init() {
+		// at the beginning, set the entitiy name to be Person
 		this.type = "Person";
 	}
 
 
 
+	/**
+	 * to initiate new object of Person. This function will be called from
+	 * addPerson.xhtml page at preRenderView phase
+	 */
 	public void createNewPerson() {
 		this.relatable = new Person();
 		super.setNewRelatable(true);
@@ -60,6 +83,10 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 
 
 
+	/**
+	 * Adds Alias name to this person. This function is called from
+	 * viewPerson.xhtml page
+	 */
 	public void addNewAliasName() {
 		this.newAliasNameOrMoniker.setPerson(this.getPerson());
 		this.getPerson().addAliasNameOrMoniker(this.newAliasNameOrMoniker);
@@ -69,6 +96,10 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 
 
 
+	/**
+	 * Adds Scar, Mark or Tattoo to this person. This function is called from
+	 * viewPerson.xhtml page
+	 */
 	public void addNewScarMarkTattoo() {
 		this.newScarMarkTattoo.setPerson(this.getPerson());
 		this.getPerson().addScars_mark_tattoo(this.newScarMarkTattoo);

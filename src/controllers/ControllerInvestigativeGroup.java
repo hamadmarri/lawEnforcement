@@ -47,40 +47,65 @@ public class ControllerInvestigativeGroup implements Serializable {
 	@EJB
 	private AbstractEjb<Authorizable> ejbAuthorizable;
 
+	// the id of a InvestigativeGroup object
 	protected String id;
+
+	// the InvestigativeGroup object
 	protected InvestigativeGroup investigativeGroup;
+
+	// list of InvestigativeGroup objects
 	protected List<InvestigativeGroup> InvestigativeGroupsList = null;
+
+	// to indicate if the operation is to add
+	// new activity or not
 	protected boolean newEntity = false;
+
+	// list of Authorizable objects
 	private List<Authorizable> authorizables = null;
+
+	// the id of authorizable to be added to this group
 	private String newAuthorizableId;
 
 
 
+	/**
+	 * will be called automatically right after the class is constructed since
+	 * it has the PostConstruct annotation
+	 */
 	@PostConstruct
 	public void init() {
+		// at the beginning, set the entitiy name to be InvestigativeGroup
 		this.ejbInvestigativeGroup.setEntityName("InvestigativeGroup");
 	}
 
 
 
+	/**
+	 * to submit changes on the InvestigativeGroup object
+	 * 
+	 * @return "success" which is used for navigation engine to redirect to the
+	 *         proper page
+	 */
 	public String submit() {
 
-		// // update officer based on its id
-		// if (this.officerWhoCreatedItId != null) {
-		// Officer of = (Officer)
-		// this.ejbOfficer.getEntity(this.officerWhoCreatedItId, "Officer");
-		// this.getInvestigativeGroup().setOfficerWhoCreatedIt(of);
-		// }
-
+		// if new object it will add the object to DB,
+		// otherwise, it will just update it in DB
 		if (isNewEntity())
 			ejbInvestigativeGroup.add(this.investigativeGroup);
 		else
 			ejbInvestigativeGroup.save(this.investigativeGroup);
+
+		// return "success" for navigation engine
 		return "success";
 	}
 
 
 
+	/**
+	 * to initiate new object of InvestigativeGroup. This function will be
+	 * called from
+	 * addInvestigativeGroup.xhtml page at preRenderView phase
+	 */
 	public void createNewInvestigativeGroup() {
 		this.investigativeGroup = new InvestigativeGroup();
 		this.setNewEntity(true);
@@ -88,6 +113,10 @@ public class ControllerInvestigativeGroup implements Serializable {
 
 
 
+	/**
+	 * It is called from viewInvestigativeGroup.xhtml
+	 * to add an Authorizable object to this group
+	 */
 	public void addAuthorizable() {
 		Authorizable a = this.ejbAuthorizable.getEntity(Long.parseLong(newAuthorizableId), "Authorizable");
 		this.investigativeGroup.addAuthorizable(a);
@@ -96,6 +125,12 @@ public class ControllerInvestigativeGroup implements Serializable {
 
 
 
+	/**
+	 * It will remove authorizable from this group
+	 * 
+	 * @param authorizable
+	 *            to be removed from this group
+	 */
 	public void removeAuthorizable(Authorizable authorizable) {
 		this.investigativeGroup.getAuthorizables().remove(authorizable);
 		this.ejbInvestigativeGroup.save(investigativeGroup);
@@ -115,20 +150,25 @@ public class ControllerInvestigativeGroup implements Serializable {
 
 
 
+	/**
+	 * it will load the object from DB if it is not loaded yet otherwise, it
+	 * will return the InvestigativeGroup object
+	 * 
+	 * @return the InvestigativeGroup object
+	 */
 	public InvestigativeGroup getInvestigativeGroup() {
+
+		// if the object was loaded already, just return it
 		if (this.investigativeGroup != null)
 			return this.investigativeGroup;
 
+		// if the id is null do not try to load it from DB, just return null
 		if (this.id == null)
 			return null;
 
+		// at this point object must be null but id is not,
+		// so load it from DB
 		this.investigativeGroup = ejbInvestigativeGroup.getEntity(Long.parseLong(this.id));
-
-		// // hold the id of officer
-		// if (this.officerWhoCreatedItId == null && this.investigativeGroup !=
-		// null
-		// && this.investigativeGroup.getOfficerWhoCreatedIt() != null)
-		// setOfficerWhoCreatedItId(this.investigativeGroup.getOfficerWhoCreatedIt().getId());
 
 		return this.investigativeGroup;
 	}

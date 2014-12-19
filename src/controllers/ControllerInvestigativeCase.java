@@ -57,7 +57,7 @@ public class ControllerInvestigativeCase implements Serializable {
 	protected List<InvestigativeCase> InvestigativeCasesList = null;
 
 	// to indicate if the operation is to add
-	// new activity or not
+	// new InvestigativeCase or not
 	protected boolean newEntity = false;
 
 	// the id of the officer who created this case
