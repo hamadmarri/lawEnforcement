@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"  />
+</h:head>
+
+<h:body>
+
+	<header></header>
+
+	<div id="content" class="wrapper"> 
+	
+		<header class="header">
+			<strong>Header:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tortor. Praesent dictum, libero ut tempus dictum, neque eros elementum mauris, quis mollis arcu velit ac diam. Etiam neque. Quisque nec turpis. Aliquam arcu nulla, dictum et, lacinia a, mollis in, ante. Sed eu felis in elit tempor venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut ultricies porttitor purus. Proin non tellus at ligula fringilla tristique. Fusce vehicula quam. Curabitur vel tortor vitae pede imperdiet ultrices. Sed tortor.
+		</header><!-- .header-->
+	
+	 
+	 	
+	 	<div id="results" class="middle">
+	 		
+	 		<div class="container">
+				<main class="content">
+					<div id="graphs">
+		 				<ui:include src="/WEB-INF/includes/monitoring/graphs.xhtml"></ui:include>
+			 		</div>
+				 	<div id="list">
+				 		<ui:include src="/WEB-INF/includes/monitoring/list.xhtml"></ui:include>
+				 	</div>
+				 	
+				 	<div id="controls" class="footer"></div> 
+				</main>
+			</div> 
+		
+	 		
+		 	<aside id="sidebar" class="left-sidebar">
+				<ui:include src="/WEB-INF/includes/monitoring/sidebar.xhtml"></ui:include>
+			</aside> 
+	 	
+		 	
+		</div>
+	
+	</div>
+
+</h:body>
+</html>

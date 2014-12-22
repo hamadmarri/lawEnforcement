@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition>
+		<p:panel id="basic" header="Search" style="margin-bottom:20px">
+			<h:panelGrid columns="1">
+				<h:panelGroup>
+					<p:graphicImage name="searchicon.jpg" />
+					<h:inputText></h:inputText>
+				</h:panelGroup>
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<h:outputLabel value="From" />
+						<p:calendar />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:outputLabel value="To" />
+						<p:calendar />
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:panel>
+	</ui:composition>
+</h:body>
+</html>
