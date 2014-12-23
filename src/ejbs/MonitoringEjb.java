@@ -38,7 +38,8 @@ public class MonitoringEjb {
 
 
 	@SuppressWarnings("unchecked")
-	public List<InvestigativeCase> getInvestigativeCasesList(String search, Date startDate, Date dueDate) {
+	public List<InvestigativeCase> getInvestigativeCasesList(String search, Date startDate, Date dueDate,
+			String[] status) {
 
 		Query query;
 		boolean needAND = false;
@@ -68,8 +69,23 @@ public class MonitoringEjb {
 			needAND = true;
 		}
 
-		System.out.println("EJB*********** " + queryString.toString() + " *************");
+		// check for status
+		if (status.length != 0) {
+			if (needAND)
+				queryString.append(" AND (");
 
+			for (int i = 0; i < status.length; i++) {
+				queryString.append(" ic.status = :st" + i);
+
+				if (i != status.length - 1)
+					queryString.append(" OR");
+			}
+
+			queryString.append(" )");
+		}
+
+		System.out.println("EJB ********\n" + queryString.toString());
+		
 		// create query
 		query = em.createQuery(queryString.toString(), InvestigativeCase.class);
 
@@ -82,6 +98,11 @@ public class MonitoringEjb {
 
 		if (dueDate != null)
 			query.setParameter("dueDate", dueDate, TemporalType.TIMESTAMP);
+
+		if (status.length != 0) {
+			for (int i = 0; i < status.length; i++)
+				query.setParameter("st" + i, status[i]);
+		}
 
 		return query.getResultList();
 	}

@@ -2,7 +2,8 @@ package controllers.monitoring;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -21,12 +22,15 @@ import org.primefaces.model.chart.PieChartModel;
  * 
  */
 @ManagedBean(name = "controllerGraphs")
-@ViewScoped
+@RequestScoped
 public class ControllerGraphs {
 
 	private BarChartModel barModel;
-	private HorizontalBarChartModel horizontalBarModel;
+	private HorizontalBarChartModel casesStatusBarModel;
 	private PieChartModel pieModel1;
+
+	@ManagedProperty(value = "#{controllerList}")
+	private ControllerList controllerList;
 
 
 
@@ -43,8 +47,8 @@ public class ControllerGraphs {
 
 
 
-	public HorizontalBarChartModel getHorizontalBarModel() {
-		return horizontalBarModel;
+	public HorizontalBarChartModel getCasesStatusBarModel() {
+		return casesStatusBarModel;
 	}
 
 
@@ -108,38 +112,45 @@ public class ControllerGraphs {
 
 
 	private void createHorizontalBarModel() {
-		horizontalBarModel = new HorizontalBarChartModel();
+		casesStatusBarModel = new HorizontalBarChartModel();
 
-		ChartSeries boys = new ChartSeries();
-		boys.setLabel("Boys");
-		boys.set("2004", 50);
-		boys.set("2005", 96);
-		boys.set("2006", 44);
-		boys.set("2007", 55);
-		boys.set("2008", 25);
+		ChartSeries open = new ChartSeries();
+		ChartSeries pending = new ChartSeries();
+		ChartSeries inProgress = new ChartSeries();
+		ChartSeries refused = new ChartSeries();
+		ChartSeries closed = new ChartSeries();
 
-		ChartSeries girls = new ChartSeries();
-		girls.setLabel("Girls");
-		girls.set("2004", 52);
-		girls.set("2005", 60);
-		girls.set("2006", 82);
-		girls.set("2007", 35);
-		girls.set("2008", 120);
+		open.setLabel("Open");
+		open.set("", (int) 4);
 
-		horizontalBarModel.addSeries(boys);
-		horizontalBarModel.addSeries(girls);
+		pending.setLabel("Pending");
+		pending.set("", 2);
 
-		horizontalBarModel.setTitle("Horizontal and Stacked");
-		horizontalBarModel.setLegendPosition("e");
-		horizontalBarModel.setStacked(true);
+		inProgress.setLabel("In Progress");
+		inProgress.set("", 10);
 
-		Axis xAxis = horizontalBarModel.getAxis(AxisType.X);
-		xAxis.setLabel("Births");
+		closed.setLabel("closed");
+		closed.set("", 4);
+
+		refused.setLabel("refused");
+		refused.set("", 1);
+
+		casesStatusBarModel.addSeries(open);
+		casesStatusBarModel.addSeries(pending);
+		casesStatusBarModel.addSeries(inProgress);
+		casesStatusBarModel.addSeries(closed);
+		casesStatusBarModel.addSeries(refused);
+
+		casesStatusBarModel.setTitle("Cases Status");
+		casesStatusBarModel.setLegendPosition("ne");
+
+		Axis xAxis = casesStatusBarModel.getAxis(AxisType.X);
+		xAxis.setLabel("Number of cases");
 		xAxis.setMin(0);
-		xAxis.setMax(200);
+		// xAxis.setMax(200);
 
-		Axis yAxis = horizontalBarModel.getAxis(AxisType.Y);
-		yAxis.setLabel("Gender");
+		Axis yAxis = casesStatusBarModel.getAxis(AxisType.Y);
+		// yAxis.setLabel("Gender");
 	}
 
 
@@ -156,5 +167,17 @@ public class ControllerGraphs {
 		pieModel1.setLegendPosition("w");
 		pieModel1.setShowDataLabels(true);
 	}
-	
+
+
+
+	public ControllerList getControllerList() {
+		return controllerList;
+	}
+
+
+
+	public void setControllerList(ControllerList controllerList) {
+		this.controllerList = controllerList;
+	}
+
 }

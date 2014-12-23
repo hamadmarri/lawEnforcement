@@ -48,11 +48,14 @@ public class ControllerList {
 
 	public List<InvestigativeCase> getInvestigativeCasesList() {
 
-		System.out.println("getInvestigativeCasesList()********** " + controllerMonitoring.getSearch()
-				+ controllerMonitoring.getStartDate() + controllerMonitoring.getDueDate() + "***********");
+		// System.out.println("getInvestigativeCasesList()********** " +
+		// controllerMonitoring.getSearch()
+		// + controllerMonitoring.getStartDate() +
+		// controllerMonitoring.getDueDate() + "***********");
 
 		this.investigativeCasesList = ejbMonitoring.getInvestigativeCasesList(controllerMonitoring.getSearch(),
-				controllerMonitoring.getStartDate(), controllerMonitoring.getDueDate());
+				controllerMonitoring.getStartDate(), controllerMonitoring.getDueDate(),
+				controllerMonitoring.getStatus());
 
 		return investigativeCasesList;
 	}

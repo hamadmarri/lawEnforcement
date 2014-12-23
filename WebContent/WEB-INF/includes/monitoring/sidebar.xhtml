@@ -12,7 +12,8 @@
 <h:body>
 	<ui:composition>
 		<h:form id="monitoringForm">
-			<p:panel id="basic" header="Search" style="margin-bottom:20px">
+
+			<p:panel id="search" header="Search" style="margin-bottom:20px">
 				<h:panelGrid columns="1">
 					<h:panelGroup>
 						<p:commandButton icon="ui-icon-search" title="Search" ajax="false" />
@@ -31,7 +32,20 @@
 					<p:commandButton value="Filter" ajax="false" />
 				</h:panelGrid>
 			</p:panel>
-			
+
+			<p:panel id="status" header="Status" style="margin-bottom:20px">
+				<h:panelGrid columns="1">
+					<h:selectManyCheckbox value="#{controllerMonitoring.status}">
+						<f:selectItem itemValue="Open" itemLabel="Open" />
+						<f:selectItem itemValue="Pending" itemLabel="Pending" />
+						<f:selectItem itemValue="In progress" itemLabel="In progress" />
+						<f:selectItem itemValue="Refused" itemLabel="Refused" />
+						<f:selectItem itemValue="Closed" itemLabel="Closed" />
+					</h:selectManyCheckbox>
+
+					<p:commandButton value="Filter" ajax="false" />
+				</h:panelGrid>
+			</p:panel>
 		</h:form>
 	</ui:composition>
 </h:body>

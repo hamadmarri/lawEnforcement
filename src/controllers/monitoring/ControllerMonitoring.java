@@ -2,8 +2,11 @@ package controllers.monitoring;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import entities.police.InvestigativeCase;
 
 
 /**
@@ -21,12 +24,14 @@ public class ControllerMonitoring {
 	private String search = new String();
 	private Date startDate = new Date();
 	private Date dueDate = new Date();
+	private String[] status;
 
 
 
-	// public void doFilter() {
-	//
-	// }
+	@PostConstruct
+	public void init() {
+		status = InvestigativeCase.getStatusSuggestions();
+	}
 
 
 
@@ -62,6 +67,18 @@ public class ControllerMonitoring {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+
+
+	public String[] getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String[] status) {
+		this.status = status;
 	}
 
 }
