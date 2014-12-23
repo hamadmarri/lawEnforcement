@@ -52,9 +52,9 @@ public class InvestigativeCase extends Relatable {
 	@OneToMany(mappedBy = "investigativeCase")
 	private List<Task> tasks;
 
-	private String description;
+	// private String description;
 
-	private static String[] statusSuggestions = { "Open", "Pending", "In progress", "Refuded", "Closed" };
+	private static String[] statusSuggestions = { "Open", "Pending", "In progress", "Refused", "Closed" };
 	private String status;
 
 

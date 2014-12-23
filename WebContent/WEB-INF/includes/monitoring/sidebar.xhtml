@@ -11,24 +11,28 @@
 
 <h:body>
 	<ui:composition>
-		<p:panel id="basic" header="Search" style="margin-bottom:20px">
-			<h:panelGrid columns="1">
-				<h:panelGroup>
-					<p:graphicImage name="searchicon.jpg" />
-					<h:inputText></h:inputText>
-				</h:panelGroup>
-				<h:panelGrid columns="2">
-					<h:panelGrid columns="1">
-						<h:outputLabel value="From" />
-						<p:calendar />
+		<h:form id="monitoringForm">
+			<p:panel id="basic" header="Search" style="margin-bottom:20px">
+				<h:panelGrid columns="1">
+					<h:panelGroup>
+						<p:commandButton icon="ui-icon-search" title="Search" ajax="false" />
+						<p:inputText value="#{controllerMonitoring.search}" />
+					</h:panelGroup>
+					<h:panelGrid columns="2">
+						<h:panelGrid columns="1">
+							<h:outputLabel value="Start Date" />
+							<p:calendar value="#{controllerMonitoring.startDate}" />
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:outputLabel value="Due Date" />
+							<p:calendar value="#{controllerMonitoring.dueDate}" />
+						</h:panelGrid>
 					</h:panelGrid>
-					<h:panelGrid columns="1">
-						<h:outputLabel value="To" />
-						<p:calendar />
-					</h:panelGrid>
+					<p:commandButton value="Filter" ajax="false" />
 				</h:panelGrid>
-			</h:panelGrid>
-		</p:panel>
+			</p:panel>
+			
+		</h:form>
 	</ui:composition>
 </h:body>
 </html>

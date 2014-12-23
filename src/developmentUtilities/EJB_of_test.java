@@ -77,6 +77,63 @@ public class EJB_of_test {
 		createActivity_InvCase_Inv();
 		createInvestigativeGroup_Permission();
 
+		createMoreInvCasesForMonitorTesting();
+	}
+
+
+
+	private void createMoreInvCasesForMonitorTesting() {
+		Calendar startDate = Calendar.getInstance();
+		Calendar dueDate = Calendar.getInstance();
+		Officer james = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
+		Officer lorinda = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(1);
+		Investigator connan = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
+		Investigator patric = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(1);
+		IncidentReport ir1 = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(0);
+		IncidentReport ir2 = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(1);
+		InvestigativeCase invC;
+
+		/******* first case *******/
+		startDate.set(2012, 1, 2);
+		dueDate.set(2012, 3, 0);
+		invC = new InvestigativeCase(startDate.getTime(), dueDate.getTime(), "Monitoring 1", "Closed");
+		invC.addInvestigator(connan);
+		invC.setOfficerWhoCreatedIt(james);
+		ir1.setAssignedCase(invC);
+		em.persist(invC);
+		em.persist(ir1);
+
+		/******* second case *******/
+		startDate.set(2013, 5, 2);
+		dueDate.set(2013, 6, 25);
+		invC = new InvestigativeCase(startDate.getTime(), dueDate.getTime(), "Different description", "Pending");
+		invC.addInvestigator(patric);
+		invC.setOfficerWhoCreatedIt(lorinda);
+		ir2.setAssignedCase(invC);
+		em.persist(invC);
+		em.persist(ir2);
+
+		/******* 3 case *******/
+		startDate.set(2012, 1, 2);
+		dueDate.set(2012, 3, 0);
+		invC = new InvestigativeCase(startDate.getTime(), dueDate.getTime(), "another one related to suzi",
+				"In progress");
+		invC.addInvestigator(connan);
+		invC.setOfficerWhoCreatedIt(james);
+		ir1.setAssignedCase(invC);
+		em.persist(invC);
+		em.persist(ir1);
+
+		/******* 4 case *******/
+		startDate.set(2011, 8, 22);
+		dueDate.set(2011, 9, 20);
+		invC = new InvestigativeCase(startDate.getTime(), dueDate.getTime(), "just test", "Refused");
+		invC.addInvestigator(connan);
+		invC.setOfficerWhoCreatedIt(james);
+		ir1.setAssignedCase(invC);
+		em.persist(invC);
+		em.persist(ir1);
+
 	}
 
 
