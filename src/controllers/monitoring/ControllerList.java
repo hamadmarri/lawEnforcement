@@ -1,11 +1,14 @@
 package controllers.monitoring;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import ejbs.MonitoringEjb;
+import entities.police.InvestigativeCase;
 
 
 /**
@@ -19,30 +22,37 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "controllerList")
 @ViewScoped
 public class ControllerList {
-	private List<String> list;
+
+	// EJB for InvestigativeCase object
+	@EJB
+	private MonitoringEjb ejbMonitoring;
+
+	// list of InvestigativeCase objects
+	private List<InvestigativeCase> investigativeCasesList = null;
 
 
 
+	/**
+	 * will be called automatically right after the class is constructed since
+	 * it has the PostConstruct annotation
+	 */
 	@PostConstruct
 	public void init() {
-		this.list = new ArrayList<String>();
-
-		for (int i = 0; i < 10; i++) {
-			list.add(Integer.toString(i));
-		}
-
 	}
 
 
 
-	public List<String> getList() {
-		return list;
+	public List<InvestigativeCase> getInvestigativeCasesList() {
+		if (this.investigativeCasesList == null)
+			this.investigativeCasesList = ejbMonitoring.getAllInvestigativeCasesList();
+
+		return investigativeCasesList;
 	}
 
 
 
-	public void setList(List<String> list) {
-		this.list = list;
+	public void setInvestigativeCasesList(List<InvestigativeCase> list) {
+		this.investigativeCasesList = list;
 	}
 
 }

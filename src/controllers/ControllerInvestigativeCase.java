@@ -54,7 +54,7 @@ public class ControllerInvestigativeCase implements Serializable {
 	protected InvestigativeCase investigativeCase;
 
 	// list of InvestigativeCase objects
-	protected List<InvestigativeCase> InvestigativeCasesList = null;
+	protected List<InvestigativeCase> investigativeCasesList = null;
 
 	// to indicate if the operation is to add
 	// new InvestigativeCase or not
@@ -193,16 +193,16 @@ public class ControllerInvestigativeCase implements Serializable {
 
 
 	public List<InvestigativeCase> getInvestigativeCasesList() {
-		if (this.InvestigativeCasesList == null)
-			this.InvestigativeCasesList = ejbInvestigativeCase.getList();
+		if (this.investigativeCasesList == null)
+			this.investigativeCasesList = ejbInvestigativeCase.getList();
 
-		return InvestigativeCasesList;
+		return investigativeCasesList;
 	}
 
 
 
 	public void setInvestigativeCasesList(List<InvestigativeCase> list) {
-		this.InvestigativeCasesList = list;
+		this.investigativeCasesList = list;
 	}
 
 

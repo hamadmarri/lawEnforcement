@@ -12,22 +12,41 @@
 <h:body>
 	<ui:composition>
 
-		<p:dataTable var="i" value="#{controllerList.list}">
-			<p:column headerText="Id">
-				<h:outputText value="#{i}" />
+		<p:dataTable var="ic" value="#{controllerList.investigativeCasesList}">
+			<p:column headerText="ID">
+				<h:outputText value="#{ic.id}" />
+			</p:column>
+			
+			<p:column headerText="Officer">
+				<h:outputLabel
+						value="#{ic.officerWhoCreatedIt.personName.lastName}, #{ic.officerWhoCreatedIt.personName.firstName}" />
 			</p:column>
 
-			<p:column headerText="Year">
-				<h:outputText value="#{i.length()}" />
+			<p:column headerText="Status">
+				<h:outputLabel value="#{ic.status}" />
 			</p:column>
 
-			<p:column headerText="Brand">
-				<h:outputText value="#{i}" />
+			<p:column headerText="Description">
+				<h:outputLabel value="#{ic.description}" />
 			</p:column>
 
-			<p:column headerText="Color">
-				<h:outputText value="#{i}" />
+			<p:column headerText="Start Date">
+				<h:outputLabel value="#{ic.startDate}">
+					<f:convertDateTime pattern="MMMM dd, YYYY" />
+				</h:outputLabel>
 			</p:column>
+			
+			<p:column headerText="Due Date">
+				<h:outputLabel value="#{ic.dueDate}">
+					<f:convertDateTime pattern="MMMM dd, YYYY" />
+				</h:outputLabel>
+			</p:column>
+			
+			<p:column headerText="view">
+				<h:link value="view"
+					outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{ic.id}" />
+			</p:column>
+			
 		</p:dataTable>
 
 
