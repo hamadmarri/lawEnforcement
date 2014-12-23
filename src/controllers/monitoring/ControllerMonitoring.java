@@ -1,6 +1,8 @@
 package controllers.monitoring;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -25,12 +27,27 @@ public class ControllerMonitoring {
 	private Date startDate = new Date();
 	private Date dueDate = new Date();
 	private String[] status;
+	private List<String> officers = new ArrayList<String>();
+	private String officerToBeAdded;
 
 
 
 	@PostConstruct
 	public void init() {
 		status = InvestigativeCase.getStatusSuggestions();
+	}
+
+
+
+	public void addOfficer() {
+		officers.add(officerToBeAdded);
+		officerToBeAdded = "";
+	}
+
+
+
+	public void removeOfficer(String officer) {
+		officers.remove(officer);
 	}
 
 
@@ -79,6 +96,30 @@ public class ControllerMonitoring {
 
 	public void setStatus(String[] status) {
 		this.status = status;
+	}
+
+
+
+	public List<String> getOfficers() {
+		return officers;
+	}
+
+
+
+	public void setOfficers(List<String> officers) {
+		this.officers = officers;
+	}
+
+
+
+	public String getOfficerToBeAdded() {
+		return officerToBeAdded;
+	}
+
+
+
+	public void setOfficerToBeAdded(String officerToBeAdded) {
+		this.officerToBeAdded = officerToBeAdded;
 	}
 
 }

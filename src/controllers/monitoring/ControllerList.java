@@ -52,10 +52,11 @@ public class ControllerList {
 		// controllerMonitoring.getSearch()
 		// + controllerMonitoring.getStartDate() +
 		// controllerMonitoring.getDueDate() + "***********");
+		List<String> officers = controllerMonitoring.getOfficers();
 
 		this.investigativeCasesList = ejbMonitoring.getInvestigativeCasesList(controllerMonitoring.getSearch(),
 				controllerMonitoring.getStartDate(), controllerMonitoring.getDueDate(),
-				controllerMonitoring.getStatus());
+				controllerMonitoring.getStatus(), officers.toArray(new String[officers.size()]));
 
 		return investigativeCasesList;
 	}

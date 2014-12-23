@@ -39,7 +39,7 @@ public class MonitoringEjb {
 
 	@SuppressWarnings("unchecked")
 	public List<InvestigativeCase> getInvestigativeCasesList(String search, Date startDate, Date dueDate,
-			String[] status) {
+			String[] status, String[] officers) {
 
 		Query query;
 		boolean needAND = false;
@@ -84,8 +84,24 @@ public class MonitoringEjb {
 			queryString.append(" )");
 		}
 
-//		System.out.println("EJB ********\n" + queryString.toString());
-		
+		// check for officers
+		if (officers.length != 0) {
+			if (needAND)
+				queryString.append(" AND (");
+
+			for (int i = 0; i < officers.length; i++) {
+				queryString.append(" ic.officerWhoCreatedIt.personName.firstName = :ofF" + i);
+				queryString.append(" OR ic.officerWhoCreatedIt.personName.lastName = :ofL" + i);
+
+				if (i != officers.length - 1)
+					queryString.append(" OR");
+			}
+
+			queryString.append(" )");
+		}
+
+		// System.out.println("EJB ********\n" + queryString.toString());
+
 		// create query
 		query = em.createQuery(queryString.toString(), InvestigativeCase.class);
 
@@ -102,6 +118,13 @@ public class MonitoringEjb {
 		if (status.length != 0) {
 			for (int i = 0; i < status.length; i++)
 				query.setParameter("st" + i, status[i]);
+		}
+
+		if (officers.length != 0) {
+			for (int i = 0; i < officers.length; i++) {
+				query.setParameter("ofF" + i, officers[i]);
+				query.setParameter("ofL" + i, officers[i]);
+			}
 		}
 
 		return query.getResultList();

@@ -46,6 +46,27 @@
 					<p:commandButton value="Filter" ajax="false" />
 				</h:panelGrid>
 			</p:panel>
+
+			<p:panel id="officers" header="Officers" style="margin-bottom:20px">
+				<h:panelGrid columns="1">
+					<h:panelGroup>
+						<h:inputText value="#{controllerMonitoring.officerToBeAdded}" />
+						<p:commandButton icon="ui-icon-circle-plus" title="Add"
+							ajax="false" action="#{controllerMonitoring.addOfficer}" />
+					</h:panelGroup>
+					<h:dataTable var="o" value="#{controllerMonitoring.officers}">
+						<h:column>
+							<h:outputLabel value="#{o}" />
+						</h:column>
+						<h:column>
+							<p:commandButton icon="ui-icon-circle-minus" title="Remove"
+								ajax="false" action="#{controllerMonitoring.removeOfficer(o)}" />
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</p:panel>
+
+
 		</h:form>
 	</ui:composition>
 </h:body>
