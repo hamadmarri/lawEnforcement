@@ -1,5 +1,7 @@
 package controllers.monitoring;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,6 +13,8 @@ import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.HorizontalBarChartModel;
 import org.primefaces.model.chart.PieChartModel;
+
+import entities.police.InvestigativeCase;
 
 
 /**
@@ -119,21 +123,37 @@ public class ControllerGraphs {
 		ChartSeries inProgress = new ChartSeries();
 		ChartSeries refused = new ChartSeries();
 		ChartSeries closed = new ChartSeries();
+		List<InvestigativeCase> investigativeCases = controllerList.getInvestigativeCasesList();
+		int openCount = 0, pendingCount = 0, inProgCount = 0, closedCount = 0, refusedCount = 0;
+
+		// get counts
+		for (InvestigativeCase i : investigativeCases) {
+			if (i.getStatus().equals("Open"))
+				openCount++;
+			else if (i.getStatus().equals("Pending"))
+				pendingCount++;
+			else if (i.getStatus().equals("In progress"))
+				inProgCount++;
+			else if (i.getStatus().equals("Closed"))
+				closedCount++;
+			else if (i.getStatus().equals("Refused"))
+				refusedCount++;
+		}
 
 		open.setLabel("Open");
-		open.set("", (int) 4);
+		open.set("", (int) openCount);
 
 		pending.setLabel("Pending");
-		pending.set("", 2);
+		pending.set("", pendingCount);
 
 		inProgress.setLabel("In Progress");
-		inProgress.set("", 10);
+		inProgress.set("", inProgCount);
 
 		closed.setLabel("closed");
-		closed.set("", 4);
+		closed.set("", closedCount);
 
 		refused.setLabel("refused");
-		refused.set("", 1);
+		refused.set("", refusedCount);
 
 		casesStatusBarModel.addSeries(open);
 		casesStatusBarModel.addSeries(pending);

@@ -84,7 +84,7 @@ public class MonitoringEjb {
 			queryString.append(" )");
 		}
 
-		System.out.println("EJB ********\n" + queryString.toString());
+//		System.out.println("EJB ********\n" + queryString.toString());
 		
 		// create query
 		query = em.createQuery(queryString.toString(), InvestigativeCase.class);
