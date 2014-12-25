@@ -1,7 +1,7 @@
 package controllers;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
 import developmentUtilities.EJB_of_test;

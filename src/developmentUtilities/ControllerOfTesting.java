@@ -1,13 +1,13 @@
 package developmentUtilities;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 import entities.Relatable;
 
 
-@Named
+@ManagedBean(name = "controllerOfTesting")
 @RequestScoped
 public class ControllerOfTesting {
 
