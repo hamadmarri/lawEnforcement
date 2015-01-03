@@ -8,46 +8,50 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<h:outputStylesheet library="css" name="style.css"  />
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
 
 	<header></header>
 
-	<div id="content" class="wrapper"> 
-	
-		<header class="header">
-			Header
-		</header>
-	
-	 
-	 	
-	 	<div id="results" class="middle">
-	 		
-	 		<div class="container">
+	<div id="content" class="wrapper">
+
+		<header class="header"> Header </header>
+
+
+
+		<div id="results" class="middle">
+
+			<div class="container">
 				<main class="content">
-					<div id="graphs">
-		 				<ui:include src="/WEB-INF/includes/monitoring/graphs.xhtml"></ui:include>
-			 		</div>
-				 	<div id="list">
-				 		<ui:include src="/WEB-INF/includes/monitoring/list.xhtml"></ui:include>
-				 	</div>
-				 	
-				 	<div id="controls" class="footer">
-				 		<ui:include src="/WEB-INF/includes/monitoring/controls.xhtml"></ui:include>
-				 	</div> 
-				</main>
-			</div> 
-		
-	 		
-		 	<aside id="sidebar" class="left-sidebar">
-				<ui:include src="/WEB-INF/includes/monitoring/sidebar.xhtml"></ui:include>
-			</aside> 
-	 	
-		 	
-		</div>
+					<h:form>
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" />
+							<p:dataExporter type="xls" target="tbl" fileName="cars"
+								pageOnly="true" />
+						</h:commandLink>
+						<div id="graphs">
+							<ui:include src="/WEB-INF/includes/monitoring/graphs.xhtml"></ui:include>
+						</div>
+						<div id="list">
+							<ui:include src="/WEB-INF/includes/monitoring/list.xhtml"></ui:include>
+						</div>
 	
+						<div id="controls" class="footer">
+							<ui:include src="/WEB-INF/includes/monitoring/controls.xhtml"></ui:include>
+						</div>
+					</h:form>
+				</main>
+			</div>
+
+
+			<aside id="sidebar" class="left-sidebar"> <ui:include
+				src="/WEB-INF/includes/monitoring/sidebar.xhtml"></ui:include> </aside>
+
+
+		</div>
+
 	</div>
 
 </h:body>

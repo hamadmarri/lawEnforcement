@@ -12,14 +12,16 @@
 <h:body>
 	<ui:composition>
 
-		<p:dataTable var="ic" value="#{controllerList.investigativeCasesList}">
+		<p:dataTable id="icList" var="ic" value="#{controllerList.investigativeCasesList}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+			paginator="true" rows="10">
 			<p:column headerText="ID">
 				<h:outputText value="#{ic.id}" />
 			</p:column>
-			
+
 			<p:column headerText="Officer">
 				<h:outputLabel
-						value="#{ic.officerWhoCreatedIt.personName.lastName}, #{ic.officerWhoCreatedIt.personName.firstName}" />
+					value="#{ic.officerWhoCreatedIt.personName.lastName}, #{ic.officerWhoCreatedIt.personName.firstName}" />
 			</p:column>
 
 			<p:column headerText="Status">
@@ -35,18 +37,18 @@
 					<f:convertDateTime pattern="MMMM dd, YYYY" />
 				</h:outputLabel>
 			</p:column>
-			
+
 			<p:column headerText="Due Date">
 				<h:outputLabel value="#{ic.dueDate}">
 					<f:convertDateTime pattern="MMMM dd, YYYY" />
 				</h:outputLabel>
 			</p:column>
-			
+
 			<p:column headerText="view">
 				<h:link value="view"
 					outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{ic.id}" />
 			</p:column>
-			
+
 		</p:dataTable>
 
 	</ui:composition>
