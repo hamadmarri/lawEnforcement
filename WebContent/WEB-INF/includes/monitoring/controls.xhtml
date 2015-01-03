@@ -11,18 +11,17 @@
 
 <h:body>
 	<ui:composition>
-		<h:commandButton value="Print" />
-		<h:commandButton value="Export" />
-		<h:commandButton value="PDF" />
-
 		<h:commandLink>
 			<p:graphicImage name="images/excel.png" />
-			<p:dataExporter type="xls" target="icList" fileName="cars" />
+			<p:dataExporter type="xls" target="icList" fileName="incidentCases" />
 		</h:commandLink>
 		<h:commandLink>
 			<p:graphicImage name="images/pdf.png" />
-			<p:dataExporter type="pdf" target="icList" fileName="cars" />
+			<p:dataExporter type="pdf" target="icList" fileName="incidentCases" />
 		</h:commandLink>
+		<a href="javascript:window.print()"> <img src="print_image.gif"
+			border="0" />
+		</a>
 	</ui:composition>
 </h:body>
 </html>
