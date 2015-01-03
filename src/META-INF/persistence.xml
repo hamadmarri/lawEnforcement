@@ -49,6 +49,8 @@
 		<class>entities.police.Task</class>
 		<class>security.Authorizable</class>
 		<class>security.Permission</class>
+		<class>entities.entries.files.EntryFile</class>
+		<class>entities.entries.history.Changeable</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
 		</properties>

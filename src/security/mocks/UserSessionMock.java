@@ -2,6 +2,6 @@ package security.mocks;
 
 public class UserSessionMock {
 
-	public static Long userId = 31L;
+	public static Long userId = 19L;
 }
  
