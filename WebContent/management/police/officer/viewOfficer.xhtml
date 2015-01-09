@@ -13,17 +13,18 @@
 	</f:metadata>
 </h:head>
 <h:body>
-	<ui:composition>
-		<h3>Officer</h3>
-
-		<c:set var="investigativeCases"
-			value="#{controllerOfficer.officer.createdInvestigativeCases}" />
-		<c:set var="included" value="true" />
-
-		<h:link value="edit" outcome="edit">
+	<h3>Officer</h3>
+	
+	<h:link value="edit" outcome="edit">
 			<f:param name="id" value="#{controllerOfficer.id}" />
 		</h:link>
 		<br />
+		
+	<ui:composition>
+		<c:set var="investigativeCases"
+			value="#{controllerOfficer.officer.createdInvestigativeCases}" />
+		<c:set var="included" value="true" />
+		
 		<h4>Person Information</h4>
 		<h:outputLabel value="First name" />
 		<h:outputLabel

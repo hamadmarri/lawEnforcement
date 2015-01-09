@@ -13,17 +13,19 @@
 	</f:metadata>
 </h:head>
 <h:body>
+
+	<h3>Investigator</h3>
+	<h:link value="edit" outcome="edit">
+		<f:param name="id" value="#{controllerInvestigator.id}" />
+	</h:link>
+	<br />
 	<ui:composition>
-		<h3>Investigator</h3>
 
 		<c:set var="investigativeCases"
 			value="#{controllerInvestigator.investigator.investigativeCases}" />
-		<c:set var="included" value="true" /> 
+		<c:set var="included" value="true" />
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerInvestigator.id}" />
-		</h:link>
-		<br />
+
 
 		<h:outputLabel value="Name" />
 		<h:outputLabel

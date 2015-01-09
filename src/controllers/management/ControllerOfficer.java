@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import ejbs.OfficerEjb;
 import entities.Relatable;
 import entities.events.Event;
 import entities.police.Officer;
@@ -35,7 +36,7 @@ public class ControllerOfficer implements Serializable {
 
 	// EJB for Officer object
 	@EJB
-	protected AbstractEjb<Officer> ejbOfficer;
+	protected OfficerEjb ejbOfficer;
 
 	// EJB for Relatable object
 	@EJB
