@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/template.xhtml">
+		<ui:define name="title">Admin Page</ui:define>
+		<ui:define name="content">
+			<h1>Admin Page</h1>
+			<br />
+
+			<h:outputLabel value="There are no users!"
+				rendered="#{usersGroupsController.allUsers.isEmpty()}" />
+
+			<h:form id="usersForm" onsubmit="return confirmDelete();">
+				<h:dataTable id="usersTable"
+					rendered="#{usersGroupsController.allUsers.isEmpty() == false}"
+					value="#{usersGroupsController.allUsers}" var="user"
+					class="usersList">
+					<h:column>
+						<f:facet name="header">id</f:facet>
+						<h:outputText value="#{user.userId}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Username</f:facet>
+						<h:outputText value="#{user.username}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Signup Date</f:facet>
+						<h:outputText value="#{user.signupDate}">
+							<f:convertDateTime pattern="MMMM dd, yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Activate</f:facet>
+						<h:commandButton value="Activate" onclick="deleteClicked = false;"
+							action="#{usersGroupsController.activate(user.username)}"
+							rendered="#{user.validated == 0}" />
+						<h:outputLabel value="activated"
+							rendered="#{user.validated == 1}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Delete</f:facet>
+						<h:commandButton value="Delete" style="color:red;"
+							onclick="username = '#{user.username}'; deleteClicked = true;"
+							action="#{usersGroupsController.deleteUser(user.userId)}">
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+
+			<script>
+				var username = "";
+				var deleteClicked = false;
+				function confirmDelete() {
+					if (deleteClicked)
+						return confirm('Are you sure you want to delete '
+								+ username + '?');
+					else
+						return true;
+				}
+			</script>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -9,13 +9,15 @@
 <h:head></h:head>
 <h:body>
 
-	<ui:define name="title">Login Error</ui:define>
-	<ui:define name="content">
-		<h1>Login Error</h1>
-		<h:outputLabel>
+	<ui:composition template="/WEB-INF/templates/template.xhtml">
+		<ui:define name="title">Login Error</ui:define>
+		<ui:define name="content">
+			<h1>Login Error</h1>
+			<h:outputLabel>
             Sorry, you made an Error. Please try again: 
             <h:link value="Login" outcome="/login.xhtml" />
-		</h:outputLabel>
-	</ui:define>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

@@ -18,9 +18,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
 		@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
-		@NamedQuery(name = "Users.findAllUsers", query = "SELECT u FROM Users u WHERE u.username <> 'admin'"),
-		@NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username"),
-		@NamedQuery(name = "Users.findByValidationCode", query = "SELECT u FROM Users u WHERE u.validationCode = :validationCode") })
+		@NamedQuery(name = "Users.findAllUsers", query = "SELECT u FROM Users u"),
+		@NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username") })
 public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -41,8 +40,8 @@ public class Users implements Serializable {
 	@Column(nullable = false, length = 100)
 	private short validated;
 
-	@Column(nullable = false, length = 10)
-	private String validationCode;
+//	@Column(nullable = false, length = 10)
+//	private String validationCode;
 
 	@Column(insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -64,7 +63,7 @@ public class Users implements Serializable {
 		this.salt = u.salt;
 		this.username = u.username;
 		this.validated = u.validated;
-		this.validationCode = u.validationCode;
+//		this.validationCode = u.validationCode;
 		this.signupDate = u.signupDate;
 		this.groupsList = u.groupsList;
 	}
@@ -137,15 +136,15 @@ public class Users implements Serializable {
 
 
 
-	public String getValidationCode() {
-		return validationCode;
-	}
-
-
-
-	public void setValidationCode(String validationCode) {
-		this.validationCode = validationCode;
-	}
+	// public String getValidationCode() {
+	// return validationCode;
+	// }
+	//
+	//
+	//
+	// public void setValidationCode(String validationCode) {
+	// this.validationCode = validationCode;
+	// }
 
 
 

@@ -82,7 +82,7 @@ public class UserPage {
 	public void insistNotLogedIn() {
 		if (isLoggedIn()) {
 			try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("/ENSE353Project/");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("/adala/");
 			} catch (IOException e) {
 				return;
 			}

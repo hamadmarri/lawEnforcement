@@ -112,7 +112,7 @@ public class RegistrationController {
 
 
 	public void signUp() throws IOException {
-		String validationCode;
+//		String validationCode;
 
 		// check if username is already existed in the DB
 		if (isUsernameAlreadyExist()) {
@@ -122,11 +122,11 @@ public class RegistrationController {
 		}
 
 		if (isPasswordsMatched()) {
-			validationCode = new String(Long.toString((long) (Math.random() * 10000000000L)));
+//			validationCode = new String(Long.toString((long) (Math.random() * 10000000000L)));
 			password.saltIt();
 			user.setSalt(password.getSalt());
 			user.setPassword(password.getPassword());
-			user.setValidationCode(validationCode);
+//			user.setValidationCode(validationCode);
 			userGroupEJB.addUser(user, 2);
 
 			// send activation code
@@ -134,7 +134,7 @@ public class RegistrationController {
 //			ec.sendActivationCode(user.getUsername(), validationCode);
 
 			// redirect to send user page
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/ENSE353Project/user/index.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/adala");
 		}
 	}
 

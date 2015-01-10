@@ -14,6 +14,10 @@
 <h:body>
 
 	<ul>
+		<li><h:form style="display: inline;">
+				<h:commandButton class="link-lookalike"
+					action="#{usersGroupsController.logout()}" value="Logout" />
+			</h:form></li>
 		<li><h:link value="Addresses"
 				outcome="/management/entries/address/listAddresses.xhtml" /></li>
 		<li><h:link value="Conveyances"

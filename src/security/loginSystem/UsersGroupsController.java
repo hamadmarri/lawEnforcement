@@ -53,10 +53,14 @@ public class UsersGroupsController {
 
 
 
-	public void sendEmail(String email) throws IOException {
-		userGroupEJB.setEmailTo(email);
-		FacesContext fc = FacesContext.getCurrentInstance();
-		fc.getExternalContext().redirect("/ENSE353Project/admin/email.xhtml");
+	// public void sendEmail(String email) throws IOException {
+	// userGroupEJB.setEmailTo(email);
+	// FacesContext fc = FacesContext.getCurrentInstance();
+	// fc.getExternalContext().redirect("/adala/admin/email.xhtml");
+	// }
+
+	public void activate(String username) {
+		userGroupEJB.validateUser(userGroupEJB.findUser(username));
 	}
 
 
@@ -86,41 +90,46 @@ public class UsersGroupsController {
 
 
 	public void CookieLogin() throws InvalidKeyException {
-
-		if (userPage.isLoggedIn())
-			return;
-
-		System.out.println("******* not logged in *******");
-
-		String userId, cookieValue, salt, hashedPasswd;
-
-		try {
-			cookieValue = (new CookieManager()).getCookie(FacesContext.getCurrentInstance(), "style");
-		} catch (NullPointerException e) {
-			return;
-		}
-
-		userId = cookieValue.substring(0, cookieValue.indexOf(":"));
-
-		Users user = userGroupEJB.findUser(Integer.parseInt(userId));
-		if (user == null)
-			return;
-
-		salt = user.getSalt();
-		hashedPasswd = cookieValue.substring(cookieValue.indexOf(":") + 1, cookieValue.indexOf(":") + 1 + 128);
-
-		setUsername(user.getUsername());
-		setPassword("");
-
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
-
-		try {
-			request.login(user.getUsername(), salt + hashedPasswd);
-			ec.redirect(((HttpServletRequest) ec.getRequest()).getHeader("Referer"));
-		} catch (ServletException | IOException e) {
-			return;
-		}
+		// TODO: there is a problem that with cookie doesn't logout properly
+		// if (userPage.isLoggedIn())
+		// return;
+		//
+		// System.out.println("******* not logged in *******");
+		//
+		// String userId, cookieValue, salt, hashedPasswd;
+		//
+		// try {
+		// cookieValue = (new
+		// CookieManager()).getCookie(FacesContext.getCurrentInstance(),
+		// "style");
+		// } catch (NullPointerException e) {
+		// return;
+		// }
+		//
+		// userId = cookieValue.substring(0, cookieValue.indexOf(":"));
+		//
+		// Users user = userGroupEJB.findUser(Integer.parseInt(userId));
+		// if (user == null)
+		// return;
+		//
+		// salt = user.getSalt();
+		// hashedPasswd = cookieValue.substring(cookieValue.indexOf(":") + 1,
+		// cookieValue.indexOf(":") + 1 + 128);
+		//
+		// setUsername(user.getUsername());
+		// setPassword("");
+		//
+		// ExternalContext ec =
+		// FacesContext.getCurrentInstance().getExternalContext();
+		// HttpServletRequest request = (HttpServletRequest) ec.getRequest();
+		//
+		// try {
+		// request.login(user.getUsername(), salt + hashedPasswd);
+		// ec.redirect(((HttpServletRequest)
+		// ec.getRequest()).getHeader("Referer"));
+		// } catch (ServletException | IOException e) {
+		// return;
+		// }
 	}
 
 
@@ -145,12 +154,13 @@ public class UsersGroupsController {
 			request.login(username, user.getSalt() + hashedPass.getPassword());
 
 			// set cookie
-			CookieManager cm = new CookieManager();
-			cm.setCookie((HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(),
-					"style", user.getUserId() + ":" + hashedPass.getPassword());
+			// CookieManager cm = new CookieManager();
+			// cm.setCookie((HttpServletResponse)
+			// FacesContext.getCurrentInstance().getExternalContext().getResponse(),
+			// "style", user.getUserId() + ":" + hashedPass.getPassword());
 
 			// redirect page
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/ENSE353Project/");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/adala/");
 
 		} catch (ServletException e) {
 			new ErrorMessages().add("errorMsgLogin", "Invalid username or password!");
@@ -164,11 +174,12 @@ public class UsersGroupsController {
 		fc.getExternalContext().invalidateSession();
 
 		// remove cookie
-		CookieManager cm = new CookieManager();
-		cm.removeCookie((HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(),
-				"style", "");
+		// CookieManager cm = new CookieManager();
+		// cm.removeCookie((HttpServletResponse)
+		// FacesContext.getCurrentInstance().getExternalContext().getResponse(),
+		// "style", "");
 
-		fc.getExternalContext().redirect("/ENSE353Project/index.xhtml?faces-redirect=true");
+		fc.getExternalContext().redirect("/adala/index.xhtml?faces-redirect=true");
 	}
 
 }

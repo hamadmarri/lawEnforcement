@@ -14,42 +14,42 @@
 </h:head>
 
 <h:body>
-	<ui:define name="title">Signup Page</ui:define>
-	<ui:define name="content">
-		<div class="login-card">
-			<h1>Signup Page</h1>
-			<h:form>
-				<p:watermark for="email" value="Email" />
-				<h:inputText id="email"
-					value="#{registrationController.user.username}" title="Email"
-					required="true"
-					requiredMessage="The Username/Email field is required."
-					validatorMessage="invalid E-mail format.">
-					<f:validateRegex
-						pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-				</h:inputText>
-				<p:watermark for="password" value="Password" />
-				<h:inputSecret id="password"
-					value="#{registrationController.password}" title="Password"
-					required="true" requiredMessage="The Password field is required."
-					validatorMessage="password must be between 6-15 characters">
-					<f:validateLength minimum="6" maximum="15" />
-				</h:inputSecret>
-				<p:watermark for="rePassword" value="Re-password" />
-				<h:inputSecret id="rePassword"
-					value="#{registrationController.rePassword}" title="Re-password"
-					required="true"
-					requiredMessage="The Re-password field is required."
-					validatorMessage="Re-password must be between 6-15 characters">
-					<f:validateLength minimum="6" maximum="15" />
-				</h:inputSecret>
-				<h:commandButton id="submit" class="login login-submit"
-					action="#{registrationController.signUp()}" value="Sign up">
-					<f:ajax execute="@form" render="errorMsgSignup" />
-				</h:commandButton>
-				<h:messages id="errorMsgSignup" style="color:red;" />
-			</h:form>
-		</div>
-	</ui:define>
+	<ui:composition template="/WEB-INF/templates/template.xhtml">
+		<ui:define name="title">Signup Page</ui:define>
+		<ui:define name="content">
+			<div class="login-card">
+				<h1>Signup Page</h1>
+				<h:form>
+					<p:watermark for="username" value="Username" />
+					<h:inputText id="username"
+						value="#{registrationController.user.username}" title="Username"
+						required="true" requiredMessage="The Username field is required."
+						validatorMessage="invalid username format.">
+						<f:validateLength minimum="5" maximum="15" />
+					</h:inputText>
+					<p:watermark for="password" value="Password" />
+					<h:inputSecret id="password"
+						value="#{registrationController.password}" title="Password"
+						required="true" requiredMessage="The Password field is required."
+						validatorMessage="password must be between 6-15 characters">
+						<f:validateLength minimum="6" maximum="15" />
+					</h:inputSecret>
+					<p:watermark for="rePassword" value="Re-password" />
+					<h:inputSecret id="rePassword"
+						value="#{registrationController.rePassword}" title="Re-password"
+						required="true"
+						requiredMessage="The Re-password field is required."
+						validatorMessage="Re-password must be between 6-15 characters">
+						<f:validateLength minimum="6" maximum="15" />
+					</h:inputSecret>
+					<h:commandButton id="submit" class="login login-submit"
+						action="#{registrationController.signUp()}" value="Sign up">
+						<!-- <f:ajax execute="@form" render="errorMsgSignup" /> -->
+					</h:commandButton>
+					<h:messages id="errorMsgSignup" style="color:red;" />
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
