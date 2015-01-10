@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata>
+		<f:event listener="#{userPage.insistNotLogedIn}" type="preRenderView" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:define name="title">Signup Page</ui:define>
+	<ui:define name="content">
+		<div class="login-card">
+			<h1>Signup Page</h1>
+			<h:form>
+				<p:watermark for="email" value="Email" />
+				<h:inputText id="email"
+					value="#{registrationController.user.username}" title="Email"
+					required="true"
+					requiredMessage="The Username/Email field is required."
+					validatorMessage="invalid E-mail format.">
+					<f:validateRegex
+						pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+				</h:inputText>
+				<p:watermark for="password" value="Password" />
+				<h:inputSecret id="password"
+					value="#{registrationController.password}" title="Password"
+					required="true" requiredMessage="The Password field is required."
+					validatorMessage="password must be between 6-15 characters">
+					<f:validateLength minimum="6" maximum="15" />
+				</h:inputSecret>
+				<p:watermark for="rePassword" value="Re-password" />
+				<h:inputSecret id="rePassword"
+					value="#{registrationController.rePassword}" title="Re-password"
+					required="true"
+					requiredMessage="The Re-password field is required."
+					validatorMessage="Re-password must be between 6-15 characters">
+					<f:validateLength minimum="6" maximum="15" />
+				</h:inputSecret>
+				<h:commandButton id="submit" class="login login-submit"
+					action="#{registrationController.signUp()}" value="Sign up">
+					<f:ajax execute="@form" render="errorMsgSignup" />
+				</h:commandButton>
+				<h:messages id="errorMsgSignup" style="color:red;" />
+			</h:form>
+		</div>
+	</ui:define>
+</h:body>
+</html>

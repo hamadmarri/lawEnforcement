@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<f:metadata>
+		<f:event listener="#{usersGroupsController.CookieLogin}"
+			type="preRenderView" />
+
+		<ui:remove>
+			<f:event listener="#{usersGroupsController.test}"
+				type="preRenderView"></f:event>
+		</ui:remove>
+	</f:metadata>
+
+	<title><ui:insert name="title"></ui:insert></title>
+	<h:outputStylesheet library="css" name="loginstyle.css" />
+</h:head>
+
+<h:body>
+
+	<div id="top">
+		<ui:remove>
+			<ui:include src="/WEB-INF/includes/header.xhtml" />
+		</ui:remove>
+	</div>
+
+
+	<div id="content">
+		<ui:insert name="content" />
+	</div>
+
+	<div id="bottom">
+		<ui:remove>
+			<ui:include src="/WEB-INF/includes/footer.xhtml" />
+		</ui:remove>
+	</div>
+
+
+	<ui:debug hotkey="D"
+		rendered="#{initParam['javax.faces.PROJECT_STAGE'] == 'Development'}" />
+
+</h:body>
+
+</html>
