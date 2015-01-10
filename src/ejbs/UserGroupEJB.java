@@ -72,6 +72,24 @@ public class UserGroupEJB {
 
 
 
+	public void saveUser(Users user) {
+		em.merge(user);
+		// em.flush();
+		// em.refresh(user);
+	}
+
+
+
+	public void updateGroup(Users user, int groupId) {
+		Groups groups = em.find(Groups.class, groupId);
+		List<Groups> groupList = new ArrayList<Groups>();
+		groupList.add(groups);
+		user.setGroupsList(groupList);
+		em.merge(user);
+	}
+
+
+
 	public void validateUser(Users user) {
 		user.setValidated((short) 1);
 		em.merge(user);

@@ -16,8 +16,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "Users")
 @XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
+@NamedQueries({ @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
 		@NamedQuery(name = "Users.findAllUsers", query = "SELECT u FROM Users u"),
 		@NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username") })
 public class Users implements Serializable {
@@ -25,7 +24,7 @@ public class Users implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "user_id", unique = true, nullable = false)
+	// @Column(name = "user_id", unique = true, nullable = false)
 	private int user_id;
 
 	@Column(nullable = false, length = 128)
@@ -40,8 +39,8 @@ public class Users implements Serializable {
 	@Column(nullable = false, length = 100)
 	private short validated;
 
-//	@Column(nullable = false, length = 10)
-//	private String validationCode;
+	// @Column(nullable = false, length = 10)
+	// private String validationCode;
 
 	@Column(insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -50,6 +49,8 @@ public class Users implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "User_Groups", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "group_id", referencedColumnName = "group_id") })
 	private List<Groups> groupsList;
+
+	private String profile_id;
 
 
 
@@ -63,7 +64,7 @@ public class Users implements Serializable {
 		this.salt = u.salt;
 		this.username = u.username;
 		this.validated = u.validated;
-//		this.validationCode = u.validationCode;
+		// this.validationCode = u.validationCode;
 		this.signupDate = u.signupDate;
 		this.groupsList = u.groupsList;
 	}
@@ -146,8 +147,6 @@ public class Users implements Serializable {
 	// this.validationCode = validationCode;
 	// }
 
-
-
 	public Date getSignupDate() {
 		return signupDate;
 	}
@@ -163,6 +162,18 @@ public class Users implements Serializable {
 
 	public void setGroupsList(List<Groups> groupsList) {
 		this.groupsList = groupsList;
+	}
+
+
+
+	public String getProfile_id() {
+		return profile_id;
+	}
+
+
+
+	public void setProfile_id(String profile_id) {
+		this.profile_id = profile_id;
 	}
 
 }

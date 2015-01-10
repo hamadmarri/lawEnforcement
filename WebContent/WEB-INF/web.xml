@@ -49,7 +49,8 @@
 			<web-resource-name>Admin Faces Pages</web-resource-name>
 			<description></description>
 			<url-pattern>/admin/*</url-pattern>
-			<url-pattern>/user/*</url-pattern>
+			<url-pattern>/management/*</url-pattern>
+			<url-pattern>/monitoring/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
@@ -61,15 +62,48 @@
 		</user-data-constraint>
 	</security-constraint>
 	<security-constraint>
-		<display-name>User</display-name>
+		<display-name>Officer</display-name>
 		<web-resource-collection>
-			<web-resource-name>User faces pages</web-resource-name>
+			<web-resource-name>Officer faces pages</web-resource-name>
 			<description></description>
-			<url-pattern>/user/*</url-pattern>
+			<url-pattern>/management/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
-			<role-name>user</role-name>
+			<role-name>officer</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<description></description>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Supervisor</display-name>
+		<web-resource-collection>
+			<web-resource-name>Supervisor faces pages</web-resource-name>
+			<description></description>
+			<url-pattern>/management/*</url-pattern>
+			<url-pattern>/monitoring/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description></description>
+			<role-name>supervisor</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<description></description>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Investigator</display-name>
+		<web-resource-collection>
+			<web-resource-name>Investigator faces pages</web-resource-name>
+			<description></description>
+			<url-pattern>/management/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description></description>
+			<role-name>investigator</role-name>
 		</auth-constraint>
 		<user-data-constraint>
 			<description></description>
@@ -99,7 +133,15 @@
 	</security-role>
 	<security-role>
 		<description></description>
-		<role-name>user</role-name>
+		<role-name>officer</role-name>
+	</security-role>
+	<security-role>
+		<description></description>
+		<role-name>supervisor</role-name>
+	</security-role>
+	<security-role>
+		<description></description>
+		<role-name>investigator</role-name>
 	</security-role>
 
 </web-app>

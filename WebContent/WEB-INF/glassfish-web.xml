@@ -8,7 +8,15 @@
 		<group-name>admin</group-name>
 	</security-role-mapping>
 	<security-role-mapping>
-		<role-name>user</role-name>
-		<group-name>user</group-name>
+		<role-name>officer</role-name>
+		<group-name>officer</group-name>
+	</security-role-mapping>
+	<security-role-mapping>
+		<role-name>supervisor</role-name>
+		<group-name>supervisor</group-name>
+	</security-role-mapping>
+	<security-role-mapping>
+		<role-name>investigator</role-name>
+		<group-name>investigator</group-name>
 	</security-role-mapping>
 </glassfish-web-app>

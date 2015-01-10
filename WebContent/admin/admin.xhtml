@@ -43,14 +43,38 @@
 						<h:commandButton value="Activate" onclick="deleteClicked = false;"
 							action="#{usersGroupsController.activate(user.username)}"
 							rendered="#{user.validated == 0}" />
-						<h:outputLabel value="activated"
-							rendered="#{user.validated == 1}" />
+						<h:outputLabel value="activated" rendered="#{user.validated == 1}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Current Role</f:facet>
+						<h:outputLabel value="#{user.groupsList.get(0).groupName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Set Role</f:facet>
+						<h:commandButton value="admin"
+							action="#{usersGroupsController.updateRole(user, '1')}" />
+						<h:commandButton value="officer"
+							action="#{usersGroupsController.updateRole(user, '2')}" />
+						<h:commandButton value="supervisor"
+							action="#{usersGroupsController.updateRole(user, '3')}" />
+						<h:commandButton value="investigator"
+							action="#{usersGroupsController.updateRole(user, '4')}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Link to profile id</f:facet>
+						<h:inputText value="#{user.profile_id}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Delete</f:facet>
 						<h:commandButton value="Delete" style="color:red;"
 							onclick="username = '#{user.username}'; deleteClicked = true;"
 							action="#{usersGroupsController.deleteUser(user.userId)}">
+						</h:commandButton>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Save</f:facet>
+						<h:commandButton value="Save" style="color:blue;"
+							action="#{usersGroupsController.saveUser(user)}">
 						</h:commandButton>
 					</h:column>
 				</h:dataTable>

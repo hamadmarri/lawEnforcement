@@ -2,10 +2,14 @@ package security.loginSystem;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,12 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import security.ErrorMessages;
 import security.Password;
 import ejbs.UserGroupEJB;
+import entities.Groups;
 import entities.Users;
 import entities.VUsersGroup;
 
 
-@Named
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class UsersGroupsController {
 
 	@EJB
@@ -33,6 +38,15 @@ public class UsersGroupsController {
 	@Inject
 	private UserPage userPage;
 
+	private List<Users> allUsers;
+
+
+
+	@PostConstruct
+	public void init() {
+		this.allUsers = userGroupEJB.findAllUsers();
+	}
+
 
 
 	public List<VUsersGroup> getAll() {
@@ -42,7 +56,13 @@ public class UsersGroupsController {
 
 
 	public List<Users> getAllUsers() {
-		return userGroupEJB.findAllUsers();
+		return allUsers;
+	}
+
+
+
+	public void setAllUsers(List<Users> allUsers) {
+		this.allUsers = allUsers;
 	}
 
 
@@ -61,6 +81,24 @@ public class UsersGroupsController {
 
 	public void activate(String username) {
 		userGroupEJB.validateUser(userGroupEJB.findUser(username));
+	}
+
+
+
+	public void saveUser(Users user) {
+		// System.out.println("Save user ***********************");
+		// System.out.println(user.getProfile_id());
+		userGroupEJB.saveUser(user);
+	}
+
+
+
+	public void updateRole(Users user, String role) {
+		System.out.println("updateRole ***********************");
+		System.out.println(role);
+
+		userGroupEJB.updateGroup(user, Integer.parseInt(role));
+
 	}
 
 
