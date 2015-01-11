@@ -43,6 +43,8 @@
 	</welcome-file-list>
 
 	<!-- ######################## SECURITY SECTION ######################## -->
+	
+	<!-- ######################## ADMIN ACCESS ######################## -->
 	<security-constraint>
 		<display-name>Admin</display-name>
 		<web-resource-collection>
@@ -61,6 +63,8 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	
+	<!-- ######################## OFFICER ACCESS ######################## -->
 	<security-constraint>
 		<display-name>Officer</display-name>
 		<web-resource-collection>
@@ -78,6 +82,9 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	
+	
+	<!-- ######################## SUPERVISOR ACCESS ######################## -->
 	<security-constraint>
 		<display-name>Supervisor</display-name>
 		<web-resource-collection>
@@ -86,6 +93,7 @@
 			<url-pattern>/management/*</url-pattern>
 			<url-pattern>/monitoring/*</url-pattern>
 			<url-pattern>/profile/*</url-pattern>
+			<url-pattern>/management/edit/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
@@ -96,6 +104,9 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	
+	
+	<!-- ######################## INVESTIGATOR ACCESS ######################## -->
 	<security-constraint>
 		<display-name>Investigator</display-name>
 		<web-resource-collection>

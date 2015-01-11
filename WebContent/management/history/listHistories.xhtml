@@ -14,10 +14,6 @@
 	<ui:composition>
 		<h2>History</h2>
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
-
 		<c:if test="${empty relatables and not included}">
 			<c:set var="actions" value="#{controllerHistory.actions}" />
 		</c:if>

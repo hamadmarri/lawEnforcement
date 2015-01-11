@@ -5,7 +5,7 @@
 
 	<!-- ********** Person ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/person/editPerson.xhtml</from-view-id>
+		<from-view-id>/management/edit/editPerson.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
@@ -53,7 +53,7 @@
 		<from-view-id>/management/entries/person/viewPerson.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/person/editPerson.xhtml</to-view-id>
+			<to-view-id>/management/edit/editPerson.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -65,7 +65,7 @@
 
 	<!-- ********** Conveyance ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/conveyance/editConveyance.xhtml</from-view-id>
+		<from-view-id>/management/edit/editConveyance.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/conveyance/viewConveyance.xhtml</to-view-id>
@@ -113,7 +113,7 @@
 		<from-view-id>/management/entries/conveyance/viewConveyance.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/conveyance/editConveyance.xhtml</to-view-id>
+			<to-view-id>/management/edit/editConveyance.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -125,7 +125,7 @@
 
 	<!-- ********** Address ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/address/editAddress.xhtml</from-view-id>
+		<from-view-id>/management/edit/editAddress.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/address/viewAddress.xhtml</to-view-id>
@@ -182,7 +182,7 @@
 		<from-view-id>/management/entries/address/viewAddress.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/address/editAddress.xhtml</to-view-id>
+			<to-view-id>/management/edit/editAddress.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -194,7 +194,7 @@
 
 	<!-- ********** Location ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/location/editLocation.xhtml</from-view-id>
+		<from-view-id>/management/edit/editLocation.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/location/viewLocation.xhtml</to-view-id>
@@ -256,7 +256,7 @@
 		<from-view-id>/management/entries/location/viewLocation.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/location/editLocation.xhtml</to-view-id>
+			<to-view-id>/management/edit/editLocation.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -268,7 +268,7 @@
 
 	<!-- ********** Organization ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/organization/editOrganization.xhtml</from-view-id>
+		<from-view-id>/management/edit/editOrganization.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/organization/viewOrganization.xhtml</to-view-id>
@@ -316,7 +316,7 @@
 		<from-view-id>/management/entries/organization/viewOrganization.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/organization/editOrganization.xhtml</to-view-id>
+			<to-view-id>/management/edit/editOrganization.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -328,7 +328,7 @@
 
 	<!-- ********** Property ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/property/editProperty.xhtml</from-view-id>
+		<from-view-id>/management/edit/editProperty.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/property/viewProperty.xhtml</to-view-id>
@@ -376,7 +376,7 @@
 		<from-view-id>/management/entries/property/viewProperty.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/property/editProperty.xhtml</to-view-id>
+			<to-view-id>/management/edit/editProperty.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -388,7 +388,7 @@
 
 	<!-- ********** IncidentReport ********** -->
 	<navigation-rule>
-		<from-view-id>/management/events/incidentReport/editIncidentReport.xhtml</from-view-id>
+		<from-view-id>/management/edit/editIncidentReport.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
@@ -436,7 +436,7 @@
 		<from-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/events/incidentReport/editIncidentReport.xhtml</to-view-id>
+			<to-view-id>/management/edit/editIncidentReport.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -503,7 +503,7 @@
 
 	<!-- ********** ArrestReport ********** -->
 	<navigation-rule>
-		<from-view-id>/management/events/arrestReport/editArrestReport.xhtml</from-view-id>
+		<from-view-id>/management/edit/editArrestReport.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/events/arrestReport/viewArrestReport.xhtml</to-view-id>
@@ -561,7 +561,7 @@
 		<from-view-id>/management/events/arrestReport/viewArrestReport.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/events/arrestReport/editArrestReport.xhtml</to-view-id>
+			<to-view-id>/management/edit/editArrestReport.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -573,7 +573,7 @@
 
 	<!-- ********** SuspectPerson ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/suspectPerson/editSuspectPerson.xhtml</from-view-id>
+		<from-view-id>/management/edit/editSuspectPerson.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/suspectPerson/viewSuspectPerson.xhtml</to-view-id>
@@ -631,7 +631,7 @@
 		<from-view-id>/management/entries/suspectPerson/viewSuspectPerson.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/suspectPerson/editSuspectPerson.xhtml</to-view-id>
+			<to-view-id>/management/edit/editSuspectPerson.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -644,7 +644,7 @@
 
 	<!-- ********** FieldInterview ********** -->
 	<navigation-rule>
-		<from-view-id>/management/fieldInterview/editFieldInterview.xhtml</from-view-id>
+		<from-view-id>/management/edit/editFieldInterview.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/fieldInterview/viewFieldInterview.xhtml</to-view-id>
@@ -702,7 +702,7 @@
 		<from-view-id>/management/fieldInterview/viewFieldInterview.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/fieldInterview/editFieldInterview.xhtml</to-view-id>
+			<to-view-id>/management/edit/editFieldInterview.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -714,7 +714,7 @@
 
 	<!-- ********** Officer ********** -->
 	<navigation-rule>
-		<from-view-id>/management/police/officer/editOfficer.xhtml</from-view-id>
+		<from-view-id>/management/edit/editOfficer.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/police/officer/viewOfficer.xhtml</to-view-id>
@@ -762,7 +762,7 @@
 		<from-view-id>/management/police/officer/viewOfficer.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/police/officer/editOfficer.xhtml</to-view-id>
+			<to-view-id>/management/edit/editOfficer.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -775,7 +775,7 @@
 	
 	<!-- ********** Investigator ********** -->
 	<navigation-rule>
-		<from-view-id>/management/police/investigator/editInvestigator.xhtml</from-view-id>
+		<from-view-id>/management/edit/editInvestigator.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/police/investigator/viewInvestigator.xhtml</to-view-id>
@@ -823,7 +823,7 @@
 		<from-view-id>/management/police/investigator/viewInvestigator.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/police/investigator/editInvestigator.xhtml</to-view-id>
+			<to-view-id>/management/edit/editInvestigator.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -836,7 +836,7 @@
 	
 	<!-- ********** InvestigativeCase ********** -->
 	<navigation-rule>
-		<from-view-id>/management/police/investigativeCase/editInvestigativeCase.xhtml</from-view-id>
+		<from-view-id>/management/edit/editInvestigativeCase.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/police/investigativeCase/viewInvestigativeCase.xhtml</to-view-id>
@@ -884,7 +884,7 @@
 		<from-view-id>/management/police/investigativeCase/viewInvestigativeCase.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/police/investigativeCase/editInvestigativeCase.xhtml</to-view-id>
+			<to-view-id>/management/edit/editInvestigativeCase.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -897,7 +897,7 @@
 	
 	<!-- ********** Activity ********** -->
 	<navigation-rule>
-		<from-view-id>/management/police/investigativeCase/activity/editActivity.xhtml</from-view-id>
+		<from-view-id>/management/edit/editActivity.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/police/investigativeCase/activity/viewActivity.xhtml</to-view-id>
@@ -945,7 +945,7 @@
 		<from-view-id>/management/police/investigativeCase/activity/viewActivity.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/police/investigativeCase/activity/editActivity.xhtml</to-view-id>
+			<to-view-id>/management/edit/editActivity.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -958,10 +958,10 @@
 	
 	<!-- ********** Permission ********** -->
 	<navigation-rule>
-		<from-view-id>/management/police/permission/editPermission.xhtml</from-view-id>
+		<from-view-id>/management/edit/permission/editPermission.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/management/police/permission/viewPermission.xhtml</to-view-id>
+			<to-view-id>/management/edit/permission/viewPermission.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -971,7 +971,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/police/permission/viewPermission.xhtml</to-view-id>
+			<to-view-id>/management/edit/permission/viewPermission.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -981,32 +981,32 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/police/permission/addPermission.xhtml</from-view-id>
+		<from-view-id>/management/edit/permission/addPermission.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/management/police/permission/listPermissions.xhtml</to-view-id>
+			<to-view-id>/management/edit/permission/listPermissions.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/police/permission/listPermissions.xhtml</to-view-id>
+			<to-view-id>/management/edit/permission/listPermissions.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/police/permission/listPermissions.xhtml</from-view-id>
+		<from-view-id>/management/edit/permission/listPermissions.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-				/management/police/permission/addPermission.xhtml</to-view-id>
+				/management/edit/permission/addPermission.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/police/permission/viewPermission.xhtml</from-view-id>
+		<from-view-id>/management/edit/permission/viewPermission.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/police/permission/editPermission.xhtml</to-view-id>
+			<to-view-id>/management/edit/permission/editPermission.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -1019,7 +1019,7 @@
 	
 	<!-- ********** InvestigativeGroup ********** -->
 	<navigation-rule>
-		<from-view-id>/management/police/investigativeGroup/editInvestigativeGroup.xhtml</from-view-id>
+		<from-view-id>/management/edit/editInvestigativeGroup.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</to-view-id>
@@ -1067,7 +1067,7 @@
 		<from-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/police/investigativeGroup/editInvestigativeGroup.xhtml</to-view-id>
+			<to-view-id>/management/edit/editInvestigativeGroup.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -1080,7 +1080,7 @@
 	
 	<!-- ********** EntryFile ********** -->
 	<navigation-rule>
-		<from-view-id>/management/entries/entryFile/editEntryFile.xhtml</from-view-id>
+		<from-view-id>/management/edit/editEntryFile.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/entries/entryFile/viewEntryFile.xhtml</to-view-id>
@@ -1128,7 +1128,7 @@
 		<from-view-id>/management/entries/entryFile/viewEntryFile.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/entries/entryFile/editEntryFile.xhtml</to-view-id>
+			<to-view-id>/management/edit/editEntryFile.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -1141,7 +1141,7 @@
 	
 	<!-- ********** Relation ********** -->
 	<navigation-rule>
-		<from-view-id>/management/relation/editRelation.xhtml</from-view-id>
+		<from-view-id>/management/edit/editRelation.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/relation/viewRelation.xhtml</to-view-id>
@@ -1177,7 +1177,7 @@
 		<from-view-id>/management/relation/viewRelation.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/management/relation/editRelation.xhtml</to-view-id>
+			<to-view-id>/management/edit/editRelation.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
