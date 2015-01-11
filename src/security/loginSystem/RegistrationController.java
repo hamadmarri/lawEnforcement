@@ -3,16 +3,17 @@ package security.loginSystem;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 import security.ErrorMessages;
 import security.Password;
 import ejbs.UserGroupEJB;
 import entities.Users;
 
-@Named
+
+@ManagedBean(name = "registrationController")
 @RequestScoped
 public class RegistrationController {
 
@@ -26,10 +27,10 @@ public class RegistrationController {
 	// to show errors in view
 	private ErrorMessages errorMsgs = new ErrorMessages();
 
-	private String activationCode = new String("");
-	private boolean isValidCode = false;
 
 
+	// private String activationCode = new String("");
+	// private boolean isValidCode = false;
 
 	public Users getUser() {
 		return user;
@@ -67,35 +68,33 @@ public class RegistrationController {
 
 
 
-	public String getActivationCode() {
-		return activationCode;
-	}
-
-
-
-	public void setActivationCode(String activationCode) {
-		this.activationCode = activationCode;
-	}
-
-
-
-	public boolean isValidCode() {
-		return isValidCode;
-	}
-
-
-
-	public void setValidCode(boolean isValidCode) {
-		this.isValidCode = isValidCode;
-	}
-
-
+	// public String getActivationCode() {
+	// return activationCode;
+	// }
+	//
+	//
+	//
+	// public void setActivationCode(String activationCode) {
+	// this.activationCode = activationCode;
+	// }
+	//
+	//
+	//
+	// public boolean isValidCode() {
+	// return isValidCode;
+	// }
+	//
+	//
+	//
+	// public void setValidCode(boolean isValidCode) {
+	// this.isValidCode = isValidCode;
+	// }
 
 	/*
 	 * isPasswordsMatched(): compare two password objects value return: true if
 	 * matches false if not
 	 */
-	private Boolean isPasswordsMatched() {
+	private boolean isPasswordsMatched() {
 		if (!password.getPassword().equals(rePassword.getPassword())) {
 			errorMsgs.add("sighUpForm:password", "passwords don't match.");
 			return false;
@@ -112,7 +111,7 @@ public class RegistrationController {
 
 
 	public void signUp() throws IOException {
-//		String validationCode;
+		// String validationCode;
 
 		// check if username is already existed in the DB
 		if (isUsernameAlreadyExist()) {
@@ -122,36 +121,35 @@ public class RegistrationController {
 		}
 
 		if (isPasswordsMatched()) {
-//			validationCode = new String(Long.toString((long) (Math.random() * 10000000000L)));
+			// validationCode = new String(Long.toString((long) (Math.random() *
+			// 10000000000L)));
 			password.saltIt();
 			user.setSalt(password.getSalt());
 			user.setPassword(password.getPassword());
-//			user.setValidationCode(validationCode);
+			// user.setValidationCode(validationCode);
 			userGroupEJB.addUser(user, 2);
 
 			// send activation code
-//			EmailController ec = new EmailController();
-//			ec.sendActivationCode(user.getUsername(), validationCode);
+			// EmailController ec = new EmailController();
+			// ec.sendActivationCode(user.getUsername(), validationCode);
 
 			// redirect to send user page
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/adala");
 		}
 	}
 
-
-
-//	public void activate() {
-//		user = userGroupEJB.findByValidationCode(activationCode);
-//		if (user != null) {
-//			userGroupEJB.validateUser(user);
-//			isValidCode = true;
-//
-//			// send confiermation email
-//			EmailController ec = new EmailController();
-//			ec.sendRegistrationConfirmationEmail(user.getUsername());
-//		} else {
-//			isValidCode = false;
-//		}
-//	}
+	// public void activate() {
+	// user = userGroupEJB.findByValidationCode(activationCode);
+	// if (user != null) {
+	// userGroupEJB.validateUser(user);
+	// isValidCode = true;
+	//
+	// // send confiermation email
+	// EmailController ec = new EmailController();
+	// ec.sendRegistrationConfirmationEmail(user.getUsername());
+	// } else {
+	// isValidCode = false;
+	// }
+	// }
 
 }

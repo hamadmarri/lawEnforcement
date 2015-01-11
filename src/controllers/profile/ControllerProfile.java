@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import security.Authorizable;
-import security.mocks.UserSessionMock;
+import security.loginSystem.UserSessionController;
 import controllers.management.ControllerInvestigator;
 import controllers.management.ControllerOfficer;
 import ejbs.AbstractEjb;
@@ -28,6 +28,9 @@ public class ControllerProfile {
 	@ManagedProperty(value = "#{controllerInvestigator}")
 	private ControllerInvestigator controllerInvestigator;
 
+	@ManagedProperty(value = "#{userSessionController}")
+	private UserSessionController userSessionController;
+
 	@EJB
 	private AbstractEjb<Authorizable> ejbAuthorizable;
 
@@ -41,7 +44,7 @@ public class ControllerProfile {
 	@PostConstruct
 	public void init() {
 		this.ejbAuthorizable.setEntityName("Authorizable");
-		this.userId = Long.toString(UserSessionMock.userId);
+		this.userId = Long.toString(userSessionController.getProfileId());
 		this.authorizable = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId));
 
 		if (this.authorizable.getType().equals("Officer")) {
@@ -124,6 +127,18 @@ public class ControllerProfile {
 
 	public void setControllerInvestigator(ControllerInvestigator controllerInvestigator) {
 		this.controllerInvestigator = controllerInvestigator;
+	}
+
+
+
+	public UserSessionController getUserSessionController() {
+		return userSessionController;
+	}
+
+
+
+	public void setUserSessionController(UserSessionController userSessionController) {
+		this.userSessionController = userSessionController;
 	}
 
 }

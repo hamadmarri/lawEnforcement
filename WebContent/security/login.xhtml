@@ -9,7 +9,7 @@
 
 <h:head>
 	<f:metadata>
-		<f:event listener="#{userPage.insistNotLogedIn}" type="preRenderView" />
+		<f:event listener="#{userSessionController.insistNotLogedIn}" type="preRenderView" />
 	</f:metadata>
 </h:head>
 
@@ -30,7 +30,7 @@
 						value="#{usersGroupsController.password}" />
 					<h:commandButton action="#{usersGroupsController.login()}"
 						value="login" class="login login-submit">
-						<f:ajax execute="@form" render="@form" />
+						<!-- <f:ajax execute="@form" render="@form" /> -->
 					</h:commandButton>
 					<h:messages id="errorMsgLogin" style="color:red;" />
 				</h:form>

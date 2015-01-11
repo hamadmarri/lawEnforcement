@@ -2,26 +2,20 @@ package security.loginSystem;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import security.ErrorMessages;
 import security.Password;
 import ejbs.UserGroupEJB;
-import entities.Groups;
 import entities.Users;
 import entities.VUsersGroup;
 
@@ -35,8 +29,8 @@ public class UsersGroupsController {
 	private String username = new String("");
 	private String password = new String("");
 
-	@Inject
-	private UserPage userPage;
+	@ManagedProperty(value = "#{userSessionController}")
+	private UserSessionController userSessionController;
 
 	private List<Users> allUsers;
 
@@ -94,11 +88,9 @@ public class UsersGroupsController {
 
 
 	public void updateRole(Users user, String role) {
-		System.out.println("updateRole ***********************");
-		System.out.println(role);
-
+		// System.out.println("updateRole ***********************");
+		// System.out.println(role);
 		userGroupEJB.updateGroup(user, Integer.parseInt(role));
-
 	}
 
 
@@ -127,9 +119,21 @@ public class UsersGroupsController {
 
 
 
+	public UserSessionController getUserSessionController() {
+		return userSessionController;
+	}
+
+
+
+	public void setUserSessionController(UserSessionController userSessionController) {
+		this.userSessionController = userSessionController;
+	}
+
+
+
 	public void CookieLogin() throws InvalidKeyException {
 		// TODO: there is a problem that with cookie doesn't logout properly
-		// if (userPage.isLoggedIn())
+		// if (userSessionController.isLoggedIn())
 		// return;
 		//
 		// System.out.println("******* not logged in *******");

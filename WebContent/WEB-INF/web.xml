@@ -67,6 +67,7 @@
 			<web-resource-name>Officer faces pages</web-resource-name>
 			<description></description>
 			<url-pattern>/management/*</url-pattern>
+			<url-pattern>/profile/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
@@ -84,6 +85,7 @@
 			<description></description>
 			<url-pattern>/management/*</url-pattern>
 			<url-pattern>/monitoring/*</url-pattern>
+			<url-pattern>/profile/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
@@ -100,6 +102,7 @@
 			<web-resource-name>Investigator faces pages</web-resource-name>
 			<description></description>
 			<url-pattern>/management/*</url-pattern>
+			<url-pattern>/profile/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
