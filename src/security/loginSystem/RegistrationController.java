@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -20,9 +21,16 @@ public class RegistrationController {
 	@EJB
 	private UserGroupEJB userGroupEJB;
 
+	@ManagedProperty(value = "#{userSessionController}")
+	private UserSessionController userSessionController;
+
+	@ManagedProperty(value = "#{usersGroupsController}")
+	private UsersGroupsController usersGroupsController;
+
 	private Users user = new Users();
 	private Password password = new Password();
 	private Password rePassword = new Password();
+	private Password currentPassword = new Password();
 
 	// to show errors in view
 	private ErrorMessages errorMsgs = new ErrorMessages();
@@ -68,6 +76,42 @@ public class RegistrationController {
 
 
 
+	public String getCurrentPassword() {
+		return currentPassword.getPassword();
+	}
+
+
+
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword.setPassword(currentPassword);
+	}
+
+
+
+	public UsersGroupsController getUsersGroupsController() {
+		return usersGroupsController;
+	}
+
+
+
+	public void setUsersGroupsController(UsersGroupsController usersGroupsController) {
+		this.usersGroupsController = usersGroupsController;
+	}
+
+
+
+	public UserSessionController getUserSessionController() {
+		return userSessionController;
+	}
+
+
+
+	public void setUserSessionController(UserSessionController userSessionController) {
+		this.userSessionController = userSessionController;
+	}
+
+
+
 	// public String getActivationCode() {
 	// return activationCode;
 	// }
@@ -96,6 +140,16 @@ public class RegistrationController {
 	 */
 	private boolean isPasswordsMatched() {
 		if (!password.getPassword().equals(rePassword.getPassword())) {
+			errorMsgs.add("sighUpForm:password", "passwords don't match.");
+			return false;
+		}
+		return true;
+	}
+
+
+
+	private boolean isPasswordsMatched(String p1, String p2) {
+		if (!p1.equals(p2)) {
 			errorMsgs.add("sighUpForm:password", "passwords don't match.");
 			return false;
 		}
@@ -138,6 +192,8 @@ public class RegistrationController {
 		}
 	}
 
+
+
 	// public void activate() {
 	// user = userGroupEJB.findByValidationCode(activationCode);
 	// if (user != null) {
@@ -151,5 +207,43 @@ public class RegistrationController {
 	// isValidCode = false;
 	// }
 	// }
+
+	public void resetPassword() throws IOException {
+
+		// get user entity
+		Users user = userGroupEJB.findUser(userSessionController.getUserId());
+
+		if (user == null) {
+			new ErrorMessages().add("errorMsgSignup", "Invalid username or password!");
+			return;
+		}
+
+		// set salt operation
+		currentPassword.setPassword(user.getSalt() + currentPassword.getPassword());
+
+		// check current password
+		if (!isPasswordsMatched(user.getPassword(), currentPassword.getPassword()))
+			return;
+
+		// check if new pass and re-entered pass are the same
+		if (isPasswordsMatched()) {
+
+			// set the salt
+			password.saltIt();
+			user.setSalt(password.getSalt());
+
+			// set new password
+			user.setPassword(password.getPassword());
+
+			// save user
+			userGroupEJB.saveUser(user);
+
+			// logout
+			usersGroupsController.logout();
+
+			// // redirect to send user page
+			// FacesContext.getCurrentInstance().getExternalContext().redirect("/adala");
+		}
+	}
 
 }

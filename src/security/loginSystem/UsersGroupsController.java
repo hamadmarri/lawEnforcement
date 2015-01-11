@@ -20,7 +20,7 @@ import entities.Users;
 import entities.VUsersGroup;
 
 
-@ManagedBean
+@ManagedBean(name = "usersGroupsController")
 @ViewScoped
 public class UsersGroupsController {
 

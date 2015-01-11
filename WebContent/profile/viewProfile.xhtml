@@ -13,6 +13,8 @@
 	<ui:composition>
 		<h1>Profile</h1>
 
+		<h:link value="Change Password" outcome="/profile/changePassword.xhtml" />
+		
 		<c:if test="${controllerProfile.isOfficer()}">
 			<ui:include src="/management/police/officer/viewOfficer.xhtml" />
 		</c:if>
