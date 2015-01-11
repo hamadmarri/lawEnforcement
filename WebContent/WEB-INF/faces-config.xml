@@ -772,7 +772,7 @@
 		</navigation-case>
 	</navigation-rule>
 
-	
+
 	<!-- ********** Investigator ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editInvestigator.xhtml</from-view-id>
@@ -832,8 +832,8 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<!-- ********** InvestigativeCase ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editInvestigativeCase.xhtml</from-view-id>
@@ -903,8 +903,8 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<!-- ********** Activity ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editActivity.xhtml</from-view-id>
@@ -964,8 +964,8 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<!-- ********** Permission ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/permission/editPermission.xhtml</from-view-id>
@@ -1025,8 +1025,8 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<!-- ********** InvestigativeGroup ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editInvestigativeGroup.xhtml</from-view-id>
@@ -1086,8 +1086,8 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<!-- ********** EntryFile ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editEntryFile.xhtml</from-view-id>
@@ -1147,8 +1147,8 @@
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
 	<!-- ********** Relation ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editRelation.xhtml</from-view-id>

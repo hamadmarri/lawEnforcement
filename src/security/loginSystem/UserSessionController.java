@@ -133,4 +133,26 @@ public class UserSessionController implements Serializable {
 		}
 	}
 
+
+
+	public boolean isInvestigator() {
+		if (isLoggedIn()) {
+			Users user = (userGroupEJB.findUser(getUsername()));
+			return user.getGroupsList().get(0).getGroupName().equals("investigator");
+		}
+
+		return false;
+	}
+
+
+
+	public boolean isSupervisor() {
+		if (isLoggedIn()) {
+			Users user = (userGroupEJB.findUser(getUsername()));
+			return user.getGroupsList().get(0).getGroupName().equals("supervisor");
+		}
+
+		return false;
+	}
+
 }

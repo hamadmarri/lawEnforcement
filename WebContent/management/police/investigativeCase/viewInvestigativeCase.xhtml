@@ -42,6 +42,22 @@
 			<h:outputLabel
 				value="#{controllerInvestigativeCase.investigativeCase.status}" />
 			<br />
+
+			<h:form>
+				<h:commandButton value="open"
+					action="#{controllerInvestigativeCase.openCase()}"
+					rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status eq 'Closed' }" />
+				<h:commandButton value="accept"
+					action="#{controllerInvestigativeCase.acceptCase()}"
+					rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+				<h:commandButton value="refuse"
+					action="#{controllerInvestigativeCase.refuseCase()}"
+					rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+				<h:commandButton value="close"
+					action="#{controllerInvestigativeCase.closeCase()}"
+					rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+			</h:form>
+
 			<h:outputLabel value="Start Date" />
 			<h:outputLabel
 				value="#{controllerInvestigativeCase.investigativeCase.startDate}" />

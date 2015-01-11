@@ -119,6 +119,50 @@ public class ControllerInvestigativeCase implements Serializable {
 
 
 
+	public String openCase() {
+		// make status open
+		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[0]);
+		ejbInvestigativeCase.save(this.investigativeCase);
+
+		// return "success" for navigation engine
+		return "success";
+	}
+
+
+
+	public String acceptCase() {
+		// make status in progress
+		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[2]);
+		ejbInvestigativeCase.save(this.investigativeCase);
+
+		// return "success" for navigation engine
+		return "success";
+	}
+
+
+
+	public String refuseCase() {
+		// make status refused
+		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[3]);
+		ejbInvestigativeCase.save(this.investigativeCase);
+
+		// return "success" for navigation engine
+		return "success";
+	}
+
+
+
+	public String closeCase() {
+		// make status closed
+		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[4]);
+		ejbInvestigativeCase.save(this.investigativeCase);
+
+		// return "success" for navigation engine
+		return "success";
+	}
+
+
+
 	public String getId() {
 		return id;
 	}

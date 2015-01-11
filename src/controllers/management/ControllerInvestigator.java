@@ -121,7 +121,6 @@ public class ControllerInvestigator implements Serializable {
 		// load InvestigativeCase entity from DB
 		InvestigativeCase ic = this.ejbInvestigativeCase.getEntity(icArg.getId());
 
-		System.out.println(newInvestigatorId + "************** newInvestigatorId *************");
 		// load Investigator entity from DB
 		Investigator inv = this.ejbInvestigator.getEntity(Long.parseLong(newInvestigatorId));
 
