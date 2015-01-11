@@ -22,11 +22,11 @@
 					<h:panelGrid columns="2">
 						<h:panelGrid columns="1">
 							<h:outputLabel value="Start Date" />
-							<p:calendar value="#{controllerMonitoring.startDate}" />
+							<p:calendar value="#{controllerMonitoring.startDate}" pattern="MMMM dd, yyyy" />
 						</h:panelGrid>
 						<h:panelGrid columns="1">
 							<h:outputLabel value="Due Date" />
-							<p:calendar value="#{controllerMonitoring.dueDate}" />
+							<p:calendar value="#{controllerMonitoring.dueDate}" pattern="MMMM dd, yyyy" />
 						</h:panelGrid>
 					</h:panelGrid>
 					<p:commandButton value="Filter" ajax="false" />

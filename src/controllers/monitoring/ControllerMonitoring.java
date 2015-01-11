@@ -1,6 +1,7 @@
 package controllers.monitoring;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import entities.police.InvestigativeCase;
 public class ControllerMonitoring {
 
 	private String search = new String();
-	private Date startDate = new Date();
+	private Date startDate;
 	private Date dueDate = new Date();
 	private String[] status;
 	private List<String> officers = new ArrayList<String>();
@@ -34,6 +35,10 @@ public class ControllerMonitoring {
 
 	@PostConstruct
 	public void init() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_MONTH, -7);
+		startDate = calendar.getTime();
+
 		status = InvestigativeCase.getStatusSuggestions();
 	}
 
