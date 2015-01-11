@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import ejbs.EjbInvestigativeCase;
+import ejbs.EjbInvestigator;
 import entities.police.InvestigativeCase;
 import entities.police.Investigator;
 
@@ -36,11 +38,11 @@ public class ControllerInvestigator implements Serializable {
 
 	// EJB for Investigator object
 	@EJB
-	AbstractEjb<Investigator> ejbInvestigator;
+	EjbInvestigator ejbInvestigator;
 
 	// EJB for InvestigativeCase object
 	@EJB
-	AbstractEjb<InvestigativeCase> ejbInvestigativeCase;
+	EjbInvestigativeCase ejbInvestigativeCase;
 
 	// the id of a Investigator object
 	protected String id;
@@ -114,11 +116,12 @@ public class ControllerInvestigator implements Serializable {
 	 *            is the investigative case that the investigator will be
 	 *            handling
 	 */
-	public void addInvestigatorForInvestigativeCase(InvestigativeCase icArg) {
+	public String addInvestigatorForInvestigativeCase(InvestigativeCase icArg) {
 
 		// load InvestigativeCase entity from DB
-		InvestigativeCase ic = this.ejbInvestigativeCase.getEntity(icArg.getId(), "InvestigativeCase");
+		InvestigativeCase ic = this.ejbInvestigativeCase.getEntity(icArg.getId());
 
+		System.out.println(newInvestigatorId + "************** newInvestigatorId *************");
 		// load Investigator entity from DB
 		Investigator inv = this.ejbInvestigator.getEntity(Long.parseLong(newInvestigatorId));
 
@@ -138,6 +141,8 @@ public class ControllerInvestigator implements Serializable {
 		this.ejbInvestigator.save(inv);
 
 		this.newInvestigatorId = null;
+		
+		return "success";
 	}
 
 

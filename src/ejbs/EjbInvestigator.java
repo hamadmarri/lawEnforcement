@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entities.entries.history.Changeable;
-import entities.police.Officer;
+import entities.police.Investigator;
 
 
 /**
@@ -15,7 +15,7 @@ import entities.police.Officer;
  * 
  */
 @Stateless
-public class OfficerEjb {
+public class EjbInvestigator {
 
 	// entity manager
 	@PersistenceContext(unitName = "lawEnforcementPersistenceUnit")
@@ -25,7 +25,7 @@ public class OfficerEjb {
 	// i.e. Persone or Conveyance
 	// this is because some operations need the
 	// type to be passed
-	protected String entityName = "Officer";
+	protected String entityName = "Investigator";
 
 
 
@@ -34,8 +34,8 @@ public class OfficerEjb {
 	 *            of object in DB
 	 * @return Entity object
 	 */
-	public Officer getEntity(Long id) {
-		return (Officer) em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList()
+	public Investigator getEntity(Long id) {
+		return (Investigator) em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList()
 				.get(0);
 	}
 
@@ -45,7 +45,7 @@ public class OfficerEjb {
 	 * @param t
 	 *            entity to be added in DB
 	 */
-	public void add(Officer t) {
+	public void add(Investigator t) {
 		em.persist(t);
 	}
 
@@ -59,7 +59,7 @@ public class OfficerEjb {
 	 *            is the entity
 	 * @return the entity
 	 */
-	public Officer save(Officer t) {
+	public Investigator save(Investigator t) {
 
 		Changeable chngNew = (Changeable) t;
 		Changeable chngOld = em.find(Changeable.class, chngNew.getId());
@@ -76,7 +76,7 @@ public class OfficerEjb {
 
 
 
-	public void refresh(Officer t) {
+	public void refresh(Investigator t) {
 		em.refresh(t);
 	}
 
@@ -86,7 +86,7 @@ public class OfficerEjb {
 	 * @return List of entities
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Officer> getList() {
+	public List<Investigator> getList() {
 		return em.createNamedQuery(this.entityName + ".findAll").getResultList();
 	}
 
@@ -111,7 +111,7 @@ public class OfficerEjb {
 	 *            id of the entity
 	 */
 	public void remove(Long entityId) {
-		Officer entity = this.getEntity(entityId);
+		Investigator entity = this.getEntity(entityId);
 		em.remove(entity);
 	}
 
