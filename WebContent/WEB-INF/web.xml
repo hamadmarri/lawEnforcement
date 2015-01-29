@@ -44,7 +44,7 @@
 
 	<!-- ######################## SECURITY SECTION ######################## -->
 	
-	<!-- ######################## ADMIN ACCESS ######################## -->
+	<!-- ######################## ADMIN ACCESS ######################## 
 	<security-constraint>
 		<display-name>Admin</display-name>
 		<web-resource-collection>
@@ -63,9 +63,9 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	-->
 	
-	
-	<!-- ######################## OFFICER ACCESS ######################## -->
+	<!-- ######################## OFFICER ACCESS ######################## 
 	<security-constraint>
 		<display-name>Officer</display-name>
 		<web-resource-collection>
@@ -83,9 +83,9 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	-->
 	
-	
-	<!-- ######################## SUPERVISOR ACCESS ######################## -->
+	<!-- ######################## SUPERVISOR ACCESS ######################## 
 	<security-constraint>
 		<display-name>Supervisor</display-name>
 		<web-resource-collection>
@@ -105,9 +105,9 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	-->
 	
-	
-	<!-- ######################## INVESTIGATOR ACCESS ######################## -->
+	<!-- ######################## INVESTIGATOR ACCESS ######################## 
 	<security-constraint>
 		<display-name>Investigator</display-name>
 		<web-resource-collection>
@@ -125,17 +125,18 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	-->
 	
-	
-	<!-- ######################## GMap ACCESS ######################## -->
+	<!-- ######################## GMap ACCESS ######################## 
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>GMap</web-resource-name>
 			<url-pattern>/monitoring/showMap.xhtml</url-pattern>
 		</web-resource-collection>
 	</security-constraint>
+	-->
 	
-	
+	<!-- ######################## SECURITY CONSTRAINT ######################## 
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Entire Web App</web-resource-name>
@@ -169,5 +170,6 @@
 		<description></description>
 		<role-name>investigator</role-name>
 	</security-role>
+-->
 
 </web-app>
