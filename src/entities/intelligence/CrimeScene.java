@@ -16,44 +16,47 @@ public class CrimeScene implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int CrimeSceneId;
+	private int crimeSceneId;
 
-	private boolean ForeignObjectPenetration;
-	private boolean FaceNotDeliberatelyHidden;
-	private boolean VictimWasBlindfolded;
-	private boolean WoundsCausedByBluntInstrument;
-	private boolean Suffocation; // (other than strangulation)
-	private boolean VaginalPenetration;
-	private boolean AnalPenetration;
-	private boolean FaceUp; // (victim found as they fell)
-	private boolean VictimPartiallyUndressed;
-	private boolean VictimNaked;
-	private boolean DeliberateClothingDamaged;
-	private boolean Bound; // (at one point)
-	private boolean StabbingInjuries;
-	private boolean ManualInjuries; // (hitting, kicking, strangled)
-	private boolean GunshotWounds;
-	private boolean WoundsToTheHead;
-	private boolean WoundsToTheFace;
-	private boolean WoundsToTheNeck;
-	private boolean WoundsToTheTorso;
-	private boolean WoundsToTheLimbs;
-	private boolean MultipleWoundsToOneBodyArea; // (MWOA)
-	private boolean MultipleWoundsDistributedAcrossDifferentBodyParts; // (MWD)
-	private boolean WeaponBroughtToScene;
-	private boolean WeaponFromTheScene;
-	private boolean IdentifiablePropertyStolen; // (identification property)
-	private boolean NonidentifiablePropertyStolen; // nonvaluable unidentifiable
-	private boolean ValuablePropertyStolen;
-	private boolean BodyHidden; // (outside)
-	private boolean BodyTransported;
-	private boolean OffenderForensicallyAware;
-	private boolean VictimFoundAtTheSameSceneWhereTheyWereKilled;
-	private boolean SexualCrime;
-	private boolean ArsonToCrimeSceneOrBody;
-	private boolean VictimFoundInWater;
-	private boolean VictimDruggedAndOrPoisoned;
-	private boolean VictimCovered; // (i.e., inside rather than outside)
+	private boolean foreignObjectPenetration;
+	private boolean faceNotDeliberatelyHidden;
+	private boolean victimWasBlindfolded;
+	private boolean woundsCausedByBluntInstrument;
+	private boolean suffocation; // (other than strangulation)
+	private boolean vaginalPenetration;
+	private boolean analPenetration;
+	private boolean faceUp; // (victim found as they fell)
+	private boolean victimPartiallyUndressed;
+	private boolean victimNaked;
+	private boolean deliberateClothingDamaged;
+	private boolean bound; // (at one point)
+	private boolean stabbingInjuries;
+	private boolean manualInjuries; // (hitting, kicking, strangled)
+	private boolean gunshotWounds;
+	private boolean woundsToTheHead;
+	private boolean woundsToTheFace;
+	private boolean woundsToTheNeck;
+	private boolean woundsToTheTorso;
+	private boolean woundsToTheLimbs;
+	private boolean multipleWoundsToOneBodyArea; // (MWOA)
+	private boolean multipleWoundsDistributedAcrossDifferentBodyParts; // (MWD)
+	private boolean weaponBroughtToScene;
+	private boolean weaponFromTheScene;
+	private boolean identifiablePropertyStolen; // (identification property)
+	private boolean nonidentifiablePropertyStolen; // nonvaluable unidentifiable
+	private boolean valuablePropertyStolen;
+	private boolean bodyHidden; // (outside)
+	private boolean bodyTransported;
+	private boolean offenderForensicallyAware;
+	private boolean victimFoundAtTheSameSceneWhereTheyWereKilled;
+	private boolean sexualCrime;
+	private boolean arsonToCrimeSceneOrBody;
+	private boolean victimFoundInWater;
+	private boolean victimDruggedAndOrPoisoned;
+	private boolean victimCovered; // (i.e., inside rather than outside)
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private OffenderProfile offenderProfile;
 
 
 
@@ -63,446 +66,512 @@ public class CrimeScene implements Serializable {
 
 
 
+	public CrimeScene(boolean foreignObjectPenetration, boolean faceNotDeliberatelyHidden,
+			boolean victimWasBlindfolded, boolean woundsCausedByBluntInstrument, boolean suffocation,
+			boolean vaginalPenetration, boolean analPenetration, boolean faceUp, boolean victimPartiallyUndressed,
+			boolean victimNaked, boolean deliberateClothingDamaged, boolean bound, boolean stabbingInjuries,
+			boolean manualInjuries, boolean gunshotWounds, boolean woundsToTheHead, boolean woundsToTheFace,
+			boolean woundsToTheNeck, boolean woundsToTheTorso, boolean woundsToTheLimbs,
+			boolean multipleWoundsToOneBodyArea, boolean multipleWoundsDistributedAcrossDifferentBodyParts,
+			boolean weaponBroughtToScene, boolean weaponFromTheScene, boolean identifiablePropertyStolen,
+			boolean nonidentifiablePropertyStolen, boolean valuablePropertyStolen, boolean bodyHidden,
+			boolean bodyTransported, boolean offenderForensicallyAware,
+			boolean victimFoundAtTheSameSceneWhereTheyWereKilled, boolean sexualCrime, boolean arsonToCrimeSceneOrBody,
+			boolean victimFoundInWater, boolean victimDruggedAndOrPoisoned, boolean victimCovered) {
+		super();
+		this.foreignObjectPenetration = foreignObjectPenetration;
+		this.faceNotDeliberatelyHidden = faceNotDeliberatelyHidden;
+		this.victimWasBlindfolded = victimWasBlindfolded;
+		this.woundsCausedByBluntInstrument = woundsCausedByBluntInstrument;
+		this.suffocation = suffocation;
+		this.vaginalPenetration = vaginalPenetration;
+		this.analPenetration = analPenetration;
+		this.faceUp = faceUp;
+		this.victimPartiallyUndressed = victimPartiallyUndressed;
+		this.victimNaked = victimNaked;
+		this.deliberateClothingDamaged = deliberateClothingDamaged;
+		this.bound = bound;
+		this.stabbingInjuries = stabbingInjuries;
+		this.manualInjuries = manualInjuries;
+		this.gunshotWounds = gunshotWounds;
+		this.woundsToTheHead = woundsToTheHead;
+		this.woundsToTheFace = woundsToTheFace;
+		this.woundsToTheNeck = woundsToTheNeck;
+		this.woundsToTheTorso = woundsToTheTorso;
+		this.woundsToTheLimbs = woundsToTheLimbs;
+		this.multipleWoundsToOneBodyArea = multipleWoundsToOneBodyArea;
+		this.multipleWoundsDistributedAcrossDifferentBodyParts = multipleWoundsDistributedAcrossDifferentBodyParts;
+		this.weaponBroughtToScene = weaponBroughtToScene;
+		this.weaponFromTheScene = weaponFromTheScene;
+		this.identifiablePropertyStolen = identifiablePropertyStolen;
+		this.nonidentifiablePropertyStolen = nonidentifiablePropertyStolen;
+		this.valuablePropertyStolen = valuablePropertyStolen;
+		this.bodyHidden = bodyHidden;
+		this.bodyTransported = bodyTransported;
+		this.offenderForensicallyAware = offenderForensicallyAware;
+		this.victimFoundAtTheSameSceneWhereTheyWereKilled = victimFoundAtTheSameSceneWhereTheyWereKilled;
+		this.sexualCrime = sexualCrime;
+		this.arsonToCrimeSceneOrBody = arsonToCrimeSceneOrBody;
+		this.victimFoundInWater = victimFoundInWater;
+		this.victimDruggedAndOrPoisoned = victimDruggedAndOrPoisoned;
+		this.victimCovered = victimCovered;
+	}
+
+
+
 	public int getCrimeSceneId() {
-		return CrimeSceneId;
+		return crimeSceneId;
 	}
 
 
 
 	public void setCrimeSceneId(int crimeSceneId) {
-		CrimeSceneId = crimeSceneId;
+		this.crimeSceneId = crimeSceneId;
 	}
 
 
 
-	public boolean isForeignObjectPenetration() {
-		return ForeignObjectPenetration;
+	public boolean getForeignObjectPenetration() {
+		return foreignObjectPenetration;
 	}
 
 
 
 	public void setForeignObjectPenetration(boolean foreignObjectPenetration) {
-		ForeignObjectPenetration = foreignObjectPenetration;
+		this.foreignObjectPenetration = foreignObjectPenetration;
 	}
 
 
 
-	public boolean isFaceNotDeliberatelyHidden() {
-		return FaceNotDeliberatelyHidden;
+	public boolean getFaceNotDeliberatelyHidden() {
+		return faceNotDeliberatelyHidden;
 	}
 
 
 
 	public void setFaceNotDeliberatelyHidden(boolean faceNotDeliberatelyHidden) {
-		FaceNotDeliberatelyHidden = faceNotDeliberatelyHidden;
+		this.faceNotDeliberatelyHidden = faceNotDeliberatelyHidden;
 	}
 
 
 
-	public boolean isVictimWasBlindfolded() {
-		return VictimWasBlindfolded;
+	public boolean getVictimWasBlindfolded() {
+		return victimWasBlindfolded;
 	}
 
 
 
 	public void setVictimWasBlindfolded(boolean victimWasBlindfolded) {
-		VictimWasBlindfolded = victimWasBlindfolded;
+		this.victimWasBlindfolded = victimWasBlindfolded;
 	}
 
 
 
-	public boolean isWoundsCausedByBluntInstrument() {
-		return WoundsCausedByBluntInstrument;
+	public boolean getWoundsCausedByBluntInstrument() {
+		return woundsCausedByBluntInstrument;
 	}
 
 
 
 	public void setWoundsCausedByBluntInstrument(boolean woundsCausedByBluntInstrument) {
-		WoundsCausedByBluntInstrument = woundsCausedByBluntInstrument;
+		this.woundsCausedByBluntInstrument = woundsCausedByBluntInstrument;
 	}
 
 
 
-	public boolean isSuffocation() {
-		return Suffocation;
+	public boolean getSuffocation() {
+		return suffocation;
 	}
 
 
 
 	public void setSuffocation(boolean suffocation) {
-		Suffocation = suffocation;
+		this.suffocation = suffocation;
 	}
 
 
 
-	public boolean isVaginalPenetration() {
-		return VaginalPenetration;
+	public boolean getVaginalPenetration() {
+		return vaginalPenetration;
 	}
 
 
 
 	public void setVaginalPenetration(boolean vaginalPenetration) {
-		VaginalPenetration = vaginalPenetration;
+		this.vaginalPenetration = vaginalPenetration;
 	}
 
 
 
-	public boolean isAnalPenetration() {
-		return AnalPenetration;
+	public boolean getAnalPenetration() {
+		return analPenetration;
 	}
 
 
 
 	public void setAnalPenetration(boolean analPenetration) {
-		AnalPenetration = analPenetration;
+		this.analPenetration = analPenetration;
 	}
 
 
 
-	public boolean isFaceUp() {
-		return FaceUp;
+	public boolean getFaceUp() {
+		return faceUp;
 	}
 
 
 
 	public void setFaceUp(boolean faceUp) {
-		FaceUp = faceUp;
+		this.faceUp = faceUp;
 	}
 
 
 
-	public boolean isVictimPartiallyUndressed() {
-		return VictimPartiallyUndressed;
+	public boolean getVictimPartiallyUndressed() {
+		return victimPartiallyUndressed;
 	}
 
 
 
 	public void setVictimPartiallyUndressed(boolean victimPartiallyUndressed) {
-		VictimPartiallyUndressed = victimPartiallyUndressed;
+		this.victimPartiallyUndressed = victimPartiallyUndressed;
 	}
 
 
 
-	public boolean isVictimNaked() {
-		return VictimNaked;
+	public boolean getVictimNaked() {
+		return victimNaked;
 	}
 
 
 
 	public void setVictimNaked(boolean victimNaked) {
-		VictimNaked = victimNaked;
+		this.victimNaked = victimNaked;
 	}
 
 
 
-	public boolean isDeliberateClothingDamaged() {
-		return DeliberateClothingDamaged;
+	public boolean getDeliberateClothingDamaged() {
+		return deliberateClothingDamaged;
 	}
 
 
 
 	public void setDeliberateClothingDamaged(boolean deliberateClothingDamaged) {
-		DeliberateClothingDamaged = deliberateClothingDamaged;
+		this.deliberateClothingDamaged = deliberateClothingDamaged;
 	}
 
 
 
-	public boolean isBound() {
-		return Bound;
+	public boolean getBound() {
+		return bound;
 	}
 
 
 
 	public void setBound(boolean bound) {
-		Bound = bound;
+		this.bound = bound;
 	}
 
 
 
-	public boolean isStabbingInjuries() {
-		return StabbingInjuries;
+	public boolean getStabbingInjuries() {
+		return stabbingInjuries;
 	}
 
 
 
 	public void setStabbingInjuries(boolean stabbingInjuries) {
-		StabbingInjuries = stabbingInjuries;
+		this.stabbingInjuries = stabbingInjuries;
 	}
 
 
 
-	public boolean isManualInjuries() {
-		return ManualInjuries;
+	public boolean getManualInjuries() {
+		return manualInjuries;
 	}
 
 
 
 	public void setManualInjuries(boolean manualInjuries) {
-		ManualInjuries = manualInjuries;
+		this.manualInjuries = manualInjuries;
 	}
 
 
 
-	public boolean isGunshotWounds() {
-		return GunshotWounds;
+	public boolean getGunshotWounds() {
+		return gunshotWounds;
 	}
 
 
 
 	public void setGunshotWounds(boolean gunshotWounds) {
-		GunshotWounds = gunshotWounds;
+		this.gunshotWounds = gunshotWounds;
 	}
 
 
 
-	public boolean isWoundsToTheHead() {
-		return WoundsToTheHead;
+	public boolean getWoundsToTheHead() {
+		return woundsToTheHead;
 	}
 
 
 
 	public void setWoundsToTheHead(boolean woundsToTheHead) {
-		WoundsToTheHead = woundsToTheHead;
+		this.woundsToTheHead = woundsToTheHead;
 	}
 
 
 
-	public boolean isWoundsToTheFace() {
-		return WoundsToTheFace;
+	public boolean getWoundsToTheFace() {
+		return woundsToTheFace;
 	}
 
 
 
 	public void setWoundsToTheFace(boolean woundsToTheFace) {
-		WoundsToTheFace = woundsToTheFace;
+		this.woundsToTheFace = woundsToTheFace;
 	}
 
 
 
-	public boolean isWoundsToTheNeck() {
-		return WoundsToTheNeck;
+	public boolean getWoundsToTheNeck() {
+		return woundsToTheNeck;
 	}
 
 
 
 	public void setWoundsToTheNeck(boolean woundsToTheNeck) {
-		WoundsToTheNeck = woundsToTheNeck;
+		this.woundsToTheNeck = woundsToTheNeck;
 	}
 
 
 
-	public boolean isWoundsToTheTorso() {
-		return WoundsToTheTorso;
+	public boolean getWoundsToTheTorso() {
+		return woundsToTheTorso;
 	}
 
 
 
 	public void setWoundsToTheTorso(boolean woundsToTheTorso) {
-		WoundsToTheTorso = woundsToTheTorso;
+		this.woundsToTheTorso = woundsToTheTorso;
 	}
 
 
 
-	public boolean isWoundsToTheLimbs() {
-		return WoundsToTheLimbs;
+	public boolean getWoundsToTheLimbs() {
+		return woundsToTheLimbs;
 	}
 
 
 
 	public void setWoundsToTheLimbs(boolean woundsToTheLimbs) {
-		WoundsToTheLimbs = woundsToTheLimbs;
+		this.woundsToTheLimbs = woundsToTheLimbs;
 	}
 
 
 
-	public boolean isMultipleWoundsToOneBodyArea() {
-		return MultipleWoundsToOneBodyArea;
+	public boolean getMultipleWoundsToOneBodyArea() {
+		return multipleWoundsToOneBodyArea;
 	}
 
 
 
 	public void setMultipleWoundsToOneBodyArea(boolean multipleWoundsToOneBodyArea) {
-		MultipleWoundsToOneBodyArea = multipleWoundsToOneBodyArea;
+		this.multipleWoundsToOneBodyArea = multipleWoundsToOneBodyArea;
 	}
 
 
 
-	public boolean isMultipleWoundsDistributedAcrossDifferentBodyParts() {
-		return MultipleWoundsDistributedAcrossDifferentBodyParts;
+	public boolean getMultipleWoundsDistributedAcrossDifferentBodyParts() {
+		return multipleWoundsDistributedAcrossDifferentBodyParts;
 	}
 
 
 
-	public void setMultipleWoundsDistributedAcrossDifferentBodyParts(boolean multipleWoundsDistributedAcrossDifferentBodyParts) {
-		MultipleWoundsDistributedAcrossDifferentBodyParts = multipleWoundsDistributedAcrossDifferentBodyParts;
+	public void setMultipleWoundsDistributedAcrossDifferentBodyParts(
+			boolean multipleWoundsDistributedAcrossDifferentBodyParts) {
+		this.multipleWoundsDistributedAcrossDifferentBodyParts = multipleWoundsDistributedAcrossDifferentBodyParts;
 	}
 
 
 
-	public boolean isWeaponBroughtToScene() {
-		return WeaponBroughtToScene;
+	public boolean getWeaponBroughtToScene() {
+		return weaponBroughtToScene;
 	}
 
 
 
 	public void setWeaponBroughtToScene(boolean weaponBroughtToScene) {
-		WeaponBroughtToScene = weaponBroughtToScene;
+		this.weaponBroughtToScene = weaponBroughtToScene;
 	}
 
 
 
-	public boolean isWeaponFromTheScene() {
-		return WeaponFromTheScene;
+	public boolean getWeaponFromTheScene() {
+		return weaponFromTheScene;
 	}
 
 
 
 	public void setWeaponFromTheScene(boolean weaponFromTheScene) {
-		WeaponFromTheScene = weaponFromTheScene;
+		this.weaponFromTheScene = weaponFromTheScene;
 	}
 
 
 
-	public boolean isIdentifiablePropertyStolen() {
-		return IdentifiablePropertyStolen;
+	public boolean getIdentifiablePropertyStolen() {
+		return identifiablePropertyStolen;
 	}
 
 
 
 	public void setIdentifiablePropertyStolen(boolean identifiablePropertyStolen) {
-		IdentifiablePropertyStolen = identifiablePropertyStolen;
+		this.identifiablePropertyStolen = identifiablePropertyStolen;
 	}
 
 
 
-	public boolean isNonidentifiablePropertyStolen() {
-		return NonidentifiablePropertyStolen;
+	public boolean getNonidentifiablePropertyStolen() {
+		return nonidentifiablePropertyStolen;
 	}
 
 
 
 	public void setNonidentifiablePropertyStolen(boolean nonidentifiablePropertyStolen) {
-		NonidentifiablePropertyStolen = nonidentifiablePropertyStolen;
+		this.nonidentifiablePropertyStolen = nonidentifiablePropertyStolen;
 	}
 
 
 
-	public boolean isValuablePropertyStolen() {
-		return ValuablePropertyStolen;
+	public boolean getValuablePropertyStolen() {
+		return valuablePropertyStolen;
 	}
 
 
 
 	public void setValuablePropertyStolen(boolean valuablePropertyStolen) {
-		ValuablePropertyStolen = valuablePropertyStolen;
+		this.valuablePropertyStolen = valuablePropertyStolen;
 	}
 
 
 
-	public boolean isBodyHidden() {
-		return BodyHidden;
+	public boolean getBodyHidden() {
+		return bodyHidden;
 	}
 
 
 
 	public void setBodyHidden(boolean bodyHidden) {
-		BodyHidden = bodyHidden;
+		this.bodyHidden = bodyHidden;
 	}
 
 
 
-	public boolean isBodyTransported() {
-		return BodyTransported;
+	public boolean getBodyTransported() {
+		return bodyTransported;
 	}
 
 
 
 	public void setBodyTransported(boolean bodyTransported) {
-		BodyTransported = bodyTransported;
+		this.bodyTransported = bodyTransported;
 	}
 
 
 
-	public boolean isOffenderForensicallyAware() {
-		return OffenderForensicallyAware;
+	public boolean getOffenderForensicallyAware() {
+		return offenderForensicallyAware;
 	}
 
 
 
 	public void setOffenderForensicallyAware(boolean offenderForensicallyAware) {
-		OffenderForensicallyAware = offenderForensicallyAware;
+		this.offenderForensicallyAware = offenderForensicallyAware;
 	}
 
 
 
-	public boolean isVictimFoundAtTheSameSceneWhereTheyWereKilled() {
-		return VictimFoundAtTheSameSceneWhereTheyWereKilled;
+	public boolean getVictimFoundAtTheSameSceneWhereTheyWereKilled() {
+		return victimFoundAtTheSameSceneWhereTheyWereKilled;
 	}
 
 
 
 	public void setVictimFoundAtTheSameSceneWhereTheyWereKilled(boolean victimFoundAtTheSameSceneWhereTheyWereKilled) {
-		VictimFoundAtTheSameSceneWhereTheyWereKilled = victimFoundAtTheSameSceneWhereTheyWereKilled;
+		this.victimFoundAtTheSameSceneWhereTheyWereKilled = victimFoundAtTheSameSceneWhereTheyWereKilled;
 	}
 
 
 
-	public boolean isSexualCrime() {
-		return SexualCrime;
+	public boolean getSexualCrime() {
+		return sexualCrime;
 	}
 
 
 
 	public void setSexualCrime(boolean sexualCrime) {
-		SexualCrime = sexualCrime;
+		this.sexualCrime = sexualCrime;
 	}
 
 
 
-	public boolean isArsonToCrimeSceneOrBody() {
-		return ArsonToCrimeSceneOrBody;
+	public boolean getArsonToCrimeSceneOrBody() {
+		return arsonToCrimeSceneOrBody;
 	}
 
 
 
 	public void setArsonToCrimeSceneOrBody(boolean arsonToCrimeSceneOrBody) {
-		ArsonToCrimeSceneOrBody = arsonToCrimeSceneOrBody;
+		this.arsonToCrimeSceneOrBody = arsonToCrimeSceneOrBody;
 	}
 
 
 
-	public boolean isVictimFoundInWater() {
-		return VictimFoundInWater;
+	public boolean getVictimFoundInWater() {
+		return victimFoundInWater;
 	}
 
 
 
 	public void setVictimFoundInWater(boolean victimFoundInWater) {
-		VictimFoundInWater = victimFoundInWater;
+		this.victimFoundInWater = victimFoundInWater;
 	}
 
 
 
-	public boolean isVictimDruggedAndOrPoisoned() {
-		return VictimDruggedAndOrPoisoned;
+	public boolean getVictimDruggedAndOrPoisoned() {
+		return victimDruggedAndOrPoisoned;
 	}
 
 
 
 	public void setVictimDruggedAndOrPoisoned(boolean victimDruggedAndOrPoisoned) {
-		VictimDruggedAndOrPoisoned = victimDruggedAndOrPoisoned;
+		this.victimDruggedAndOrPoisoned = victimDruggedAndOrPoisoned;
 	}
 
 
 
-	public boolean isVictimCovered() {
-		return VictimCovered;
+	public boolean getVictimCovered() {
+		return victimCovered;
 	}
 
 
 
 	public void setVictimCovered(boolean victimCovered) {
-		VictimCovered = victimCovered;
+		this.victimCovered = victimCovered;
+	}
+
+
+
+	public OffenderProfile getOffenderProfile() {
+		return offenderProfile;
+	}
+
+
+
+	public void setOffenderProfile(OffenderProfile offenderProfile) {
+		this.offenderProfile = offenderProfile;
 	}
 
 }

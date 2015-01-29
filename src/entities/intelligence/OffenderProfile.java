@@ -16,29 +16,32 @@ public class OffenderProfile implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int OffenderProfileId;
+	private int offenderProfileId;
 
-	private boolean YoungOffenderBetween17And21Years;
-	private boolean CriminalRecordOfTheft;
-	private boolean CriminalRecordOfFraud;
-	private boolean CriminalRecordOfBurglary;
-	private boolean RelationshipWithVictim;
-	private boolean UnemployedAtTheTimeOfOffense;
-	private boolean Male;
-	private boolean FamiliarWithAreaOfOffenseOccurrence;
-	private boolean CriminalRecordOfViolence;
-	private boolean CriminalRecordOfCommittingDamage;
-	private boolean CriminalRecordOfDisorderlyConduct;
-	private boolean RecordOfImprisonment;
-	private boolean SexualRelatedCriminalRecord;
-	private boolean ArmedServices_PastOrPresent;
-	private boolean KnewVictim;
-	private boolean HistoryOfAbusivenessInPastRelationships;
-	private boolean AttemptsOfSuicide;
-	private boolean PsychiatricDisorders;
-	private boolean RelatedToVictim;
-	private boolean BloodRelativeToVictim;
-	private boolean TurnedSelfIntoPolice;
+	private boolean youngOffenderBetween17And21Years;
+	private boolean criminalRecordOfTheft;
+	private boolean criminalRecordOfFraud;
+	private boolean criminalRecordOfBurglary;
+	private boolean relationshipWithVictim;
+	private boolean unemployedAtTheTimeOfOffense;
+	private boolean male;
+	private boolean familiarWithAreaOfOffenseOccurrence;
+	private boolean criminalRecordOfViolence;
+	private boolean criminalRecordOfCommittingDamage;
+	private boolean criminalRecordOfDisorderlyConduct;
+	private boolean recordOfImprisonment;
+	private boolean sexualRelatedCriminalRecord;
+	private boolean armedServices_PastOrPresent;
+	private boolean knewVictim;
+	private boolean historyOfAbusivenessInPastRelationships;
+	private boolean attemptsOfSuicide;
+	private boolean psychiatricDisorders;
+	private boolean relatedToVictim;
+	private boolean bloodRelativeToVictim;
+	private boolean turnedSelfIntoPolice;
+
+	@OneToOne(mappedBy = "offenderProfile")
+	private CrimeScene crimeScene;
 
 
 
@@ -48,266 +51,312 @@ public class OffenderProfile implements Serializable {
 
 
 
+	public OffenderProfile(boolean youngOffenderBetween17And21Years, boolean criminalRecordOfTheft,
+			boolean criminalRecordOfFraud, boolean criminalRecordOfBurglary, boolean relationshipWithVictim,
+			boolean unemployedAtTheTimeOfOffense, boolean male, boolean familiarWithAreaOfOffenseOccurrence,
+			boolean criminalRecordOfViolence, boolean criminalRecordOfCommittingDamage,
+			boolean criminalRecordOfDisorderlyConduct, boolean recordOfImprisonment,
+			boolean sexualRelatedCriminalRecord, boolean armedServices_PastOrPresent, boolean knewVictim,
+			boolean historyOfAbusivenessInPastRelationships, boolean attemptsOfSuicide, boolean psychiatricDisorders,
+			boolean relatedToVictim, boolean bloodRelativeToVictim, boolean turnedSelfIntoPolice) {
+		super();
+		this.youngOffenderBetween17And21Years = youngOffenderBetween17And21Years;
+		this.criminalRecordOfTheft = criminalRecordOfTheft;
+		this.criminalRecordOfFraud = criminalRecordOfFraud;
+		this.criminalRecordOfBurglary = criminalRecordOfBurglary;
+		this.relationshipWithVictim = relationshipWithVictim;
+		this.unemployedAtTheTimeOfOffense = unemployedAtTheTimeOfOffense;
+		this.male = male;
+		this.familiarWithAreaOfOffenseOccurrence = familiarWithAreaOfOffenseOccurrence;
+		this.criminalRecordOfViolence = criminalRecordOfViolence;
+		this.criminalRecordOfCommittingDamage = criminalRecordOfCommittingDamage;
+		this.criminalRecordOfDisorderlyConduct = criminalRecordOfDisorderlyConduct;
+		this.recordOfImprisonment = recordOfImprisonment;
+		this.sexualRelatedCriminalRecord = sexualRelatedCriminalRecord;
+		this.armedServices_PastOrPresent = armedServices_PastOrPresent;
+		this.knewVictim = knewVictim;
+		this.historyOfAbusivenessInPastRelationships = historyOfAbusivenessInPastRelationships;
+		this.attemptsOfSuicide = attemptsOfSuicide;
+		this.psychiatricDisorders = psychiatricDisorders;
+		this.relatedToVictim = relatedToVictim;
+		this.bloodRelativeToVictim = bloodRelativeToVictim;
+		this.turnedSelfIntoPolice = turnedSelfIntoPolice;
+	}
+
+
+
 	public int getOffenderProfileId() {
-		return OffenderProfileId;
+		return offenderProfileId;
 	}
 
 
 
 	public void setOffenderProfileId(int offenderProfileId) {
-		OffenderProfileId = offenderProfileId;
+		this.offenderProfileId = offenderProfileId;
 	}
 
 
 
-	public boolean isYoungOffenderBetween17And21Years() {
-		return YoungOffenderBetween17And21Years;
+	public boolean getYoungOffenderBetween17And21Years() {
+		return youngOffenderBetween17And21Years;
 	}
 
 
 
 	public void setYoungOffenderBetween17And21Years(boolean youngOffenderBetween17And21Years) {
-		YoungOffenderBetween17And21Years = youngOffenderBetween17And21Years;
+		this.youngOffenderBetween17And21Years = youngOffenderBetween17And21Years;
 	}
 
 
 
-	public boolean isCriminalRecordOfTheft() {
-		return CriminalRecordOfTheft;
+	public boolean getCriminalRecordOfTheft() {
+		return criminalRecordOfTheft;
 	}
 
 
 
 	public void setCriminalRecordOfTheft(boolean criminalRecordOfTheft) {
-		CriminalRecordOfTheft = criminalRecordOfTheft;
+		this.criminalRecordOfTheft = criminalRecordOfTheft;
 	}
 
 
 
-	public boolean isCriminalRecordOfFraud() {
-		return CriminalRecordOfFraud;
+	public boolean getCriminalRecordOfFraud() {
+		return criminalRecordOfFraud;
 	}
 
 
 
 	public void setCriminalRecordOfFraud(boolean criminalRecordOfFraud) {
-		CriminalRecordOfFraud = criminalRecordOfFraud;
+		this.criminalRecordOfFraud = criminalRecordOfFraud;
 	}
 
 
 
-	public boolean isCriminalRecordOfBurglary() {
-		return CriminalRecordOfBurglary;
+	public boolean getCriminalRecordOfBurglary() {
+		return criminalRecordOfBurglary;
 	}
 
 
 
 	public void setCriminalRecordOfBurglary(boolean criminalRecordOfBurglary) {
-		CriminalRecordOfBurglary = criminalRecordOfBurglary;
+		this.criminalRecordOfBurglary = criminalRecordOfBurglary;
 	}
 
 
 
-	public boolean isRelationshipWithVictim() {
-		return RelationshipWithVictim;
+	public boolean getRelationshipWithVictim() {
+		return relationshipWithVictim;
 	}
 
 
 
 	public void setRelationshipWithVictim(boolean relationshipWithVictim) {
-		RelationshipWithVictim = relationshipWithVictim;
+		this.relationshipWithVictim = relationshipWithVictim;
 	}
 
 
 
-	public boolean isUnemployedAtTheTimeOfOffense() {
-		return UnemployedAtTheTimeOfOffense;
+	public boolean getUnemployedAtTheTimeOfOffense() {
+		return unemployedAtTheTimeOfOffense;
 	}
 
 
 
 	public void setUnemployedAtTheTimeOfOffense(boolean unemployedAtTheTimeOfOffense) {
-		UnemployedAtTheTimeOfOffense = unemployedAtTheTimeOfOffense;
+		this.unemployedAtTheTimeOfOffense = unemployedAtTheTimeOfOffense;
 	}
 
 
 
-	public boolean isMale() {
-		return Male;
+	public boolean getMale() {
+		return male;
 	}
 
 
 
 	public void setMale(boolean male) {
-		Male = male;
+		this.male = male;
 	}
 
 
 
-	public boolean isFamiliarWithAreaOfOffenseOccurrence() {
-		return FamiliarWithAreaOfOffenseOccurrence;
+	public boolean getFamiliarWithAreaOfOffenseOccurrence() {
+		return familiarWithAreaOfOffenseOccurrence;
 	}
 
 
 
 	public void setFamiliarWithAreaOfOffenseOccurrence(boolean familiarWithAreaOfOffenseOccurrence) {
-		FamiliarWithAreaOfOffenseOccurrence = familiarWithAreaOfOffenseOccurrence;
+		this.familiarWithAreaOfOffenseOccurrence = familiarWithAreaOfOffenseOccurrence;
 	}
 
 
 
-	public boolean isCriminalRecordOfViolence() {
-		return CriminalRecordOfViolence;
+	public boolean getCriminalRecordOfViolence() {
+		return criminalRecordOfViolence;
 	}
 
 
 
 	public void setCriminalRecordOfViolence(boolean criminalRecordOfViolence) {
-		CriminalRecordOfViolence = criminalRecordOfViolence;
+		this.criminalRecordOfViolence = criminalRecordOfViolence;
 	}
 
 
 
-	public boolean isCriminalRecordOfCommittingDamage() {
-		return CriminalRecordOfCommittingDamage;
+	public boolean getCriminalRecordOfCommittingDamage() {
+		return criminalRecordOfCommittingDamage;
 	}
 
 
 
 	public void setCriminalRecordOfCommittingDamage(boolean criminalRecordOfCommittingDamage) {
-		CriminalRecordOfCommittingDamage = criminalRecordOfCommittingDamage;
+		this.criminalRecordOfCommittingDamage = criminalRecordOfCommittingDamage;
 	}
 
 
 
-	public boolean isCriminalRecordOfDisorderlyConduct() {
-		return CriminalRecordOfDisorderlyConduct;
+	public boolean getCriminalRecordOfDisorderlyConduct() {
+		return criminalRecordOfDisorderlyConduct;
 	}
 
 
 
 	public void setCriminalRecordOfDisorderlyConduct(boolean criminalRecordOfDisorderlyConduct) {
-		CriminalRecordOfDisorderlyConduct = criminalRecordOfDisorderlyConduct;
+		this.criminalRecordOfDisorderlyConduct = criminalRecordOfDisorderlyConduct;
 	}
 
 
 
-	public boolean isRecordOfImprisonment() {
-		return RecordOfImprisonment;
+	public boolean getRecordOfImprisonment() {
+		return recordOfImprisonment;
 	}
 
 
 
 	public void setRecordOfImprisonment(boolean recordOfImprisonment) {
-		RecordOfImprisonment = recordOfImprisonment;
+		this.recordOfImprisonment = recordOfImprisonment;
 	}
 
 
 
-	public boolean isSexualRelatedCriminalRecord() {
-		return SexualRelatedCriminalRecord;
+	public boolean getSexualRelatedCriminalRecord() {
+		return sexualRelatedCriminalRecord;
 	}
 
 
 
 	public void setSexualRelatedCriminalRecord(boolean sexualRelatedCriminalRecord) {
-		SexualRelatedCriminalRecord = sexualRelatedCriminalRecord;
+		this.sexualRelatedCriminalRecord = sexualRelatedCriminalRecord;
 	}
 
 
 
-	public boolean isArmedServices_PastOrPresent() {
-		return ArmedServices_PastOrPresent;
+	public boolean getArmedServices_PastOrPresent() {
+		return armedServices_PastOrPresent;
 	}
 
 
 
 	public void setArmedServices_PastOrPresent(boolean armedServices_PastOrPresent) {
-		ArmedServices_PastOrPresent = armedServices_PastOrPresent;
+		this.armedServices_PastOrPresent = armedServices_PastOrPresent;
 	}
 
 
 
-	public boolean isKnewVictim() {
-		return KnewVictim;
+	public boolean getKnewVictim() {
+		return knewVictim;
 	}
 
 
 
 	public void setKnewVictim(boolean knewVictim) {
-		KnewVictim = knewVictim;
+		this.knewVictim = knewVictim;
 	}
 
 
 
-	public boolean isHistoryOfAbusivenessInPastRelationships() {
-		return HistoryOfAbusivenessInPastRelationships;
+	public boolean getHistoryOfAbusivenessInPastRelationships() {
+		return historyOfAbusivenessInPastRelationships;
 	}
 
 
 
 	public void setHistoryOfAbusivenessInPastRelationships(boolean historyOfAbusivenessInPastRelationships) {
-		HistoryOfAbusivenessInPastRelationships = historyOfAbusivenessInPastRelationships;
+		this.historyOfAbusivenessInPastRelationships = historyOfAbusivenessInPastRelationships;
 	}
 
 
 
-	public boolean isAttemptsOfSuicide() {
-		return AttemptsOfSuicide;
+	public boolean getAttemptsOfSuicide() {
+		return attemptsOfSuicide;
 	}
 
 
 
 	public void setAttemptsOfSuicide(boolean attemptsOfSuicide) {
-		AttemptsOfSuicide = attemptsOfSuicide;
+		this.attemptsOfSuicide = attemptsOfSuicide;
 	}
 
 
 
-	public boolean isPsychiatricDisorders() {
-		return PsychiatricDisorders;
+	public boolean getPsychiatricDisorders() {
+		return psychiatricDisorders;
 	}
 
 
 
 	public void setPsychiatricDisorders(boolean psychiatricDisorders) {
-		PsychiatricDisorders = psychiatricDisorders;
+		this.psychiatricDisorders = psychiatricDisorders;
 	}
 
 
 
-	public boolean isRelatedToVictim() {
-		return RelatedToVictim;
+	public boolean getRelatedToVictim() {
+		return relatedToVictim;
 	}
 
 
 
 	public void setRelatedToVictim(boolean relatedToVictim) {
-		RelatedToVictim = relatedToVictim;
+		this.relatedToVictim = relatedToVictim;
 	}
 
 
 
-	public boolean isBloodRelativeToVictim() {
-		return BloodRelativeToVictim;
+	public boolean getBloodRelativeToVictim() {
+		return bloodRelativeToVictim;
 	}
 
 
 
 	public void setBloodRelativeToVictim(boolean bloodRelativeToVictim) {
-		BloodRelativeToVictim = bloodRelativeToVictim;
+		this.bloodRelativeToVictim = bloodRelativeToVictim;
 	}
 
 
 
-	public boolean isTurnedSelfIntoPolice() {
-		return TurnedSelfIntoPolice;
+	public boolean getTurnedSelfIntoPolice() {
+		return turnedSelfIntoPolice;
 	}
 
 
 
 	public void setTurnedSelfIntoPolice(boolean turnedSelfIntoPolice) {
-		TurnedSelfIntoPolice = turnedSelfIntoPolice;
+		this.turnedSelfIntoPolice = turnedSelfIntoPolice;
+	}
+
+
+
+	public CrimeScene getCrimeScene() {
+		return crimeScene;
+	}
+
+
+
+	public void setCrimeScene(CrimeScene crimeScene) {
+		this.crimeScene = crimeScene;
 	}
 
 }
