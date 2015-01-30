@@ -97,18 +97,55 @@ public class FillUpDataBase {
 			case 9:
 				historyOfSexCrime(cs, op);
 				break;
-				
+
 			case 10:
 				op.setArmedServices_PastOrPresent(true);
 				break;
-				
+
 			case 11:
 				op.setFamiliarWithAreaOfOffenseOccurrence(true);
 				break;
-	
+
 			case 12:
 				male(cs, op);
 				break;
+
+			case 13:
+				knewVictim(cs, op);
+				break;
+
+			case 14:
+				historyOfAbuse(cs, op);
+				break;
+
+			case 15:
+				suicide(cs, op);
+				break;
+
+			case 16:
+				psychiatricOrSocialProblems(cs, op);
+				break;
+
+			case 17:
+				priorFraud(cs, op);
+				break;
+
+			case 18:
+				relatedToVictim(cs, op);
+				break;
+
+			case 19:
+				relationshipWithVictim(cs, op);
+				break;
+
+			case 20:
+				bloodRelatedToVictim(cs, op);
+				break;
+
+			case 21:
+				turnedSelfIntoPolice(cs, op);
+				break;
+
 			default:
 				break;
 			}
@@ -135,7 +172,7 @@ public class FillUpDataBase {
 		priorViolence(cs, op);
 		priorDamage(cs, op);
 		recordOfImprisonment(cs, op);
-		sexualRelatedCriminalRecord(cs, op);
+		historyOfSexCrime(cs, op);
 		male(cs, op);
 		cs.setValuablePropertyStolen(true);
 	}
@@ -178,15 +215,18 @@ public class FillUpDataBase {
 
 
 	public void priorFraud(CrimeScene cs, OffenderProfile op) {
-		// TODO Auto-generated method stub
+		op.setCriminalRecordOfFraud(true);
+		relationshipWithVictim(cs, op);
 
+		cs.setGunshotWounds(true);
+		cs.setArsonToCrimeSceneOrBody(true);
 	}
 
 
 
 	public void male(CrimeScene cs, OffenderProfile op) {
 		op.setMale(true);
-		
+
 		cs.setFaceNotDeliberatelyHidden(true);
 		cs.setWoundsCausedByBluntInstrument(true);
 		cs.setSexualCrime(true);
@@ -196,9 +236,29 @@ public class FillUpDataBase {
 
 
 
-	public void sexualRelatedCriminalRecord(CrimeScene cs, OffenderProfile op) {
-		// TODO Auto-generated method stub
+	public void relatedToVictim(CrimeScene cs, OffenderProfile op) {
+		op.setRelatedToVictim(true);
 
+		cs.setVictimPartiallyUndressed(true);
+		cs.setStabbingInjuries(true);
+		cs.setWoundsToTheLimbs(true);
+		cs.setMultipleWoundsDistributedAcrossDifferentBodyParts(true);
+		cs.setIdentifiablePropertyStolen(true);
+	}
+
+
+
+	public void psychiatricOrSocialProblems(CrimeScene cs, OffenderProfile op) {
+		op.setPsychiatricDisorders(true);
+
+		cs.setBodyTransported(true);
+		cs.setVictimFoundInWater(true);
+	}
+
+
+
+	public void historyOfAbuse(CrimeScene cs, OffenderProfile op) {
+		op.setHistoryOfAbusivenessInPastRelationships(true);
 	}
 
 
@@ -231,21 +291,52 @@ public class FillUpDataBase {
 
 
 	public void knewVictim(CrimeScene cs, OffenderProfile op) {
-		// TODO Auto-generated method stub
-		
+		op.setKnewVictim(true);
+
+		suicide(cs, op);
+		relationshipWithVictim(cs, op);
+		bloodRelatedToVictim(cs, op);
+
+		cs.setBodyHidden(true);
+		cs.setBodyTransported(true);
+		cs.setVictimFoundAtTheSameSceneWhereTheyWereKilled(true);
+	}
+
+
+
+	public void relationshipWithVictim(CrimeScene cs, OffenderProfile op) {
+		op.setRelationshipWithVictim(true);
+		bloodRelatedToVictim(cs, op);
+		cs.setVictimWasBlindfolded(true);
+		cs.setVictimDruggedAndOrPoisoned(true);
+	}
+
+
+
+	public void suicide(CrimeScene cs, OffenderProfile op) {
+		op.setAttemptsOfSuicide(true);
+		psychiatricOrSocialProblems(cs, op);
+		cs.setMultipleWoundsDistributedAcrossDifferentBodyParts(true);
 	}
 
 
 
 	public void bloodRelatedToVictim(CrimeScene cs, OffenderProfile op) {
-		// TODO Auto-generated method stub
-
+		op.setBloodRelativeToVictim(true);
+		cs.setSuffocation(true);
 	}
 
 
 
 	public void turnedSelfIntoPolice(CrimeScene cs, OffenderProfile op) {
-		// TODO Auto-generated method stub
+		op.setTurnedSelfIntoPolice(true);
+		cs.setVaginalPenetration(true);
+		cs.setFaceUp(true);
+		cs.setVictimPartiallyUndressed(true);
+		cs.setIdentifiablePropertyStolen(true);
+		cs.setOffenderForensicallyAware(true);
+		cs.setSexualCrime(true);
+		cs.setArsonToCrimeSceneOrBody(true);
 	}
 
 
