@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 
 @Startup
 @Singleton
-public class FillUpDataBase {
+public class FillUpDatabase {
 
 	@PersistenceContext(unitName = "lawEnforcementPersistenceUnit")
 	private EntityManager em;
@@ -30,7 +30,7 @@ public class FillUpDataBase {
 	public void loop1000Times() {
 		CrimeScene cs;
 		OffenderProfile op;
-		int numberOfOffenderVariables = 0; // max is 4
+		int numberOfOffenderVariables = 0; // max is 3
 
 		for (int i = 0; i < 10; i++) {
 			cs = new CrimeScene(false, false, false, false, false, false, false, false, false, false, false, false,
@@ -156,9 +156,13 @@ public class FillUpDataBase {
 
 	public void priorTheft(CrimeScene cs, OffenderProfile op) {
 		op.setCriminalRecordOfTheft(true);
-		priorBurglary(cs, op);
-		unemployedAtTheTimeOfOffense(cs, op);
-		turnedSelfIntoPolice(cs, op);
+		op.setCriminalRecordOfBurglary(true);
+		op.setUnemployedAtTheTimeOfOffense(true);
+		op.setTurnedSelfIntoPolice(true);
+
+		// priorBurglary(cs, op);
+		// unemployedAtTheTimeOfOffense(cs, op);
+		// turnedSelfIntoPolice(cs, op);
 
 		cs.setVictimWasBlindfolded(true);
 		cs.setIdentifiablePropertyStolen(true);
@@ -169,11 +173,18 @@ public class FillUpDataBase {
 
 	public void priorBurglary(CrimeScene cs, OffenderProfile op) {
 		op.setCriminalRecordOfBurglary(true);
-		priorViolence(cs, op);
-		priorDamage(cs, op);
-		recordOfImprisonment(cs, op);
-		historyOfSexCrime(cs, op);
-		male(cs, op);
+		op.setCriminalRecordOfViolence(true);
+		op.setCriminalRecordOfCommittingDamage(true);
+		op.setRecordOfImprisonment(true);
+		op.setSexualRelatedCriminalRecord(true);
+		op.setMale(true);
+
+		// priorViolence(cs, op);
+		// priorDamage(cs, op);
+		// recordOfImprisonment(cs, op);
+		// historyOfSexCrime(cs, op);
+		// male(cs, op);
+
 		cs.setValuablePropertyStolen(true);
 	}
 
@@ -181,7 +192,10 @@ public class FillUpDataBase {
 
 	public void priorViolence(CrimeScene cs, OffenderProfile op) {
 		op.setCriminalRecordOfViolence(true);
-		priorDamage(cs, op);
+		op.setCriminalRecordOfCommittingDamage(true);
+
+		// priorDamage(cs, op);
+
 		cs.setDeliberateClothingDamaged(true);
 		cs.setWoundsCausedByBluntInstrument(true);
 	}
@@ -190,8 +204,11 @@ public class FillUpDataBase {
 
 	public void priorDamage(CrimeScene cs, OffenderProfile op) {
 		op.setCriminalRecordOfCommittingDamage(true);
-		priorDisorder(cs, op);
-		bloodRelatedToVictim(cs, op);
+		op.setCriminalRecordOfDisorderlyConduct(true);
+		op.setBloodRelativeToVictim(true);
+
+		// priorDisorder(cs, op);
+		// bloodRelatedToVictim(cs, op);
 	}
 
 
@@ -205,7 +222,9 @@ public class FillUpDataBase {
 	public void youngOffender(CrimeScene cs, OffenderProfile op) {
 		op.setYoungOffenderBetween17And21Years(true);
 		op.setArmedServices_PastOrPresent(true);
-		priorFraud(cs, op);
+		op.setCriminalRecordOfFraud(true);
+
+		// priorFraud(cs, op);
 
 		cs.setAnalPenetration(true);
 		cs.setForeignObjectPenetration(true);
@@ -216,7 +235,9 @@ public class FillUpDataBase {
 
 	public void priorFraud(CrimeScene cs, OffenderProfile op) {
 		op.setCriminalRecordOfFraud(true);
-		relationshipWithVictim(cs, op);
+		op.setRelationshipWithVictim(true);
+
+		// relationshipWithVictim(cs, op);
 
 		cs.setGunshotWounds(true);
 		cs.setArsonToCrimeSceneOrBody(true);
@@ -265,8 +286,11 @@ public class FillUpDataBase {
 
 	public void recordOfImprisonment(CrimeScene cs, OffenderProfile op) {
 		op.setRecordOfImprisonment(true);
-		historyOfSexCrime(cs, op);
-		male(cs, op);
+		op.setSexualRelatedCriminalRecord(true);
+		op.setMale(true);
+
+		// historyOfSexCrime(cs, op);
+		// male(cs, op);
 
 		cs.setForeignObjectPenetration(true);
 	}
@@ -284,18 +308,23 @@ public class FillUpDataBase {
 
 
 	public void historyOfSexCrime(CrimeScene cs, OffenderProfile op) {
-		op.setHistoryOfAbusivenessInPastRelationships(true);
-		knewVictim(cs, op);
+		op.setSexualRelatedCriminalRecord(true);
+		op.setKnewVictim(true);
+
+		// knewVictim(cs, op);
 	}
 
 
 
 	public void knewVictim(CrimeScene cs, OffenderProfile op) {
 		op.setKnewVictim(true);
+		op.setAttemptsOfSuicide(true);
+		op.setRelationshipWithVictim(true);
+		op.setBloodRelativeToVictim(true);
 
-		suicide(cs, op);
-		relationshipWithVictim(cs, op);
-		bloodRelatedToVictim(cs, op);
+		// suicide(cs, op);
+		// relationshipWithVictim(cs, op);
+		// bloodRelatedToVictim(cs, op);
 
 		cs.setBodyHidden(true);
 		cs.setBodyTransported(true);
@@ -306,7 +335,10 @@ public class FillUpDataBase {
 
 	public void relationshipWithVictim(CrimeScene cs, OffenderProfile op) {
 		op.setRelationshipWithVictim(true);
-		bloodRelatedToVictim(cs, op);
+		op.setBloodRelativeToVictim(true);
+		
+//		bloodRelatedToVictim(cs, op);
+		
 		cs.setVictimWasBlindfolded(true);
 		cs.setVictimDruggedAndOrPoisoned(true);
 	}
@@ -315,7 +347,10 @@ public class FillUpDataBase {
 
 	public void suicide(CrimeScene cs, OffenderProfile op) {
 		op.setAttemptsOfSuicide(true);
-		psychiatricOrSocialProblems(cs, op);
+		op.setPsychiatricDisorders(true);
+		
+//		psychiatricOrSocialProblems(cs, op);
+		
 		cs.setMultipleWoundsDistributedAcrossDifferentBodyParts(true);
 	}
 
