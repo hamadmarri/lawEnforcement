@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
-@Startup
+//@Startup
 @Singleton
 public class FillUpDatabase {
 
@@ -18,21 +18,18 @@ public class FillUpDatabase {
 
 	@PostConstruct
 	public void fill() {
-
-		loop1000Times();
-
-		// sc.setOffenderProfile(op);
-		// em.persist(sc);
+		fillUpData();
 	}
 
 
 
-	public void loop1000Times() {
+	public void fillUpData() {
 		CrimeScene cs;
 		OffenderProfile op;
 		int numberOfOffenderVariables = 0; // max is 3
+		int numberOfCases = 997;
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < numberOfCases; i++) {
 			cs = new CrimeScene(false, false, false, false, false, false, false, false, false, false, false, false,
 					false, false, false, false, false, false, false, false, false, false, false, false, false, false,
 					false, false, false, false, false, false, false, false, false, false);
@@ -40,12 +37,12 @@ public class FillUpDatabase {
 			op = new OffenderProfile(false, false, false, false, false, false, false, false, false, false, false,
 					false, false, false, false, false, false, false, false, false, false);
 
+			cs.setOffenderProfile(op);
+			
 			numberOfOffenderVariables = getNumberOfOffenderVariables();
 
 			createRecord(cs, op, numberOfOffenderVariables);
-
 		}
-
 	}
 
 
@@ -148,8 +145,11 @@ public class FillUpDatabase {
 
 			default:
 				break;
-			}
-		}
+			} // switch
+		} // for
+
+		// save to database
+		em.persist(cs);
 	}
 
 
@@ -336,9 +336,9 @@ public class FillUpDatabase {
 	public void relationshipWithVictim(CrimeScene cs, OffenderProfile op) {
 		op.setRelationshipWithVictim(true);
 		op.setBloodRelativeToVictim(true);
-		
-//		bloodRelatedToVictim(cs, op);
-		
+
+		// bloodRelatedToVictim(cs, op);
+
 		cs.setVictimWasBlindfolded(true);
 		cs.setVictimDruggedAndOrPoisoned(true);
 	}
@@ -348,9 +348,9 @@ public class FillUpDatabase {
 	public void suicide(CrimeScene cs, OffenderProfile op) {
 		op.setAttemptsOfSuicide(true);
 		op.setPsychiatricDisorders(true);
-		
-//		psychiatricOrSocialProblems(cs, op);
-		
+
+		// psychiatricOrSocialProblems(cs, op);
+
 		cs.setMultipleWoundsDistributedAcrossDifferentBodyParts(true);
 	}
 
