@@ -1,6 +1,7 @@
 package entities.intelligence;
 
 import static org.junit.Assert.*;
+import intelligence.FillUpDatabase;
 
 import org.junit.Test;
 
