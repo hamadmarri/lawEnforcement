@@ -47,6 +47,28 @@ public class OffenderProfile implements Serializable {
 
 	public OffenderProfile() {
 		super();
+
+		this.youngOffenderBetween17And21Years = false;
+		this.criminalRecordOfTheft = false;
+		this.criminalRecordOfFraud = false;
+		this.criminalRecordOfBurglary = false;
+		this.relationshipWithVictim = false;
+		this.unemployedAtTheTimeOfOffense = false;
+		this.male = false;
+		this.familiarWithAreaOfOffenseOccurrence = false;
+		this.criminalRecordOfViolence = false;
+		this.criminalRecordOfCommittingDamage = false;
+		this.criminalRecordOfDisorderlyConduct = false;
+		this.recordOfImprisonment = false;
+		this.sexualRelatedCriminalRecord = false;
+		this.armedServices_PastOrPresent = false;
+		this.knewVictim = false;
+		this.historyOfAbusivenessInPastRelationships = false;
+		this.attemptsOfSuicide = false;
+		this.psychiatricDisorders = false;
+		this.relatedToVictim = false;
+		this.bloodRelativeToVictim = false;
+		this.turnedSelfIntoPolice = false;
 	}
 
 

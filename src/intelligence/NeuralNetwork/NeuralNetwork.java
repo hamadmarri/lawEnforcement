@@ -7,6 +7,7 @@ import intelligence.NeuralNetwork.layers.OutputLayer;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 
 public class NeuralNetwork implements Serializable {
@@ -52,16 +53,17 @@ public class NeuralNetwork implements Serializable {
 
 
 	public void printResult(PrintWriter pw) {
+
+		pw.println("inputs:");
+		for (int j = 0; j < this.inputLayer.getNeurons().length - 1; j++) {
+			Neuron en = this.inputLayer.getNeurons()[j];
+			pw.print(en.getOutput() + " ");
+		}
+
+		pw.println("\noutputs:");
 		for (int i = 0; i < this.outputLayer.getNeurons().length - 1; i++) {
 			Neuron n = this.outputLayer.getNeurons()[i];
-			pw.print("input: ");
-
-			for (int j = 0; j < this.inputLayer.getNeurons().length - 1; j++) {
-				Neuron en = this.inputLayer.getNeurons()[j];
-				pw.print("(" + en.getOutput() + ")");
-			}
-
-			pw.println("\noutput: " + n.getOutput());
+			pw.print(i + ")\t" + new DecimalFormat("#0.0000").format(n.getOutput()) + "\t\t");
 			pw.println("error: " + n.getError());
 		}
 	}
@@ -116,6 +118,18 @@ public class NeuralNetwork implements Serializable {
 
 	public OutputLayer getOutputLayer() {
 		return outputLayer;
+	}
+
+
+
+	public double[] getResults() {
+		Neuron[] neurons = outputLayer.getNeurons();
+		double[] results = new double[neurons.length];
+		
+		for (int i = 0; i < results.length; i++)
+			results[i] = neurons[i].getOutput();		
+		
+		return results;
 	}
 
 }

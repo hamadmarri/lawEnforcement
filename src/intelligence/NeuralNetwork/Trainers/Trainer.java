@@ -15,11 +15,14 @@ public abstract class Trainer {
 	protected Scanner inputFile;
 	protected PrintWriter outputFile;
 	protected NeuralNetwork neuralNetwork;
-	protected int numberOfPasses = 2000;
-
+	protected int numberOfPasses = 2000; // default is 2000
+	protected String inputFileName;
+	protected String outputFileName;
 
 
 	public Trainer(String inputFileName, String outputFileName, NeuralNetwork neuralNetwork, int numberOfPasses) {
+		this.inputFileName = inputFileName;
+		this.outputFileName = outputFileName;
 		this.neuralNetwork = neuralNetwork;
 		initializeInputFile(inputFileName);
 		initializeOutputFile(outputFileName);
@@ -28,7 +31,7 @@ public abstract class Trainer {
 
 
 
-	private void initializeInputFile(String inputFileName) {
+	protected void initializeInputFile(String inputFileName) {
 		File f = new File(inputFileName);
 		if (!f.exists()) {
 			try {
@@ -47,7 +50,7 @@ public abstract class Trainer {
 
 
 
-	private void initializeOutputFile(String outputFileName) {
+	protected void initializeOutputFile(String outputFileName) {
 		try {
 			this.outputFile = new PrintWriter(outputFileName, "UTF-8");
 		} catch (FileNotFoundException e) {

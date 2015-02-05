@@ -62,6 +62,42 @@ public class CrimeScene implements Serializable {
 
 	public CrimeScene() {
 		super();
+		this.foreignObjectPenetration = false;
+		this.faceNotDeliberatelyHidden = false;
+		this.victimWasBlindfolded = false;
+		this.woundsCausedByBluntInstrument = false;
+		this.suffocation = false;
+		this.vaginalPenetration = false;
+		this.analPenetration = false;
+		this.faceUp = false;
+		this.victimPartiallyUndressed = false;
+		this.victimNaked = false;
+		this.deliberateClothingDamaged = false;
+		this.bound = false;
+		this.stabbingInjuries = false;
+		this.manualInjuries = false;
+		this.gunshotWounds = false;
+		this.woundsToTheHead = false;
+		this.woundsToTheFace = false;
+		this.woundsToTheNeck = false;
+		this.woundsToTheTorso = false;
+		this.woundsToTheLimbs = false;
+		this.multipleWoundsToOneBodyArea = false;
+		this.multipleWoundsDistributedAcrossDifferentBodyParts = false;
+		this.weaponBroughtToScene = false;
+		this.weaponFromTheScene = false;
+		this.identifiablePropertyStolen = false;
+		this.nonidentifiablePropertyStolen = false;
+		this.valuablePropertyStolen = false;
+		this.bodyHidden = false;
+		this.bodyTransported = false;
+		this.offenderForensicallyAware = false;
+		this.victimFoundAtTheSameSceneWhereTheyWereKilled = false;
+		this.sexualCrime = false;
+		this.arsonToCrimeSceneOrBody = false;
+		this.victimFoundInWater = false;
+		this.victimDruggedAndOrPoisoned = false;
+		this.victimCovered = false;
 	}
 
 

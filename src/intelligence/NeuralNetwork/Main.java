@@ -11,8 +11,37 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-
 public class Main {
+
+	public static void main(String[] args) {
+		// int[] config = new int[] { 2, 4, 1 };
+		// NeuralNetwork nw = new NeuralNetwork(config, 0.02, 0.15);
+		String inputPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/input.txt";
+		String outputPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/output.txt";
+		String serPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/NN_XOR.ser";
+
+		NeuralNetwork nw = (NeuralNetwork) deserialize(serPath);
+		Trainer trainer = new XorTrainer(inputPath, outputPath, nw, 100000);
+
+		train(trainer);
+
+		serialize(serPath, nw);
+	}
+
+
+
+	private static void train(Trainer trainer) {
+		long startTime;
+		long endTime;
+
+		trainer.generateTest();
+		startTime = System.currentTimeMillis();
+		trainer.train();
+		endTime = System.currentTimeMillis();
+		System.out.println("took: " + (endTime - startTime) + "ms");
+	}
+
+
 
 	private static void serialize(String path, NeuralNetwork nw) {
 		ObjectOutputStream oos = null;
@@ -56,36 +85,6 @@ public class Main {
 		}
 
 		return null;
-	}
-
-
-
-	public static void main(String[] args) {
-		// int[] config = new int[] { 2, 4, 1 };
-		// NeuralNetwork nw = new NeuralNetwork(config, 0.02, 0.15);
-		String inputPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/input.txt";
-		String outputPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/output.txt";
-		String serPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/NN_XOR.ser";
-
-		NeuralNetwork nw = (NeuralNetwork) deserialize(serPath);
-		Trainer trainer = new XorTrainer(inputPath, outputPath, nw, 100000);
-
-		train(trainer);
-
-		serialize(serPath, nw);
-	}
-
-
-
-	private static void train(Trainer trainer) {
-		long startTime;
-		long endTime;
-
-		trainer.generateTest();
-		startTime = System.currentTimeMillis();
-		trainer.train();
-		endTime = System.currentTimeMillis();
-		System.out.println("took: " + (endTime - startTime) + "ms");
 	}
 
 }
