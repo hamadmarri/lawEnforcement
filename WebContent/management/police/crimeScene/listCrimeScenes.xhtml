@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h2>Crime Scenes</h2>
+
+		<h:link value="add" outcome="add" />
+
+		<c:set var="crimeScenes"
+			value="#{controllerCrimeScene.crimeScenesList}" />
+
+		<c:if test="${empty crimeScenes}">
+			<h:outputLabel value="nothing" />
+		</c:if>
+
+		<c:if test="${not empty crimeScenes}">
+			<h:dataTable value="#{crimeScenes}" var="c">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{c.crimeSceneId}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/police/crimeScene/editCrimeScene.xhtml?id=#{c.crimeSceneId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">id</f:facet>
+					#{c.crimeSceneId}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Foreign Object Penetration</f:facet>
+					<h:outputLabel value="#{c.foreignObjectPenetration}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Face Not Deliberately Hidden</f:facet>
+					<h:outputLabel value="#{c.faceNotDeliberatelyHidden}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Was Blindfolded</f:facet>
+					<h:outputLabel value="#{c.victimWasBlindfolded}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Wounds Caused By Blunt Instrument</f:facet>
+					<h:outputLabel value="#{c.woundsCausedByBluntInstrument}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Suffocation</f:facet>
+					<h:outputLabel value="#{c.suffocation}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Vaginal Penetration</f:facet>
+					<h:outputLabel value="#{c.vaginalPenetration}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Anal Penetration</f:facet>
+					<h:outputLabel value="#{c.analPenetration}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Face Up</f:facet>
+					<h:outputLabel value="#{c.faceUp}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Partially Undressed</f:facet>
+					<h:outputLabel value="#{c.victimPartiallyUndressed}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Naked</f:facet>
+					<h:outputLabel value="#{c.victimNaked}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Deliberate Clothing Damaged</f:facet>
+					<h:outputLabel value="#{c.deliberateClothingDamaged}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Bound</f:facet>
+					<h:outputLabel value="#{c.bound}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Stabbing Injuries</f:facet>
+					<h:outputLabel value="#{c.stabbingInjuries}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Manual Injuries</f:facet>
+					<h:outputLabel value="#{c.manualInjuries}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Gunshot Wounds</f:facet>
+					<h:outputLabel value="#{c.gunshotWounds}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Wounds To The Head</f:facet>
+					<h:outputLabel value="#{c.woundsToTheHead}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Wounds To The Face</f:facet>
+					<h:outputLabel value="#{c.woundsToTheFace}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Wounds To The Neck</f:facet>
+					<h:outputLabel value="#{c.woundsToTheNeck}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Wounds To The Torso</f:facet>
+					<h:outputLabel value="#{c.woundsToTheTorso}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Wounds To The Limbs</f:facet>
+					<h:outputLabel value="#{c.woundsToTheLimbs}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Multiple Wounds To One Body Area</f:facet>
+					<h:outputLabel value="#{c.multipleWoundsToOneBodyArea}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Multiple Wounds Distributed Across Different Body Parts</f:facet>
+					<h:outputLabel value="#{c.multipleWoundsDistributedAcrossDifferentBodyParts}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Weapon Brought To Scene</f:facet>
+					<h:outputLabel value="#{c.weaponBroughtToScene}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Weapon From The Scene</f:facet>
+					<h:outputLabel value="#{c.weaponFromTheScene}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Identifiable Property Stolen</f:facet>
+					<h:outputLabel value="#{c.identifiablePropertyStolen}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nonidentifiable Property Stolen</f:facet>
+					<h:outputLabel value="#{c.nonidentifiablePropertyStolen}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Valuable Property Stolen</f:facet>
+					<h:outputLabel value="#{c.valuablePropertyStolen}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Body Hidden</f:facet>
+					<h:outputLabel value="#{c.bodyHidden}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Body Transported</f:facet>
+					<h:outputLabel value="#{c.bodyTransported}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Offender Forensically Aware</f:facet>
+					<h:outputLabel value="#{c.offenderForensicallyAware}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Found At The Same Scene Where They Were Killed</f:facet>
+					<h:outputLabel value="#{c.victimFoundAtTheSameSceneWhereTheyWereKilled}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sexual Crime</f:facet>
+					<h:outputLabel value="#{c.sexualCrime}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Srson To Crime Scene Or Body</f:facet>
+					<h:outputLabel value="#{c.arsonToCrimeSceneOrBody}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Found In Water</f:facet>
+					<h:outputLabel value="#{c.victimFoundInWater}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Drugged And Or Poisoned</f:facet>
+					<h:outputLabel value="#{c.victimDruggedAndOrPoisoned}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Victim Covered</f:facet>
+					<h:outputLabel value="#{c.victimCovered}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Offinder Profile</f:facet>
+					<h:link value="view"
+						outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{c.offenderProfile.offenderProfileId}" />
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
+	</ui:composition>
+</h:body>
+</html>

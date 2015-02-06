@@ -14,7 +14,7 @@ public class OffenderProfileGeneratorTrainer extends Trainer {
 
 	@Override
 	public void generateTest() {
-		// test is already exported from MySQL database under
+		// inputs are already exported from MySQL database under
 		// crimeScene_OffenderProfileViewExport.txt filename
 		return;
 	}

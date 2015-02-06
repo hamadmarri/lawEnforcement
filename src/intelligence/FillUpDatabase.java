@@ -2,7 +2,7 @@ package intelligence;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-//import javax.ejb.Startup;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,7 +10,7 @@ import entities.intelligence.CrimeScene;
 import entities.intelligence.OffenderProfile;
 
 
-//@Startup
+@Startup
 @Singleton
 public class FillUpDatabase {
 

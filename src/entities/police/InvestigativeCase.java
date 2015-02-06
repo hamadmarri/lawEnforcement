@@ -11,12 +11,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import entities.Relatable;
 import entities.entries.history.Action;
 import entities.events.IncidentReport;
+import entities.intelligence.CrimeScene;
 
 
 /**
@@ -52,6 +54,9 @@ public class InvestigativeCase extends Relatable {
 	@OneToMany(mappedBy = "investigativeCase")
 	private List<Task> tasks;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private CrimeScene crimeScene;
+
 	// private String description;
 
 	private static String[] statusSuggestions = { "Open", "Pending", "In progress", "Refused", "Closed" };
@@ -76,10 +81,6 @@ public class InvestigativeCase extends Relatable {
 	}
 
 
-
-	// public Long getId() {
-	// return id;
-	// }
 
 	public List<IncidentReport> getIncidentReports() {
 		return incidentReports;
@@ -191,6 +192,18 @@ public class InvestigativeCase extends Relatable {
 
 	public List<Activity> getActivities() {
 		return activities;
+	}
+
+
+
+	public CrimeScene getCrimeScene() {
+		return crimeScene;
+	}
+
+
+
+	public void setCrimeScene(CrimeScene crimeScene) {
+		this.crimeScene = crimeScene;
 	}
 
 

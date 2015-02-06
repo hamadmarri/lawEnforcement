@@ -4,12 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import entities.police.InvestigativeCase;
+
 
 /**
  * Entity implementation class for Entity: CrimeScene
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "CrimeScene.findAll", query = "select c from CrimeScene c"),
+		@NamedQuery(name = "CrimeScene.findById", query = "select c from CrimeScene c WHERE c.crimeSceneId = :id") })
 public class CrimeScene implements Serializable {
 
 	private static final long serialVersionUID = 7288688344068326138L;
@@ -54,6 +58,9 @@ public class CrimeScene implements Serializable {
 	private boolean victimFoundInWater;
 	private boolean victimDruggedAndOrPoisoned;
 	private boolean victimCovered; // (i.e., inside rather than outside)
+
+	@OneToOne(mappedBy = "crimeScene")
+	private InvestigativeCase investigativeCase;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private OffenderProfile offenderProfile;
@@ -608,6 +615,18 @@ public class CrimeScene implements Serializable {
 
 	public void setOffenderProfile(OffenderProfile offenderProfile) {
 		this.offenderProfile = offenderProfile;
+	}
+
+
+
+	public InvestigativeCase getInvestigativeCase() {
+		return investigativeCase;
+	}
+
+
+
+	public void setInvestigativeCase(InvestigativeCase investigativeCase) {
+		this.investigativeCase = investigativeCase;
 	}
 
 }
