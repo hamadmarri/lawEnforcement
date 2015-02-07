@@ -8,16 +8,16 @@
 
 <h:head>
 	<f:metadata>
-		<f:event listener="#{controllerInvestigator.createNewInvestigator}"
+		<f:event listener="#{controllerCrimeScene.createNewCrimeScene}"
 			type="preRenderView" />
 	</f:metadata>
 </h:head>
 
 <h:body>
-	<ui:composition template="/management/edit/editInvestigator.xhtml">
+	<ui:composition template="/management/police/crimeScene/editCrimeScene.xhtml">
 
 		<ui:define name="editHeader">
-			<h2>Add Investigator</h2>
+			<h2>Add CrimeScene</h2>
 		</ui:define>
 
 	</ui:composition>

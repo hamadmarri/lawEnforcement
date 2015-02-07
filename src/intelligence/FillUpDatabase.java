@@ -10,7 +10,7 @@ import entities.intelligence.CrimeScene;
 import entities.intelligence.OffenderProfile;
 
 
-@Startup
+//@Startup
 @Singleton
 public class FillUpDatabase {
 
@@ -30,7 +30,7 @@ public class FillUpDatabase {
 		CrimeScene cs;
 		OffenderProfile op;
 		int numberOfOffenderVariables = 0; // max is 3
-		int numberOfCases = 997;
+		int numberOfCases = 1000;
 
 		for (int i = 0; i < numberOfCases; i++) {
 			cs = new CrimeScene(false, false, false, false, false, false, false, false, false, false, false, false,

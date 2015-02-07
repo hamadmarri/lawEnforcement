@@ -9,34 +9,239 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{controllerInvestigator.id}" />
+		<f:viewParam name="id" value="#{controllerCrimeScene.id}" />
 	</f:metadata>
 </h:head>
 <h:body>
 
-	<h3>Investigator</h3>
+	<h3>CrimeScene</h3>
 	<h:link value="edit" outcome="edit">
-		<f:param name="id" value="#{controllerInvestigator.id}" />
+		<f:param name="id"
+			value="#{controllerCrimeScene.crimeScene.crimeSceneId}" />
+		<br />
 	</h:link>
 	<br />
-	<ui:composition>
 
-		<c:set var="investigativeCases"
-			value="#{controllerInvestigator.investigator.investigativeCases}" />
-		<c:set var="included" value="true" />
-
+	<h:outputLabel value="id: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.crimeSceneId}" />
+	<br />
 
 
-		<h:outputLabel value="Name" />
-		<h:outputLabel
-			value="#{controllerInvestigator.investigator.personName.lastName},
-			 #{controllerInvestigator.investigator.personName.firstName}" />
-		<br />
+	<h:outputLabel value="Foreign Object Penetration: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.foreignObjectPenetration}" />
+	<br />
 
-		<!-- Investigative Cases -->
-		<ui:include
-			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
 
-	</ui:composition>
+	<h:outputLabel value="Face Not Deliberately Hidden: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.faceNotDeliberatelyHidden}" />
+	<br />
+
+
+	<h:outputLabel value="Victim Was Blindfolded: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.victimWasBlindfolded}" />
+	<br />
+
+
+	<h:outputLabel value="Wounds Caused By Blunt Instrument: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.woundsCausedByBluntInstrument}" />
+	<br />
+
+
+	<h:outputLabel value="Suffocation: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.suffocation}" />
+	<br />
+
+
+	<h:outputLabel value="Vaginal Penetration: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.vaginalPenetration}" />
+	<br />
+
+
+	<h:outputLabel value="Anal Penetration: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.analPenetration}" />
+	<br />
+
+
+	<h:outputLabel value="Face Up: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.faceUp}" />
+	<br />
+
+
+	<h:outputLabel value="Victim Partially Undressed: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.victimPartiallyUndressed}" />
+	<br />
+
+
+	<h:outputLabel value="Victim Naked: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.victimNaked}" />
+	<br />
+
+
+	<h:outputLabel value="Deliberate Clothing Damaged: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.deliberateClothingDamaged}" />
+	<br />
+
+
+	<h:outputLabel value="Bound: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.bound}" />
+	<br />
+
+
+	<h:outputLabel value="Stabbing Injuries: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.stabbingInjuries}" />
+	<br />
+
+
+	<h:outputLabel value="Manual Injuries: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.manualInjuries}" />
+	<br />
+
+
+	<h:outputLabel value="Gunshot Wounds: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.gunshotWounds}" />
+	<br />
+
+
+	<h:outputLabel value="Wounds To The Head: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.woundsToTheHead}" />
+	<br />
+
+
+	<h:outputLabel value="Wounds To The Face: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.woundsToTheFace}" />
+	<br />
+
+
+	<h:outputLabel value="Wounds To The Neck: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.woundsToTheNeck}" />
+	<br />
+
+
+	<h:outputLabel value="Wounds To The Torso: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.woundsToTheTorso}" />
+	<br />
+
+
+	<h:outputLabel value="Wounds To The Limbs: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.woundsToTheLimbs}" />
+	<br />
+
+
+	<h:outputLabel value="Multiple Wounds To One Body Area: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.multipleWoundsToOneBodyArea}" />
+	<br />
+
+
+	<h:outputLabel
+		value="Multiple Wounds Distributed Across Different Body Parts: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.multipleWoundsDistributedAcrossDifferentBodyParts}" />
+	<br />
+
+
+	<h:outputLabel value="Weapon Brought To Scene: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.weaponBroughtToScene}" />
+	<br />
+
+
+	<h:outputLabel value="Weapon From The Scene: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.weaponFromTheScene}" />
+	<br />
+
+
+	<h:outputLabel value="Identifiable Property Stolen: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.identifiablePropertyStolen}" />
+	<br />
+
+
+	<h:outputLabel value="Nonidentifiable Property Stolen: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.nonidentifiablePropertyStolen}" />
+	<br />
+
+
+	<h:outputLabel value="Valuable Property Stolen: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.valuablePropertyStolen}" />
+	<br />
+
+
+	<h:outputLabel value="Body Hidden: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.bodyHidden}" />
+	<br />
+
+
+	<h:outputLabel value="Body Transported: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.bodyTransported}" />
+	<br />
+
+
+	<h:outputLabel value="Offender Forensically Aware: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.offenderForensicallyAware}" />
+	<br />
+
+
+	<h:outputLabel
+		value="Victim Found At The Same Scene Where They Were Killed: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.victimFoundAtTheSameSceneWhereTheyWereKilled}" />
+	<br />
+
+
+	<h:outputLabel value="Sexual Crime: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.sexualCrime}" />
+	<br />
+
+
+	<h:outputLabel value="Srson To Crime Scene Or Body: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.arsonToCrimeSceneOrBody}" />
+	<br />
+
+
+	<h:outputLabel value="Victim Found In Water: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.victimFoundInWater}" />
+	<br />
+
+
+	<h:outputLabel value="Victim Drugged And Or Poisoned: " />
+	<h:outputLabel
+		value="#{controllerCrimeScene.crimeScene.victimDruggedAndOrPoisoned}" />
+	<br />
+
+
+	<h:outputLabel value="Victim Covered: " />
+	<h:outputLabel value="#{controllerCrimeScene.crimeScene.victimCovered}" />
+	<br />
+
+
+	<h:outputLabel value="Offinder Profile: " />
+	<h:link value="view"
+		outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{controllerCrimeScene.crimeScene.offenderProfile.offenderProfileId}" />
+	<br />
+
+
 </h:body>
 </html>
