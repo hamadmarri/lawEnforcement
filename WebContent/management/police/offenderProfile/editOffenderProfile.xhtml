@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerOffenderProfile.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:insert name="editHeader">
+		<h2>Edit Offender Profile</h2>
+	</ui:insert>
+
+
+	<h:link value="cancel" outcome="cancel">
+		<f:param name="id" value="#{controllerOffenderProfile.id}" />
+	</h:link>
+
+
+	<h:form>
+
+		<h:outputLabel value="Young Offender Between 17 And 21 Years: " />
+		<h:selectOneRadio id="selectOneRadio1"
+			value="#{controllerOffenderProfile.offenderProfile.youngOffenderBetween17And21Years}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Criminal Record Of Theft: " />
+		<h:selectOneRadio id="selectOneRadio2"
+			value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfTheft}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Criminal Record Of Fraud: " />
+		<h:selectOneRadio id="selectOneRadio3"
+			value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfFraud}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Criminal Record Of Burglary: " />
+		<h:selectOneRadio id="selectOneRadio4"
+			value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfBurglary}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Relationship With Victim: " />
+		<h:selectOneRadio id="selectOneRadio5"
+			value="#{controllerOffenderProfile.offenderProfile.relationshipWithVictim}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Unemployed At The Time Of Offense: " />
+		<h:selectOneRadio id="selectOneRadio6"
+			value="#{controllerOffenderProfile.offenderProfile.unemployedAtTheTimeOfOffense}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Male: " />
+		<h:selectOneRadio id="selectOneRadio7"
+			value="#{controllerOffenderProfile.offenderProfile.male}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Familiar With Area Of Offense Occurrence: " />
+		<h:selectOneRadio id="selectOneRadio8"
+			value="#{controllerOffenderProfile.offenderProfile.familiarWithAreaOfOffenseOccurrence}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Criminal Record Of Violence: " />
+		<h:selectOneRadio id="selectOneRadio9"
+			value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfViolence}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Criminal Record Of Committing Damage: " />
+		<h:selectOneRadio id="selectOneRadio10"
+			value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfCommittingDamage}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Criminal Record Of Disorderly Conduct: " />
+		<h:selectOneRadio id="selectOneRadio11"
+			value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfDisorderlyConduct}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Record Of Imprisonment: " />
+		<h:selectOneRadio id="selectOneRadio12"
+			value="#{controllerOffenderProfile.offenderProfile.recordOfImprisonment}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Sexual Related Criminal Record: " />
+		<h:selectOneRadio id="selectOneRadio13"
+			value="#{controllerOffenderProfile.offenderProfile.sexualRelatedCriminalRecord}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Armed Services (Past or Present): " />
+		<h:selectOneRadio id="selectOneRadio14"
+			value="#{controllerOffenderProfile.offenderProfile.armedServices_PastOrPresent}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Knew Victim: " />
+		<h:selectOneRadio id="selectOneRadio15"
+			value="#{controllerOffenderProfile.offenderProfile.knewVictim}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="History Of Abusiveness In Past Relationships: " />
+		<h:selectOneRadio id="selectOneRadio16"
+			value="#{controllerOffenderProfile.offenderProfile.historyOfAbusivenessInPastRelationships}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Attempts Of Suicide: " />
+		<h:selectOneRadio id="selectOneRadio17"
+			value="#{controllerOffenderProfile.offenderProfile.attemptsOfSuicide}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Psychiatric Disorders: " />
+		<h:selectOneRadio id="selectOneRadio18"
+			value="#{controllerOffenderProfile.offenderProfile.psychiatricDisorders}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Related To Victim: " />
+		<h:selectOneRadio id="selectOneRadio19"
+			value="#{controllerOffenderProfile.offenderProfile.relatedToVictim}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Blood Relative To Victim: " />
+		<h:selectOneRadio id="selectOneRadio20"
+			value="#{controllerOffenderProfile.offenderProfile.bloodRelativeToVictim}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="Turned Self Into Police: " />
+		<h:selectOneRadio id="selectOneRadio21"
+			value="#{controllerOffenderProfile.offenderProfile.turnedSelfIntoPolice}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<br />
+		<h:commandButton value="save"
+			action="#{controllerOffenderProfile.submit}" />
+	</h:form>
+</h:body>
+</html>

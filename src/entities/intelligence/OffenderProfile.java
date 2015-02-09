@@ -10,6 +10,9 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "OffenderProfile.findAll", query = "select o from OffenderProfile o"),
+		@NamedQuery(name = "OffenderProfile.findById", query = "select o from OffenderProfile o WHERE o.offenderProfileId = :id") })
 public class OffenderProfile implements Serializable {
 
 	private static final long serialVersionUID = 2070383912243398153L;
