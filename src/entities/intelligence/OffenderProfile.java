@@ -19,7 +19,7 @@ public class OffenderProfile implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int offenderProfileId;
+	private Long offenderProfileId;
 
 	private boolean youngOffenderBetween17And21Years;
 	private boolean criminalRecordOfTheft;
@@ -110,13 +110,13 @@ public class OffenderProfile implements Serializable {
 
 
 
-	public int getOffenderProfileId() {
+	public Long getOffenderProfileId() {
 		return offenderProfileId;
 	}
 
 
 
-	public void setOffenderProfileId(int offenderProfileId) {
+	public void setOffenderProfileId(Long offenderProfileId) {
 		this.offenderProfileId = offenderProfileId;
 	}
 

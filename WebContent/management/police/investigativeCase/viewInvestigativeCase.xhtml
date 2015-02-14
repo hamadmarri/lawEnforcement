@@ -71,6 +71,13 @@
 				value="#{controllerInvestigativeCase.investigativeCase.officerWhoCreatedIt.personName}" />
 			<br />
 
+
+			<!-- Crime Scene -->
+			<h:outputLabel value="Crime Scene " />
+			<h:link value="view"
+				outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerInvestigativeCase.investigativeCase.crimeScene.crimeSceneId}" />
+			<br />
+
 			<!-- incident reports list -->
 			<ui:include
 				src="/management/events/incidentReport/listIncidentReports.xhtml" />

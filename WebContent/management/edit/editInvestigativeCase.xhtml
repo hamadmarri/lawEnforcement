@@ -27,22 +27,35 @@
 	<h:form>
 		<h4>Investigative Case Information</h4>
 		<h:outputLabel value="Description" />
-		<h:inputText value="#{controllerInvestigativeCase.investigativeCase.description}" />
+		<h:inputText
+			value="#{controllerInvestigativeCase.investigativeCase.description}" />
 		<br />
 		<h:outputLabel value="Status" />
-		<h:inputText value="#{controllerInvestigativeCase.investigativeCase.status}" />
+		<h:inputText 
+			value="#{controllerInvestigativeCase.investigativeCase.status}" />
 		<br />
 		<h:outputLabel value="Start Date" />
-		<p:calendar value="#{controllerInvestigativeCase.investigativeCase.startDate}" />
+		<p:calendar
+			value="#{controllerInvestigativeCase.investigativeCase.startDate}" />
 		<br />
 		<h:outputLabel value="Due Date" />
-		<p:calendar value="#{controllerInvestigativeCase.investigativeCase.dueDate}" />
+		<p:calendar
+			value="#{controllerInvestigativeCase.investigativeCase.dueDate}" />
 		<br />
 		<h:outputLabel value="Officer who created it" />
-		<h:inputText value="#{controllerInvestigativeCase.officerWhoCreatedItId}" />
+		<h:inputText
+			value="#{controllerInvestigativeCase.officerWhoCreatedItId}" />
+		<br />
+
+		<!-- Crime Scene -->
+		<h:outputLabel value="Crime Scene Id" />
+		<h:inputText
+			value="#{controllerInvestigativeCase.crimeSceneId}" />
+
 		<br />
 		<br />
-		<h:commandButton value="save" action="#{controllerInvestigativeCase.submit}" />
+		<h:commandButton value="save"
+			action="#{controllerInvestigativeCase.submit}" />
 	</h:form>
 </h:body>
 </html>

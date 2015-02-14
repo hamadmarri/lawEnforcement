@@ -20,7 +20,7 @@ public class CrimeScene implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int crimeSceneId;
+	private Long crimeSceneId;
 
 	private boolean foreignObjectPenetration;
 	private boolean faceNotDeliberatelyHidden;
@@ -162,13 +162,13 @@ public class CrimeScene implements Serializable {
 
 
 
-	public int getCrimeSceneId() {
+	public Long getCrimeSceneId() {
 		return crimeSceneId;
 	}
 
 
 
-	public void setCrimeSceneId(int crimeSceneId) {
+	public void setCrimeSceneId(Long crimeSceneId) {
 		this.crimeSceneId = crimeSceneId;
 	}
 

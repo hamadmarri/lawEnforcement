@@ -9,7 +9,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import ejbs.EjbCrimeScene;
 import entities.events.IncidentReport;
+import entities.intelligence.CrimeScene;
 import entities.police.InvestigativeCase;
 import entities.police.Officer;
 
@@ -47,6 +49,10 @@ public class ControllerInvestigativeCase implements Serializable {
 	@EJB
 	private AbstractEjb<IncidentReport> ejbIncidentReport;
 
+	// EJB for CrimeScene object
+	@EJB
+	private EjbCrimeScene ejbCrimeScene;
+
 	// the id of a InvestigativeCase object
 	protected String id;
 
@@ -65,6 +71,8 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	// the id of the incident report that this case will attach it
 	private String newIncidentReportId;
+
+	private Long crimeSceneId = null;
 
 
 
@@ -92,6 +100,14 @@ public class ControllerInvestigativeCase implements Serializable {
 		if (this.officerWhoCreatedItId != null) {
 			Officer of = (Officer) this.ejbOfficer.getEntity(this.officerWhoCreatedItId, "Officer");
 			this.getInvestigativeCase().setOfficerWhoCreatedIt(of);
+		}
+
+		// update crime scene based on its id
+		if (this.crimeSceneId != null) {
+			CrimeScene cs = ejbCrimeScene.getEntity(crimeSceneId);
+			this.getInvestigativeCase().setCrimeScene(cs);
+			cs.setInvestigativeCase(getInvestigativeCase());
+			ejbCrimeScene.save(cs);
 		}
 
 		// if new object it will add the object to DB,
@@ -202,6 +218,13 @@ public class ControllerInvestigativeCase implements Serializable {
 			setOfficerWhoCreatedItId(this.investigativeCase.getOfficerWhoCreatedIt().getId());
 		}
 
+		// hold the id of crime scene
+		if (this.crimeSceneId == null && this.investigativeCase != null
+				&& this.investigativeCase.getCrimeScene() != null) {
+
+			setCrimeSceneId(this.investigativeCase.getCrimeScene().getCrimeSceneId());
+		} 
+
 		return this.investigativeCase;
 	}
 
@@ -283,6 +306,18 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public void setNewIncidentReportId(String newIncidentReportId) {
 		this.newIncidentReportId = newIncidentReportId;
+	}
+
+
+
+	public Long getCrimeSceneId() {
+		return crimeSceneId;
+	}
+
+
+
+	public void setCrimeSceneId(Long crimeSceneId) {
+		this.crimeSceneId = crimeSceneId;
 	}
 
 }
