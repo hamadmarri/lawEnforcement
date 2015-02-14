@@ -18,8 +18,7 @@
 				<h:commandButton class="link-lookalike"
 					action="#{usersGroupsController.logout()}" value="Logout" />
 			</h:form></li>
-		<li><h:link value="Login"
-				outcome="/security/login.xhtml" /></li>
+		<li><h:link value="Login" outcome="/security/login.xhtml" /></li>
 		<li><h:link value="Addresses"
 				outcome="/management/entries/address/listAddresses.xhtml" /></li>
 		<li><h:link value="Conveyances"
@@ -62,14 +61,10 @@
 				outcome="/management/entries/entryFile/listEntryFiles.xhtml" /></li>
 		<li><h:link value="History"
 				outcome="/management/history/listHistories.xhtml" /></li>
-		<li><h:link value="Monitoring"
-				outcome="/monitoring/main.xhtml" /></li>
-		<li><h:link value="Show Map"
-				outcome="/monitoring/showMap.xhtml" /></li>
-		<li><h:link value="Profile"
-				outcome="/profile/viewProfile.xhtml" /></li>
-		<li><h:link value="Admin"
-				outcome="/admin/admin.xhtml" /></li>
+		<li><h:link value="Monitoring" outcome="/monitoring/main.xhtml" /></li>
+		<li><h:link value="Show Map" outcome="/monitoring/showMap.xhtml" /></li>
+		<li><h:link value="Profile" outcome="/profile/viewProfile.xhtml" /></li>
+		<li><h:link value="Admin" outcome="/admin/admin.xhtml" /></li>
 	</ul>
 
 	<br />
@@ -79,6 +74,9 @@
 	<h:form>
 		<h:commandButton action="#{controllerOfTesting.test()}"
 			value="fill up database" />
+
+		<h:commandButton action="#{controllerNeuralNetworkEntity.train}"
+			value="train NN" />
 	</h:form>
 
 </h:body>

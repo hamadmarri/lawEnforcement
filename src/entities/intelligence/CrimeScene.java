@@ -629,4 +629,44 @@ public class CrimeScene implements Serializable {
 		this.investigativeCase = investigativeCase;
 	}
 
+
+
+	public static void convertCrimeSceneToArray(CrimeScene cs, double[] inputs) {
+		inputs[0] = cs.getAnalPenetration() ? 1 : 0;
+		inputs[1] = cs.getArsonToCrimeSceneOrBody() ? 1 : 0;
+		inputs[2] = cs.getBodyHidden() ? 1 : 0;
+		inputs[3] = cs.getBodyTransported() ? 1 : 0;
+		inputs[4] = cs.getBound() ? 1 : 0;
+		inputs[5] = cs.getDeliberateClothingDamaged() ? 1 : 0;
+		inputs[6] = cs.getFaceNotDeliberatelyHidden() ? 1 : 0;
+		inputs[7] = cs.getFaceUp() ? 1 : 0;
+		inputs[8] = cs.getForeignObjectPenetration() ? 1 : 0;
+		inputs[9] = cs.getGunshotWounds() ? 1 : 0;
+		inputs[10] = cs.getIdentifiablePropertyStolen() ? 1 : 0;
+		inputs[11] = cs.getManualInjuries() ? 1 : 0;
+		inputs[12] = cs.getMultipleWoundsDistributedAcrossDifferentBodyParts() ? 1 : 0;
+		inputs[13] = cs.getMultipleWoundsToOneBodyArea() ? 1 : 0;
+		inputs[14] = cs.getNonidentifiablePropertyStolen() ? 1 : 0;
+		inputs[15] = cs.getOffenderForensicallyAware() ? 1 : 0;
+		inputs[16] = cs.getSexualCrime() ? 1 : 0;
+		inputs[17] = cs.getStabbingInjuries() ? 1 : 0;
+		inputs[18] = cs.getSuffocation() ? 1 : 0;
+		inputs[19] = cs.getSuffocation() ? 1 : 0;
+		inputs[20] = cs.getValuablePropertyStolen() ? 1 : 0;
+		inputs[21] = cs.getVictimCovered() ? 1 : 0;
+		inputs[22] = cs.getVictimDruggedAndOrPoisoned() ? 1 : 0;
+		inputs[23] = cs.getVictimFoundAtTheSameSceneWhereTheyWereKilled() ? 1 : 0;
+		inputs[24] = cs.getVictimFoundInWater() ? 1 : 0;
+		inputs[25] = cs.getVictimNaked() ? 1 : 0;
+		inputs[26] = cs.getVictimPartiallyUndressed() ? 1 : 0;
+		inputs[27] = cs.getVictimWasBlindfolded() ? 1 : 0;
+		inputs[28] = cs.getWeaponBroughtToScene() ? 1 : 0;
+		inputs[29] = cs.getWeaponFromTheScene() ? 1 : 0;
+		inputs[30] = cs.getWoundsCausedByBluntInstrument() ? 1 : 0;
+		inputs[31] = cs.getWoundsToTheFace() ? 1 : 0;
+		inputs[32] = cs.getWoundsToTheHead() ? 1 : 0;
+		inputs[33] = cs.getWoundsToTheLimbs() ? 1 : 0;
+		inputs[34] = cs.getWoundsToTheNeck() ? 1 : 0;
+		inputs[35] = cs.getWoundsToTheTorso() ? 1 : 0;
+	}
 }

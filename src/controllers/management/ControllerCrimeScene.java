@@ -36,8 +36,8 @@ public class ControllerCrimeScene implements Serializable {
 	EjbCrimeScene ejbCrimeScene;
 
 	// EJB for InvestigativeCase object
-//	@EJB
-//	EjbInvestigativeCase ejbInvestigativeCase;
+	// @EJB
+	// EjbInvestigativeCase ejbInvestigativeCase;
 
 	// the id of a CrimeScene object
 	protected String id;
@@ -54,6 +54,8 @@ public class ControllerCrimeScene implements Serializable {
 
 	// CrimeScene id who will be added to investigative case
 	private String newCrimeSceneId;
+
+	private boolean showSuggestedOP = false;
 
 
 
@@ -109,35 +111,36 @@ public class ControllerCrimeScene implements Serializable {
 	 *            is the investigative case that the CrimeScene will be
 	 *            handling
 	 */
-//	public String addCrimeSceneForInvestigativeCase(InvestigativeCase icArg) {
-//
-//		// load InvestigativeCase entity from DB
-//		InvestigativeCase ic = this.ejbInvestigativeCase.getEntity(icArg.getId());
-//
-//		// load CrimeScene entity from DB
-//		CrimeScene inv = this.ejbCrimeScene.getEntity(Long.parseLong(newCrimeSceneId));
-//
-//		// add the CrimeScene to the investigative case
-//		ic.addCrimeScene(inv);
-//
-//		// set status to pending
-//		ic.setStatus("Pending");
-//
-//		// save investigative case
-//		ic = this.ejbInvestigativeCase.save(ic);
-//
-//		// add the investigative case to the CrimeScene
-//		inv.addInvestigativeCase(ic);
-//
-//		// save CrimeScene
-//		this.ejbCrimeScene.save(inv);
-//
-//		this.newCrimeSceneId = null;
-//
-//		return "success";
-//	}
-
-
+	// public String addCrimeSceneForInvestigativeCase(InvestigativeCase icArg)
+	// {
+	//
+	// // load InvestigativeCase entity from DB
+	// InvestigativeCase ic =
+	// this.ejbInvestigativeCase.getEntity(icArg.getId());
+	//
+	// // load CrimeScene entity from DB
+	// CrimeScene inv =
+	// this.ejbCrimeScene.getEntity(Long.parseLong(newCrimeSceneId));
+	//
+	// // add the CrimeScene to the investigative case
+	// ic.addCrimeScene(inv);
+	//
+	// // set status to pending
+	// ic.setStatus("Pending");
+	//
+	// // save investigative case
+	// ic = this.ejbInvestigativeCase.save(ic);
+	//
+	// // add the investigative case to the CrimeScene
+	// inv.addInvestigativeCase(ic);
+	//
+	// // save CrimeScene
+	// this.ejbCrimeScene.save(inv);
+	//
+	// this.newCrimeSceneId = null;
+	//
+	// return "success";
+	// }
 
 	/**
 	 * it will load the object from DB if it is not loaded yet otherwise, it
@@ -217,6 +220,18 @@ public class ControllerCrimeScene implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+
+	public boolean isShowSuggestedOP() {
+		return showSuggestedOP;
+	}
+
+
+
+	public void setShowSuggestedOP(boolean showSuggestedOP) {
+		this.showSuggestedOP = showSuggestedOP;
 	}
 
 }

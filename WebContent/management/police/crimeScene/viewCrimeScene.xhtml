@@ -14,6 +14,7 @@
 </h:head>
 <h:body>
 
+
 	<h3>Crime Scene</h3>
 	<h:link value="edit" outcome="edit">
 		<f:param name="id"
@@ -247,6 +248,23 @@
 	<h:link value="view"
 		outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{controllerCrimeScene.crimeScene.investigativeCase.id}" />
 	<br />
+
+
+	<h:form>
+		<h:commandButton rendered="#{!controllerCrimeScene.showSuggestedOP}"
+			value="Generate Suggested Offender Profile"
+			action="#{controllerCrimeScene.setShowSuggestedOP(true)}" />
+	</h:form>
+
+	<c:if test="${controllerCrimeScene.showSuggestedOP}">
+		<c:set var="offenderProfile"
+			value="#{controllerNeuralNetworkEntity.getSuggestedOffenderProfile(controllerCrimeScene.crimeScene)}" />
+	</c:if>
+
+	<c:if test="${controllerCrimeScene.showSuggestedOP}">
+		<ui:include
+			src="/management/police/offenderProfile/viewOffenderProfile.xhtml" />
+	</c:if>
 
 </h:body>
 </html>

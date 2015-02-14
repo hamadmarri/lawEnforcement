@@ -384,4 +384,142 @@ public class OffenderProfile implements Serializable {
 		this.crimeScene = crimeScene;
 	}
 
+
+
+	public static void convertOffenderProfileToArray(OffenderProfile op, double[] outputs) {
+		outputs[0] = op.getArmedServices_PastOrPresent() ? 1 : 0;
+		outputs[1] = op.getAttemptsOfSuicide() ? 1 : 0;
+		outputs[2] = op.getBloodRelativeToVictim() ? 1 : 0;
+		outputs[3] = op.getCriminalRecordOfBurglary() ? 1 : 0;
+		outputs[4] = op.getCriminalRecordOfCommittingDamage() ? 1 : 0;
+		outputs[5] = op.getCriminalRecordOfDisorderlyConduct() ? 1 : 0;
+		outputs[6] = op.getCriminalRecordOfFraud() ? 1 : 0;
+		outputs[7] = op.getCriminalRecordOfTheft() ? 1 : 0;
+		outputs[8] = op.getCriminalRecordOfViolence() ? 1 : 0;
+		outputs[9] = op.getFamiliarWithAreaOfOffenseOccurrence() ? 1 : 0;
+		outputs[10] = op.getHistoryOfAbusivenessInPastRelationships() ? 1 : 0;
+		outputs[11] = op.getKnewVictim() ? 1 : 0;
+		outputs[12] = op.getMale() ? 1 : 0;
+		outputs[13] = op.getPsychiatricDisorders() ? 1 : 0;
+		outputs[14] = op.getRecordOfImprisonment() ? 1 : 0;
+		outputs[15] = op.getRelatedToVictim() ? 1 : 0;
+		outputs[16] = op.getRelationshipWithVictim() ? 1 : 0;
+		outputs[17] = op.getSexualRelatedCriminalRecord() ? 1 : 0;
+		outputs[18] = op.getTurnedSelfIntoPolice() ? 1 : 0;
+		outputs[19] = op.getUnemployedAtTheTimeOfOffense() ? 1 : 0;
+		outputs[20] = op.getYoungOffenderBetween17And21Years() ? 1 : 0;
+	}
+
+
+
+	public static OffenderProfile convertArrayToOffenderProfile(double[] outputs) {
+		OffenderProfile op = new OffenderProfile();
+
+		if (Math.round(outputs[0]) == 1)
+			op.setArmedServices_PastOrPresent(true);
+		else
+			op.setArmedServices_PastOrPresent(false);
+
+		if (Math.round(outputs[1]) == 1)
+			op.setAttemptsOfSuicide(true);
+		else
+			op.setAttemptsOfSuicide(false);
+
+		if (Math.round(outputs[2]) == 1)
+			op.setBloodRelativeToVictim(true);
+		else
+			op.setBloodRelativeToVictim(false);
+
+		if (Math.round(outputs[3]) == 1)
+			op.setCriminalRecordOfBurglary(true);
+		else
+			op.setCriminalRecordOfBurglary(false);
+
+		if (Math.round(outputs[4]) == 1)
+			op.setCriminalRecordOfCommittingDamage(true);
+		else
+			op.setCriminalRecordOfCommittingDamage(false);
+
+		if (Math.round(outputs[5]) == 1)
+			op.setCriminalRecordOfDisorderlyConduct(true);
+		else
+			op.setCriminalRecordOfDisorderlyConduct(false);
+
+		if (Math.round(outputs[6]) == 1)
+			op.setCriminalRecordOfFraud(true);
+		else
+			op.setCriminalRecordOfFraud(false);
+
+		if (Math.round(outputs[7]) == 1)
+			op.setCriminalRecordOfTheft(true);
+		else
+			op.setCriminalRecordOfTheft(false);
+
+		if (Math.round(outputs[8]) == 1)
+			op.setCriminalRecordOfViolence(true);
+		else
+			op.setCriminalRecordOfViolence(false);
+
+		if (Math.round(outputs[9]) == 1)
+			op.setFamiliarWithAreaOfOffenseOccurrence(true);
+		else
+			op.setFamiliarWithAreaOfOffenseOccurrence(false);
+
+		if (Math.round(outputs[10]) == 1)
+			op.setHistoryOfAbusivenessInPastRelationships(true);
+		else
+			op.setHistoryOfAbusivenessInPastRelationships(false);
+
+		if (Math.round(outputs[11]) == 1)
+			op.setKnewVictim(true);
+		else
+			op.setKnewVictim(false);
+
+		if (Math.round(outputs[12]) == 1)
+			op.setMale(true);
+		else
+			op.setMale(false);
+
+		if (Math.round(outputs[13]) == 1)
+			op.setPsychiatricDisorders(true);
+		else
+			op.setPsychiatricDisorders(false);
+
+		if (Math.round(outputs[14]) == 1)
+			op.setRecordOfImprisonment(true);
+		else
+			op.setRecordOfImprisonment(false);
+
+		if (Math.round(outputs[15]) == 1)
+			op.setRelatedToVictim(true);
+		else
+			op.setRelatedToVictim(false);
+
+		if (Math.round(outputs[16]) == 1)
+			op.setRelationshipWithVictim(true);
+		else
+			op.setRelationshipWithVictim(false);
+
+		if (Math.round(outputs[17]) == 1)
+			op.setSexualRelatedCriminalRecord(true);
+		else
+			op.setSexualRelatedCriminalRecord(false);
+
+		if (Math.round(outputs[18]) == 1)
+			op.setTurnedSelfIntoPolice(true);
+		else
+			op.setTurnedSelfIntoPolice(false);
+
+		if (Math.round(outputs[19]) == 1)
+			op.setUnemployedAtTheTimeOfOffense(true);
+		else
+			op.setUnemployedAtTheTimeOfOffense(false);
+
+		if (Math.round(outputs[20]) == 1)
+			op.setYoungOffenderBetween17And21Years(true);
+		else
+			op.setYoungOffenderBetween17And21Years(false);
+
+		return op;
+	}
 }

@@ -14,145 +14,150 @@
 </h:head>
 <h:body>
 
-	<h3>Offender Profile</h3>
-	<h:link value="edit" outcome="edit">
-		<f:param name="id"
-			value="#{controllerOffenderProfile.offenderProfile.offenderProfileId}" />
+	<ui:composition>
+
+		<c:if test="${not controllerCrimeScene.showSuggestedOP}">
+			<c:set var="offenderProfile"
+				value="#{controllerOffenderProfile.offenderProfile}" />
+		</c:if>
+
+
+		<h3>Offender Profile</h3>
+
+		<c:if test="${not controllerCrimeScene.showSuggestedOP}">
+			<h:link value="edit" outcome="edit">
+				<f:param name="id"
+					value="#{controllerOffenderProfile.offenderProfile.offenderProfileId}" />
+				<br />
+			</h:link>
+			<br />
+
+
+			<h:outputLabel value="id: " />
+			<h:outputLabel value="#{offenderProfile.offenderProfileId}" />
+			<br />
+		</c:if>
+
+
+		<h:outputLabel value="Young Offender Between 17 And 21 Years: " />
+		<h:outputLabel
+			value="#{offenderProfile.youngOffenderBetween17And21Years}" />
 		<br />
-	</h:link>
-	<br />
-
-	<h:outputLabel value="id: " />
-	<h:outputLabel value="#{controllerOffenderProfile.offenderProfile.offenderProfileId}" />
-	<br />
 
 
-	<h:outputLabel value="Young Offender Between 17 And 21 Years: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.youngOffenderBetween17And21Years}" />
-	<br />
+		<h:outputLabel value="Criminal Record Of Theft: " />
+		<h:outputLabel value="#{offenderProfile.criminalRecordOfTheft}" />
+		<br />
 
 
-	<h:outputLabel value="Criminal Record Of Theft: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfTheft}" />
-	<br />
+		<h:outputLabel value="Criminal Record Of Fraud: " />
+		<h:outputLabel value="#{offenderProfile.criminalRecordOfFraud}" />
+		<br />
 
 
-	<h:outputLabel value="Criminal Record Of Fraud: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfFraud}" />
-	<br />
+		<h:outputLabel value="Criminal Record Of Burglary: " />
+		<h:outputLabel value="#{offenderProfile.criminalRecordOfBurglary}" />
+		<br />
 
 
-	<h:outputLabel value="Criminal Record Of Burglary: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfBurglary}" />
-	<br />
+		<h:outputLabel value="Relationship With Victim: " />
+		<h:outputLabel value="#{offenderProfile.relationshipWithVictim}" />
+		<br />
 
 
-	<h:outputLabel value="Relationship With Victim: " />
-	<h:outputLabel value="#{controllerOffenderProfile.offenderProfile.relationshipWithVictim}" />
-	<br />
+		<h:outputLabel value="Unemployed At The Time Of Offense: " />
+		<h:outputLabel value="#{offenderProfile.unemployedAtTheTimeOfOffense}" />
+		<br />
 
 
-	<h:outputLabel value="Unemployed At The Time Of Offense: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.unemployedAtTheTimeOfOffense}" />
-	<br />
+		<h:outputLabel value="Male: " />
+		<h:outputLabel value="#{offenderProfile.male}" />
+		<br />
 
 
-	<h:outputLabel value="Male: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.male}" />
-	<br />
+		<h:outputLabel value="Familiar With Area Of Offense Occurrence: " />
+		<h:outputLabel
+			value="#{offenderProfile.familiarWithAreaOfOffenseOccurrence}" />
+		<br />
 
 
-	<h:outputLabel value="Familiar With Area Of Offense Occurrence: " />
-	<h:outputLabel value="#{controllerOffenderProfile.offenderProfile.familiarWithAreaOfOffenseOccurrence}" />
-	<br />
+		<h:outputLabel value="Criminal Record Of Violence: " />
+		<h:outputLabel value="#{offenderProfile.criminalRecordOfViolence}" />
+		<br />
 
 
-	<h:outputLabel value="Criminal Record Of Violence: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfViolence}" />
-	<br />
+		<h:outputLabel value="Criminal Record Of Committing Damage: " />
+		<h:outputLabel
+			value="#{offenderProfile.criminalRecordOfCommittingDamage}" />
+		<br />
 
 
-	<h:outputLabel value="Criminal Record Of Committing Damage: " />
-	<h:outputLabel value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfCommittingDamage}" />
-	<br />
+		<h:outputLabel value="Criminal Record Of Disorderly Conduct: " />
+		<h:outputLabel
+			value="#{offenderProfile.criminalRecordOfDisorderlyConduct}" />
+		<br />
 
 
-	<h:outputLabel value="Criminal Record Of Disorderly Conduct: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.criminalRecordOfDisorderlyConduct}" />
-	<br />
+		<h:outputLabel value="Record Of Imprisonment: " />
+		<h:outputLabel value="#{offenderProfile.recordOfImprisonment}" />
+		<br />
 
 
-	<h:outputLabel value="Record Of Imprisonment: " />
-	<h:outputLabel value="#{controllerOffenderProfile.offenderProfile.recordOfImprisonment}" />
-	<br />
+		<h:outputLabel value="Sexual Related Criminal Record: " />
+		<h:outputLabel value="#{offenderProfile.sexualRelatedCriminalRecord}" />
+		<br />
 
 
-	<h:outputLabel value="Sexual Related Criminal Record: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.sexualRelatedCriminalRecord}" />
-	<br />
+		<h:outputLabel value="Armed Services (Past or Present): " />
+		<h:outputLabel value="#{offenderProfile.armedServices_PastOrPresent}" />
+		<br />
 
 
-	<h:outputLabel value="Armed Services (Past or Present): " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.armedServices_PastOrPresent}" />
-	<br />
+		<h:outputLabel value="Knew Victim: " />
+		<h:outputLabel value="#{offenderProfile.knewVictim}" />
+		<br />
 
 
-	<h:outputLabel value="Knew Victim: " />
-	<h:outputLabel value="#{controllerOffenderProfile.offenderProfile.knewVictim}" />
-	<br />
+		<h:outputLabel value="History Of Abusiveness In Past Relationships: " />
+		<h:outputLabel
+			value="#{offenderProfile.historyOfAbusivenessInPastRelationships}" />
+		<br />
 
 
-	<h:outputLabel value="History Of Abusiveness In Past Relationships: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.historyOfAbusivenessInPastRelationships}" />
-	<br />
+		<h:outputLabel value="Attempts Of Suicide: " />
+		<h:outputLabel value="#{offenderProfile.attemptsOfSuicide}" />
+		<br />
 
 
-	<h:outputLabel value="Attempts Of Suicide: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.attemptsOfSuicide}" />
-	<br />
+		<h:outputLabel value="Psychiatric Disorders: " />
+		<h:outputLabel value="#{offenderProfile.psychiatricDisorders}" />
+		<br />
 
 
-	<h:outputLabel value="Psychiatric Disorders: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.psychiatricDisorders}" />
-	<br />
+		<h:outputLabel value="Related To Victim: " />
+		<h:outputLabel value="#{offenderProfile.relatedToVictim}" />
+		<br />
 
 
-	<h:outputLabel value="Related To Victim: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.relatedToVictim}" />
-	<br />
+		<h:outputLabel value="Blood Relative To Victim: " />
+		<h:outputLabel value="#{offenderProfile.bloodRelativeToVictim}" />
+		<br />
 
 
-	<h:outputLabel value="Blood Relative To Victim: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.bloodRelativeToVictim}" />
-	<br />
+		<h:outputLabel value="Turned Self Into Police: " />
+		<h:outputLabel value="#{offenderProfile.turnedSelfIntoPolice}" />
+		<br />
 
 
-	<h:outputLabel value="Turned Self Into Police: " />
-	<h:outputLabel
-		value="#{controllerOffenderProfile.offenderProfile.turnedSelfIntoPolice}" />
-	<br />
+		<c:if test="${not controllerCrimeScene.showSuggestedOP}">
+			<h:outputLabel value="Crime Scene: " />
+			<h:link value="view"
+				outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerOffenderProfile.offenderProfile.crimeScene.crimeSceneId}" />
+			<br />
+		</c:if>
 
 
-	<h:outputLabel value="Crime Scene: " />
-	<h:link value="view"
-		outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerOffenderProfile.offenderProfile.crimeScene.crimeSceneId}" />
-	<br />
-
+	</ui:composition>
 
 </h:body>
 </html>

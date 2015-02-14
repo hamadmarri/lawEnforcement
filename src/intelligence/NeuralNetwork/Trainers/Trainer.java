@@ -20,12 +20,22 @@ public abstract class Trainer {
 	protected String outputFileName;
 
 
+
 	public Trainer(String inputFileName, String outputFileName, NeuralNetwork neuralNetwork, int numberOfPasses) {
-		this.inputFileName = inputFileName;
-		this.outputFileName = outputFileName;
+
+		if (!inputFileName.isEmpty()) {
+			this.inputFileName = inputFileName;
+			initializeInputFile(inputFileName);
+
+		}
+
+		if (!outputFileName.isEmpty()) {
+			this.outputFileName = outputFileName;
+			initializeOutputFile(outputFileName);
+
+		}
+
 		this.neuralNetwork = neuralNetwork;
-		initializeInputFile(inputFileName);
-		initializeOutputFile(outputFileName);
 		this.numberOfPasses = numberOfPasses;
 	}
 
