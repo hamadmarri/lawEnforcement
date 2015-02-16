@@ -238,10 +238,13 @@
 	<br />
 
 
-	<h:outputLabel value="Offinder Profile: " />
-	<h:link value="view"
-		outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{controllerCrimeScene.crimeScene.offenderProfile.offenderProfileId}" />
-	<br />
+	<h:panelGroup
+		rendered="#{controllerCrimeScene.crimeScene.offenderProfile != null}">
+		<h:outputLabel value="Offinder Profile: " />
+		<h:link value="view"
+			outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{controllerCrimeScene.crimeScene.offenderProfile.offenderProfileId}" />
+		<br />
+	</h:panelGroup>
 
 
 	<h:outputLabel value="Investigative Case: " />
@@ -250,11 +253,14 @@
 	<br />
 
 
-	<h:form>
-		<h:commandButton rendered="#{!controllerCrimeScene.showSuggestedOP}"
-			value="Generate Suggested Offender Profile"
-			action="#{controllerCrimeScene.setShowSuggestedOP(true)}" />
-	</h:form>
+	<h:panelGroup
+		rendered="#{controllerCrimeScene.crimeScene.offenderProfile == null}">
+		<h:form>
+			<h:commandButton rendered="#{!controllerCrimeScene.showSuggestedOP}"
+				value="Generate Suggested Offender Profile"
+				action="#{controllerCrimeScene.setShowSuggestedOP(true)}" />
+		</h:form>
+	</h:panelGroup>
 
 	<c:if test="${controllerCrimeScene.showSuggestedOP}">
 		<c:set var="offenderProfile"
@@ -264,6 +270,12 @@
 	<c:if test="${controllerCrimeScene.showSuggestedOP}">
 		<ui:include
 			src="/management/police/offenderProfile/viewOffenderProfile.xhtml" />
+
+		<h:form>
+			<h:commandButton
+				value="link generated offender profile to this crime scene"
+				action="#{controllerCrimeScene.linkOffenderProfile(controllerNeuralNetworkEntity.getSuggestedOffenderProfile(controllerCrimeScene.crimeScene))}" />
+		</h:form>
 	</c:if>
 
 </h:body>

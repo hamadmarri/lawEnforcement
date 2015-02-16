@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 import ejbs.EjbCrimeScene;
 import entities.intelligence.CrimeScene;
+import entities.intelligence.OffenderProfile;
 
 
 /**
@@ -101,46 +102,14 @@ public class ControllerCrimeScene implements Serializable {
 
 
 
-	/**
-	 * Add an CrimeScene to handle an investigative case. This function will
-	 * called from viewInvestigativeCase.xhtml page, but through
-	 * listCrimeScenes.xhtml, which is
-	 * included in viewInvestigativeCase.xhtml
-	 * 
-	 * @param icArg
-	 *            is the investigative case that the CrimeScene will be
-	 *            handling
-	 */
-	// public String addCrimeSceneForInvestigativeCase(InvestigativeCase icArg)
-	// {
-	//
-	// // load InvestigativeCase entity from DB
-	// InvestigativeCase ic =
-	// this.ejbInvestigativeCase.getEntity(icArg.getId());
-	//
-	// // load CrimeScene entity from DB
-	// CrimeScene inv =
-	// this.ejbCrimeScene.getEntity(Long.parseLong(newCrimeSceneId));
-	//
-	// // add the CrimeScene to the investigative case
-	// ic.addCrimeScene(inv);
-	//
-	// // set status to pending
-	// ic.setStatus("Pending");
-	//
-	// // save investigative case
-	// ic = this.ejbInvestigativeCase.save(ic);
-	//
-	// // add the investigative case to the CrimeScene
-	// inv.addInvestigativeCase(ic);
-	//
-	// // save CrimeScene
-	// this.ejbCrimeScene.save(inv);
-	//
-	// this.newCrimeSceneId = null;
-	//
-	// return "success";
-	// }
+	public void linkOffenderProfile(OffenderProfile op) {
+		CrimeScene cs = getCrimeScene();
+		cs.setOffenderProfile(op);
+		ejbCrimeScene.save(cs);
+		showSuggestedOP = false;
+	}
+
+
 
 	/**
 	 * it will load the object from DB if it is not loaded yet otherwise, it
