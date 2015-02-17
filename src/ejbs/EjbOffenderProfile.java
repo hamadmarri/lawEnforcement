@@ -107,6 +107,15 @@ public class EjbOffenderProfile {
 	public List<Person> getSuspects(OffenderProfile op) {
 		List<Person> suspects; // = new ArrayList<Person>();
 
+		// StringBuilder queryString = new
+		// StringBuilder("select p from Person p JOIN p.relationsTo r1 "); //
+		// JOIN
+		// p.relationsTo
+		// r1
+		// JOIN
+		// p.relationsWith
+		// r2
+
 		StringBuilder queryString = new StringBuilder("select p from Person p ");
 
 		setupQueryString(queryString, op);
@@ -122,39 +131,75 @@ public class EjbOffenderProfile {
 
 
 	private void setupQueryString(StringBuilder queryString, OffenderProfile op) {
-		boolean isWhareSet = false;
+		StringBuilder parameters = new StringBuilder();
 
-		if (op.getMale() && setIsWhare(queryString, isWhareSet))
-			queryString.append("p.gender = :gender ");
+		if (op.getYoungOffenderBetween17And21Years())
+			parameters.append("(p.dateOfBirth >= :startDate AND p.dateOfBirth <= :endDate) OR ");
 
-		if (op.getYoungOffenderBetween17And21Years() && setIsWhare(queryString, isWhareSet))
-			queryString.append("p.dateOfBirth >= :startDate AND p.dateOfBirth <= :endDate");
-	}
+		if (op.getMale())
+			parameters.append("(p.gender = :gender) OR ");
 
+		if (op.getCriminalRecordOfTheft())
+			parameters.append("(p.description LIKE :criminalRecordOfTheft) OR ");
 
+		if (op.getCriminalRecordOfFraud())
+			parameters.append("(p.description LIKE :criminalRecordOfFraud) OR ");
 
-	private boolean setIsWhare(StringBuilder queryString, boolean isWhareSet) {
-		if (!isWhareSet)
-			queryString.append("where ");
+		if (op.getCriminalRecordOfBurglary())
+			parameters.append("(p.description LIKE :criminalRecordOfBurglary) OR ");
 
-		return true;
+		// if (op.getRelationshipWithVictim()) {
+		// parameters.append("((r1.something.id = :somethingID OR r1.somethingElse.id = :somethingElseID)"
+		// + " AND r1.typeOfRelation = :typeOfRelation) ");
+		// parameters.append("OR ");
+		// }
+
+		// remove the last OR
+		if (parameters.length() > 4 && parameters.substring(parameters.length() - 3).equals("OR "))
+			parameters.replace(parameters.length() - 4, parameters.length() - 1, "");
+
+		// add where string
+		if (parameters.length() > 0)
+			queryString.append("WHERE ").append(parameters);
+		else
+			queryString.append("WHERE -1=1");
 	}
 
 
 
 	private void setupParameters(OffenderProfile op, Query nq) {
-		if (op.getMale())
-			nq.setParameter("gender", "Male");
 
 		if (op.getYoungOffenderBetween17And21Years()) {
 			Calendar startDate = Calendar.getInstance();
 			Calendar endDate = Calendar.getInstance();
-			
+
 			startDate.add(Calendar.YEAR, -22);
 			nq.setParameter("startDate", startDate.getTime());
 
 			endDate.add(Calendar.YEAR, -17);
 			nq.setParameter("endDate", endDate.getTime());
 		}
+
+		if (op.getMale())
+			nq.setParameter("gender", "Male");
+
+		if (op.getCriminalRecordOfTheft())
+			nq.setParameter("criminalRecordOfTheft", "%Criminal Record Of Theft%");
+
+		if (op.getCriminalRecordOfFraud())
+			nq.setParameter("criminalRecordOfFraud", "%Criminal Record Of Fraud%");
+
+		if (op.getCriminalRecordOfBurglary())
+			nq.setParameter("criminalRecordOfBurglary", "%Criminal Record Of Burglary%");
+
+		// if (op.getRelationshipWithVictim()) {
+		// nq.setParameter("somethingID",
+		// op.getCrimeScene().getVictim().getId());
+		// nq.setParameter("somethingElseID",
+		// op.getCrimeScene().getVictim().getId());
+		// nq.setParameter("typeOfRelation", "brothers");
+		// }
+
 	}
+
 }

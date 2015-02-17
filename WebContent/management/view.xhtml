@@ -24,9 +24,7 @@
 			<h:outputLabel
 				value="#{relatable.description}" />
 				
-			<ui:include src="/management/relation/listRelations.xhtml">
-				<ui:param name="relations" value="#{relatable.relations}" />
-			</ui:include>
+			<ui:include src="/management/relation/listRelations.xhtml" />
 
 			<ui:include src="/management/entries/entryFile/listEntryFiles.xhtml">
 				<ui:param name="relatable" value="#{relatable}" />
