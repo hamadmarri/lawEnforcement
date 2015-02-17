@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.EjbOffenderProfile;
+import entities.entries.Person;
 import entities.intelligence.OffenderProfile;
 
 
@@ -34,7 +35,7 @@ public class ControllerOffenderProfile implements Serializable {
 
 	// EJB for OffenderProfile object
 	@EJB
-	EjbOffenderProfile ejbOffenderProfile;
+	private EjbOffenderProfile ejbOffenderProfile;
 
 	// the id of a OffenderProfile object
 	protected String id;
@@ -51,6 +52,10 @@ public class ControllerOffenderProfile implements Serializable {
 
 	// OffenderProfile id who will be added to investigative case
 	private String newOffenderProfileId;
+
+	private List<Person> suspects = null;
+
+	private boolean showSuspects = false;
 
 
 
@@ -143,6 +148,21 @@ public class ControllerOffenderProfile implements Serializable {
 
 
 
+	public List<Person> getSuspects() {
+		if (suspects == null)
+			suspects = ejbOffenderProfile.getSuspects(getOffenderProfile());
+
+		return suspects;
+	}
+
+
+
+	public void setSuspects(List<Person> suspects) {
+		this.suspects = suspects;
+	}
+
+
+
 	public boolean isNewEntity() {
 		return newEntity;
 	}
@@ -175,6 +195,18 @@ public class ControllerOffenderProfile implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+
+	public boolean isShowSuspects() {
+		return showSuspects;
+	}
+
+
+
+	public void setShowSuspects(boolean showSuspects) {
+		this.showSuspects = showSuspects;
 	}
 
 }

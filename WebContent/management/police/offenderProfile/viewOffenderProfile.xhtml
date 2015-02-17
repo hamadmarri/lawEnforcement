@@ -154,6 +154,30 @@
 			<h:link value="view"
 				outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerOffenderProfile.offenderProfile.crimeScene.crimeSceneId}" />
 			<br />
+
+			<h:form>
+				<h:commandButton value="List suspects"
+					action="#{controllerOffenderProfile.setShowSuspects(true)}" />
+			</h:form>
+
+			<c:if test="${controllerOffenderProfile.showSuspects}">
+				<h2>Suspects</h2>
+				<h:dataTable value="#{controllerOffenderProfile.suspects}" var="p">
+					<h:column>
+						<h:link value="view"
+							outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
+					</h:column>
+					<h:column>
+						<h:link value="edit"
+							outcome="/management/edit/editPerson.xhtml?id=#{p.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Name</f:facet>
+						<h:outputLabel
+							value="#{p.personName.lastName}, #{p.personName.firstName}" />
+					</h:column>
+				</h:dataTable>
+			</c:if>
 		</c:if>
 
 

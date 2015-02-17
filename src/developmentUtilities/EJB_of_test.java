@@ -1,9 +1,12 @@
 package developmentUtilities;
 
+import intelligence.FillUpDatabase;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -49,6 +52,9 @@ public class EJB_of_test {
 	@PersistenceContext(unitName = "lawEnforcementPersistenceUnit")
 	private EntityManager em;
 
+	@EJB
+	private FillUpDatabase fillUpDatabase;
+
 
 
 	@SuppressWarnings("unchecked")
@@ -76,8 +82,9 @@ public class EJB_of_test {
 		createArrestReportAccordingToIncidentReport();
 		createActivity_InvCase_Inv();
 		createInvestigativeGroup_Permission();
-
 		createMoreInvCasesForMonitorTesting();
+		
+		fillUpDatabase.fillUpData();
 	}
 
 

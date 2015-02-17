@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import entities.entries.Person;
 import entities.police.InvestigativeCase;
 
 
@@ -64,6 +65,9 @@ public class CrimeScene implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private OffenderProfile offenderProfile;
+
+	@OneToOne
+	private Person victim;
 
 
 
@@ -627,6 +631,18 @@ public class CrimeScene implements Serializable {
 
 	public void setInvestigativeCase(InvestigativeCase investigativeCase) {
 		this.investigativeCase = investigativeCase;
+	}
+
+
+
+	public Person getVictim() {
+		return victim;
+	}
+
+
+
+	public void setVictim(Person victim) {
+		this.victim = victim;
 	}
 
 

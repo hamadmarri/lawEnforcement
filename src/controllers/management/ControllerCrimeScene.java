@@ -8,7 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
+import entities.entries.Person;
 import entities.intelligence.CrimeScene;
 import entities.intelligence.OffenderProfile;
 
@@ -36,15 +38,15 @@ public class ControllerCrimeScene implements Serializable {
 	@EJB
 	EjbCrimeScene ejbCrimeScene;
 
-	// EJB for InvestigativeCase object
-	// @EJB
-	// EjbInvestigativeCase ejbInvestigativeCase;
+	// EJB for Person object
+	@EJB
+	protected AbstractEjb<Person> ejbPerson;
 
 	// the id of a CrimeScene object
 	protected String id;
 
 	// the CrimeScene object
-	protected CrimeScene CrimeScene = null;
+	protected CrimeScene crimeScene = null;
 
 	// list of CrimeScene objects
 	protected List<CrimeScene> CrimeScenesList = null;
@@ -57,6 +59,8 @@ public class ControllerCrimeScene implements Serializable {
 	private String newCrimeSceneId;
 
 	private boolean showSuggestedOP = false;
+
+	private Long victimId = null;
 
 
 
@@ -78,12 +82,18 @@ public class ControllerCrimeScene implements Serializable {
 	 */
 	public String submit() {
 
+		// link the victim with this crime scene
+		if (victimId != null) {
+			Person p = ejbPerson.getEntity(victimId);
+			getCrimeScene().setVictim(p);
+		}
+
 		// if new object it will add the object to DB,
 		// otherwise, it will just update it in DB
 		if (isNewEntity())
-			ejbCrimeScene.add(this.CrimeScene);
+			ejbCrimeScene.add(this.crimeScene);
 		else
-			ejbCrimeScene.save(this.CrimeScene);
+			ejbCrimeScene.save(this.crimeScene);
 
 		// return "success" for navigation engine
 		return "success";
@@ -96,7 +106,7 @@ public class ControllerCrimeScene implements Serializable {
 	 * addCrimeScene.xhtml page at preRenderView phase
 	 */
 	public void createNewCrimeScene() {
-		this.CrimeScene = new CrimeScene();
+		this.crimeScene = new CrimeScene();
 		this.setNewEntity(true);
 	}
 
@@ -120,8 +130,8 @@ public class ControllerCrimeScene implements Serializable {
 	public CrimeScene getCrimeScene() {
 
 		// if the object was loaded already, just return it
-		if (this.CrimeScene != null)
-			return this.CrimeScene;
+		if (this.crimeScene != null)
+			return this.crimeScene;
 
 		// if the id is null do not try to load it from DB, just return null
 		if (this.id == null)
@@ -129,15 +139,20 @@ public class ControllerCrimeScene implements Serializable {
 
 		// at this point object must be null but id is not,
 		// so load it from DB
-		this.CrimeScene = ejbCrimeScene.getEntity(Long.parseLong(this.id));
+		this.crimeScene = ejbCrimeScene.getEntity(Long.parseLong(this.id));
 
-		return this.CrimeScene;
+		// hold the id of crime scene
+		if (this.victimId == null && this.crimeScene != null && this.crimeScene.getVictim() != null) {
+			setVictimId(this.crimeScene.getVictim().getId());
+		}
+
+		return this.crimeScene;
 	}
 
 
 
 	public void setCrimeScene(CrimeScene CrimeScene) {
-		this.CrimeScene = CrimeScene;
+		this.crimeScene = CrimeScene;
 	}
 
 
@@ -201,6 +216,18 @@ public class ControllerCrimeScene implements Serializable {
 
 	public void setShowSuggestedOP(boolean showSuggestedOP) {
 		this.showSuggestedOP = showSuggestedOP;
+	}
+
+
+
+	public Long getVictimId() {
+		return victimId;
+	}
+
+
+
+	public void setVictimId(Long victimId) {
+		this.victimId = victimId;
 	}
 
 }

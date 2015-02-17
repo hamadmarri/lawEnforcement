@@ -247,6 +247,11 @@
 	</h:panelGroup>
 
 
+	<h:outputLabel value="Victim: " />
+	<h:link value="view"
+		outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerCrimeScene.crimeScene.victim.id}" />
+	<br />
+
 	<h:outputLabel value="Investigative Case: " />
 	<h:link value="view"
 		outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{controllerCrimeScene.crimeScene.investigativeCase.id}" />

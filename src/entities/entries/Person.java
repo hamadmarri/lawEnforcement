@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import entities.Relatable;
 import entities.entries.contacts.Contact;
 import entities.entries.files.images.FingerprintImage;
 import entities.entries.files.images.MugShotImage;
@@ -30,7 +29,6 @@ import entities.events.FieldInterview;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "Person.findAll", query = "select p from Person p"),
-		// join s.map m where KEY(m) = 'de'
 		@NamedQuery(name = "Person.findByIdentification", query = "select p from Person p"
 				+ " join p.identifications i WHERE VALUE(i) = :identification") })
 public class Person extends Entry {

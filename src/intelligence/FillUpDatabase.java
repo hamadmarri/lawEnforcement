@@ -21,7 +21,7 @@ public class FillUpDatabase {
 
 	@PostConstruct
 	public void fill() {
-		fillUpData();
+//		fillUpData();
 	}
 
 
