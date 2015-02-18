@@ -1,10 +1,9 @@
 package entities.intelligence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 import intelligence.FillUpDatabase;
-import intelligence.NeuralNetwork.NeuralNetwork;
-import intelligence.NeuralNetwork.Trainers.OffenderProfileGeneratorTrainer;
-import intelligence.NeuralNetwork.Trainers.Trainer;
+import intelligence.neural_network.NeuralNetwork;
+import intelligence.neural_network.trainers.Trainer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

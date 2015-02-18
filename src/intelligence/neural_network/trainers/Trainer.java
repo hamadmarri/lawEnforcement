@@ -1,6 +1,6 @@
-package intelligence.NeuralNetwork.Trainers;
+package intelligence.neural_network.trainers;
 
-import intelligence.NeuralNetwork.NeuralNetwork;
+import intelligence.neural_network.NeuralNetwork;
 
 import java.io.File;
 import java.io.FileInputStream;

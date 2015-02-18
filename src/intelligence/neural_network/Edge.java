@@ -1,4 +1,4 @@
-package intelligence.NeuralNetwork;
+package intelligence.neural_network;
 
 import java.io.Serializable;
 

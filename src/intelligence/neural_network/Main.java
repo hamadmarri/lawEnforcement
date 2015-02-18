@@ -1,7 +1,7 @@
-package intelligence.NeuralNetwork;
+package intelligence.neural_network;
 
-import intelligence.NeuralNetwork.Trainers.Trainer;
-import intelligence.NeuralNetwork.Trainers.XorTrainer;
+import intelligence.neural_network.trainers.Trainer;
+import intelligence.neural_network.trainers.XorTrainer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main_(String[] args) {
 		// int[] config = new int[] { 2, 4, 1 };
 		// NeuralNetwork nw = new NeuralNetwork(config, 0.02, 0.15);
 		String inputPath = "/Users/hamadalmarri/Development/eclipse/NeuralNetwork/input.txt";

@@ -1,10 +1,16 @@
 package entities.intelligence;
 
-import intelligence.NeuralNetwork.NeuralNetwork;
+import intelligence.neural_network.NeuralNetwork;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 /**

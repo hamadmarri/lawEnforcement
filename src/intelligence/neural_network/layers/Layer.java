@@ -1,7 +1,7 @@
-package intelligence.NeuralNetwork.layers;
+package intelligence.neural_network.layers;
 
-import intelligence.NeuralNetwork.Edge;
-import intelligence.NeuralNetwork.Neuron;
+import intelligence.neural_network.Edge;
+import intelligence.neural_network.Neuron;
 
 import java.io.Serializable;
 

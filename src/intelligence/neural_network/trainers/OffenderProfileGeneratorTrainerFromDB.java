@@ -1,10 +1,11 @@
-package intelligence.NeuralNetwork.Trainers;
+package intelligence.neural_network.trainers;
+
+import intelligence.neural_network.NeuralNetwork;
 
 import java.util.List;
 
 import entities.intelligence.CrimeScene;
 import entities.intelligence.OffenderProfile;
-import intelligence.NeuralNetwork.NeuralNetwork;
 
 
 public class OffenderProfileGeneratorTrainerFromDB extends Trainer {

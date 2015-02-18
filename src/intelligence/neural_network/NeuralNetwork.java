@@ -1,9 +1,9 @@
-package intelligence.NeuralNetwork;
+package intelligence.neural_network;
 
-import intelligence.NeuralNetwork.layers.HiddenLayer;
-import intelligence.NeuralNetwork.layers.InputLayer;
-import intelligence.NeuralNetwork.layers.Layer;
-import intelligence.NeuralNetwork.layers.OutputLayer;
+import intelligence.neural_network.layers.HiddenLayer;
+import intelligence.neural_network.layers.InputLayer;
+import intelligence.neural_network.layers.Layer;
+import intelligence.neural_network.layers.OutputLayer;
 
 import java.io.PrintWriter;
 import java.io.Serializable;

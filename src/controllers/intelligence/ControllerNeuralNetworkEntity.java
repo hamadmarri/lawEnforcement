@@ -1,8 +1,8 @@
 package controllers.intelligence;
 
-import intelligence.NeuralNetwork.NeuralNetwork;
-import intelligence.NeuralNetwork.Trainers.OffenderProfileGeneratorTrainerFromDB;
-import intelligence.NeuralNetwork.Trainers.Trainer;
+import intelligence.neural_network.NeuralNetwork;
+import intelligence.neural_network.trainers.OffenderProfileGeneratorTrainerFromDB;
+import intelligence.neural_network.trainers.Trainer;
 
 import java.util.List;
 

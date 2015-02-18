@@ -1,6 +1,6 @@
-package intelligence.NeuralNetwork.Trainers;
+package intelligence.neural_network.trainers;
 
-import intelligence.NeuralNetwork.NeuralNetwork;
+import intelligence.neural_network.NeuralNetwork;
 
 
 public class OffenderProfileGeneratorTrainer extends Trainer {

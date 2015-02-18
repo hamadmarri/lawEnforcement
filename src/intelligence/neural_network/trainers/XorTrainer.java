@@ -1,19 +1,19 @@
-package intelligence.NeuralNetwork.Trainers;
+package intelligence.neural_network.trainers;
 
-import intelligence.NeuralNetwork.NeuralNetwork;
+import intelligence.neural_network.NeuralNetwork;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 
-public class AndTrainer extends Trainer {
+public class XorTrainer extends Trainer {
 
 	private String inputFilePath;
 
 
 
-	public AndTrainer(String inputFileName, String outputFileName, NeuralNetwork neuralNetwork, int numberOfPasses) {
+	public XorTrainer(String inputFileName, String outputFileName, NeuralNetwork neuralNetwork, int numberOfPasses) {
 		super(inputFileName, outputFileName, neuralNetwork, numberOfPasses);
 		this.inputFilePath = inputFileName;
 	}
@@ -36,7 +36,7 @@ public class AndTrainer extends Trainer {
 		for (int i = 0; i < this.numberOfPasses; i++) {
 			a = (int) Math.round(Math.random());
 			b = (int) Math.round(Math.random());
-			c = a & b;
+			c = a ^ b;
 
 			pw.println(a + " " + b + " " + c);
 		}
