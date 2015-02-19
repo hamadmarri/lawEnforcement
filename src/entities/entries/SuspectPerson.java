@@ -1,4 +1,4 @@
-package entities.events;
+package entities.entries;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,12 +9,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import entities.entries.Entry;
-import entities.entries.Person;
-import entities.entries.PersonName;
-import entities.entries.PhysicalCharacteristic;
-import entities.entries.ThreatAssessment;
 import entities.entries.history.Action;
+import entities.events.IncidentReport;
 
 
 @Entity

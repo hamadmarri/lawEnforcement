@@ -1,4 +1,4 @@
-package security.loginSystem;
+package security.login_system;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 import security.ErrorMessages;
 import security.Password;
-import ejbs.UserGroupEJB;
+import ejbs.EjbUserGroup;
 import entities.Users;
 
 
@@ -19,7 +19,7 @@ import entities.Users;
 public class RegistrationController {
 
 	@EJB
-	private UserGroupEJB userGroupEJB;
+	private EjbUserGroup userGroupEJB;
 
 	@ManagedProperty(value = "#{userSessionController}")
 	private UserSessionController userSessionController;

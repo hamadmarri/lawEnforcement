@@ -9,8 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import entities.entries.SuspectPerson;
 import entities.events.IncidentReport;
-import entities.events.SuspectPerson;
 
 
 /**

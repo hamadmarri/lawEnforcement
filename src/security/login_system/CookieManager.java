@@ -1,4 +1,4 @@
-package security.loginSystem;
+package security.login_system;
 
 import java.util.Map;
 

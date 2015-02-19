@@ -17,7 +17,7 @@ import entities.police.InvestigativeCase;
  * 
  */
 @Stateless
-public class MonitoringEjb {
+public class EjbMonitoring {
 
 	// entity manager
 	@PersistenceContext(unitName = "lawEnforcementPersistenceUnit")

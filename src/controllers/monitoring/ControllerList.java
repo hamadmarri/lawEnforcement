@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import ejbs.MonitoringEjb;
+import ejbs.EjbMonitoring;
 import entities.police.InvestigativeCase;
 
 
@@ -26,7 +26,7 @@ public class ControllerList {
 
 	// EJB for InvestigativeCase object
 	@EJB
-	private MonitoringEjb ejbMonitoring;
+	private EjbMonitoring ejbMonitoring;
 
 	@ManagedProperty(value = "#{controllerMonitoring}")
 	private ControllerMonitoring controllerMonitoring;

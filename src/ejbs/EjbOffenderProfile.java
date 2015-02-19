@@ -139,14 +139,32 @@ public class EjbOffenderProfile {
 		if (op.getMale())
 			parameters.append("(p.gender = :gender) OR ");
 
-		if (op.getCriminalRecordOfTheft())
-			parameters.append("(p.description LIKE :criminalRecordOfTheft) OR ");
+		if (op.getUnemployedAtTheTimeOfOffense())
+			parameters.append("(lower(p.description) LIKE :unemployedAtTheTimeOfOffense) OR ");
 
-		if (op.getCriminalRecordOfFraud())
-			parameters.append("(p.description LIKE :criminalRecordOfFraud) OR ");
+		if (op.getArmedServices_PastOrPresent())
+			parameters.append("(lower(p.description) LIKE :armedServices_PastOrPresent) OR ");
 
-		if (op.getCriminalRecordOfBurglary())
-			parameters.append("(p.description LIKE :criminalRecordOfBurglary) OR ");
+		if (op.getHistoryOfAbusivenessInPastRelationships())
+			parameters.append("(lower(p.description) LIKE :historyOfAbusivenessInPastRelationships) OR ");
+
+		if (op.getAttemptsOfSuicide())
+			parameters.append("(lower(p.description) LIKE :attemptsOfSuicide) OR ");
+
+		if (op.getPsychiatricDisorders())
+			parameters.append("(lower(p.description) LIKE :psychiatricDisorders) OR ");
+
+		if (op.getTurnedSelfIntoPolice())
+			parameters.append("(lower(p.description) LIKE :turnedSelfIntoPolice) OR ");
+
+		// if (op.getCriminalRecordOfTheft())
+		// parameters.append("(p.description LIKE :criminalRecordOfTheft) OR ");
+		//
+		// if (op.getCriminalRecordOfFraud())
+		// parameters.append("(p.description LIKE :criminalRecordOfFraud) OR ");
+		//
+		// if (op.getCriminalRecordOfBurglary())
+		// parameters.append("(p.description LIKE :criminalRecordOfBurglary) OR ");
 
 		// if (op.getRelationshipWithVictim()) {
 		// parameters.append("((r1.something.id = :somethingID OR r1.somethingElse.id = :somethingElseID)"
@@ -183,14 +201,35 @@ public class EjbOffenderProfile {
 		if (op.getMale())
 			nq.setParameter("gender", "Male");
 
-		if (op.getCriminalRecordOfTheft())
-			nq.setParameter("criminalRecordOfTheft", "%Criminal Record Of Theft%");
+		if (op.getUnemployedAtTheTimeOfOffense())
+			nq.setParameter("unemployedAtTheTimeOfOffense", "%unemployed%");
 
-		if (op.getCriminalRecordOfFraud())
-			nq.setParameter("criminalRecordOfFraud", "%Criminal Record Of Fraud%");
+		if (op.getArmedServices_PastOrPresent())
+			nq.setParameter("armedServices_PastOrPresent", "%armed%service%");
 
-		if (op.getCriminalRecordOfBurglary())
-			nq.setParameter("criminalRecordOfBurglary", "%Criminal Record Of Burglary%");
+		if (op.getHistoryOfAbusivenessInPastRelationships())
+			nq.setParameter("historyOfAbusivenessInPastRelationships", "%history%abusiveness%relationship%");
+
+		if (op.getAttemptsOfSuicide())
+			nq.setParameter("attemptsOfSuicide", "%attempt%suicide%");
+
+		if (op.getPsychiatricDisorders())
+			nq.setParameter("psychiatricDisorders", "%psych%disorder%");
+
+		if (op.getTurnedSelfIntoPolice())
+			nq.setParameter("turnedSelfIntoPolice", "%turn%self%to%police%");
+
+		// if (op.getCriminalRecordOfTheft())
+		// nq.setParameter("criminalRecordOfTheft",
+		// "%Criminal Record Of Theft%");
+		//
+		// if (op.getCriminalRecordOfFraud())
+		// nq.setParameter("criminalRecordOfFraud",
+		// "%Criminal Record Of Fraud%");
+		//
+		// if (op.getCriminalRecordOfBurglary())
+		// nq.setParameter("criminalRecordOfBurglary",
+		// "%Criminal Record Of Burglary%");
 
 		// if (op.getRelationshipWithVictim()) {
 		// nq.setParameter("somethingID",

@@ -667,7 +667,7 @@ public class CrimeScene implements Serializable {
 		inputs[16] = cs.getSexualCrime() ? 1 : 0;
 		inputs[17] = cs.getStabbingInjuries() ? 1 : 0;
 		inputs[18] = cs.getSuffocation() ? 1 : 0;
-		inputs[19] = cs.getSuffocation() ? 1 : 0;
+		inputs[19] = cs.getVaginalPenetration() ? 1 : 0;
 		inputs[20] = cs.getValuablePropertyStolen() ? 1 : 0;
 		inputs[21] = cs.getVictimCovered() ? 1 : 0;
 		inputs[22] = cs.getVictimDruggedAndOrPoisoned() ? 1 : 0;

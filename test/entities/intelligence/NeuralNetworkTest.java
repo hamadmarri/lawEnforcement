@@ -3,6 +3,7 @@ package entities.intelligence;
 import static org.junit.Assert.assertArrayEquals;
 import intelligence.FillUpDatabase;
 import intelligence.neural_network.NeuralNetwork;
+import intelligence.neural_network.trainers.OffenderProfileGeneratorTrainer;
 import intelligence.neural_network.trainers.Trainer;
 
 import java.io.FileInputStream;
@@ -50,22 +51,22 @@ public class NeuralNetworkTest {
 		inputPath = "./test/entities/intelligence/crimeScene_OffenderProfileViewExport.txt";
 		outputPath = "./test/entities/intelligence/outputOf_crimeScene_OffenderProfile.txt";
 
-		String serPath = "./test/entities/intelligence/nn.ser";
-		nw = (NeuralNetwork) deserialize(serPath);
+//		String serPath = "./test/entities/intelligence/nn.ser";
+//		nw = (NeuralNetwork) deserialize(serPath);
 
 		// NN configuration for number of nodes in each layer
-		// int[] config = new int[] { 36, 24, 21 };
+		 int[] config = new int[] { 36, 24, 21 };
 
 		// creating new NN
-		// nw = new NeuralNetwork(config, 0.52, 0.15);
+		 nw = new NeuralNetwork(config, 0.52, 0.15);
 
 		// NN trainer
-		// trainer = new OffenderProfileGeneratorTrainer(inputPath, outputPath,
-		// nw, 50000);
+		 trainer = new OffenderProfileGeneratorTrainer(inputPath, outputPath,
+		 nw, 50000);
 
 		// serialize(serPath, nw);
 
-		// trainer.train();
+		 trainer.train();
 	}
 
 

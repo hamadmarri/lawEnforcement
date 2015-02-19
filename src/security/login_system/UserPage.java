@@ -1,11 +1,11 @@
-package security.loginSystem;
+package security.login_system;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import ejbs.UserGroupEJB;
+import ejbs.EjbUserGroup;
 import entities.Users;
 
 
@@ -14,7 +14,7 @@ import entities.Users;
 public class UserPage {
 
 	@EJB
-	private UserGroupEJB userGroupEJB;
+	private EjbUserGroup userGroupEJB;
 
 //	@Inject
 //	@Username

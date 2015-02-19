@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import security.Authorizable;
-import security.loginSystem.UserSessionController;
+import security.login_system.UserSessionController;
 import controllers.management.ControllerInvestigator;
 import controllers.management.ControllerOfficer;
 import ejbs.AbstractEjb;

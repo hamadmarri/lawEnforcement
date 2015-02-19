@@ -25,8 +25,9 @@
 				<ui:insert name="editContent" />
 
 				<h4>Description</h4>
-				<h:inputText value="#{relatable.description}" />
-
+				<h:inputTextarea rows="10" cols="60" value="#{relatable.description}" />
+				<br />
+				
 				<h:commandButton value="save" action="#{controller.submit}" />
 			</h:form>
 

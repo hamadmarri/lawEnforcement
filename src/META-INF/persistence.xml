@@ -40,7 +40,7 @@
 		<class>entities.events.IncidentReport</class>
 		<class>entities.events.License</class>
 		<class>entities.events.Permit</class>
-		<class>entities.events.SuspectPerson</class>
+		<class>entities.entries.SuspectPerson</class>
 		<class>entities.police.Activity</class>
 		<class>entities.police.InvestigativeCase</class>
 		<class>entities.police.InvestigativeGroup</class>

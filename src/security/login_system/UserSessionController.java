@@ -1,4 +1,4 @@
-package security.loginSystem;
+package security.login_system;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import ejbs.UserGroupEJB;
+import ejbs.EjbUserGroup;
 import entities.Users;
 
 
@@ -21,7 +21,7 @@ public class UserSessionController implements Serializable {
 	private static final long serialVersionUID = -4999739921114335774L;
 
 	@EJB
-	private UserGroupEJB userGroupEJB;
+	private EjbUserGroup userGroupEJB;
 
 	private Integer userId = null;
 	private Integer profileId = null;

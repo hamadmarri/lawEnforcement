@@ -1,4 +1,4 @@
-package security.loginSystem;
+package security.login_system;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import security.ErrorMessages;
 import security.Password;
-import ejbs.UserGroupEJB;
+import ejbs.EjbUserGroup;
 import entities.Users;
 import entities.VUsersGroup;
 
@@ -25,7 +25,7 @@ import entities.VUsersGroup;
 public class UsersGroupsController {
 
 	@EJB
-	private UserGroupEJB userGroupEJB;
+	private EjbUserGroup userGroupEJB;
 	private String username = new String("");
 	private String password = new String("");
 

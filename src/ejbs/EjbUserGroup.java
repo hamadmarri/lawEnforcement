@@ -21,7 +21,7 @@ import entities.VUsersGroup;
  * 
  */
 @Stateless
-public class UserGroupEJB {
+public class EjbUserGroup {
 
 	@PersistenceContext(unitName = "adalaSecurityPersistenceUnit")
 	private EntityManager em;

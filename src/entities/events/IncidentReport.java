@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import entities.entries.SuspectPerson;
 import entities.entries.history.Action;
 import entities.police.InvestigativeCase;
 
