@@ -3,6 +3,9 @@ package controllers.management;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -185,6 +188,9 @@ public class ControllerOffenderProfile implements Serializable {
 		// seting match percentage
 		setingMatchPercentages(op, victimId, attributesCounter);
 
+		// sort suspcts based on their matching percentages
+		Collections.sort(suspects, new SuspectMatchPercentageComparator());
+
 		return suspects;
 	}
 
@@ -256,7 +262,7 @@ public class ControllerOffenderProfile implements Serializable {
 			if (victim != null && op.getRelationshipWithVictim()
 					&& isRelationWithVictimWithMatch(sp, victimId, ".*relation.*ship.*"))
 				matches++;
- 
+
 			if (op.getSexualRelatedCriminalRecord() && description.contains("sex") && description.contains("relate")
 					&& description.contains("record"))
 				matches++;
@@ -423,4 +429,15 @@ public class ControllerOffenderProfile implements Serializable {
 		this.showSuspects = showSuspects;
 	}
 
+	/*
+	 * 
+	 */
+	private class SuspectMatchPercentageComparator implements Comparator<SuspectPerson> {
+
+		@Override
+		public int compare(SuspectPerson o1, SuspectPerson o2) {
+			return Double.compare(o2.getMatchPercentage(), o1.getMatchPercentage());
+		}
+
+	}
 }
