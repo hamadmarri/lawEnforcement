@@ -16,6 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import entities.Relatable;
+import entities.entries.SuspectPerson;
 import entities.entries.history.Action;
 import entities.events.IncidentReport;
 import entities.intelligence.CrimeScene;
@@ -57,7 +58,8 @@ public class InvestigativeCase extends Relatable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private CrimeScene crimeScene;
 
-	// private String description;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<SuspectPerson> suspectPersons;
 
 	private static String[] statusSuggestions = { "Open", "Pending", "In progress", "Refused", "Closed" };
 	private String status;
@@ -208,6 +210,27 @@ public class InvestigativeCase extends Relatable {
 
 
 
+	public List<SuspectPerson> getSuspectPersons() {
+		return suspectPersons;
+	}
+
+
+
+	public void setSuspectPersons(List<SuspectPerson> suspectPersons) {
+		this.suspectPersons = suspectPersons;
+	}
+
+
+
+	public void addSuspectPerson(SuspectPerson suspectPerson) {
+		if (this.suspectPersons == null)
+			this.suspectPersons = new ArrayList<SuspectPerson>();
+
+		this.suspectPersons.add(suspectPerson);
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "id: " + this.id + this.officerWhoCreatedIt.toString();
@@ -254,6 +277,26 @@ public class InvestigativeCase extends Relatable {
 				if (this.investigators.get(i).getId().compareTo(oldinvC.investigators.get(i).getId()) != 0)
 					this.getHistory().addAction(
 							new Action("investigators", this.investigators.get(i).toString(), oldinvC.investigators
+									.get(i).toString()));
+			}
+		}
+
+		if (this.suspectPersons.size() != oldinvC.suspectPersons.size()) {
+			StringBuilder newData = new StringBuilder();
+			StringBuilder oldData = new StringBuilder();
+
+			for (SuspectPerson id : this.suspectPersons)
+				newData.append(id.toString() + " ");
+
+			for (SuspectPerson id : oldinvC.suspectPersons)
+				oldData.append(id.toString() + " ");
+
+			this.getHistory().addAction(new Action("suspectPersons", newData.toString(), oldData.toString()));
+		} else {
+			for (int i = 0; i < this.suspectPersons.size(); i++) {
+				if (this.suspectPersons.get(i).getId().compareTo(oldinvC.suspectPersons.get(i).getId()) != 0)
+					this.getHistory().addAction(
+							new Action("suspectPersons", this.suspectPersons.get(i).toString(), oldinvC.suspectPersons
 									.get(i).toString()));
 			}
 		}

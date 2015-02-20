@@ -9,8 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
+import ejbs.EjbInvestigativeCase;
 import entities.entries.SuspectPerson;
 import entities.events.IncidentReport;
+import entities.police.InvestigativeCase;
 
 
 /**
@@ -34,10 +36,10 @@ public class ControllerSuspectPerson extends AbstractController<SuspectPerson> i
 
 	// EJB for IncidentReport object
 	@EJB
-	private AbstractEjb<IncidentReport> ejbIncidentReport;
+	private EjbInvestigativeCase ejbInvestigativeCase;
 
 	// IncidentReport id that this person is suspect in
-	private String incidentReportId;
+	private String investigativeCaseId;
 
 
 
@@ -67,18 +69,21 @@ public class ControllerSuspectPerson extends AbstractController<SuspectPerson> i
 		super.submit();
 
 		// then add this suspect person to the passed incident report
-		if (this.incidentReportId != null) {
+		if (this.investigativeCaseId != null) {
 
-			// load incident report entity from DB
-			IncidentReport ir = (IncidentReport) this.ejbIncidentReport.getEntity(Long.parseLong(this
-					.getIncidentReportId()));
+			// load investigative case entity from DB
+			InvestigativeCase invC = ejbInvestigativeCase.getEntity(Long.parseLong(getInvestigativeCaseId()));
+			// IncidentReport ir = (IncidentReport)
+			// this.ejbInvestigativeCase.getEntity(Long.parseLong(this
+			// .getIncidentReportId()));
 
 			// add this suspect person to the incident report
-			ir.addSuspectPerson(this.relatable);
+			invC.addSuspectPerson(this.relatable);
 
 			// save the incident report
-			this.ejbIncidentReport.save(ir);
+			this.ejbInvestigativeCase.save(invC);
 
+			// TODO: change it to success for inve. case
 			// redirect to incident report page
 			return "successForIncidentReport";
 		} else {
@@ -124,14 +129,14 @@ public class ControllerSuspectPerson extends AbstractController<SuspectPerson> i
 
 
 
-	public String getIncidentReportId() {
-		return incidentReportId;
+	public String getInvestigativeCaseId() {
+		return investigativeCaseId;
 	}
 
 
 
-	public void setIncidentReportId(String incidentReportId) {
-		this.incidentReportId = incidentReportId;
+	public void setInvestigativeCaseId(String investigativeCaseId) {
+		this.investigativeCaseId = investigativeCaseId;
 	}
 
 }

@@ -83,8 +83,22 @@ public class EJB_of_test {
 		createActivity_InvCase_Inv();
 		createInvestigativeGroup_Permission();
 		createMoreInvCasesForMonitorTesting();
-		
+		suspect_person_invC();
+
 		fillUpDatabase.fillUpData();
+	}
+
+
+
+	private void suspect_person_invC() {
+		InvestigativeCase invC = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
+				.get(0);
+		Person p = (Person) em.createNamedQuery("Person.findAll").getResultList().get(0);
+		SuspectPerson sp = new SuspectPerson();
+
+		sp.setPerson(p);
+		invC.addSuspectPerson(sp);
+		em.merge(invC);
 	}
 
 
@@ -255,23 +269,25 @@ public class EJB_of_test {
 		dateYara.set(1988, 4, 8);
 
 		Officer of = (Officer) em.createNamedQuery("Officer.findAll").getResultList().get(0);
-		SuspectPerson sp1 = new SuspectPerson(new PhysicalCharacteristic(
-				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],
-				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[0],
-				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[3],
-				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[2]), new ThreatAssessment("high"), "cool");
-		SuspectPerson sp2 = new SuspectPerson(new PhysicalCharacteristic(
-				PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[1],
-				PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[3],
-				PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[0],
-				PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), new ThreatAssessment("medium"), "ugly");
+		// SuspectPerson sp1 = new SuspectPerson(new PhysicalCharacteristic(
+		// PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[2],
+		// PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[0],
+		// PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[3],
+		// PhysicalCharacteristic.getHairCharacteristicsSuggestions()[2]), new
+		// ThreatAssessment("high"), "cool");
+		// SuspectPerson sp2 = new SuspectPerson(new PhysicalCharacteristic(
+		// PhysicalCharacteristic.getBuildCharacteristicsSuggestions()[1],
+		// PhysicalCharacteristic.getHeightCharacteristicsSuggestions()[3],
+		// PhysicalCharacteristic.getComplexionCharacteristicsSuggestions()[0],
+		// PhysicalCharacteristic.getHairCharacteristicsSuggestions()[1]), new
+		// ThreatAssessment("medium"), "ugly");
 		IncidentReport ir = new IncidentReport("flirting", IncidentReport.getStatusOptions()[0], "nothing yet");
 		Location l = (Location) em.createNamedQuery("Location.findAll").getResultList().get(0);
 		Person complainant = new Person(new PersonName("Yara", ""), null, null, "Female", "Libanies", null, null);
 		Relation r = new Relation(l, "happened in", ir);
 		Relation r2 = new Relation(complainant, "reported", ir);
-		ir.addSuspectPerson(sp1);
-		ir.addSuspectPerson(sp2);
+		// ir.addSuspectPerson(sp1);
+		// ir.addSuspectPerson(sp2);
 
 		of.addEventResponsibleFor(ir);
 

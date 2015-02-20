@@ -33,9 +33,6 @@ public class IncidentReport extends Event {
 	@Column(length = 20000)
 	private String offenseInformation;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<SuspectPerson> suspectPersons;
-
 	public static String[] statusOptions = { "open", "closed", "pending for approve", "under investigation" };
 	private String caseStatus;
 
@@ -74,17 +71,6 @@ public class IncidentReport extends Event {
 
 
 
-	public IncidentReport(String offenseInformation, List<SuspectPerson> suspectPersons, String caseStatus,
-			String summary) {
-		super();
-		this.offenseInformation = offenseInformation;
-		this.suspectPersons = suspectPersons;
-		this.caseStatus = caseStatus;
-		this.summary = summary;
-	}
-
-
-
 	public String getOffenseInformation() {
 		return offenseInformation;
 	}
@@ -93,27 +79,6 @@ public class IncidentReport extends Event {
 
 	public void setOffenseInformation(String offenseInformation) {
 		this.offenseInformation = offenseInformation;
-	}
-
-
-
-	public List<SuspectPerson> getSuspectPersons() {
-		return suspectPersons;
-	}
-
-
-
-	public void setSuspectPersons(List<SuspectPerson> suspectPersons) {
-		this.suspectPersons = suspectPersons;
-	}
-
-
-
-	public void addSuspectPerson(SuspectPerson suspectPerson) {
-		if (this.suspectPersons == null)
-			this.suspectPersons = new ArrayList<SuspectPerson>();
-
-		this.suspectPersons.add(suspectPerson);
 	}
 
 
@@ -215,26 +180,6 @@ public class IncidentReport extends Event {
 			this.getHistory().addAction(
 					new Action("assignedCase id", this.assignedCase.getId().toString(), oldInc.assignedCase.getId()
 							.toString()));
-
-		if (this.suspectPersons.size() != oldInc.suspectPersons.size()) {
-			StringBuilder newData = new StringBuilder();
-			StringBuilder oldData = new StringBuilder();
-
-			for (SuspectPerson id : this.suspectPersons)
-				newData.append(id.toString() + " ");
-
-			for (SuspectPerson id : oldInc.suspectPersons)
-				oldData.append(id.toString() + " ");
-
-			this.getHistory().addAction(new Action("suspectPersons", newData.toString(), oldData.toString()));
-		} else {
-			for (int i = 0; i < this.suspectPersons.size(); i++) {
-				if (this.suspectPersons.get(i).getId().compareTo(oldInc.suspectPersons.get(i).getId()) != 0)
-					this.getHistory().addAction(
-							new Action("suspectPersons", this.suspectPersons.get(i).toString(), oldInc.suspectPersons
-									.get(i).toString()));
-			}
-		}
 
 		if (this.fieldInterviews.size() != oldInc.fieldInterviews.size()) {
 			StringBuilder newData = new StringBuilder();

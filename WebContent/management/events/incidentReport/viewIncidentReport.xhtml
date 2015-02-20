@@ -24,7 +24,7 @@
 
 			<h:link value="edit" outcome="edit">
 				<f:param name="id" value="#{controllerIncidentReport.id}" />
-			</h:link> 
+			</h:link>
 			<br />
 
 			<h:outputLabel value="Offense Information" />
@@ -37,7 +37,10 @@
 				value="#{controllerIncidentReport.incidentReport.caseStatus}" />
 			<br />
 
-			<ui:include
+
+			<!--
+TODO: move it to investigative page
+ 			<ui:include
 				src="/management/entries/suspectPerson/listSuspectPersons.xhtml">
 				<ui:param name="suspectPersons"
 					value="#{controllerIncidentReport.incidentReport.suspectPersons}" />
@@ -47,7 +50,7 @@
 				<f:param name="incidentReportId"
 					value="#{controllerIncidentReport.incidentReport.id}" />
 			</h:link>
-			<br />
+			<br /> -->
 
 			<ui:include
 				src="/management/fieldInterview/listFieldInterviews.xhtml">

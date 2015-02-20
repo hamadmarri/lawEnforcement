@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -95,6 +96,9 @@ public class Person extends Entry {
 
 	@OneToMany(mappedBy = "inCaseOfEmergencyPerson")
 	private List<FieldInterview> fieldInterviewsAsInCaseOfEmergencyPerson;
+
+	@OneToOne(mappedBy = "person")
+	private SuspectPerson suspectPerson;
 
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
@@ -414,6 +418,18 @@ public class Person extends Entry {
 
 	public List<FieldInterview> getFieldInterviewsAsInCaseOfEmergencyPerson() {
 		return fieldInterviewsAsInCaseOfEmergencyPerson;
+	}
+
+
+
+	public SuspectPerson getSuspectPerson() {
+		return suspectPerson;
+	}
+
+
+
+	public void setSuspectPerson(SuspectPerson suspectPerson) {
+		this.suspectPerson = suspectPerson;
 	}
 
 

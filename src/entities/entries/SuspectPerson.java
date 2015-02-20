@@ -3,14 +3,16 @@ package entities.entries;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 import entities.entries.history.Action;
-import entities.events.IncidentReport;
+import entities.police.InvestigativeCase;
 
 
 @Entity
@@ -30,7 +32,10 @@ public class SuspectPerson extends Entry implements Serializable {
 	private ThreatAssessment threatAssessment;
 
 	@ManyToMany(mappedBy = "suspectPersons")
-	private List<IncidentReport> incidentReports;
+	private List<InvestigativeCase> investigativeCases; 
+
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Person person;
 
 
 
@@ -86,6 +91,24 @@ public class SuspectPerson extends Entry implements Serializable {
 
 	public void setThreatAssessment(ThreatAssessment threatAssessment) {
 		this.threatAssessment = threatAssessment;
+	}
+
+
+
+	public Person getPerson() {
+		return person;
+	}
+
+
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+
+
+	public List<InvestigativeCase> getInvestigativeCases() {
+		return investigativeCases;
 	}
 
 
