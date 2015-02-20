@@ -162,19 +162,21 @@
 
 			<c:if test="${controllerOffenderProfile.showSuspects}">
 				<h2>Suspects</h2>
-				<h:dataTable value="#{controllerOffenderProfile.suspects}" var="p">
+				<h:dataTable value="#{controllerOffenderProfile.suspects}" var="sp">
 					<h:column>
 						<h:link value="view"
-							outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
-					</h:column>
-					<h:column>
-						<h:link value="edit"
-							outcome="/management/edit/editPerson.xhtml?id=#{p.id}" />
+							outcome="/management/entries/person/viewPerson.xhtml?id=#{sp.person.id}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Name</f:facet>
 						<h:outputLabel
-							value="#{p.personName.lastName}, #{p.personName.firstName}" />
+							value="#{sp.person.personName.lastName}, #{sp.person.personName.firstName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Matching Persentage</f:facet>
+						<h:outputLabel value="#{sp.matchPercentage}">
+							<f:convertNumber pattern="00.0%" />
+						</h:outputLabel>
 					</h:column>
 				</h:dataTable>
 			</c:if>

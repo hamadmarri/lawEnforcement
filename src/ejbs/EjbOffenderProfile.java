@@ -114,13 +114,15 @@ public class EjbOffenderProfile {
 		Set<Person> suspects = new HashSet<Person>();
 
 		suspectsSet1 = getSet1(op);
-		suspectsSet2 = getSet2(op);
-
 		if (suspectsSet1 != null)
 			suspects.addAll(suspectsSet1);
 
-		if (suspectsSet2 != null)
-			suspects.addAll(suspectsSet2);
+		if (op.getCrimeScene().getVictim() != null) {
+			suspectsSet2 = getSet2(op);
+
+			if (suspectsSet2 != null)
+				suspects.addAll(suspectsSet2);
+		}
 
 		return new ArrayList<Person>(suspects);
 	}
@@ -248,7 +250,7 @@ public class EjbOffenderProfile {
 			nq.setParameter("criminalRecordOfTheft", "%criminal%record%theft%");
 
 		if (op.getCriminalRecordOfFraud())
-			nq.setParameter("criminalRecordOfFraud", "%criminal%record%fraud");
+			nq.setParameter("criminalRecordOfFraud", "%criminal%record%fraud%");
 
 		if (op.getCriminalRecordOfBurglary())
 			nq.setParameter("criminalRecordOfBurglary", "%criminal%record%burglary%");
@@ -302,7 +304,7 @@ public class EjbOffenderProfile {
 		StringBuilder parameters = new StringBuilder();
 		Long victimId = op.getCrimeScene().getVictim().getId();
 
-		// set the victim id 
+		// set the victim id
 		victimParams.append("( (r.something.id = ").append(victimId).append(") OR ");
 		victimParams.append("(r.somethingElse.id = ").append(victimId).append(") ) AND (");
 
@@ -336,7 +338,7 @@ public class EjbOffenderProfile {
 			nq.setParameter("relationshipWithVictim", "%relation%ship%");
 
 		if (op.getKnewVictim())
-			nq.setParameter("knewVictim", "%kn%w%");
+			nq.setParameter("knewVictim", "%kn?w%");
 
 		if (op.getRelatedToVictim())
 			nq.setParameter("relatedToVictim", "%relat%");

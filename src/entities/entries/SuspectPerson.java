@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import entities.entries.history.Action;
 import entities.police.InvestigativeCase;
@@ -32,10 +33,13 @@ public class SuspectPerson extends Entry implements Serializable {
 	private ThreatAssessment threatAssessment;
 
 	@ManyToMany(mappedBy = "suspectPersons")
-	private List<InvestigativeCase> investigativeCases; 
+	private List<InvestigativeCase> investigativeCases;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Person person;
+
+	@Transient
+	private double matchPercentage;
 
 
 
@@ -113,6 +117,18 @@ public class SuspectPerson extends Entry implements Serializable {
 
 
 
+	public double getMatchPercentage() {
+		return matchPercentage;
+	}
+
+
+
+	public void setMatchPercentage(double matchPercentage) {
+		this.matchPercentage = matchPercentage;
+	}
+
+
+
 	@Override
 	public void logChanges(Object old) {
 		SuspectPerson oldP = (SuspectPerson) old;
@@ -135,9 +151,5 @@ public class SuspectPerson extends Entry implements Serializable {
 					new Action("threat assessment", this.threatAssessment.getThreatAssessmentLevel(),
 							oldP.threatAssessment.getThreatAssessmentLevel()));
 	}
-
-	// public Long getId() {
-	// return id;
-	// }
 
 }
