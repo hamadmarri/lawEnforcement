@@ -38,7 +38,8 @@
 			<br />
 
 
-			<!--
+			<ui:remove>
+				<!--
 TODO: move it to investigative page
  			<ui:include
 				src="/management/entries/suspectPerson/listSuspectPersons.xhtml">
@@ -51,7 +52,8 @@ TODO: move it to investigative page
 					value="#{controllerIncidentReport.incidentReport.id}" />
 			</h:link>
 			<br /> -->
-
+			</ui:remove>
+			
 			<ui:include
 				src="/management/fieldInterview/listFieldInterviews.xhtml">
 				<ui:param name="fieldInterviews"

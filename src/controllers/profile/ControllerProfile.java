@@ -8,7 +8,6 @@ import javax.faces.bean.ViewScoped;
 
 import security.Authorizable;
 import security.login_system.UserSessionController;
-import security.mocks.UserSessionMock;
 import controllers.management.ControllerInvestigator;
 import controllers.management.ControllerOfficer;
 import ejbs.AbstractEjb;
@@ -46,8 +45,7 @@ public class ControllerProfile {
 	public void init() {
 		this.ejbAuthorizable.setEntityName("Authorizable");
 
-		// this.userId = Long.toString(userSessionController.getProfileId());
-		this.userId = Long.toString(UserSessionMock.userId);
+		this.userId = Long.toString(userSessionController.getProfileId());
 
 		this.authorizable = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId));
 

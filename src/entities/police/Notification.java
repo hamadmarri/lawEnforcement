@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import security.Authorizable;
+import entities.Relatable;
 
 
 @Entity
@@ -43,6 +44,9 @@ public class Notification implements Serializable {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Authorizable to;
 
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private Relatable relatable;
+
 
 
 	public Notification() {
@@ -51,11 +55,24 @@ public class Notification implements Serializable {
 
 
 
-	public Notification(String text, Authorizable causedBy, Authorizable to) {
+	public Notification(String text, Authorizable causedBy, Authorizable to, Relatable relatable) {
 		super();
 		this.text = text;
 		this.causedBy = causedBy;
 		this.to = to;
+		this.relatable = relatable;
+	}
+
+
+
+	public Notification(Notification b) {
+		super();
+		this.text = b.text;
+		this.state = b.state;
+		this.dateAndTime = b.dateAndTime;
+		this.causedBy = b.causedBy;
+		this.to = b.to;
+		this.relatable = b.relatable;
 	}
 
 
@@ -123,6 +140,18 @@ public class Notification implements Serializable {
 
 	public void setTo(Authorizable to) {
 		this.to = to;
+	}
+
+
+
+	public Relatable getRelatable() {
+		return relatable;
+	}
+
+
+
+	public void setRelatable(Relatable relatable) {
+		this.relatable = relatable;
 	}
 
 }

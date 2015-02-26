@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import security.mocks.UserSessionMock;
 import ejbs.EjbUserGroup;
 import entities.Users;
 
@@ -30,8 +32,18 @@ public class UserSessionController implements Serializable {
 
 
 
-	// @Produces
-	// @UserId
+	/*
+	 * TODO: should be removed when deploying
+	 */
+	@PostConstruct
+	public void mocking() {
+		profileId = (int) (long) UserSessionMock.userId;
+		loggedIn = true;
+		username = "hamad";
+	}
+
+
+
 	public int getUserId() {
 		if (userId == null && isLoggedIn()) {
 			Users user = (userGroupEJB.findUser(getUsername()));
@@ -69,8 +81,6 @@ public class UserSessionController implements Serializable {
 
 
 
-	// @Produces
-	// @Username
 	public String getUsername() {
 
 		if (username != null)

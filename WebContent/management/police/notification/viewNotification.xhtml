@@ -26,6 +26,13 @@
 		<h:outputLabel value="#{controllerNotification.notification.text}" />
 		<br />
 
+		<h:outputLabel value="Investigative Case" />
+		<h:link outcome="#{controllerNotification.notification.relatable.type}" value="view">
+			<f:param name="id"
+				value="#{controllerNotification.notification.relatable.id}" />
+		</h:link>
+		<br />
+
 
 		<h:outputLabel value="Date And Time" />
 		<h:outputLabel
@@ -34,8 +41,7 @@
 
 
 		<h:outputLabel value="State" />
-		<h:outputLabel
-			value="#{controllerNotification.notification.state}" />
+		<h:outputLabel value="#{controllerNotification.notification.state}" />
 		<br />
 
 

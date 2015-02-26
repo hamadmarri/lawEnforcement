@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import controllers.profile.ControllerProfile;
 import security.Authorizable;
 import ejbs.EjbNotification;
+import entities.police.InvestigativeGroup;
 import entities.police.Notification;
 
 
@@ -129,6 +132,28 @@ public class ControllerNotification implements Serializable {
 			this.NotificationsList = ejbNotification.getList(authorizable);
 
 		return NotificationsList;
+	}
+
+
+
+	public void sendNotification(List<Authorizable> authorizables, Notification notification) {
+
+		for (Authorizable a : authorizables) {
+			Notification n = new Notification(notification);
+
+			if (a.getId() == n.getCausedBy().getId())
+				continue;
+
+			n.setTo(a);
+			ejbNotification.add(n);
+		}
+	}
+
+
+
+	public void markAsRead(Notification n) {
+		n.setState(Notification.stateSuggestions[1]);
+		ejbNotification.save(n);
 	}
 
 

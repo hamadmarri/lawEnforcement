@@ -1406,6 +1406,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>InvestigativeCase</from-outcome>
+			<to-view-id>/management/police/investigativeCase/viewInvestigativeCase.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 
 

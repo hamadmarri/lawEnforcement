@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -90,30 +91,30 @@ public class EjbNotification {
 	 * @return List of entities
 	 */
 	public List<Notification> getList(Authorizable a) {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Notification> cQuery = cb.createQuery(Notification.class);
-		Root<Notification> n = cQuery.from(Notification.class);
-
-		Predicate authOrItsGroup = cb.or(cb.equal(n.get("to"), a),
-				n.get("to").in(a.getInvestigativeGroups()));
-		Predicate pred = cb.and(authOrItsGroup, cb.equal(n.get("state"), "sent"));
-
-		cQuery.select(n).where(pred);
-
-		TypedQuery<Notification> query = em.createQuery(cQuery);
-
-		return query.getResultList();
+		 CriteriaBuilder cb = em.getCriteriaBuilder();
+		 CriteriaQuery<Notification> cQuery =
+		 cb.createQuery(Notification.class);
+		 Root<Notification> n = cQuery.from(Notification.class);
+		
+		 Predicate authOrItsGroup = cb.or(cb.equal(n.get("to"), a),
+		 n.get("to").in(a.getInvestigativeGroups()));
+		 Predicate pred = cb.and(authOrItsGroup, cb.equal(n.get("state"),
+		 "sent"));
+		
+		 cQuery.select(n).where(pred);
+		
+		 TypedQuery<Notification> query = em.createQuery(cQuery);
+		
+		 return query.getResultList(); 
 
 		// the below code is just equivalent to the top one
-		// String queryString =
-		// "select n From Notification n where n.state = 'sent' and ( n.to.id = "
-		// + a.getId()
-		// + " or n.to in :invList )";
-		// Query query = em.createQuery(queryString);
-		//
-		// query.setParameter("invList", a.getInvestigativeGroups());
-		//
-		// return query.getResultList();
+//		String queryString = "select n From Notification n where n.state = 'sent' and ( n.to.id = " + a.getId()
+//				+ " or n.to in :invList )";
+//		Query query = em.createQuery(queryString);
+//
+//		query.setParameter("invList", a.getInvestigativeGroups());
+//
+//		return query.getResultList();
 	}
 
 

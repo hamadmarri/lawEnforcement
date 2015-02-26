@@ -100,11 +100,14 @@ public class EJB_of_test {
 		Investigator i1 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
 		Investigator i2 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(1);
 
-		Notification n1 = new Notification("test note to inv group", a, ig);
-		Notification n2 = new Notification("to i1", a, i1);
-		Notification n3 = new Notification("to i1 read", a, i1);
-		Notification n4 = new Notification("to i2", a, i2);
-		Notification n5 = new Notification("to i2 read", a, i2);
+		InvestigativeCase invC1 = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
+				.get(0);
+
+		Notification n1 = new Notification("test note to inv group", a, ig, invC1);
+		Notification n2 = new Notification("to i1", a, i1, invC1);
+		Notification n3 = new Notification("to i1 read", a, i1, invC1);
+		Notification n4 = new Notification("to i2", a, i2, invC1);
+		Notification n5 = new Notification("to i2 read", a, i2, invC1);
 
 		n3.setState(Notification.stateSuggestions[1]);
 		n5.setState(Notification.stateSuggestions[1]);
@@ -278,6 +281,9 @@ public class EJB_of_test {
 
 		em.persist(invC2);
 		em.persist(patric);
+
+		Investigator inv3 = new Investigator(new PersonName("Medhat", "Salem"));
+		em.persist(inv3);
 	}
 
 

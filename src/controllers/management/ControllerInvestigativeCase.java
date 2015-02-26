@@ -6,13 +6,18 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import controllers.profile.ControllerProfile;
+import security.Authorizable;
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
 import entities.events.IncidentReport;
 import entities.intelligence.CrimeScene;
 import entities.police.InvestigativeCase;
+import entities.police.Investigator;
+import entities.police.Notification;
 import entities.police.Officer;
 
 
@@ -52,6 +57,12 @@ public class ControllerInvestigativeCase implements Serializable {
 	// EJB for CrimeScene object
 	@EJB
 	private EjbCrimeScene ejbCrimeScene;
+
+	@ManagedProperty(value = "#{controllerNotification}")
+	private ControllerNotification controllerNotification;
+
+	@ManagedProperty(value = "#{controllerProfile}")
+	private ControllerProfile controllerProfile;
 
 	// the id of a InvestigativeCase object
 	protected String id;
@@ -140,6 +151,8 @@ public class ControllerInvestigativeCase implements Serializable {
 		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[0]);
 		ejbInvestigativeCase.save(this.investigativeCase);
 
+		sendNotification("opened the case");
+
 		// return "success" for navigation engine
 		return "success";
 	}
@@ -150,6 +163,8 @@ public class ControllerInvestigativeCase implements Serializable {
 		// make status in progress
 		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[2]);
 		ejbInvestigativeCase.save(this.investigativeCase);
+
+		sendNotification("accepted the case");
 
 		// return "success" for navigation engine
 		return "success";
@@ -162,6 +177,8 @@ public class ControllerInvestigativeCase implements Serializable {
 		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[3]);
 		ejbInvestigativeCase.save(this.investigativeCase);
 
+		sendNotification("refused the case");
+
 		// return "success" for navigation engine
 		return "success";
 	}
@@ -173,8 +190,33 @@ public class ControllerInvestigativeCase implements Serializable {
 		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[4]);
 		ejbInvestigativeCase.save(this.investigativeCase);
 
+		sendNotification("closed the case");
+
 		// return "success" for navigation engine
 		return "success";
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public void sendNotification(String text) {
+		Authorizable causedBy = controllerProfile.getAuthorizable();
+		Notification n = new Notification(text, causedBy, null, investigativeCase);
+
+		List<? extends Authorizable> authorizables = investigativeCase.getInvestigators();
+		controllerNotification.sendNotification((List<Authorizable>) authorizables, n);
+	}
+
+
+
+	public ControllerNotification getControllerNotification() {
+		return controllerNotification;
+	}
+
+
+
+	public void setControllerNotification(ControllerNotification controllerNotification) {
+		this.controllerNotification = controllerNotification;
 	}
 
 
@@ -223,7 +265,7 @@ public class ControllerInvestigativeCase implements Serializable {
 				&& this.investigativeCase.getCrimeScene() != null) {
 
 			setCrimeSceneId(this.investigativeCase.getCrimeScene().getCrimeSceneId());
-		} 
+		}
 
 		return this.investigativeCase;
 	}
@@ -320,4 +362,15 @@ public class ControllerInvestigativeCase implements Serializable {
 		this.crimeSceneId = crimeSceneId;
 	}
 
+
+
+	public ControllerProfile getControllerProfile() {
+		return controllerProfile;
+	}
+
+
+
+	public void setControllerProfile(ControllerProfile controllerProfile) {
+		this.controllerProfile = controllerProfile;
+	}
 }
