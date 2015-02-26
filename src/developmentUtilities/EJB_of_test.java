@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import security.Authorizable;
 import security.Permission;
 import entities.Relatable;
 import entities.Relation;
@@ -43,6 +44,7 @@ import entities.police.Activity;
 import entities.police.InvestigativeCase;
 import entities.police.InvestigativeGroup;
 import entities.police.Investigator;
+import entities.police.Notification;
 import entities.police.Officer;
 
 
@@ -84,8 +86,34 @@ public class EJB_of_test {
 		createInvestigativeGroup_Permission();
 		createMoreInvCasesForMonitorTesting();
 		suspect_person_invC();
-
 		fillUpDatabase.fillUpData();
+		createNotifications();
+
+	}
+
+
+
+	private void createNotifications() {
+		Authorizable a = (Authorizable) em.createNamedQuery("Authorizable.findAll").getResultList().get(0);
+		InvestigativeGroup ig = (InvestigativeGroup) em.createNamedQuery("InvestigativeGroup.findAll").getResultList()
+				.get(0);
+		Investigator i1 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
+		Investigator i2 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(1);
+
+		Notification n1 = new Notification("test note to inv group", a, ig);
+		Notification n2 = new Notification("to i1", a, i1);
+		Notification n3 = new Notification("to i1 read", a, i1);
+		Notification n4 = new Notification("to i2", a, i2);
+		Notification n5 = new Notification("to i2 read", a, i2);
+
+		n3.setState(Notification.stateSuggestions[1]);
+		n5.setState(Notification.stateSuggestions[1]);
+
+		em.persist(n1);
+		em.persist(n2);
+		em.persist(n3);
+		em.persist(n4);
+		em.persist(n5);
 	}
 
 
@@ -164,6 +192,7 @@ public class EJB_of_test {
 		// Officer o2 = (Officer)
 		// em.createNamedQuery("Officer.findAll").getResultList().get(1);
 		Investigator i1 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(0);
+		Investigator i2 = (Investigator) em.createNamedQuery("Investigator.findAll").getResultList().get(1);
 		InvestigativeGroup ig = new InvestigativeGroup("First Group");
 		Permission p = new Permission();
 		InvestigativeCase ic = (InvestigativeCase) em.createNamedQuery("InvestigativeCase.findAll").getResultList()
@@ -171,6 +200,7 @@ public class EJB_of_test {
 
 		// ig.addAuthorizable(o2);
 		ig.addAuthorizable(i1);
+		ig.addAuthorizable(i2);
 
 		p.setOwner(o1);
 		p.setAuthorizable(ig);

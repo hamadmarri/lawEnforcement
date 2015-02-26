@@ -1,11 +1,10 @@
 package security;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
@@ -15,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import entities.entries.history.Changeable;
 import entities.police.InvestigativeGroup;
+import entities.police.Notification;
 
 
 @Entity
@@ -25,23 +25,19 @@ public class Authorizable extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = -2605602317234236536L;
 
-//	@Id
-//	@GeneratedValue
-//	Long id;
-
 	@OneToMany(mappedBy = "authorizable")
 	protected List<Permission> permissions;
 
 	@ManyToMany(mappedBy = "authorizables")
 	protected List<InvestigativeGroup> investigativeGroups;
 
+	@OneToMany(mappedBy = "causedBy")
+	private List<Notification> causesNotifications = new ArrayList<Notification>();
+
+	@OneToMany(mappedBy = "to")
+	private List<Notification> recivedNotifications = new ArrayList<Notification>();
+
 	protected String type;
-
-
-
-//	public Long getId() {
-//		return id;
-//	}
 
 
 
@@ -63,6 +59,42 @@ public class Authorizable extends Changeable implements Serializable {
 
 
 
+	public List<Notification> getCausesNotifications() {
+		return causesNotifications;
+	}
+
+
+
+	public void setCausesNotificatiosn(List<Notification> causesNotifications) {
+		this.causesNotifications = causesNotifications;
+	}
+
+
+
+	public void addCausesNotification(Notification causesNotification) {
+		this.causesNotifications.add(causesNotification);
+	}
+
+
+
+	public List<Notification> getRecivedNotifications() {
+		return recivedNotifications;
+	}
+
+
+
+	public void setRecivedNotifications(List<Notification> recivedNotifications) {
+		this.recivedNotifications = recivedNotifications;
+	}
+
+
+
+	public void addRecivedNotification(Notification recivedNotification) {
+		this.recivedNotifications.add(recivedNotification);
+	}
+
+
+
 	public String getType() {
 		return type;
 	}
@@ -72,7 +104,7 @@ public class Authorizable extends Changeable implements Serializable {
 	@Override
 	public void logChanges(Object old) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

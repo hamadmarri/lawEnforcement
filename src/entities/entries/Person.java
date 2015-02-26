@@ -103,6 +103,11 @@ public class Person extends Entry {
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
 
+	/*
+	 * The Java compiler copies initializer blocks into every constructor.
+	 * Therefore, this approach can be used to share a block of code between
+	 * multiple constructors.
+	 */
 	{
 		this.type = "Person";
 		this.physicalCharacteristic = new PhysicalCharacteristic();
