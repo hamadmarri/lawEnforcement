@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerNotification.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+
+	<h3>Notification</h3>
+	<ui:composition>
+
+
+		<h:outputLabel value="id" />
+		<h:outputLabel value="#{controllerNotification.notification.id}" />
+		<br />
+
+		<h:outputLabel value="Notification Text" />
+		<h:outputLabel value="#{controllerNotification.notification.text}" />
+		<br />
+
+
+		<h:outputLabel value="Date And Time" />
+		<h:outputLabel
+			value="#{controllerNotification.notification.dateAndTime}" />
+		<br />
+
+
+		<h:outputLabel value="State" />
+		<h:outputLabel
+			value="#{controllerNotification.notification.state}" />
+		<br />
+
+
+
+		<h:outputLabel value="Caused By" />
+		<!-- Show for Officer -->
+		<h:link outcome="officer"
+			rendered="#{controllerNotification.notification.causedBy.type == 'Officer'}"
+			value="#{controllerNotification.notification.causedBy.personName.firstName}, #{controllerNotification.notification.causedBy.personName.lastName}">
+			<f:param name="id"
+				value="#{controllerNotification.notification.causedBy.id}" />
+		</h:link>
+		<br />
+
+
+		<!-- Show for Investigator -->
+		<h:link outcome="investigator"
+			rendered="#{controllerNotification.notification.causedBy.type == 'Investigator'}"
+			value="#{controllerNotification.notification.causedBy.personName.firstName}, #{controllerNotification.notification.causedBy.personName.lastName}">
+			<f:param name="id"
+				value="#{controllerNotification.notification.causedBy.id}" />
+		</h:link>
+
+
+
+		<h:outputLabel value="To" />
+		<!-- Show for Officer -->
+		<h:link outcome="officer"
+			rendered="#{controllerNotification.notification.to.type == 'Officer'}"
+			value="#{controllerNotification.notification.to.personName.firstName}, #{controllerNotification.notification.to.personName.lastName}">
+			<f:param name="id"
+				value="#{controllerNotification.notification.to.id}" />
+		</h:link>
+
+		<!-- Show for Investigator -->
+		<h:link outcome="investigator"
+			rendered="#{controllerNotification.notification.to.type == 'Investigator'}"
+			value="#{controllerNotification.notification.to.personName.firstName}, #{controllerNotification.notification.to.personName.lastName}">
+			<f:param name="id"
+				value="#{controllerNotification.notification.to.id}" />
+		</h:link>
+
+		<!-- Show for Group -->
+		<h:link value="Group id: #{controllerNotification.notification.to.id}"
+			outcome="group"
+			rendered="#{controllerNotification.notification.to.type != 'Investigator' and n.to.type != 'Officer'}">
+			<f:param name="id"
+				value="#{controllerNotification.notification.to.id}" />
+		</h:link>
+
+
+	</ui:composition>
+</h:body>
+</html>

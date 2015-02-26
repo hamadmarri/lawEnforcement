@@ -1273,6 +1273,97 @@
 	</navigation-rule>
 
 
+
+	<!-- ********** Notification ********** -->
+	<navigation-rule>
+		<from-view-id>/management/police/notification/listNotifications.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>view</from-outcome>
+			<to-view-id>/management/police/notification/viewNotification.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>group</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>investigator</from-outcome>
+			<to-view-id>/management/police/investigator/viewInvestigator.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>officer</from-outcome>
+			<to-view-id>/management/police/officer/viewOfficer.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/police/notification/viewNotification.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>view</from-outcome>
+			<to-view-id>/management/police/notification/viewNotification.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>group</from-outcome>
+			<to-view-id>/management/police/investigativeGroup/viewInvestigativeGroup.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>investigator</from-outcome>
+			<to-view-id>/management/police/investigator/viewInvestigator.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>officer</from-outcome>
+			<to-view-id>/management/police/officer/viewOfficer.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+
+
+
 	<!-- ********** Relation ********** -->
 	<navigation-rule>
 		<from-view-id>/management/edit/editRelation.xhtml</from-view-id>
