@@ -19,6 +19,11 @@
 			<c:set var="notifications"
 				value="#{controllerNotification.notificationsList}" />
 		</c:if>
+		
+		<c:if test="${included != null}">
+			<c:set var="notifications"
+				value="#{controllerNotification.getNotificationsListForAuthorizable(authorizable)}" />
+		</c:if>
 
 		<c:if test="${empty notifications and included}">
 			<h:outputLabel value="nothing" />

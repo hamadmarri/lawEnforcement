@@ -12,10 +12,13 @@
 
 	<ui:composition>
 		<h1>Profile</h1>
-
-		<h:link value="Change Password" outcome="/profile/changePassword.xhtml" />
-		<br />
 		
+		<c:set var="included" value="true" />
+
+		<h:link value="Change Password"
+			outcome="/profile/changePassword.xhtml" />
+		<br />
+
 		<c:if test="${controllerProfile.isOfficer()}">
 			<ui:include src="/management/police/officer/viewOfficer.xhtml" />
 		</c:if>
@@ -25,6 +28,13 @@
 			<ui:include
 				src="/management/police/investigator/viewInvestigator.xhtml" />
 		</c:if>
+
+		<ui:include
+			src="/management/police/notification/listNotifications.xhtml">
+			<ui:param name="authorizable"
+				value="#{controllerProfile.authorizable}" />
+		</ui:include>
+
 	</ui:composition>
 
 </h:body>

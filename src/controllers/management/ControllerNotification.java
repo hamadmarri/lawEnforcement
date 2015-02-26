@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import security.Authorizable;
 import ejbs.EjbNotification;
 import entities.police.Notification;
 
@@ -119,6 +120,15 @@ public class ControllerNotification implements Serializable {
 
 	public void setNotificationsList(List<Notification> list) {
 		this.NotificationsList = list;
+	}
+
+
+
+	public List<Notification> getNotificationsListForAuthorizable(Authorizable authorizable) {
+		if (this.NotificationsList == null)
+			this.NotificationsList = ejbNotification.getList(authorizable);
+
+		return NotificationsList;
 	}
 
 

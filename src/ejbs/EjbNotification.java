@@ -4,8 +4,14 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import security.Authorizable;
 import entities.police.Notification;
 
 
@@ -76,6 +82,25 @@ public class EjbNotification {
 	@SuppressWarnings("unchecked")
 	public List<Notification> getList() {
 		return em.createNamedQuery("Notification.findAll").getResultList();
+	}
+
+
+
+	/**
+	 * @return List of entities
+	 */
+	public List<Notification> getList(Authorizable a) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<Notification> criteriaQuery = criteriaBuilder.createQuery(Notification.class);
+		Root<Notification> n = criteriaQuery.from(Notification.class);
+
+		criteriaQuery.select(n).where(
+				criteriaBuilder.and(criteriaBuilder.equal(n.get("to"), a),
+						criteriaBuilder.equal(n.get("state"), "sent")));
+
+		TypedQuery<Notification> query = em.createQuery(criteriaQuery);
+
+		return query.getResultList();
 	}
 
 
