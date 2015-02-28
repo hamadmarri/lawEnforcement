@@ -19,7 +19,6 @@ import entities.Relatable;
 import entities.entries.SuspectPerson;
 import entities.entries.history.Action;
 import entities.events.IncidentReport;
-import entities.intelligence.CrimeScene;
 
 
 /**

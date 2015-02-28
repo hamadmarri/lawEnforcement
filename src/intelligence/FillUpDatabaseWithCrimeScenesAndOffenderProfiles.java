@@ -1,28 +1,18 @@
 package intelligence;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import entities.intelligence.CrimeScene;
-import entities.intelligence.OffenderProfile;
+import entities.police.CrimeScene;
+import entities.police.OffenderProfile;
 
 
-//@Startup
 @Singleton
-public class FillUpDatabase {
+public class FillUpDatabaseWithCrimeScenesAndOffenderProfiles {
 
 	@PersistenceContext(unitName = "lawEnforcementPersistenceUnit")
 	private EntityManager em;
-
-
-
-	@PostConstruct
-	public void fill() {
-//		fillUpData();
-	}
 
 
 
@@ -41,7 +31,7 @@ public class FillUpDatabase {
 					false, false, false, false, false, false, false, false, false, false);
 
 			cs.setOffenderProfile(op);
-			
+
 			numberOfOffenderVariables = getNumberOfOffenderVariables();
 
 			createRecord(cs, op, numberOfOffenderVariables);

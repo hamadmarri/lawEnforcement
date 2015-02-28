@@ -1,14 +1,17 @@
 package entities.intelligence;
 
 import static org.junit.Assert.*;
-import intelligence.FillUpDatabase;
+import intelligence.FillUpDatabaseWithCrimeScenesAndOffenderProfiles;
 
 import org.junit.Test;
+
+import entities.police.CrimeScene;
+import entities.police.OffenderProfile;
 
 
 public class FillUpDatabaseTest {
 
-	FillUpDatabase fudb = new FillUpDatabase();
+	FillUpDatabaseWithCrimeScenesAndOffenderProfiles fudb = new FillUpDatabaseWithCrimeScenesAndOffenderProfiles();
 
 
 

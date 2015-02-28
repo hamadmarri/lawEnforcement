@@ -53,7 +53,6 @@
 		<class>entities.entries.history.Changeable</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
-			<property name="eclipselink.ddl-generation" value="none"/>
 		</properties>
 	</persistence-unit>
 	 

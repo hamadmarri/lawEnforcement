@@ -1,7 +1,7 @@
 package entities.intelligence;
 
 import static org.junit.Assert.assertArrayEquals;
-import intelligence.FillUpDatabase;
+import intelligence.FillUpDatabaseWithCrimeScenesAndOffenderProfiles;
 import intelligence.neural_network.NeuralNetwork;
 import intelligence.neural_network.trainers.OffenderProfileGeneratorTrainer;
 import intelligence.neural_network.trainers.Trainer;
@@ -16,6 +16,9 @@ import java.io.ObjectOutputStream;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import entities.police.CrimeScene;
+import entities.police.OffenderProfile;
 
 
 public class NeuralNetworkTest {
@@ -32,7 +35,7 @@ public class NeuralNetworkTest {
 	// NN trainer
 	private static Trainer trainer;
 
-	private static FillUpDatabase fudb = new FillUpDatabase();
+	private static FillUpDatabaseWithCrimeScenesAndOffenderProfiles fudb = new FillUpDatabaseWithCrimeScenesAndOffenderProfiles();
 
 	CrimeScene cs;
 	OffenderProfile op;

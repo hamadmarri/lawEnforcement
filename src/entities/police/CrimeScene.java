@@ -1,11 +1,10 @@
-package entities.intelligence;
+package entities.police;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
 
 import entities.entries.Person;
-import entities.police.InvestigativeCase;
 
 
 /**

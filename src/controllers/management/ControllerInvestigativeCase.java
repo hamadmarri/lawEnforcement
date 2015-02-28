@@ -14,7 +14,7 @@ import security.Authorizable;
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
 import entities.events.IncidentReport;
-import entities.intelligence.CrimeScene;
+import entities.police.CrimeScene;
 import entities.police.InvestigativeCase;
 import entities.police.Investigator;
 import entities.police.Notification;

@@ -4,8 +4,8 @@ import intelligence.neural_network.NeuralNetwork;
 
 import java.util.List;
 
-import entities.intelligence.CrimeScene;
-import entities.intelligence.OffenderProfile;
+import entities.police.CrimeScene;
+import entities.police.OffenderProfile;
 
 
 public class OffenderProfileGeneratorTrainerFromDB extends Trainer {

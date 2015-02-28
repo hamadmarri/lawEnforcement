@@ -1,4 +1,4 @@
-package entities.intelligence;
+package entities.police;
 
 import java.io.Serializable;
 

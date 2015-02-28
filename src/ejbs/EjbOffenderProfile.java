@@ -15,7 +15,7 @@ import javax.persistence.Query;
 import entities.Relation;
 import entities.entries.Person;
 import entities.entries.SuspectPerson;
-import entities.intelligence.OffenderProfile;
+import entities.police.OffenderProfile;
 
 
 /**

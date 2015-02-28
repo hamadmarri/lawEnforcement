@@ -1,8 +1,8 @@
 package developmentUtilities;
 
-import intelligence.FillUpDatabase;
+import intelligence.FillUpDatabaseWithCrimeScenesAndOffenderProfiles;
+import intelligence.FillUpDatabaseWithYourhRiskFactorsAndCriminalRecords;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import entities.Relation;
 import entities.entries.Address;
 import entities.entries.AliasNameOrMoniker;
 import entities.entries.Conveyance;
-import entities.entries.Entry;
+import entities.entries.Crime;
 import entities.entries.Identification;
 import entities.entries.Location;
 import entities.entries.Organization;
@@ -33,8 +33,6 @@ import entities.entries.ThreatAssessment;
 import entities.entries.contacts.CellPhone;
 import entities.entries.contacts.Contact;
 import entities.entries.contacts.Email;
-import entities.entries.files.images.MugShotImage;
-import entities.entries.files.images.PhotographicImage;
 import entities.entries.history.Action;
 import entities.entries.history.History;
 import entities.events.ArrestReport;
@@ -55,7 +53,10 @@ public class EJB_of_test {
 	private EntityManager em;
 
 	@EJB
-	private FillUpDatabase fillUpDatabase;
+	private FillUpDatabaseWithCrimeScenesAndOffenderProfiles fillUpDatabaseWithCSAndOP;
+
+	@EJB
+	private FillUpDatabaseWithYourhRiskFactorsAndCriminalRecords fillUpDatabaseWithYourhRiskFactorsAndCriminalRecords;
 
 
 
@@ -86,9 +87,22 @@ public class EJB_of_test {
 		createInvestigativeGroup_Permission();
 		createMoreInvCasesForMonitorTesting();
 		suspect_person_invC();
-		fillUpDatabase.fillUpData();
+		fillUpDatabaseWithCSAndOP.fillUpData();
 		createNotifications();
+		createCriminalRecord();
 
+		fillUpDatabaseWithYourhRiskFactorsAndCriminalRecords.fillUpData();
+	}
+
+
+
+	private void createCriminalRecord() {
+		Person p = new Person(new PersonName("Matt", "Zoo"), null, null, "Male", null, null, null);
+		Crime c = new Crime(p.getCriminalRecord(), "rapped old women", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[4]);
+
+		em.persist(p);
+		em.persist(c);
 	}
 
 

@@ -100,6 +100,12 @@ public class Person extends Entry {
 	@OneToOne(mappedBy = "person")
 	private SuspectPerson suspectPerson;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private CriminalRecord criminalRecord;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private YouthRiskFactors youthRiskFactors;
+
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
 
@@ -130,6 +136,8 @@ public class Person extends Entry {
 		this.conveyances = new ArrayList<Conveyance>();
 		this.fieldInterviewsAsSubscriber = new ArrayList<FieldInterview>();
 		this.fieldInterviewsAsInCaseOfEmergencyPerson = new ArrayList<FieldInterview>();
+		this.criminalRecord = new CriminalRecord();
+		this.youthRiskFactors = new YouthRiskFactors(this.criminalRecord);
 	}
 
 
@@ -435,6 +443,30 @@ public class Person extends Entry {
 
 	public void setSuspectPerson(SuspectPerson suspectPerson) {
 		this.suspectPerson = suspectPerson;
+	}
+
+
+
+	public CriminalRecord getCriminalRecord() {
+		return criminalRecord;
+	}
+
+
+
+	public void setCriminalRecord(CriminalRecord criminalRecord) {
+		this.criminalRecord = criminalRecord;
+	}
+
+
+
+	public YouthRiskFactors getYouthRiskFactors() {
+		return youthRiskFactors;
+	}
+
+
+
+	public void setYouthRiskFactors(YouthRiskFactors youthRiskFactors) {
+		this.youthRiskFactors = youthRiskFactors;
 	}
 
 

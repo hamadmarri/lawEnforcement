@@ -12,9 +12,9 @@ import javax.faces.bean.ViewScoped;
 
 import ejbs.EjbCrimeScene;
 import ejbs.EjbNeuralNetworkEntity;
-import entities.intelligence.CrimeScene;
 import entities.intelligence.NeuralNetworkEntity;
-import entities.intelligence.OffenderProfile;
+import entities.police.CrimeScene;
+import entities.police.OffenderProfile;
 
 
 @ManagedBean(name = "controllerNeuralNetworkEntity")

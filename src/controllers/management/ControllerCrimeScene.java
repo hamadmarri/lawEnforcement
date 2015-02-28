@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
 import entities.entries.Person;
-import entities.intelligence.CrimeScene;
-import entities.intelligence.OffenderProfile;
+import entities.police.CrimeScene;
+import entities.police.OffenderProfile;
 
 
 /**
