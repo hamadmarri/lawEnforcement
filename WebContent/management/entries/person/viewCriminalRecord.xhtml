@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerCriminalRecord.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+
+	<c:set var="cr" value="${controllerCriminalRecord.criminalRecord}" />
+	<c:set var="included" value="true" />
+	<c:set var="crimes" value="${cr.crimes}" />
+
+	<h1>Criminal Record</h1>
+
+
+	<h2>Criminal Record For</h2>
+	<h:outputLabel
+		value="#{cr.committedBy.personName.lastName}, #{cr.committedBy.personName.firstName}" />
+	<h:link value="view" outcome="viewPerson">
+		<f:param name="id" value="#{cr.committedBy.id}" />
+	</h:link>
+	<br />
+
+
+	<ui:include src="/management/entries/person/crime/listCrimes.xhtml" />
+
+</h:body>
+</html>

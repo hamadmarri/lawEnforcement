@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerCrime.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+
+
+	<h3>Crime</h3>
+	<h:link value="edit" outcome="edit">
+		<f:param name="id" value="#{controllerCrime.crime.id}" />
+		<br />
+	</h:link>
+	<br />
+
+	<h:outputLabel value="id: " />
+	<h:outputLabel value="#{controllerCrime.crime.id}" />
+	<br />
+
+
+	<h:outputLabel value="type of the crime: " />
+	<h:outputLabel value="#{controllerCrime.crime.typeOfCrime}" />
+	<br />
+
+	<h:outputLabel value="description: " />
+	<h:outputLabel value="#{controllerCrime.crime.description}" />
+	<br />
+
+	<h:outputLabel value="date and time: " />
+	<h:outputLabel value="#{controllerCrime.crime.dateAndTime}" />
+	<br />
+
+	<h:outputLabel value="incident report: " />
+	<h:link value="view incident report" outcome="viewIR">
+		<f:param name="id" value="#{controllerCrime.crime.incidentReport.id}" />
+	</h:link>
+	<br />
+
+</h:body>
+</html>

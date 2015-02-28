@@ -179,8 +179,11 @@ public class EJB_of_test {
 
 	private void createCriminalRecord() {
 		Person p = new Person(new PersonName("Matt", "Zoo"), null, null, "Male", null, null, null);
+		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(0);
 		Crime c = new Crime(p.getCriminalRecord(), "rapped old women", Calendar.getInstance().getTime(),
 				Crime.typeOfCrimeSuggestions[4]);
+		
+		c.setIncidentReport(ir);
 
 		p.getYouthRiskFactors().setGangMembership(true);
 		p.getYouthRiskFactors().setAggressiveness(true);

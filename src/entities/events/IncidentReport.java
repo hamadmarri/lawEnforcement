@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import entities.entries.Crime;
 import entities.entries.history.Action;
 import entities.police.InvestigativeCase;
 
@@ -47,6 +48,9 @@ public class IncidentReport extends Event {
 
 	@ManyToMany(mappedBy = "incidentReportsAccordingTo")
 	private List<ArrestReport> arrestReports;
+
+	@OneToMany(mappedBy = "incidentReport")
+	private List<Crime> crimes;
 
 
 
@@ -156,6 +160,27 @@ public class IncidentReport extends Event {
 			this.arrestReports = new ArrayList<ArrestReport>();
 
 		this.arrestReports.add(arrestReport);
+	}
+
+
+
+	public List<Crime> getCrimes() {
+		return crimes;
+	}
+
+
+
+	public void setCrimes(List<Crime> crimes) {
+		this.crimes = crimes;
+	}
+
+
+
+	public void addCrime(Crime c) {
+		if (crimes == null)
+			crimes = new ArrayList<Crime>();
+
+		this.crimes.add(c);
 	}
 
 

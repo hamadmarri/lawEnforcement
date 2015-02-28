@@ -100,7 +100,7 @@
 
 				<h3>Modus operandi</h3>
 				<h:outputLabel value="${controllerPerson.person.modusOperandi}" />
-				
+
 
 				<h3>NCIC fingerprint Classification</h3>
 				<h:outputLabel
@@ -141,6 +141,12 @@
 					<ui:param name="conveyances"
 						value="#{controllerPerson.person.conveyances}"></ui:param>
 				</ui:include>
+
+				<h2>Criminal Record</h2>
+				<h:link value="view" outcome="viewCR">
+					<f:param name="id"
+						value="#{controllerPerson.person.criminalRecord.id}" />
+				</h:link>
 			</h:form>
 
 		</ui:define>

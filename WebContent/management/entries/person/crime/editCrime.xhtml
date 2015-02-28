@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerCrime.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:insert name="editHeader">
+		<h2>Edit Crime</h2>
+	</ui:insert>
+
+
+	<h:link value="cancel" outcome="cancel">
+		<f:param name="id" value="#{controllerCrime.id}" />
+	</h:link>
+
+
+	<h:form>
+
+		<h:outputLabel value="type of the crime: " />
+		<h:inputText value="#{controllerCrime.crime.typeOfCrime}" />
+		<br />
+
+		<h:outputLabel value="description: " />
+		<h:inputTextarea rows="10" cols="60"
+			value="#{controllerCrime.crime.description}" />
+		<br />
+
+		<h:outputLabel value="date and time: " />
+		<p:calendar value="#{controllerCrime.crime.dateAndTime}" />
+		<br />
+
+		<h:outputLabel value="criminal record: " />
+		<h:inputText value="#{controllerCrime.criminalRecordId}" />
+		<br />
+
+		<h:outputLabel value="incident report: " />
+		<h:inputText value="#{controllerCrime.incidentReportId}" />
+		<br />
+
+		<h:commandButton value="save" action="#{controllerCrime.submit}" />
+	</h:form>
+</h:body>
+</html>

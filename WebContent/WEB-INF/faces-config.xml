@@ -61,6 +61,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>viewCR</from-outcome>
+			<to-view-id>/management/entries/person/viewCriminalRecord.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 
 	<!-- ********** Conveyance ********** -->
@@ -1212,6 +1222,8 @@
 
 
 
+
+
 	<!-- ********** OffenderProfile ********** -->
 	<navigation-rule>
 		<from-view-id>/management/police/offenderProfile/editOffenderProfile.xhtml</from-view-id>
@@ -1273,6 +1285,125 @@
 	</navigation-rule>
 
 
+
+	<!-- CriminalRecord -->
+	<navigation-rule>
+		<from-view-id>/management/entries/person/viewCriminalRecord.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>viewPerson</from-outcome>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>view</from-outcome>
+			<to-view-id>
+				/management/entries/person/crime/viewCrime.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>viewIR</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!-- ********** Crime ********** -->
+	<navigation-rule>
+		<from-view-id>/management/entries/person/crime/editCrime.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/entries/person/crime/viewCrime.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerCrime.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/crime/viewCrime.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/entries/person/crime/addCrime.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/entries/person/crime/listCrimes.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/crime/listCrimes.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/entries/person/crime/listCrimes.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>view</from-outcome>
+			<to-view-id>
+				/management/entries/person/crime/viewCrime.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>add</from-outcome>
+			<to-view-id>
+				/management/entries/person/crime/addCrime.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>viewIR</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/entries/person/crime/viewCrime.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/management/entries/person/crime/editCrime.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>viewIR</from-outcome>
+			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- ********** Notification ********** -->
 	<navigation-rule>

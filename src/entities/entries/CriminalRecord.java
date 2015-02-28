@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -11,6 +13,10 @@ import entities.entries.history.Changeable;
 
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "CriminalRecord.findAll", query = "select c from CriminalRecord c"),
+		@NamedQuery(name = "CriminalRecord.findById", query = "select c from CriminalRecord c WHERE c.id = :id"),
+		@NamedQuery(name = "CriminalRecord.findByPersonId", query = "select c from CriminalRecord c WHERE c.committedBy.id = :id") })
 public class CriminalRecord extends Changeable {
 
 	@OneToOne(mappedBy = "criminalRecord")

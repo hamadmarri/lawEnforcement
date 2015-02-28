@@ -7,18 +7,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import entities.Describable;
 import entities.entries.history.Changeable;
+import entities.events.IncidentReport;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "Crime.findAll", query = "select c from Crime c"),
+		@NamedQuery(name = "Crime.findById", query = "select c from Crime c WHERE c.id = :id") })
 public class Crime extends Changeable implements Describable {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	private CriminalRecord criminalRecord;
+	private CriminalRecord criminalRecord; 
 
 	@Lob
 	@Column(length = 20000)
@@ -31,6 +36,9 @@ public class Crime extends Changeable implements Describable {
 
 	public static final String[] typeOfCrimeSuggestions = { "murder", "theft", "fraud", "burglary", "violence",
 			"committingDamage", "disorderlyConduct" };
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private IncidentReport incidentReport;
 
 
 
@@ -96,6 +104,18 @@ public class Crime extends Changeable implements Describable {
 
 	public void setTypeOfCrime(String typeOfCrime) {
 		this.typeOfCrime = typeOfCrime;
+	}
+
+
+
+	public IncidentReport getIncidentReport() {
+		return incidentReport;
+	}
+
+
+
+	public void setIncidentReport(IncidentReport incidentReport) {
+		this.incidentReport = incidentReport;
 	}
 
 
