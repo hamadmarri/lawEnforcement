@@ -1,6 +1,7 @@
 package controllers.intelligence;
 
 import intelligence.neural_network.NeuralNetwork;
+import intelligence.neural_network.trainers.CrimePreventionTrainer;
 import intelligence.neural_network.trainers.OffenderProfileGeneratorTrainerFromDB;
 import intelligence.neural_network.trainers.Trainer;
 
@@ -12,6 +13,11 @@ import javax.faces.bean.ViewScoped;
 
 import ejbs.EjbCrimeScene;
 import ejbs.EjbNeuralNetworkEntity;
+import ejbs.EjbPerson;
+import ejbs.EjbYouthRiskFactors;
+import entities.entries.Crime;
+import entities.entries.Person;
+import entities.entries.YouthRiskFactors;
 import entities.intelligence.NeuralNetworkEntity;
 import entities.police.CrimeScene;
 import entities.police.OffenderProfile;
@@ -28,18 +34,29 @@ public class ControllerNeuralNetworkEntity {
 	@EJB
 	private EjbCrimeScene ejbCrimeScene;
 
-	private NeuralNetworkEntity nne = null;
-	private NeuralNetwork nn;
+	@EJB
+	private EjbYouthRiskFactors ejbYouthRiskFactors;
+
+	@EJB
+	private EjbPerson ejbPerson;
+
+	private NeuralNetworkEntity nneForOffenderProfile = null;
+	private NeuralNetwork nnForOffenderProfile;
+	private NeuralNetworkEntity nneForYouthRisk = null;
+	private NeuralNetwork nnForYouthRisk;
 	private List<CrimeScene> crimeScenes;
+	private List<YouthRiskFactors> yrfs;
 
 	// NN trainer
 	private static Trainer trainer;
 
 	private OffenderProfile suggestedOffenderProfile = null;
 
+	private List<Person> youthInRiskList = null;
 
 
-	public void train() {
+
+	public void trainForOffenderProfile() {
 
 		// NN configuration for number of nodes in each layer
 		int[] config = new int[] { 36, 24, 21 };
@@ -48,27 +65,25 @@ public class ControllerNeuralNetworkEntity {
 
 		// check if it is exist
 		try {
-			nne = ejbNeuralNetworkEntity.getList().get(0);
-			nn = nne.getNeuralNetwork();
-			doTraining();
-			ejbNeuralNetworkEntity.save(nne);
+			nneForOffenderProfile = ejbNeuralNetworkEntity.getList().get(0);
+			nnForOffenderProfile = nneForOffenderProfile.getNeuralNetwork();
+			doTrainingForOffenderProfile();
+			ejbNeuralNetworkEntity.save(nneForOffenderProfile);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			nne = new NeuralNetworkEntity();
-			nn = new NeuralNetwork(config, learningRate, momentum);
-			nne.setNeuralNetwork(nn);
+			nneForOffenderProfile = new NeuralNetworkEntity();
+			nnForOffenderProfile = new NeuralNetwork(config, learningRate, momentum);
+			nneForOffenderProfile.setNeuralNetwork(nnForOffenderProfile);
 
-			doTraining();
-			ejbNeuralNetworkEntity.add(nne);
+			doTrainingForOffenderProfile();
+			ejbNeuralNetworkEntity.add(nneForOffenderProfile);
 		}
-
 	}
 
 
 
-	private void doTraining() {
+	private void doTrainingForOffenderProfile() {
 		crimeScenes = ejbCrimeScene.getList();
-		trainer = new OffenderProfileGeneratorTrainerFromDB(nn, crimeScenes, 50000);
-
+		trainer = new OffenderProfileGeneratorTrainerFromDB(nnForOffenderProfile, crimeScenes, 50000);
 		trainer.train();
 	}
 
@@ -79,11 +94,11 @@ public class ControllerNeuralNetworkEntity {
 			double[] inputs = new double[36];
 			double[] outputs;
 
-			nn = getNne().getNeuralNetwork();
+			nnForOffenderProfile = getNneForOffenderProfile().getNeuralNetwork();
 			CrimeScene.convertCrimeSceneToArray(cs, inputs);
-			nn.setInputValues(inputs);
-			nn.feedForward();
-			outputs = nn.getResults();
+			nnForOffenderProfile.setInputValues(inputs);
+			nnForOffenderProfile.feedForward();
+			outputs = nnForOffenderProfile.getResults();
 
 			suggestedOffenderProfile = OffenderProfile.convertArrayToOffenderProfile(outputs);
 		}
@@ -99,17 +114,112 @@ public class ControllerNeuralNetworkEntity {
 
 
 
-	public NeuralNetworkEntity getNne() {
-		if (nne == null)
-			nne = ejbNeuralNetworkEntity.getList().get(0);
+	public NeuralNetworkEntity getNneForOffenderProfile() {
+		if (nneForOffenderProfile == null)
+			nneForOffenderProfile = ejbNeuralNetworkEntity.getList().get(0);
 
-		return nne;
+		return nneForOffenderProfile;
 	}
 
 
 
-	public void setNne(NeuralNetworkEntity nne) {
-		this.nne = nne;
+	public void setNneForOffenderProfile(NeuralNetworkEntity nne) {
+		this.nneForOffenderProfile = nne;
+	}
+
+
+
+	public void trainForYouthRisk() {
+
+		// NN configuration for number of nodes in each layer
+		int[] config = new int[] { 27, 18, 7 };
+		double learningRate = 0.52;
+		double momentum = 0.15;
+
+		// check if it is exist
+		try {
+			nneForYouthRisk = ejbNeuralNetworkEntity.getList().get(1);
+			nnForYouthRisk = nneForYouthRisk.getNeuralNetwork();
+			doTrainingForYouthRisk();
+			ejbNeuralNetworkEntity.save(nneForYouthRisk);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			nneForYouthRisk = new NeuralNetworkEntity();
+			nnForYouthRisk = new NeuralNetwork(config, learningRate, momentum);
+			nneForYouthRisk.setNeuralNetwork(nnForYouthRisk);
+
+			doTrainingForYouthRisk();
+			ejbNeuralNetworkEntity.add(nneForYouthRisk);
+		}
+
+		updateYouthInRiskPersonsInDB();
+	}
+
+
+
+	private void doTrainingForYouthRisk() {
+		yrfs = ejbYouthRiskFactors.getList();
+		trainer = new CrimePreventionTrainer(nnForYouthRisk, yrfs, 50000);
+		trainer.train();
+	}
+
+
+
+	private void updateYouthInRiskPersonsInDB() {
+
+		List<Person> persons = ejbPerson.getList();
+
+		for (Person p : persons) {
+			YouthRiskFactors yrf = p.getYouthRiskFactors();
+
+			double[] inputs = new double[27];
+			double[] outputs;
+
+			nnForYouthRisk = getNneForYouthRisk().getNeuralNetwork();
+			YouthRiskFactors.convertYouthRiskFactorsToArray(yrf, inputs);
+			nnForYouthRisk.setInputValues(inputs);
+			nnForYouthRisk.feedForward();
+			outputs = nnForYouthRisk.getResults();
+
+			// check if person in risk
+			for (int i = 0; i < 7; i++) {
+				if (Math.round(outputs[i]) == 1) {
+					p.setInRisk(true);
+					p.setRiskType(Crime.convertArrayToCrime(outputs).getTypeOfCrime());
+					ejbPerson.save(p);
+					break;
+				}
+			}
+		}
+	}
+
+
+
+	public List<Person> getYouthInRiskList() {
+		if (youthInRiskList == null)
+			youthInRiskList = ejbYouthRiskFactors.getYouthInRiskList();
+
+		return youthInRiskList;
+	}
+
+
+
+	public void setYouthInRiskList(List<Person> youthInRiskList) {
+		this.youthInRiskList = youthInRiskList;
+	}
+
+
+
+	public NeuralNetworkEntity getNneForYouthRisk() {
+		if (nneForYouthRisk == null)
+			nneForYouthRisk = ejbNeuralNetworkEntity.getList().get(1);
+
+		return nneForYouthRisk;
+	}
+
+
+
+	public void setNneForYouthRisk(NeuralNetworkEntity nneForYouthRisk) {
+		this.nneForYouthRisk = nneForYouthRisk;
 	}
 
 }

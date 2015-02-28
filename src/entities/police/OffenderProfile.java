@@ -386,6 +386,7 @@ public class OffenderProfile implements Serializable {
 
 
 
+	// TODO: may need to be synchronized
 	public static void convertOffenderProfileToArray(OffenderProfile op, double[] outputs) {
 		outputs[0] = op.getArmedServices_PastOrPresent() ? 1 : 0;
 		outputs[1] = op.getAttemptsOfSuicide() ? 1 : 0;
@@ -412,6 +413,7 @@ public class OffenderProfile implements Serializable {
 
 
 
+	// TODO: may need to be synchronized
 	public static OffenderProfile convertArrayToOffenderProfile(double[] outputs) {
 		OffenderProfile op = new OffenderProfile();
 

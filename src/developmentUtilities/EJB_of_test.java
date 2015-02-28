@@ -91,7 +91,88 @@ public class EJB_of_test {
 		createNotifications();
 		createCriminalRecord();
 
+		createYouthInRisk();
+
 		fillUpDatabaseWithYourhRiskFactorsAndCriminalRecords.fillUpData();
+	}
+
+
+
+	/*
+	 * Random names generator http://listofrandomnames.com/index.cfm?generated
+	 */
+	private void createYouthInRisk() {
+		Person p1 = new Person(new PersonName("Nathan", "Puckett"), null, null, "Male", null, null, null);
+		Person p2 = new Person(new PersonName("Liz", "Basch"), null, null, "Female", null, null, null);
+		Person p3 = new Person(new PersonName("Amina", "Lucey"), null, null, "Female", null, null, null);
+		Person p4 = new Person(new PersonName("Israel", "Vandever"), null, null, "Male", null, null, null);
+		Person p5 = new Person(new PersonName("Kanesha", "Ephraim"), null, null, "Female", null, null, null);
+		Person p6 = new Person(new PersonName("Cythia", "Lytle"), null, null, "Female", null, null, null);
+		Person p7 = new Person(new PersonName("Krysten", "Gaeta"), null, null, "Female", null, null, null);
+		Person p8 = new Person(new PersonName("Milford", "Brann"), null, null, "Male", null, null, null);
+		Person p9 = new Person(new PersonName("Lorretta", "Kuzma"), null, null, "Female", null, null, null);
+		Person p10 = new Person(new PersonName("Shanelle", "Kieffer"), null, null, "Female", null, null, null);
+		Person p11 = new Person(new PersonName("Abby", "Kirkwood"), null, null, "Female", null, null, null);
+		Person p12 = new Person(new PersonName("Felice", "Moulder"), null, null, "Female", null, null, null);
+		Person p13 = new Person(new PersonName("Lan", "Alegria"), null, null, "Female", null, null, null);
+		Person p14 = new Person(new PersonName("Alphonso", "Warnke"), null, null, "Male", null, null, null);
+		Person p15 = new Person(new PersonName("Kizzy", "Mounsey"), null, null, "Female", null, null, null);
+		Person p16 = new Person(new PersonName("Sharan", "Chenard"), null, null, "Female", null, null, null);
+		Person p17 = new Person(new PersonName("Latashia", "Guajardo"), null, null, "Female", null, null, null);
+		Person p18 = new Person(new PersonName("Micaela", "Weiner"), null, null, "Female", null, null, null);
+		Person p19 = new Person(new PersonName("Evangeline", "Sinkler"), null, null, "Female", null, null, null);
+		Person p20 = new Person(new PersonName("Denise", "Mcmenamin"), null, null, "Female", null, null, null);
+		Person p21 = new Person(new PersonName("Lenny", "Dilks"), null, null, "Male", null, null, null);
+		Person p22 = new Person(new PersonName("Thaddeus", "Mckelvey"), null, null, "Male", null, null, null);
+		Person p23 = new Person(new PersonName("Oliver", "Peasley"), null, null, "Male", null, null, null);
+		Person p24 = new Person(new PersonName("Trista", "Stubbe"), null, null, "Female", null, null, null);
+		Person p25 = new Person(new PersonName("Mercy", "Buckingham"), null, null, "Female", null, null, null);
+		Person p26 = new Person(new PersonName("Latonya", "Benavides"), null, null, "Female", null, null, null);
+		Person p27 = new Person(new PersonName("Latrina", "Deem"), null, null, "Female", null, null, null);
+		Person p28 = new Person(new PersonName("Gena", "Luebbert"), null, null, "Female", null, null, null);
+		Person p29 = new Person(new PersonName("Keturah", "Drown"), null, null, "Female", null, null, null);
+		Person p30 = new Person(new PersonName("Heriberto", "Kopczynski"), null, null, "Male", null, null, null);
+
+		p1.getYouthRiskFactors().setPoverty(true);
+		p4.getYouthRiskFactors().setGangMembership(true);
+		p4.getYouthRiskFactors().setAcademicFailure(true);
+		p4.getYouthRiskFactors().setParentalAttitudesFavorableToSubstanceUseAndViolence(true);
+		p14.getYouthRiskFactors().setDelinquentPeers(true);
+		p23.getYouthRiskFactors().setPregnancyAndDeliveryComplications(true);
+		p30.getYouthRiskFactors().setChildMaltreatment(true);
+		p30.getYouthRiskFactors().setParentalAttitudesFavorableToSubstanceUseAndViolence(true);
+		p30.getYouthRiskFactors().setAvailabilityOfDrugsAndFirearms(true);
+
+		em.persist(p1);
+		em.persist(p2);
+		em.persist(p3);
+		em.persist(p4);
+		em.persist(p5);
+		em.persist(p6);
+		em.persist(p7);
+		em.persist(p8);
+		em.persist(p9);
+		em.persist(p10);
+		em.persist(p11);
+		em.persist(p12);
+		em.persist(p13);
+		em.persist(p14);
+		em.persist(p15);
+		em.persist(p16);
+		em.persist(p17);
+		em.persist(p18);
+		em.persist(p19);
+		em.persist(p20);
+		em.persist(p21);
+		em.persist(p22);
+		em.persist(p23);
+		em.persist(p24);
+		em.persist(p25);
+		em.persist(p26);
+		em.persist(p27);
+		em.persist(p28);
+		em.persist(p29);
+		em.persist(p30);
 	}
 
 
@@ -100,6 +181,9 @@ public class EJB_of_test {
 		Person p = new Person(new PersonName("Matt", "Zoo"), null, null, "Male", null, null, null);
 		Crime c = new Crime(p.getCriminalRecord(), "rapped old women", Calendar.getInstance().getTime(),
 				Crime.typeOfCrimeSuggestions[4]);
+
+		p.getYouthRiskFactors().setGangMembership(true);
+		p.getYouthRiskFactors().setAggressiveness(true);
 
 		em.persist(p);
 		em.persist(c);

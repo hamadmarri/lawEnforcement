@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+<h:body>
+
+	<h1>Youth In Risk List</h1>
+
+	<h:dataTable var="y"
+		value="#{controllerNeuralNetworkEntity.youthInRiskList}">
+
+		<h:column>
+			<f:facet name="header">view</f:facet>
+			<h:link value="view"
+					outcome="/management/entries/person/viewPerson.xhtml?id=#{y.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">id</f:facet>
+			<h:outputLabel value="#{y.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">Name</f:facet>
+			<h:outputLabel
+				value="#{y.personName.lastName}, #{y.personName.firstName}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Type of Risk</f:facet>
+			<h:outputLabel
+				value="#{y.riskType}" />
+		</h:column>
+
+	</h:dataTable>
+
+</h:body>
+</html>

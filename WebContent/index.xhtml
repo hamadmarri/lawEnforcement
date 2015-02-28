@@ -67,6 +67,7 @@
 		<li><h:link value="Notifications"
 				outcome="/management/police/notification/listNotifications.xhtml" /></li>
 		<li><h:link value="Admin" outcome="/admin/admin.xhtml" /></li>
+		<li><h:link value="View Youth in Risk" outcome="/monitoring/youthinrisk.xhtml" /></li>
 	</ul>
 
 	<br />
@@ -77,8 +78,13 @@
 		<h:commandButton action="#{controllerOfTesting.test()}"
 			value="fill up database" />
 
-		<h:commandButton action="#{controllerNeuralNetworkEntity.train}"
-			value="train NN" />
+		<h:commandButton
+			action="#{controllerNeuralNetworkEntity.trainForOffenderProfile}"
+			value="train NN For Offender Profile" />
+
+		<h:commandButton
+			action="#{controllerNeuralNetworkEntity.trainForYouthRisk}"
+			value="train NN For Youth in Risk" />
 	</h:form>
 
 </h:body>

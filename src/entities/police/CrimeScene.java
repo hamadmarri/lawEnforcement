@@ -645,7 +645,7 @@ public class CrimeScene implements Serializable {
 	}
 
 
-
+	// TODO: may need to be synchronized
 	public static void convertCrimeSceneToArray(CrimeScene cs, double[] inputs) {
 		inputs[0] = cs.getAnalPenetration() ? 1 : 0;
 		inputs[1] = cs.getArsonToCrimeSceneOrBody() ? 1 : 0;

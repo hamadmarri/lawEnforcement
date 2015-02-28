@@ -35,11 +35,14 @@ public class FillUpDatabaseWithYourhRiskFactorsAndCriminalRecords {
 
 	public void createRecord(YouthRiskFactors yrf, CriminalRecord cr, int numberOfYrfVariables) {
 		int randomYrfVariable = 0; // max 26
-		int randomCrVariable = getRandom(0, 6); // max 6
+		int randomCrVariable = getRandom(0, 7); // max 7
 		int oldRandom = 0;
-		Crime c;
+		Crime c = new Crime();
 
 		for (int j = 0; j < numberOfYrfVariables; j++) {
+
+			c = null;
+
 			while (oldRandom == randomYrfVariable)
 				randomYrfVariable = getRandom(0, 26);
 
@@ -160,12 +163,18 @@ public class FillUpDatabaseWithYourhRiskFactorsAndCriminalRecords {
 			oldRandom = randomYrfVariable;
 		}
 
-		c = new Crime(cr, "", null, Crime.typeOfCrimeSuggestions[randomCrVariable]);
-		cr.addCrime(c);
-		
+		// if there is a risk, 7 means no risk
+		if (randomCrVariable != 7) {
+			c = new Crime(cr, "", null, Crime.typeOfCrimeSuggestions[randomCrVariable]);
+			cr.addCrime(c);
+		}
+
 		// save to database
 		em.persist(cr);
-		em.persist(c);
+		
+		if (c != null)
+			em.persist(c);
+
 		em.persist(yrf);
 	}
 

@@ -6,10 +6,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "YouthRiskFactors.findAll", query = "select y from YouthRiskFactors y"),
+		@NamedQuery(name = "YouthRiskFactors.findById", query = "select y from YouthRiskFactors y WHERE y.id = :id") })
 public class YouthRiskFactors implements Serializable {
 
 	private static final long serialVersionUID = 4978442941135304567L;
@@ -483,6 +487,7 @@ public class YouthRiskFactors implements Serializable {
 
 
 
+	// TODO: may need to be synchronized
 	public static void convertYouthRiskFactorsToArray(YouthRiskFactors yrf, double[] factorsArray) {
 		factorsArray[0] = yrf.getAcademicFailure() ? 1 : 0;
 		factorsArray[1] = yrf.getAggressiveness() ? 1 : 0;

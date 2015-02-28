@@ -32,8 +32,6 @@ public class Crime extends Changeable implements Describable {
 	public static final String[] typeOfCrimeSuggestions = { "murder", "theft", "fraud", "burglary", "violence",
 			"committingDamage", "disorderlyConduct" };
 
-	
-
 
 
 	public Crime() {
@@ -102,7 +100,29 @@ public class Crime extends Changeable implements Describable {
 
 
 
+	// TODO: may need to be synchronized
+	public static void convertCrimeToArray(Crime c, double[] cirmeAsArray) {
 
+		String type = c.getTypeOfCrime();
+
+		for (int i = 0; i < 7; i++)
+			cirmeAsArray[i] = type.equals(typeOfCrimeSuggestions[i]) ? 1 : 0;
+	}
+
+
+
+	public synchronized static Crime convertArrayToCrime(double[] cirmeAsArray) {
+		Crime c = new Crime();
+
+		for (int i = 0; i < 7; i++) {
+			if (Math.round(cirmeAsArray[i]) == 1) {
+				c.setTypeOfCrime(Crime.typeOfCrimeSuggestions[i]);
+				break;
+			}
+		}
+
+		return c;
+	}
 
 
 

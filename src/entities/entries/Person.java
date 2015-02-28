@@ -106,6 +106,9 @@ public class Person extends Entry {
 	@OneToOne(cascade = CascadeType.ALL)
 	private YouthRiskFactors youthRiskFactors;
 
+	private boolean inRisk;
+	private String riskType;
+
 	private static String[] NCIC_fingerprintClassificationSuggestions = { "AA", "TT", "##50", "##", "PI", "PM", "PO",
 			"CI", "CM", "CO", "dI", "dM", "dO", "XI", "XM", "XO", "XX", "SR" };
 
@@ -138,6 +141,8 @@ public class Person extends Entry {
 		this.fieldInterviewsAsInCaseOfEmergencyPerson = new ArrayList<FieldInterview>();
 		this.criminalRecord = new CriminalRecord();
 		this.youthRiskFactors = new YouthRiskFactors(this.criminalRecord);
+		this.inRisk = false;
+		this.riskType = new String();
 	}
 
 
@@ -467,6 +472,30 @@ public class Person extends Entry {
 
 	public void setYouthRiskFactors(YouthRiskFactors youthRiskFactors) {
 		this.youthRiskFactors = youthRiskFactors;
+	}
+
+
+
+	public boolean isInRisk() {
+		return inRisk;
+	}
+
+
+
+	public void setInRisk(boolean inRisk) {
+		this.inRisk = inRisk;
+	}
+
+
+
+	public String getRiskType() {
+		return riskType;
+	}
+
+
+
+	public void setRiskType(String riskType) {
+		this.riskType = riskType;
 	}
 
 
