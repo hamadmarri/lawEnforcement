@@ -517,31 +517,31 @@ public class Person extends Entry {
 			this.getHistory().addAction(
 					new Action("date of birth", this.dateOfBirth.toString(), oldP.dateOfBirth.toString()));
 
-		if (!this.birthPlace.equals(oldP.birthPlace))
+		if (this.birthPlace != null && !this.birthPlace.equals(oldP.birthPlace))
 			this.getHistory().addAction(new Action("birth place", this.birthPlace, oldP.birthPlace));
 
-		if (!this.citizenship.equals(oldP.citizenship))
+		if (this.citizenship != null && !this.citizenship.equals(oldP.citizenship))
 			this.getHistory().addAction(new Action("citizenship", this.citizenship, oldP.citizenship));
 
-		if (!this.modusOperandi.equals(oldP.modusOperandi))
+		if (this.modusOperandi != null && !this.modusOperandi.equals(oldP.modusOperandi))
 			this.getHistory().addAction(new Action("modusOperandi", this.modusOperandi, oldP.modusOperandi));
 
-		if (!this.NCIC_fingerprintClassification.equals(oldP.NCIC_fingerprintClassification))
+		if (this.NCIC_fingerprintClassification != null && !this.NCIC_fingerprintClassification.equals(oldP.NCIC_fingerprintClassification))
 			this.getHistory().addAction(
 					new Action("NCIC fingerprint classification", this.NCIC_fingerprintClassification,
 							oldP.NCIC_fingerprintClassification));
 
-		if (!this.physicalCharacteristic.isEqual(oldP.physicalCharacteristic))
+		if (this.physicalCharacteristic != null && !this.physicalCharacteristic.isEqual(oldP.physicalCharacteristic))
 			this.getHistory().addAction(
 					new Action("physical characteristic", this.physicalCharacteristic.toString(),
 							oldP.physicalCharacteristic.toString()));
 
-		if (!this.threatAssessment.getThreatAssessmentLevel().equals(oldP.threatAssessment.getThreatAssessmentLevel()))
+		if (this.threatAssessment != null && !this.threatAssessment.getThreatAssessmentLevel().equals(oldP.threatAssessment.getThreatAssessmentLevel()))
 			this.getHistory().addAction(
 					new Action("threat assessment", this.threatAssessment.getThreatAssessmentLevel(),
 							oldP.threatAssessment.getThreatAssessmentLevel()));
 
-		if (!this.race.getRace().equals(oldP.race.getRace()))
+		if (this.race != null && !this.race.getRace().equals(oldP.race.getRace()))
 			this.getHistory().addAction(new Action("race", this.race.getRace(), oldP.race.getRace()));
 
 		if (this.identifications.size() != oldP.identifications.size()) {

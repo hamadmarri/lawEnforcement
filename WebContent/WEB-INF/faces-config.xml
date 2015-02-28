@@ -71,6 +71,16 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>viewYRF</from-outcome>
+			<to-view-id>/management/entries/person/youthRiskFactors/viewYouthRiskFactors.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 
 	<!-- ********** Conveyance ********** -->
@@ -1396,6 +1406,45 @@
 		<navigation-case>
 			<from-outcome>viewIR</from-outcome>
 			<to-view-id>/management/events/incidentReport/viewIncidentReport.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!-- Youth Risk Factors -->
+	<navigation-rule>
+		<from-view-id>/management/entries/person/youthRiskFactors/editYouthRiskFactors.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/management/entries/person/youthRiskFactors/viewYouthRiskFactors.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerPerson.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/youthRiskFactors/viewYouthRiskFactors.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/entries/person/youthRiskFactors/viewYouthRiskFactors.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/management/entries/person/youthRiskFactors/editYouthRiskFactors.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>

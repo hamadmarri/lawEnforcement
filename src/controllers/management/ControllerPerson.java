@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import entities.entries.AliasNameOrMoniker;
 import entities.entries.Person;
 import entities.entries.ScarMarkTattoo;
+import entities.entries.YouthRiskFactors;
 
 
 /**
@@ -129,6 +130,12 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 
 	public void setNewScarMarkTattoo(ScarMarkTattoo newScarMarkTattoo) {
 		this.newScarMarkTattoo = newScarMarkTattoo;
+	}
+
+
+
+	public YouthRiskFactors getYouthRiskFactors() {
+		return getPerson().getYouthRiskFactors();
 	}
 
 }

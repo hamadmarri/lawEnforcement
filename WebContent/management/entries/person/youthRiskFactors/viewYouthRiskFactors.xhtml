@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerPerson.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+
+	<ui:composition>
+
+		<h3>Youth Risk Factors</h3>
+
+		<h:link value="edit" outcome="edit">
+			<f:param name="id" value="#{controllerPerson.id}" />
+			<br />
+		</h:link>
+		<br />
+
+		<h:outputLabel value="id: " />
+		<h:outputLabel value="#{controllerPerson.youthRiskFactors.id}" />
+		<br />
+
+
+		<h2>Individual factors</h2>
+		<h:outputLabel value="pregnancyAndDeliveryComplications: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.pregnancyAndDeliveryComplications}" />
+		<br />
+
+
+		<h:outputLabel value="lowRestingHeartRate: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.lowRestingHeartRate}" />
+		<br />
+
+
+		<h:outputLabel value="internalizingDisorders: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.internalizingDisorders}" />
+		<br />
+
+
+		<h:outputLabel
+			value="hyperactivityConcentrationProblems_Restlessness_RiskTaking: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.hyperactivityConcentrationProblems_Restlessness_RiskTaking}" />
+		<br />
+
+
+		<h:outputLabel value="aggressiveness: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.aggressiveness}" />
+		<br />
+
+
+		<h:outputLabel value="earlyInitiationOfViolentBehavior: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.earlyInitiationOfViolentBehavior}" />
+		<br />
+
+
+		<h:outputLabel value="involvementInOtherFormsOfAntisocialBehavior: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.involvementInOtherFormsOfAntisocialBehavior}" />
+		<br />
+
+
+		<h:outputLabel
+			value="beliefs_AttitudesFavorableToDeviantOrAntisocialBehavior: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.beliefs_AttitudesFavorableToDeviantOrAntisocialBehavior}" />
+		<br />
+
+
+		<h2>Family factors</h2>
+		<h:outputLabel value="parentalCriminality: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.parentalCriminality}" />
+		<br />
+
+
+		<h:outputLabel value="childMaltreatment: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.childMaltreatment}" />
+		<br />
+
+
+		<h:outputLabel value="poorFamilyManagementPractices: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.poorFamilyManagementPractices}" />
+		<br />
+
+
+		<h:outputLabel value="lowLevelsOfParentalInvolvement: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.lowLevelsOfParentalInvolvement}" />
+		<br />
+
+
+		<h:outputLabel value="poorFamilyBondingAndFamilyConflict: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.poorFamilyBondingAndFamilyConflict}" />
+		<br />
+
+
+		<h:outputLabel
+			value="parentalAttitudesFavorableToSubstanceUseAndViolence: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.parentalAttitudesFavorableToSubstanceUseAndViolence}" />
+		<br />
+
+
+		<h:outputLabel value="parentchildSeparation: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.parentchildSeparation}" />
+		<br />
+
+		<h2>School factors</h2>
+		<h:outputLabel value="academicFailure: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.academicFailure}" />
+		<br />
+
+
+		<h:outputLabel value="lowBondingToSchool: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.lowBondingToSchool}" />
+		<br />
+
+
+		<h:outputLabel value="truancyAndDroppingOutOfSchool: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.truancyAndDroppingOutOfSchool}" />
+		<br />
+
+
+		<h:outputLabel value="frequentSchoolTransitions: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.frequentSchoolTransitions}" />
+		<br />
+
+		<h2>Peer-related factors</h2>
+		<h:outputLabel value="delinquentSiblings: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.delinquentSiblings}" />
+		<br />
+
+		<h:outputLabel value="delinquentPeers: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.delinquentPeers}" />
+		<br />
+
+		<h:outputLabel value="gangMembership: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.gangMembership}" />
+		<br />
+
+
+		<h2>Community and neighborhood factors</h2>
+		<h:outputLabel value="poverty: " />
+		<h:outputLabel value="#{controllerPerson.youthRiskFactors.poverty}" />
+		<br />
+
+		<h:outputLabel value="communityDisorganization: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.communityDisorganization}" />
+		<br />
+
+		<h:outputLabel value="availabilityOfDrugsAndFirearms: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.availabilityOfDrugsAndFirearms}" />
+		<br />
+
+		<h:outputLabel value="neighborhoodAdultsInvolvedInCrime: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.neighborhoodAdultsInvolvedInCrime}" />
+		<br />
+
+		<h:outputLabel value="exposureToViolenceAndRacialPrejudice: " />
+		<h:outputLabel
+			value="#{controllerPerson.youthRiskFactors.exposureToViolenceAndRacialPrejudice}" />
+		<br />
+
+
+	</ui:composition>
+
+</h:body>
+</html>

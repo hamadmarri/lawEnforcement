@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerPerson.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:insert name="editHeader">
+		<h2>Edit Youth Risk Factors</h2>
+	</ui:insert>
+
+
+	<h:link value="cancel" outcome="cancel">
+		<f:param name="id" value="#{controllerPerson.id}" />
+	</h:link>
+
+
+	<h:form>
+
+		<h2>Individual factors</h2>
+		<h:outputLabel value="pregnancyAndDeliveryComplications: " />
+		<h:selectOneRadio id="selectOneRadio1"
+			value="#{controllerPerson.youthRiskFactors.pregnancyAndDeliveryComplications}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="lowRestingHeartRate: " />
+		<h:selectOneRadio id="selectOneRadio2"
+			value="#{controllerPerson.youthRiskFactors.lowRestingHeartRate}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="internalizingDisorders: " />
+		<h:selectOneRadio id="selectOneRadio3"
+			value="#{controllerPerson.youthRiskFactors.internalizingDisorders}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel
+			value="hyperactivityConcentrationProblems_Restlessness_RiskTaking: " />
+		<h:selectOneRadio id="selectOneRadio4"
+			value="#{controllerPerson.youthRiskFactors.hyperactivityConcentrationProblems_Restlessness_RiskTaking}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="aggressiveness: " />
+		<h:selectOneRadio id="selectOneRadio5"
+			value="#{controllerPerson.youthRiskFactors.aggressiveness}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="earlyInitiationOfViolentBehavior: " />
+		<h:selectOneRadio id="selectOneRadio6"
+			value="#{controllerPerson.youthRiskFactors.earlyInitiationOfViolentBehavior}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="involvementInOtherFormsOfAntisocialBehavior: " />
+		<h:selectOneRadio id="selectOneRadio7"
+			value="#{controllerPerson.youthRiskFactors.involvementInOtherFormsOfAntisocialBehavior}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h2>Family factors</h2>
+		<h:outputLabel
+			value="beliefs_AttitudesFavorableToDeviantOrAntisocialBehavior: " />
+		<h:selectOneRadio id="selectOneRadio8"
+			value="#{controllerPerson.youthRiskFactors.beliefs_AttitudesFavorableToDeviantOrAntisocialBehavior}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="parentalCriminality: " />
+		<h:selectOneRadio id="selectOneRadio9"
+			value="#{controllerPerson.youthRiskFactors.parentalCriminality}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="childMaltreatment: " />
+		<h:selectOneRadio id="selectOneRadio10"
+			value="#{controllerPerson.youthRiskFactors.childMaltreatment}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="poorFamilyManagementPractices: " />
+		<h:selectOneRadio id="selectOneRadio11"
+			value="#{controllerPerson.youthRiskFactors.poorFamilyManagementPractices}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="lowLevelsOfParentalInvolvement: " />
+		<h:selectOneRadio id="selectOneRadio12"
+			value="#{controllerPerson.youthRiskFactors.lowLevelsOfParentalInvolvement}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="poorFamilyBondingAndFamilyConflict: " />
+		<h:selectOneRadio id="selectOneRadio13"
+			value="#{controllerPerson.youthRiskFactors.poorFamilyBondingAndFamilyConflict}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel
+			value="parentalAttitudesFavorableToSubstanceUseAndViolence: " />
+		<h:selectOneRadio id="selectOneRadio14"
+			value="#{controllerPerson.youthRiskFactors.parentalAttitudesFavorableToSubstanceUseAndViolence}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="parentchildSeparation: " />
+		<h:selectOneRadio id="selectOneRadio15"
+			value="#{controllerPerson.youthRiskFactors.parentchildSeparation}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h2>School factors</h2>
+		<h:outputLabel value="academicFailure: " />
+		<h:selectOneRadio id="selectOneRadio16"
+			value="#{controllerPerson.youthRiskFactors.academicFailure}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="lowBondingToSchool: " />
+		<h:selectOneRadio id="selectOneRadio17"
+			value="#{controllerPerson.youthRiskFactors.lowBondingToSchool}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="truancyAndDroppingOutOfSchool: " />
+		<h:selectOneRadio id="selectOneRadio18"
+			value="#{controllerPerson.youthRiskFactors.truancyAndDroppingOutOfSchool}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="frequentSchoolTransitions: " />
+		<h:selectOneRadio id="selectOneRadio19"
+			value="#{controllerPerson.youthRiskFactors.frequentSchoolTransitions}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h2>Peer-related factors</h2>
+		<h:outputLabel value="delinquentSiblings: " />
+		<h:selectOneRadio id="selectOneRadio20"
+			value="#{controllerPerson.youthRiskFactors.delinquentSiblings}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<h:outputLabel value="delinquentPeers: " />
+		<h:selectOneRadio id="selectOneRadio21"
+			value="#{controllerPerson.youthRiskFactors.delinquentPeers}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h:outputLabel value="gangMembership: " />
+		<h:selectOneRadio id="selectOneRadio22"
+			value="#{controllerPerson.youthRiskFactors.gangMembership}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h2>Community and neighborhood factors</h2>
+		<h:outputLabel value="poverty: " />
+		<h:selectOneRadio id="selectOneRadio23"
+			value="#{controllerPerson.youthRiskFactors.poverty}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h:outputLabel value="communityDisorganization: " />
+		<h:selectOneRadio id="selectOneRadio24"
+			value="#{controllerPerson.youthRiskFactors.communityDisorganization}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h:outputLabel value="availabilityOfDrugsAndFirearms: " />
+		<h:selectOneRadio id="selectOneRadio25"
+			value="#{controllerPerson.youthRiskFactors.availabilityOfDrugsAndFirearms}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h:outputLabel value="neighborhoodAdultsInvolvedInCrime: " />
+		<h:selectOneRadio id="selectOneRadio26"
+			value="#{controllerPerson.youthRiskFactors.neighborhoodAdultsInvolvedInCrime}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+		<h:outputLabel value="exposureToViolenceAndRacialPrejudice: " />
+		<h:selectOneRadio id="selectOneRadio27"
+			value="#{controllerPerson.youthRiskFactors.exposureToViolenceAndRacialPrejudice}">
+			<f:selectItem itemLabel="true" itemValue="#{true}" />
+			<f:selectItem itemLabel="false" itemValue="#{false}" />
+		</h:selectOneRadio>
+		<br />
+
+
+		<br />
+		<h:commandButton value="save" action="#{controllerPerson.submit}" />
+	</h:form>
+</h:body>
+</html>
