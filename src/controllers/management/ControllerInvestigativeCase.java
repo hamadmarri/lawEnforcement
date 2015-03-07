@@ -9,14 +9,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import controllers.profile.ControllerProfile;
 import security.Authorizable;
+import controllers.profile.ControllerProfile;
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
 import entities.events.IncidentReport;
 import entities.police.CrimeScene;
 import entities.police.InvestigativeCase;
-import entities.police.Investigator;
 import entities.police.Notification;
 import entities.police.Officer;
 

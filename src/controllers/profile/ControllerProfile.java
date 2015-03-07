@@ -47,7 +47,11 @@ public class ControllerProfile {
 
 		this.userId = Long.toString(userSessionController.getProfileId());
 
-		this.authorizable = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId));
+		try {
+			this.authorizable = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId));
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("profile id is invalid");
+		}
 
 		if (this.authorizable.getType().equals("Officer")) {
 			isOfficer = true;

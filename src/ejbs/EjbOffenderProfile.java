@@ -172,6 +172,8 @@ public class EjbOffenderProfile {
 		if (op.getTurnedSelfIntoPolice())
 			parameters.append("(lower(p.description) LIKE :turnedSelfIntoPolice) OR ");
 
+		// TODO: change all checking criminal record from p.description to check
+		// the criminal records
 		if (op.getCriminalRecordOfTheft())
 			parameters.append("(lower(p.description) LIKE :criminalRecordOfTheft) OR ");
 

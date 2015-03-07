@@ -14,16 +14,16 @@
 </h:head>
 
 <h:body>
-	<ui:composition template="/management/view.xhtml">	
+	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relatable"
-				value="#{controllerConveyance.conveyance}" />
+			<c:set var="relatable" value="#{controllerConveyance.conveyance}" />
 			<c:set var="included" value="true" />
 
 			<h2>Conveyance</h2>
 
-			<h:link value="edit"
-				outcome="editConveyance.xhtml?id=#{controllerConveyance.id}" />
+			<h:link value="edit" outcome="edit">
+				<f:param name="id" value="#{controllerConveyance.id}" />
+			</h:link>
 			<br />
 
 			<h:outputLabel value="Vehicle identification number" />
