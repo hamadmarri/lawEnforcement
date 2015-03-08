@@ -52,11 +52,25 @@
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 
-			<!-- Logout button -->
-			<h:form styleClass="navbar-form navbar-right">
-				<h:commandButton styleClass="btn"
-					action="#{usersGroupsController.logout()}" value="Logout" />
-			</h:form>
+
+			<div class="navbar-form navbar-right">
+				<ul class=" nav-pills" role="tablist">
+					<!-- Login -->
+					<li role="presentation"><h:link styleClass="btn" value="Login"
+							outcome="/security/login.xhtml" /></li>
+
+					<!-- Logout button -->
+					<h:form style="display: inline;">
+						<h:commandButton styleClass="btn"
+							action="#{usersGroupsController.logout()}" value="Logout" />
+					</h:form>
+
+					<li role="presentation"><h:link styleClass="btn"
+							value="Profile" outcome="/profile/viewProfile.xhtml">
+							<span class="badge">3</span>
+						</h:link></li>
+				</ul>
+			</div>
 		</div>
 		<!--/.navbar-collapse -->
 	</div>

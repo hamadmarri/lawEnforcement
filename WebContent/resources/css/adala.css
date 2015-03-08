@@ -7,3 +7,15 @@ body {
 .adala-template {
 	padding: 40px 15px;
 }
+
+.no-padding {
+	padding: 0px !important;
+}
+
+.no-round-corneners {
+	border-radius: 0px !important;
+}
+
+.no-border {
+	border: none;
+}

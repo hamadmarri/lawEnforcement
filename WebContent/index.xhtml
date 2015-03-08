@@ -18,76 +18,140 @@
 		<ui:define name="title">Adala</ui:define>
 		<ui:define name="content">
 
-			<div class="jumbotron">
-				<div class="container">
-					<h1>Hello, world!</h1>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called a jumbotron and three
-						supporting pieces of content. Use it as a starting point to create
-						something more unique.</p>
-					<p>
-						<a class="btn btn-primary btn-lg" href="#" role="button">Learn
-							more »</a>
-					</p>
+			<div class="container">
+				<div class="page-header">
+					<h4>Home</h4>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Master Indices</h3>
+							</div>
+							<div class="panel-body no-padding">
+								<h:link styleClass="list-group-item no-border" value="Persons"
+									outcome="/management/entries/person/listPersons.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Organizations"
+									outcome="/management/entries/organization/listOrganizations.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Conveyances"
+									outcome="/management/entries/conveyance/listConveyances.xhtml" />
+								<h:link styleClass="list-group-item no-border" value="Addresses"
+									outcome="/management/entries/address/listAddresses.xhtml" />
+								<h:link styleClass="list-group-item no-border" value="Locations"
+									outcome="/management/entries/location/listLocations.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Properties"
+									outcome="/management/entries/property/listProperties.xhtml" />
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Management</h3>
+							</div>
+							<div class="panel-body no-padding">
+								<h:link styleClass="list-group-item no-border"
+									value="Permissions"
+									outcome="/management/edit/permission/listPermissions.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Admin login" outcome="/admin/admin.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="View Youth in Risk"
+									outcome="/monitoring/youthinrisk.xhtml" />
+							</div>
+						</div>
+					</div>
+					<!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Permits and Reports</h3>
+							</div>
+							<div class="panel-body no-padding">
+								<h:link styleClass="list-group-item no-border"
+									value="Arrest Reports"
+									outcome="/management/events/arrestReport/listArrestReports.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Incident Reports"
+									outcome="/management/events/incidentReport/listIncidentReports.xhtml" />
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Monitoring</h3>
+							</div>
+							<div class="panel-body no-padding">
+								<h:link styleClass="list-group-item no-border"
+									value="Monitoring" outcome="/monitoring/main.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Show City Map" outcome="/monitoring/showMap.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="History Log"
+									outcome="/management/history/listHistories.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Uploaded Files"
+									outcome="/management/entries/entryFile/listEntryFiles.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Indices Relations"
+									outcome="/management/relation/listRelations.xhtml" />
+							</div>
+						</div>
+					</div>
+					<!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Department</h3>
+							</div>
+							<div class="panel-body no-padding">
+								<h:link styleClass="list-group-item no-border" value="Officers"
+									outcome="/management/police/officer/listOfficers.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Investigators"
+									outcome="/management/police/investigator/listInvestigators.xhtml" />
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Investigation</h3>
+							</div>
+							<div class="panel-body no-padding">
+								<h:link styleClass="list-group-item no-border"
+									value="InvestigativeCases"
+									outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Field Interviews"
+									outcome="/management/fieldInterview/listFieldInterviews.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Activities"
+									outcome="/management/police/investigativeCase/activity/listActivities.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Crime Records"
+									outcome="/management/entries/person/crime/listCrimes.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="InvestigativeGroups"
+									outcome="/management/police/investigativeGroup/listInvestigativeGroups.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Suspect Persons"
+									outcome="/management/entries/suspectPerson/listSuspectPersons.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Crime Scenes"
+									outcome="/management/police/crimeScene/listCrimeScenes.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Offender Profiles"
+									outcome="/management/police/offenderProfile/listOffenderProfiles.xhtml" />
+							</div>
+						</div>
+					</div>
+					<!-- /.col-sm-4 -->
 				</div>
 			</div>
 
 			<ul>
-				<li><h:link value="Login" outcome="/security/login.xhtml" /></li>
-				<li><h:link value="Addresses"
-						outcome="/management/entries/address/listAddresses.xhtml" /></li>
-				<li><h:link value="Conveyances"
-						outcome="/management/entries/conveyance/listConveyances.xhtml" /></li>
-				<li><h:link value="Locations"
-						outcome="/management/entries/location/listLocations.xhtml" /></li>
-				<li><h:link value="Organizations"
-						outcome="/management/entries/organization/listOrganizations.xhtml" /></li>
-				<li><h:link value="Persons"
-						outcome="/management/entries/person/listPersons.xhtml" /></li>
-				<li><h:link value="Property"
-						outcome="/management/entries/property/listProperties.xhtml" /></li>
-				<li><h:link value="Relations"
-						outcome="/management/relation/listRelations.xhtml" /></li>
-				<li><h:link value="Arrest Reportss"
-						outcome="/management/events/arrestReport/listArrestReports.xhtml" /></li>
-				<li><h:link value="Incident Reports"
-						outcome="/management/events/incidentReport/listIncidentReports.xhtml" /></li>
-				<li><h:link value="Field Interviews"
-						outcome="/management/fieldInterview/listFieldInterviews.xhtml" /></li>
-				<li><h:link value="Suspect Persons"
-						outcome="/management/entries/suspectPerson/listSuspectPersons.xhtml" /></li>
-				<li><h:link value="Officers"
-						outcome="/management/police/officer/listOfficers.xhtml" /></li>
-				<li><h:link value="Investigators"
-						outcome="/management/police/investigator/listInvestigators.xhtml" /></li>
-				<li><h:link value="InvestigativeCases"
-						outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" /></li>
-				<li><h:link value="Crimes"
-						outcome="/management/entries/person/crime/listCrimes.xhtml" /></li>
-				<li><h:link value="Crime Scenes"
-						outcome="/management/police/crimeScene/listCrimeScenes.xhtml" /></li>
-				<li><h:link value="Offender Profiles"
-						outcome="/management/police/offenderProfile/listOffenderProfiles.xhtml" /></li>
-				<li><h:link value="Activities"
-						outcome="/management/police/investigativeCase/activity/listActivities.xhtml" /></li>
-				<li><h:link value="Permissions"
-						outcome="/management/edit/permission/listPermissions.xhtml" /></li>
-				<li><h:link value="InvestigativeGroups"
-						outcome="/management/police/investigativeGroup/listInvestigativeGroups.xhtml" /></li>
-				<li><h:link value="EntryFile"
-						outcome="/management/entries/entryFile/listEntryFiles.xhtml" /></li>
-				<li><h:link value="History"
-						outcome="/management/history/listHistories.xhtml" /></li>
-				<li><h:link value="Monitoring" outcome="/monitoring/main.xhtml" /></li>
-				<li><h:link value="Show Map"
-						outcome="/monitoring/showMap.xhtml" /></li>
-				<li><h:link value="Profile"
-						outcome="/profile/viewProfile.xhtml" /></li>
+				<li><h:link /></li>
 				<li><h:link value="Notifications"
 						outcome="/management/police/notification/listNotifications.xhtml" /></li>
-				<li><h:link value="Admin" outcome="/admin/admin.xhtml" /></li>
-				<li><h:link value="View Youth in Risk"
-						outcome="/monitoring/youthinrisk.xhtml" /></li>
 			</ul>
 
 			<br />
