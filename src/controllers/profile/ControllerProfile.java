@@ -11,6 +11,7 @@ import security.login_system.UserSessionController;
 import controllers.management.ControllerInvestigator;
 import controllers.management.ControllerOfficer;
 import ejbs.AbstractEjb;
+import ejbs.EjbNotification;
 
 
 /**
@@ -34,10 +35,14 @@ public class ControllerProfile {
 	@EJB
 	private AbstractEjb<Authorizable> ejbAuthorizable;
 
+	@EJB
+	private EjbNotification ejbNotification;
+
 	private String userId;
 	private Authorizable authorizable;
 	private boolean isOfficer = false;
 	private boolean isInvestigator = false;
+	private short newNotifications = -1;
 
 
 
@@ -145,6 +150,27 @@ public class ControllerProfile {
 
 	public void setUserSessionController(UserSessionController userSessionController) {
 		this.userSessionController = userSessionController;
+	}
+
+
+
+	public void updateNewNotifications() {
+		newNotifications = ejbNotification.getCountNewNotifications(authorizable);
+	}
+
+
+
+	public short getNewNotifications() {
+		if (newNotifications == -1)
+			updateNewNotifications();
+
+		return newNotifications;
+	}
+
+
+
+	public void setNewNotifications(short newNotifications) {
+		this.newNotifications = newNotifications;
 	}
 
 }

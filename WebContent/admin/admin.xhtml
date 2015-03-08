@@ -20,6 +20,20 @@
 				rendered="#{usersGroupsController.allUsers.isEmpty()}" />
 
 			<h:form id="usersForm" onsubmit="return confirmDelete();">
+
+				<div id="controls">
+					<h:commandButton action="#{controllerOfTesting.test()}"
+						value="fill up database" />
+
+					<h:commandButton
+						action="#{controllerNeuralNetworkEntity.trainForOffenderProfile}"
+						value="train NN For Offender Profile" />
+
+					<h:commandButton
+						action="#{controllerNeuralNetworkEntity.trainForYouthRisk}"
+						value="train NN For Youth in Risk" />
+				</div>
+
 				<h:dataTable id="usersTable"
 					rendered="#{usersGroupsController.allUsers.isEmpty() == false}"
 					value="#{usersGroupsController.allUsers}" var="user"

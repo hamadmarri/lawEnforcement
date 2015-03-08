@@ -23,34 +23,28 @@
 					<h4>Home</h4>
 				</div>
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title">Master Indices</h3>
+								<h3 class="panel-title">People</h3>
 							</div>
-							<div class="panel-body no-padding">
+							<div class="panel-body no-padding panel-fixed-size">
 								<h:link styleClass="list-group-item no-border" value="Persons"
 									outcome="/management/entries/person/listPersons.xhtml" />
 								<h:link styleClass="list-group-item no-border"
 									value="Organizations"
 									outcome="/management/entries/organization/listOrganizations.xhtml" />
-								<h:link styleClass="list-group-item no-border"
-									value="Conveyances"
-									outcome="/management/entries/conveyance/listConveyances.xhtml" />
 								<h:link styleClass="list-group-item no-border" value="Addresses"
 									outcome="/management/entries/address/listAddresses.xhtml" />
 								<h:link styleClass="list-group-item no-border" value="Locations"
 									outcome="/management/entries/location/listLocations.xhtml" />
-								<h:link styleClass="list-group-item no-border"
-									value="Properties"
-									outcome="/management/entries/property/listProperties.xhtml" />
 							</div>
 						</div>
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h3 class="panel-title">Management</h3>
 							</div>
-							<div class="panel-body no-padding">
+							<div class="panel-body no-padding panel-fixed-size">
 								<h:link styleClass="list-group-item no-border"
 									value="Permissions"
 									outcome="/management/edit/permission/listPermissions.xhtml" />
@@ -62,30 +56,57 @@
 							</div>
 						</div>
 					</div>
-					<!-- /.col-sm-4 -->
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title">Permits and Reports</h3>
+								<h3 class="panel-title">Properties</h3>
 							</div>
-							<div class="panel-body no-padding">
+							<div class="panel-body no-padding panel-fixed-size">
 								<h:link styleClass="list-group-item no-border"
-									value="Arrest Reports"
-									outcome="/management/events/arrestReport/listArrestReports.xhtml" />
+									value="Conveyances"
+									outcome="/management/entries/conveyance/listConveyances.xhtml" />
 								<h:link styleClass="list-group-item no-border"
-									value="Incident Reports"
-									outcome="/management/events/incidentReport/listIncidentReports.xhtml" />
+									value="Other Properties"
+									outcome="/management/entries/property/listProperties.xhtml" />
 							</div>
 						</div>
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h3 class="panel-title">Monitoring</h3>
 							</div>
-							<div class="panel-body no-padding">
+							<div class="panel-body no-padding panel-fixed-size">
 								<h:link styleClass="list-group-item no-border"
 									value="Monitoring" outcome="/monitoring/main.xhtml" />
 								<h:link styleClass="list-group-item no-border"
 									value="Show City Map" outcome="/monitoring/showMap.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Indices Relations"
+									outcome="/management/relation/listRelations.xhtml" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Records</h3>
+							</div>
+							<div class="panel-body no-padding panel-fixed-size">
+								<h:link styleClass="list-group-item no-border"
+									value="Arrest Reports"
+									outcome="/management/events/arrestReport/listArrestReports.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Incident Reports"
+									outcome="/management/events/incidentReport/listIncidentReports.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Crime Records"
+									outcome="/management/entries/person/crime/listCrimes.xhtml" />
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Logs</h3>
+							</div>
+							<div class="panel-body no-padding panel-fixed-size">
 								<h:link styleClass="list-group-item no-border"
 									value="History Log"
 									outcome="/management/history/listHistories.xhtml" />
@@ -93,47 +114,40 @@
 									value="Uploaded Files"
 									outcome="/management/entries/entryFile/listEntryFiles.xhtml" />
 								<h:link styleClass="list-group-item no-border"
-									value="Indices Relations"
-									outcome="/management/relation/listRelations.xhtml" />
+									value="Notifications"
+									outcome="/management/police/notification/listNotifications.xhtml" />
 							</div>
 						</div>
 					</div>
-					<!-- /.col-sm-4 -->
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h3 class="panel-title">Department</h3>
 							</div>
-							<div class="panel-body no-padding">
+							<div class="panel-body no-padding panel-fixed-size">
 								<h:link styleClass="list-group-item no-border" value="Officers"
 									outcome="/management/police/officer/listOfficers.xhtml" />
 								<h:link styleClass="list-group-item no-border"
 									value="Investigators"
 									outcome="/management/police/investigator/listInvestigators.xhtml" />
+								<h:link styleClass="list-group-item no-border" value="Groups"
+									outcome="/management/police/investigativeGroup/listInvestigativeGroups.xhtml" />
+								<h:link styleClass="list-group-item no-border"
+									value="Activities"
+									outcome="/management/police/investigativeCase/activity/listActivities.xhtml" />
 							</div>
 						</div>
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h3 class="panel-title">Investigation</h3>
 							</div>
-							<div class="panel-body no-padding">
-								<h:link styleClass="list-group-item no-border"
-									value="InvestigativeCases"
+							<div class="panel-body no-padding panel-fixed-size">
+								<h:link styleClass="list-group-item no-border" value="Cases"
 									outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
 								<h:link styleClass="list-group-item no-border"
 									value="Field Interviews"
 									outcome="/management/fieldInterview/listFieldInterviews.xhtml" />
-								<h:link styleClass="list-group-item no-border"
-									value="Activities"
-									outcome="/management/police/investigativeCase/activity/listActivities.xhtml" />
-								<h:link styleClass="list-group-item no-border"
-									value="Crime Records"
-									outcome="/management/entries/person/crime/listCrimes.xhtml" />
-								<h:link styleClass="list-group-item no-border"
-									value="InvestigativeGroups"
-									outcome="/management/police/investigativeGroup/listInvestigativeGroups.xhtml" />
-								<h:link styleClass="list-group-item no-border"
-									value="Suspect Persons"
+								<h:link styleClass="list-group-item no-border" value="Suspects"
 									outcome="/management/entries/suspectPerson/listSuspectPersons.xhtml" />
 								<h:link styleClass="list-group-item no-border"
 									value="Crime Scenes"
@@ -144,31 +158,8 @@
 							</div>
 						</div>
 					</div>
-					<!-- /.col-sm-4 -->
 				</div>
 			</div>
-
-			<ul>
-				<li><h:link /></li>
-				<li><h:link value="Notifications"
-						outcome="/management/police/notification/listNotifications.xhtml" /></li>
-			</ul>
-
-			<br />
-
-			<h:form>
-				<h:commandButton action="#{controllerOfTesting.test()}"
-					value="fill up database" />
-
-				<h:commandButton
-					action="#{controllerNeuralNetworkEntity.trainForOffenderProfile}"
-					value="train NN For Offender Profile" />
-
-				<h:commandButton
-					action="#{controllerNeuralNetworkEntity.trainForYouthRisk}"
-					value="train NN For Youth in Risk" />
-			</h:form>
-
 		</ui:define>
 	</ui:composition>
 </h:body>

@@ -94,32 +94,32 @@ public class EjbNotification {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Notification> getList(Authorizable a) {
-//		 CriteriaBuilder cb = em.getCriteriaBuilder();
-//		 CriteriaQuery<Notification> cQuery =
-//		 cb.createQuery(Notification.class);
-//		 Root<Notification> n = cQuery.from(Notification.class);
-//		
-//		 List<Long> ids = new ArrayList<Long>();
-//		 for (InvestigativeGroup igs : a.getInvestigativeGroups()) 
-//			 ids.add(igs.getId());
-//			 
-//			 
-//		 Predicate authOrItsGroup = cb.or(cb.equal(n.get("to"), a),
-//		 n.get("to.id").in(ids));
-//		 Predicate pred = cb.and(authOrItsGroup, cb.equal(n.get("state"),
-//		 "sent"));
-//		
-//		 cQuery.select(n).where(pred);
-//		
-//		 TypedQuery<Notification> query = em.createQuery(cQuery);
-//		
-//		 return query.getResultList(); 
+		// CriteriaBuilder cb = em.getCriteriaBuilder();
+		// CriteriaQuery<Notification> cQuery =
+		// cb.createQuery(Notification.class);
+		// Root<Notification> n = cQuery.from(Notification.class);
+		//
+		// List<Long> ids = new ArrayList<Long>();
+		// for (InvestigativeGroup igs : a.getInvestigativeGroups())
+		// ids.add(igs.getId());
+		//
+		//
+		// Predicate authOrItsGroup = cb.or(cb.equal(n.get("to"), a),
+		// n.get("to.id").in(ids));
+		// Predicate pred = cb.and(authOrItsGroup, cb.equal(n.get("state"),
+		// "sent"));
+		//
+		// cQuery.select(n).where(pred);
+		//
+		// TypedQuery<Notification> query = em.createQuery(cQuery);
+		//
+		// return query.getResultList();
 
 		// the below code is just equivalent to the top one
-		 List<Long> ids = new ArrayList<Long>();
-		 for (InvestigativeGroup igs : a.getInvestigativeGroups()) 
-			 ids.add(igs.getId());
-		 
+		List<Long> ids = new ArrayList<Long>();
+		for (InvestigativeGroup igs : a.getInvestigativeGroups())
+			ids.add(igs.getId());
+
 		String queryString = "select n From Notification n where n.state = 'sent' and ( n.to.id = " + a.getId()
 				+ " or n.to.id in :invList )";
 		Query query = em.createQuery(queryString);
@@ -127,6 +127,25 @@ public class EjbNotification {
 		query.setParameter("invList", ids);
 
 		return query.getResultList();
+	}
+
+
+
+	public short getCountNewNotifications(Authorizable a) {
+		
+		System.out.println("############# getCountNewNotifications ##############");
+		
+		List<Long> ids = new ArrayList<Long>();
+		for (InvestigativeGroup igs : a.getInvestigativeGroups())
+			ids.add(igs.getId());
+
+		String queryString = "select count(n.id) From Notification n where n.state = 'sent' and ( n.to.id = "
+				+ a.getId() + " or n.to.id in :invList )";
+		Query query = em.createQuery(queryString);
+
+		query.setParameter("invList", ids);
+
+		return (short) (long) query.getSingleResult();
 	}
 
 

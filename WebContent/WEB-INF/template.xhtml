@@ -54,22 +54,22 @@
 
 
 			<div class="navbar-form navbar-right">
-				<ul class=" nav-pills" role="tablist">
-					<!-- Login -->
-					<li role="presentation"><h:link styleClass="btn" value="Login"
-							outcome="/security/login.xhtml" /></li>
+				<!-- Login -->
+				<h:link styleClass="btn btn-primary" value="Login"
+					outcome="/security/login.xhtml" />
 
-					<!-- Logout button -->
-					<h:form style="display: inline;">
-						<h:commandButton styleClass="btn"
-							action="#{usersGroupsController.logout()}" value="Logout" />
-					</h:form>
+				<!-- Profile -->
+				<h:link styleClass="btn btn-primary" value="Profile "
+					outcome="/profile/viewProfile.xhtml">
+					<h:outputText styleClass="badge" rendered="#{controllerProfile.newNotifications != 0}"
+						value="#{controllerProfile.newNotifications}" />
+				</h:link>
 
-					<li role="presentation"><h:link styleClass="btn"
-							value="Profile" outcome="/profile/viewProfile.xhtml">
-							<span class="badge">3</span>
-						</h:link></li>
-				</ul>
+				<!-- Logout button -->
+				<h:form style="display: inline;">
+					<h:commandButton styleClass="btn btn-link"
+						action="#{usersGroupsController.logout()}" value="Logout" />
+				</h:form>
 			</div>
 		</div>
 		<!--/.navbar-collapse -->

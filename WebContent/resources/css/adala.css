@@ -19,3 +19,7 @@ body {
 .no-border {
 	border: none;
 }
+
+.panel-fixed-size {
+	height: 197px;
+}
