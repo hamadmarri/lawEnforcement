@@ -5,64 +5,102 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h3>Persons List</h3>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Persons List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
-		<br />
-		<h:dataTable value="#{controllerPerson.personsList}" var="p">
-			<h:column>
-				<h:link value="view"
-					outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
-			</h:column>
-			<h:column>
-				<h:link value="edit"
-					outcome="/management/edit/editPerson.xhtml?id=#{p.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Name</f:facet>
-				<h:outputLabel
-					value="#{p.personName.lastName}, #{p.personName.firstName}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Data of birth</f:facet>
-				<h:outputLabel value="#{p.dateOfBirth}">
-					<f:convertDateTime pattern="MMMM dd, YYYY" />
-				</h:outputLabel>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Birth place</f:facet>
-				<h:outputLabel value="#{p.birthPlace}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Gender</f:facet>
-				<h:outputLabel value="#{p.gender}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Citizenship</f:facet>
-				<h:outputLabel value="#{p.citizenship}" />
-			</h:column>
-			<h:column>
-					<f:facet name="header">Physical Characteristic</f:facet>
-					<h:outputLabel value="#{p.physicalCharacteristic.toString()}" />
-				</h:column>
-			<h:column>
-				<f:facet name="header">Threat Assessment</f:facet>
-				<h:outputLabel value="#{p.threatAssessment.threatAssessmentLevel}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Race</f:facet>
-				<h:outputLabel value="#{p.race.race}" />
-			</h:column>
-		</h:dataTable>
+			<div class="container">
+				<div class="page-header">
+					<h4>Home > Persons List</h4>
+				</div>
+
+				<c:if test="${not included}">
+					<h:link value="add" outcome="add" />
+				</c:if>
+				<br />
+				<h:form>
+					<p:dataTable styleClass="table table-striped" value="#{controllerPerson.personsList}" var="p"
+						widgetVar="persons" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="10,30,100"
+						emptyMessage="No persons found with given criteria"
+						filteredValue="#{controllerPerson.filteredPersons}">
+
+						<f:facet name="header">
+							<p:outputPanel>
+								<h:outputText value="Search all fields:" />
+								<p:inputText id="globalFilter" onkeyup="PF('persons').filter()"
+									style="width:150px" placeholder="Enter keyword" />
+							</p:outputPanel>
+						</f:facet>
+
+						<p:column filterBy="#{p.personName}" headerText="Name"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.personName}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Data of birth</f:facet>
+							<h:outputText value="#{p.dateOfBirth}">
+								<f:convertDateTime pattern="MMMM dd, YYYY" />
+							</h:outputText>
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Birth place</f:facet>
+							<h:outputText value="#{p.birthPlace}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Gender</f:facet>
+							<h:outputText styleClass="male" value="M"
+								rendered="#{p.gender eq 'Male'}" />
+							<h:outputText styleClass="female" value="F"
+								rendered="#{p.gender eq 'Female'}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Citizenship</f:facet>
+							<h:outputText value="#{p.citizenship}" />
+						</p:column>
+
+						<ui:remove>
+							<p:column>
+								<f:facet name="header">Physical Characteristic</f:facet>
+								<h:outputText value="#{p.physicalCharacteristic.toString()}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">Threat Assessment</f:facet>
+								<h:outputText
+									value="#{p.threatAssessment.threatAssessmentLevel}" />
+							</p:column>
+						</ui:remove>
+
+						<p:column>
+							<f:facet name="header">Race</f:facet>
+							<h:outputText value="#{p.race.race}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Controls</f:facet>
+							<h:link value="view"
+								outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
+							<h:outputText value=" | " />
+							<h:link value="edit"
+								outcome="/management/edit/editPerson.xhtml?id=#{p.id}" />
+						</p:column>
+						
+					</p:dataTable>
+				</h:form>
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

@@ -34,6 +34,7 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 	private static final long serialVersionUID = -328811918930855338L;
 	private AliasNameOrMoniker newAliasNameOrMoniker = new AliasNameOrMoniker();
 	private ScarMarkTattoo newScarMarkTattoo = new ScarMarkTattoo();
+	private List<Person> filteredPersons;
 
 
 
@@ -138,4 +139,18 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 		return getPerson().getYouthRiskFactors();
 	}
 
+
+
+	public List<Person> getFilteredPersons() {
+		return filteredPersons;
+	}
+
+
+
+	public void setFilteredPersons(List<Person> filteredPersons) {
+		this.filteredPersons = filteredPersons;
+	}
+
+	
+	
 }
