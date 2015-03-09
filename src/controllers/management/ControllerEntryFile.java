@@ -71,6 +71,10 @@ public class ControllerEntryFile implements Serializable {
 	// id of an entry file to add it to a relatable
 	private String mergeEntryFileId;
 
+	private String lastUploadedRelPath = "";
+
+	private Long lastUploadedId;
+
 
 
 	/**
@@ -193,6 +197,66 @@ public class ControllerEntryFile implements Serializable {
 		Pattern p = Pattern.compile("([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)");
 		Matcher m = p.matcher(filename);
 		return m.matches();
+	}
+
+
+
+	public void handleSingleImageUpload(FileUploadEvent event) {
+
+		try {
+			// file name must starts with random number then "_" then the file
+			// name
+			String randomFileName = getRandom() + "_" + event.getFile().getFileName();
+
+			// special chars [~#@*+%{}<>\|"^' ] must be replaced with "_"
+			randomFileName = randomFileName.replaceAll("[~#@*+%{}<>\\[\\]|\"\\^' ]", "_");
+
+			// hold the absolute path in the disk
+			String absoluteDiskPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+
+			// a File object for the file will be placed in the full path
+			// absoluteDiskPath + this
+			File targetFolder = new File(absoluteDiskPath + this.path);
+
+			// hold the file data in inputstream
+			InputStream inputStream = event.getFile().getInputstream();
+
+			// file output stream
+			OutputStream out = new FileOutputStream(new File(targetFolder, randomFileName));
+
+			// check if the file is an image
+			if (isImage(randomFileName))
+				this.entryFile = new Image();
+			else
+				return;
+
+			// set absolute link in EntryFile object
+			this.entryFile.setAbsoluteLink(absoluteDiskPath + this.path + "/" + randomFileName);
+
+			// to count how many bytes read in buffer
+			int read = 0;
+
+			// byte buffer of size 1024
+			byte[] bytes = new byte[1024];
+
+			// read and write
+			while ((read = inputStream.read(bytes)) != -1)
+				out.write(bytes, 0, read);
+
+			// clean up
+			inputStream.close();
+			out.flush();
+			out.close();
+
+			// add the entry file object to DB
+			ejbEntryFile.add(this.entryFile);
+			
+			lastUploadedId = this.entryFile.getId();
+			lastUploadedRelPath = this.entryFile.getRelativeLink();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
@@ -339,6 +403,30 @@ public class ControllerEntryFile implements Serializable {
 
 	public void setMergeEntryFileId(String mergeEntryFileId) {
 		this.mergeEntryFileId = mergeEntryFileId;
+	}
+
+
+
+	public String getLastUploadedRelPath() {
+		return lastUploadedRelPath;
+	}
+
+
+
+	public void setLastUploadedRelPath(String lastUploadedRelPath) {
+		this.lastUploadedRelPath = lastUploadedRelPath;
+	}
+
+
+
+	public Long getLastUploadedId() {
+		return lastUploadedId;
+	}
+
+
+
+	public void setLastUploadedId(Long lastUploadedId) {
+		this.lastUploadedId = lastUploadedId;
 	}
 
 }

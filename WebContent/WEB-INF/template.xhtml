@@ -7,20 +7,14 @@
 
 <h:head>
 
-	<f:facet name="middle">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<f:facet name="first">
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" type="text/css"
 			href="#{request.contextPath}/resources/css/bootstrap.min.css" />
-			<!-- <h:outputStylesheet library="css" name="bootstrap.css" /> -->
-		<h:outputScript library="js" name="bootstrap.js" />
-
-
-		<!-- Custom styles for this template -->
-		<h:outputStylesheet library="css" name="adala.css" />
-
-		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-		<h:outputScript library="js" name="ie-emulation-modes-warning.js" />
+		<!-- <h:outputStylesheet library="css" name="bootstrap.css" /> -->
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -29,11 +23,17 @@
     <![endif]-->
 	</f:facet>
 
+
 	<title><ui:insert name="title">Default title</ui:insert></title>
 	<link rel="icon" href="http://getbootstrap.com/favicon.ico" />
 </h:head>
 
 <h:body>
+
+	<f:facet name="last">
+		<!-- Custom styles for this template -->
+		<h:outputStylesheet library="css" name="adala.css" />
+	</f:facet>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -87,10 +87,12 @@
 	<!-- /.container -->
 
 
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<h:outputScript library="js" name="jquery.js" />
+	<!-- <h:outputScript library="js" name="jquery.js" /> -->
 	<h:outputScript library="js" name="bootstrap.js" />
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<h:outputScript library="js" name="ie10-viewport-bug-workaround.js" />

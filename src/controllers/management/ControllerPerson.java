@@ -1,6 +1,8 @@
 package controllers.management;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -35,6 +37,7 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 	private AliasNameOrMoniker newAliasNameOrMoniker = new AliasNameOrMoniker();
 	private ScarMarkTattoo newScarMarkTattoo = new ScarMarkTattoo();
 	private List<Person> filteredPersons;
+//	private List<String> genders = new ArrayList<String>(Arrays.asList("Male", "Female"));
 
 
 
@@ -150,5 +153,17 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 	public void setFilteredPersons(List<Person> filteredPersons) {
 		this.filteredPersons = filteredPersons;
 	}
+
+
+
+	// public List<String> getGenders() {
+	// return genders;
+	// }
+	//
+	//
+	//
+	// public void setGenders(List<String> genders) {
+	// this.genders = genders;
+	// }
 
 }

@@ -16,7 +16,7 @@ public class Action implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAndTime;
 	private String field;
-	private String oldData; 
+	private String oldData;
 	private String newData;
 
 
@@ -27,7 +27,7 @@ public class Action implements Serializable {
 		this.oldData = new String();
 		this.newData = new String();
 	}
-
+  
 
 
 	public Action(String field, String newDate, String oldDate) {

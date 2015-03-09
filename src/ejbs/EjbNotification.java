@@ -132,9 +132,7 @@ public class EjbNotification {
 
 
 	public short getCountNewNotifications(Authorizable a) {
-		
-		System.out.println("############# getCountNewNotifications ##############");
-		
+				
 		List<Long> ids = new ArrayList<Long>();
 		for (InvestigativeGroup igs : a.getInvestigativeGroups())
 			ids.add(igs.getId());
