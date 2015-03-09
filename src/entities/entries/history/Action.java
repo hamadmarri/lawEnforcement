@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+ 
 @Embeddable
 public class Action implements Serializable {
 
@@ -16,7 +16,7 @@ public class Action implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAndTime;
 	private String field;
-	private String oldData;
+	private String oldData; 
 	private String newData;
 
 

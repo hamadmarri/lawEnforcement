@@ -151,6 +151,4 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 		this.filteredPersons = filteredPersons;
 	}
 
-	
-	
 }

@@ -1,41 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>adala</display-name>
-  <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
-  </context-param>
-  <context-param>
-    <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
-    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-    <param-value>server</param-value>
-  </context-param>
-  <context-param>
-    <description>max valid states after browser back button 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>adala</display-name>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<description>max valid states after browser back button 
 			(submit it 4 times and then press the browser's back
 			 button 4 times and then submit the form again
 		</description>
-    <param-name>com.sun.faces.numberOfViewsInSession</param-name>
-    <param-value>1</param-value>
-  </context-param>
-  <context-param>
-    <description>max currently openned windows/tabs per user</description>
-    <param-name>com.sun.faces.numberOfLogicalViews</param-name>
-    <param-value>3</param-value>
-  </context-param>
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
-  <session-config>
-    <session-timeout>20</session-timeout>
-  </session-config>
-  <welcome-file-list>
-    <welcome-file>index.xhtml</welcome-file>
-  </welcome-file-list>
+		<param-name>com.sun.faces.numberOfViewsInSession</param-name>
+		<param-value>1</param-value>
+	</context-param>
+	<context-param>
+		<description>max currently openned windows/tabs per user</description>
+		<param-name>com.sun.faces.numberOfLogicalViews</param-name>
+		<param-value>3</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>20</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<!-- ######################## SECURITY SECTION ######################## -->
+
+	<!-- ######################## ADMIN ACCESS ######################## <security-constraint> 
+		<display-name>Admin</display-name> <web-resource-collection> <web-resource-name>Admin 
+		Faces Pages</web-resource-name> <description></description> <url-pattern>/admin/*</url-pattern> 
+		<url-pattern>/management/*</url-pattern> <url-pattern>/monitoring/*</url-pattern> 
+		</web-resource-collection> <auth-constraint> <description></description> 
+		<role-name>admin</role-name> </auth-constraint> <user-data-constraint> <description></description> 
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee> </user-data-constraint> 
+		</security-constraint> -->
+
+	<!-- ######################## OFFICER ACCESS ######################## <security-constraint> 
+		<display-name>Officer</display-name> <web-resource-collection> <web-resource-name>Officer 
+		faces pages</web-resource-name> <description></description> <url-pattern>/management/*</url-pattern> 
+		<url-pattern>/profile/*</url-pattern> </web-resource-collection> <auth-constraint> 
+		<description></description> <role-name>officer</role-name> </auth-constraint> 
+		<user-data-constraint> <description></description> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+		</user-data-constraint> </security-constraint> -->
+
+	<!-- ######################## SUPERVISOR ACCESS ######################## 
+		<security-constraint> <display-name>Supervisor</display-name> <web-resource-collection> 
+		<web-resource-name>Supervisor faces pages</web-resource-name> <description></description> 
+		<url-pattern>/management/*</url-pattern> <url-pattern>/monitoring/*</url-pattern> 
+		<url-pattern>/profile/*</url-pattern> <url-pattern>/management/edit/*</url-pattern> 
+		</web-resource-collection> <auth-constraint> <description></description> 
+		<role-name>supervisor</role-name> </auth-constraint> <user-data-constraint> 
+		<description></description> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+		</user-data-constraint> </security-constraint> -->
+
+	<!-- ######################## INVESTIGATOR ACCESS ######################## 
+		<security-constraint> <display-name>Investigator</display-name> <web-resource-collection> 
+		<web-resource-name>Investigator faces pages</web-resource-name> <description></description> 
+		<url-pattern>/management/*</url-pattern> <url-pattern>/profile/*</url-pattern> 
+		</web-resource-collection> <auth-constraint> <description></description> 
+		<role-name>investigator</role-name> </auth-constraint> <user-data-constraint> 
+		<description></description> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+		</user-data-constraint> </security-constraint> -->
+
+	<!-- ######################## GMap ACCESS ######################## <security-constraint> 
+		<web-resource-collection> <web-resource-name>GMap</web-resource-name> <url-pattern>/monitoring/showMap.xhtml</url-pattern> 
+		</web-resource-collection> </security-constraint> -->
+
+	<!-- ######################## SECURITY CONSTRAINT ######################## 
+		<security-constraint> <web-resource-collection> <web-resource-name>Entire 
+		Web App</web-resource-name> <url-pattern>/*</url-pattern> </web-resource-collection> 
+		<user-data-constraint> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+		</user-data-constraint> </security-constraint> <login-config> <auth-method>FORM</auth-method> 
+		<realm-name>adalaSecurityRealm</realm-name> <form-login-config> <form-login-page>/security/login.xhtml</form-login-page> 
+		<form-error-page>/security/loginerror.xhtml</form-error-page> </form-login-config> 
+		</login-config> <security-role> <description></description> <role-name>admin</role-name> 
+		</security-role> <security-role> <description></description> <role-name>officer</role-name> 
+		</security-role> <security-role> <description></description> <role-name>supervisor</role-name> 
+		</security-role> <security-role> <description></description> <role-name>investigator</role-name> 
+		</security-role> -->
+
 </web-app>

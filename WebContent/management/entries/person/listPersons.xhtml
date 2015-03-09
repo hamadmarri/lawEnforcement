@@ -18,87 +18,108 @@
 
 			<div class="container">
 				<div class="page-header">
-					<h4>Home > Persons List</h4>
+					<h4>Persons List</h4>
+
 				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Persons List</li>
+				</ul>
 
 				<c:if test="${not included}">
-					<h:link value="add" outcome="add" />
+					<div class="row ">
+						<h:link styleClass="btn btn-primary pull-right" value="Add Person"
+							outcome="add" />
+					</div>
 				</c:if>
 				<br />
-				<h:form>
-					<p:dataTable styleClass="table table-striped" value="#{controllerPerson.personsList}" var="p"
-						widgetVar="persons" rows="10" paginator="true"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="10,30,100"
-						emptyMessage="No persons found with given criteria"
-						filteredValue="#{controllerPerson.filteredPersons}">
 
-						<f:facet name="header">
-							<p:outputPanel>
-								<h:outputText value="Search all fields:" />
-								<p:inputText id="globalFilter" onkeyup="PF('persons').filter()"
-									style="width:150px" placeholder="Enter keyword" />
-							</p:outputPanel>
-						</f:facet>
+				<div class="row">
+					<h:form>
+						<p:dataTable styleClass="table table-striped"
+							value="#{controllerPerson.personsList}" var="p"
+							widgetVar="persons" rows="10" paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="10,30,100"
+							emptyMessage="No persons found with given criteria"
+							filteredValue="#{controllerPerson.filteredPersons}">
 
-						<p:column filterBy="#{p.personName}" headerText="Name"
-							filterMatchMode="contains">
-							<h:outputText value="#{p.personName}" />
-						</p:column>
-						
-						<p:column>
-							<f:facet name="header">Data of birth</f:facet>
-							<h:outputText value="#{p.dateOfBirth}">
-								<f:convertDateTime pattern="MMMM dd, YYYY" />
-							</h:outputText>
-						</p:column>
-						
-						<p:column>
-							<f:facet name="header">Birth place</f:facet>
-							<h:outputText value="#{p.birthPlace}" />
-						</p:column>
-						
-						<p:column>
-							<f:facet name="header">Gender</f:facet>
-							<h:outputText styleClass="male" value="M"
-								rendered="#{p.gender eq 'Male'}" />
-							<h:outputText styleClass="female" value="F"
-								rendered="#{p.gender eq 'Female'}" />
-						</p:column>
-						
-						<p:column>
-							<f:facet name="header">Citizenship</f:facet>
-							<h:outputText value="#{p.citizenship}" />
-						</p:column>
+							<f:facet name="header">
+								<p:outputPanel style="text-align: left; width:150px">
+									<div class="right-inner-addon">
+										<i class="glyphicon glyphicon-search"></i>
+										<p:inputText id="globalFilter"
+											onkeyup="PF('persons').filter()" styleClass="form-control"
+											placeholder="Search all fields" />
+									</div>
+								</p:outputPanel>
+							</f:facet>
 
-						<ui:remove>
-							<p:column>
-								<f:facet name="header">Physical Characteristic</f:facet>
-								<h:outputText value="#{p.physicalCharacteristic.toString()}" />
+							<p:column filterBy="#{p.personName}"
+								sortBy="#{p.personName.firstName}" headerText="Name"
+								filterMatchMode="contains">
+								<h:outputText value="#{p.personName}" />
 							</p:column>
-							<p:column>
-								<f:facet name="header">Threat Assessment</f:facet>
-								<h:outputText
-									value="#{p.threatAssessment.threatAssessmentLevel}" />
-							</p:column>
-						</ui:remove>
 
-						<p:column>
-							<f:facet name="header">Race</f:facet>
-							<h:outputText value="#{p.race.race}" />
-						</p:column>
-						
-						<p:column>
-							<f:facet name="header">Controls</f:facet>
-							<h:link value="view"
-								outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
-							<h:outputText value=" | " />
-							<h:link value="edit"
-								outcome="/management/edit/editPerson.xhtml?id=#{p.id}" />
-						</p:column>
-						
-					</p:dataTable>
-				</h:form>
+							<p:column sortBy="#{p.dateOfBirth}" headerText="Data of birth">
+								<h:outputText value="#{p.dateOfBirth}">
+									<f:convertDateTime pattern="MMMM dd, YYYY" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{p.birthPlace}" sortBy="#{p.birthPlace}"
+								headerText="Birth place">
+								<h:outputText value="#{p.birthPlace}" filterMatchMode="contains" />
+							</p:column>
+
+							<p:column filterBy="#{p.gender}" headerText="Gender"
+								filterMatchMode="equals" style="text-align: center;">
+								<f:facet name="filter">
+									<p:selectOneButton onchange="PF('persons').filter()">
+										<f:selectItem itemLabel="M" itemValue="Male" />
+										<f:selectItem itemLabel="F" itemValue="Female" />
+										<f:selectItem itemLabel="-" itemValue="" />
+									</p:selectOneButton>
+								</f:facet>
+								<h:outputText styleClass="male" value="M"
+									rendered="#{p.gender eq 'Male'}" />
+								<h:outputText styleClass="female" value="F"
+									rendered="#{p.gender eq 'Female'}" />
+							</p:column>
+
+							<p:column headerText="Citizenship" filterBy="#{p.citizenship}">
+								<h:outputText value="#{p.citizenship}" />
+							</p:column>
+
+							<ui:remove>
+								<p:column>
+									<f:facet name="header">Physical Characteristic</f:facet>
+									<h:outputText value="#{p.physicalCharacteristic.toString()}" />
+								</p:column>
+								<p:column>
+									<f:facet name="header">Threat Assessment</f:facet>
+									<h:outputText
+										value="#{p.threatAssessment.threatAssessmentLevel}" />
+								</p:column>
+							</ui:remove>
+
+							<p:column headerText="Race" filterBy="#{p.race.race}">
+								<h:outputText value="#{p.race.race}" />
+							</p:column>
+
+							<p:column headerText="Controls" style="text-align: center;">
+								<h:link value="view" styleClass="btn btn-sm btn-primary"
+									style="color: white;"
+									outcome="/management/entries/person/viewPerson.xhtml?id=#{p.id}" />
+								<h:outputText value="  " />
+								<h:link value="edit" styleClass="btn btn-sm btn-default"
+									outcome="/management/edit/editPerson.xhtml?id=#{p.id}" />
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+				</div>
 			</div>
 		</ui:define>
 	</ui:composition>
