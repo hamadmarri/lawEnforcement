@@ -39,6 +39,7 @@
 						<p:dataTable styleClass="table table-striped"
 							value="#{controllerPerson.personsList}" var="p"
 							widgetVar="persons" rows="10" paginator="true"
+							paginatorPosition="bottom"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="10,30,100"
 							emptyMessage="No persons found with given criteria"
