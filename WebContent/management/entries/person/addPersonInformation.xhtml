@@ -16,7 +16,7 @@
 
 <h:body>
 	<ui:composition template="/WEB-INF/template.xhtml">
-		<ui:define name="title">Adala - Persons List</ui:define>
+		<ui:define name="title">Adala - Adding Person</ui:define>
 		<ui:define name="content">
 			<div class="container">
 				<div class="page-header">
@@ -67,7 +67,7 @@
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
 										<p:calendar value="#{controllerPerson.person.dateOfBirth}"
-											pattern="dd-MM-yyyy" mask="true" />
+											pattern="dd-MM-yyyy" mask="true" styleClass="dateTimeField" />
 									</div>
 								</div>
 								<div class="form-group">
@@ -82,7 +82,7 @@
 									<h:outputLabel value="Gender"
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
-										<p:selectOneRadio value="#{controllerPerson.person.gender}">
+										<p:selectOneRadio styleClass="gender" value="#{controllerPerson.person.gender}">
 											<f:selectItem itemLabel="Male" itemValue="Male" />
 											<f:selectItem itemLabel="Female" itemValue="Female" />
 										</p:selectOneRadio>

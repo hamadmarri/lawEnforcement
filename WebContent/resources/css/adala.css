@@ -68,14 +68,28 @@ body {
 	color: gray;
 }
 
-.borderless tbody tr td,.borderless tbody tr th,.borderless thead tr th,.borderless tfoot tr 
+.borderless tbody tr td,.borderless tbody tr th,.borderless thead tr th,.borderless tfoot tr
 	{
 	border: none;
 }
 
-.paddingless tbody tr td,.paddingless tbody tr th,.paddingless thead tr th,.paddingless tfoot tr td{
+.paddingless tbody tr td,.paddingless tbody tr th,.paddingless thead tr th,.paddingless tfoot tr td
+	{
 	padding: 0px;
 }
+
+.dateTimeField input {
+	width: 100%;
+}
+
+.gender td  {
+	padding-right: 5px;
+}
+
+.gender td label {
+	padding-right: 5px;
+}
+
 
 /* 
 breadcrumbProgress code from : http://thecodeplayer.com/walkthrough/css3-breadcrumb-navigation */
