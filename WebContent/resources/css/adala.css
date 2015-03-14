@@ -94,6 +94,10 @@ body {
 	padding-right: 5px;
 }
 
+.rows-min tbody tr td {
+	height: 50px;
+	min-width: 100px;
+}
 
 /* 
 breadcrumbProgress code from : http://thecodeplayer.com/walkthrough/css3-breadcrumb-navigation */

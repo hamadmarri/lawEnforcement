@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import ejbs.AbstractEjb;
 import ejbs.EjbPerson;
 import entities.entries.AliasNameOrMoniker;
+import entities.entries.Conveyance;
 import entities.entries.Identification;
 import entities.entries.Person;
 import entities.entries.ScarMarkTattoo;
@@ -43,15 +44,20 @@ import entities.entries.files.images.PhotographicImage;
 public class ControllerPerson implements Serializable {
 
 	private static final long serialVersionUID = -328811918930855338L;
-	private AliasNameOrMoniker newAliasNameOrMoniker = new AliasNameOrMoniker();
-	private ScarMarkTattoo newScarMarkTattoo = new ScarMarkTattoo();
-	private List<Person> filteredPersons;
 
 	@EJB
 	private EjbPerson ejbPerson;
 
 	@EJB
 	private AbstractEjb<EntryFile> ejbEntryFile;
+
+	@EJB
+	private AbstractEjb<Conveyance> ejbConveyance;
+
+	private AliasNameOrMoniker newAliasNameOrMoniker = new AliasNameOrMoniker();
+	private ScarMarkTattoo newScarMarkTattoo = new ScarMarkTattoo();
+	private Conveyance newConveyance = new Conveyance();
+	private List<Person> filteredPersons;
 
 	private String id;
 
@@ -229,6 +235,18 @@ public class ControllerPerson implements Serializable {
 
 
 
+	public Conveyance getNewConveyance() {
+		return newConveyance;
+	}
+
+
+
+	public void setNewConveyance(Conveyance newConveyance) {
+		this.newConveyance = newConveyance;
+	}
+
+
+
 	public YouthRiskFactors getYouthRiskFactors() {
 		return getPerson().getYouthRiskFactors();
 	}
@@ -309,6 +327,25 @@ public class ControllerPerson implements Serializable {
 
 	public void removeContact(Contact c) {
 		getPerson().getContacts().remove(c);
+	}
+
+
+
+	public void saveConveyance() {
+		newConveyance.setRegisteredOwner(getPerson());
+		ejbConveyance.add(newConveyance);
+
+		getPerson().getConveyances().add(newConveyance);
+
+		submit();
+	}
+
+
+
+	public void removeConveyance(Conveyance c) {
+		getPerson().getConveyances().remove(c);
+		c.setRegisteredOwner(null);
+		ejbConveyance.save(c);
 	}
 
 }

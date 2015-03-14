@@ -101,6 +101,30 @@
 	</navigation-rule>
 
 	<navigation-rule>
+		<from-view-id>/management/entries/person/addPersonConveyances.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>continue</from-outcome>
+			<to-view-id>/management/entries/person/addPersonPoliceInfo.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>finish</from-outcome>
+			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/management/entries/person/addPersonContacts.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
 		<from-view-id>/management/entries/person/listPersons.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>add</from-outcome>

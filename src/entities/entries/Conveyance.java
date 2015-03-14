@@ -52,10 +52,10 @@ public class Conveyance extends Entry {
 		this.vehicleIdentificationNumber = new String();
 		this.licensePlateNumber = new String();
 		this.licensePlateState = new String();
-		this.licensePlateYear = new Date();
+		// this.licensePlateYear = new Date();
 		this.make = new String();
 		this.model = new String();
-		this.year = new Date();
+		// this.year = new Date();
 		this.color = new String();
 		this.style = new String();
 		this.attributes = new String();
@@ -218,10 +218,10 @@ public class Conveyance extends Entry {
 		Conveyance oldC = (Conveyance) old;
 
 		if (!this.vehicleIdentificationNumber.equals(oldC.vehicleIdentificationNumber)) {
-			
+
 			if (this.getHistory() == null)
 				System.out.println("***** history is null");
-			
+
 			this.getHistory().addAction(
 					new Action("vehicleIdentificationNumber", this.vehicleIdentificationNumber,
 							oldC.vehicleIdentificationNumber));
@@ -257,7 +257,7 @@ public class Conveyance extends Entry {
 		if (this.year.compareTo(oldC.year) != 0)
 			this.getHistory().addAction(new Action("year", this.year.toString(), oldC.year.toString()));
 
-		if (this.registeredOwner.getId().compareTo(oldC.registeredOwner.getId()) != 0)
+		if (this.registeredOwner != null && this.registeredOwner.getId().compareTo(oldC.registeredOwner.getId()) != 0)
 			this.getHistory().addAction(
 					new Action("registeredOwner id", this.registeredOwner.getId().toString(), oldC.registeredOwner
 							.getId().toString()));
@@ -270,8 +270,9 @@ public class Conveyance extends Entry {
 		return (this.vehicleIdentificationNumber.equals(another.vehicleIdentificationNumber)
 				&& this.licensePlateNumber.equals(another.licensePlateNumber)
 				&& this.licensePlateState.equals(another.licensePlateState) && this.make.equals(another.make)
-				&& this.model.equals(another.model) && this.color.equals(another.color) && this.style.equals(another.style)
-				&& this.attributes.equals(another.attributes) && this.licensePlateYear.compareTo(another.licensePlateYear) == 0
+				&& this.model.equals(another.model) && this.color.equals(another.color)
+				&& this.style.equals(another.style) && this.attributes.equals(another.attributes)
+				&& this.licensePlateYear.compareTo(another.licensePlateYear) == 0
 				&& this.year.compareTo(another.year) == 0 && this.registeredOwner.getId().compareTo(
 				another.registeredOwner.getId()) == 0);
 	}
