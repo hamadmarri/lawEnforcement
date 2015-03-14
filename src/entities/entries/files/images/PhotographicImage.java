@@ -6,11 +6,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import entities.entries.Person;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "PhotographicImage.findAll", query = "select e from PhotographicImage e"),
+		@NamedQuery(name = "PhotographicImage.findById", query = "select e from PhotographicImage e WHERE e.id = :id") })
 public class PhotographicImage extends Image {
 
 	private static final long serialVersionUID = -2930081503693862012L;

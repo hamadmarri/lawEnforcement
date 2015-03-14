@@ -23,6 +23,7 @@ import ejbs.AbstractEjb;
 import entities.Relatable;
 import entities.entries.files.EntryFile;
 import entities.entries.files.images.Image;
+import entities.entries.files.images.PhotographicImage;
 
 
 /**
@@ -73,7 +74,7 @@ public class ControllerEntryFile implements Serializable {
 
 	private String lastUploadedRelPath = "";
 
-	private Long lastUploadedId;
+	private Long lastUploadedId = null;
 
 
 
@@ -201,7 +202,7 @@ public class ControllerEntryFile implements Serializable {
 
 
 
-	public void handleSingleImageUpload(FileUploadEvent event) {
+	public void handleSinglePhotographicImageUpload(FileUploadEvent event) {
 
 		try {
 			// file name must starts with random number then "_" then the file
@@ -226,7 +227,7 @@ public class ControllerEntryFile implements Serializable {
 
 			// check if the file is an image
 			if (isImage(randomFileName))
-				this.entryFile = new Image();
+				this.entryFile = new PhotographicImage();
 			else
 				return;
 

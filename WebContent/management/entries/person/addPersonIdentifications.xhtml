@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerPerson.id}" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Persons List</ui:define>
+		<ui:define name="content">
+			<div class="container">
+				<div class="page-header">
+					<h4>Adding New Person</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li><h:link value="Persons List"
+							outcome="/management/entries/person/listPersons.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Adding New Person</li>
+				</ul>
+
+				<div class="row">
+					<div class="col-md-11 col-md-offset-1">
+						<div class="breadcrumbProgress flat" style="margin: 0 0 30px 0;">
+							<a href="#">Personal Information</a> <a class="active" href="#">Identifications</a>
+							<a href="#">Contacts</a> <a href="#">Conveyances</a> <a href="#">Police
+								Information</a> <a href="#">Extra Information</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1">
+						<h:link styleClass="btn btn-link minor" value="&lt;&lt; back"
+							outcome="back" />
+					</div>
+
+					<div class="col-md-11">
+						<h4>Identifications</h4>
+					</div>
+				</div>
+
+				<div class="row">
+					<h:form styleClass="form-horizontal">
+						<div class="col-md-4 col-md-offset-1">
+
+							<h:dataTable styleClass="table borderless " var="i"
+								value="#{controllerPerson.person.identifications}"
+								rowClasses="hoverable">
+								<h:column>
+									<f:facet name="header">
+										Id#
+									</f:facet>
+									<p:inputText value="#{i.content}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										Type of Id
+									</f:facet>
+									<p:inputText value="#{i.name}" />
+								</h:column>
+								<h:column>
+									<h:commandButton styleClass="btn btn-sm btn-link minor" value="Remove"
+										style="display: none;"
+										action="#{controllerPerson.removeIdentification(i)}" />
+									<f:facet name="footer">
+										<h:commandButton styleClass="btn btn-link" value="Add"
+											action="#{controllerPerson.addIdentification}" />
+									</f:facet>
+								</h:column>
+							</h:dataTable>
+						</div>
+						<div class="col-md-11 col-md-offset-1">
+							<hr style="margin-top: 45px;" class="col-md-10" />
+
+							<div class="row">
+								<div class="col-sm-7 col-sm-offset-5">
+									<h:commandButton styleClass="btn btn-primary"
+										value="Save &amp; Continue"
+										action="#{controllerPerson.saveAndContinue}">
+										<f:param name="id" value="#{controllerPerson.person.id}" />
+									</h:commandButton>
+									<h:commandButton styleClass="btn" value="Save &amp; Finish"
+										action="#{controllerPerson.saveAndFinish}" />
+									<h:link styleClass="btn btn-link minor" value="Cancel"
+										outcome="cancel" />
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

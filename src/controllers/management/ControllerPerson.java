@@ -1,18 +1,22 @@
 package controllers.management;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ejbs.AbstractEjb;
+import ejbs.EjbPerson;
 import entities.entries.AliasNameOrMoniker;
+import entities.entries.Identification;
 import entities.entries.Person;
 import entities.entries.ScarMarkTattoo;
 import entities.entries.YouthRiskFactors;
+import entities.entries.files.EntryFile;
+import entities.entries.files.images.PhotographicImage;
 
 
 /**
@@ -31,15 +35,34 @@ import entities.entries.YouthRiskFactors;
  */
 @ManagedBean(name = "controllerPerson")
 @ViewScoped
-public class ControllerPerson extends AbstractController<Person> implements Serializable {
+public class ControllerPerson implements Serializable {
 
 	private static final long serialVersionUID = -328811918930855338L;
 	private AliasNameOrMoniker newAliasNameOrMoniker = new AliasNameOrMoniker();
 	private ScarMarkTattoo newScarMarkTattoo = new ScarMarkTattoo();
 	private List<Person> filteredPersons;
-//	private List<String> genders = new ArrayList<String>(Arrays.asList("Male", "Female"));
+
+	@EJB
+	private EjbPerson ejbPerson;
+
+	@EJB
+	private AbstractEjb<EntryFile> ejbEntryFile;
+
+	private String id;
+
+	private Person person = null;
+
+	// list of Investigator objects
+	private List<Person> personsList = null;
+
+	// to indicate if the operation is to add
+	// new activity or not
+	private boolean newEntity = false;
 
 
+
+	// private List<String> genders = new
+	// ArrayList<String>(Arrays.asList("Male", "Female"));
 
 	/**
 	 * will be called automatically right after the class is constructed since
@@ -48,7 +71,51 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 	@PostConstruct
 	public void init() {
 		// at the beginning, set the entitiy name to be Person
-		this.type = "Person";
+		// this.type = "Person";
+	}
+
+
+
+	public String submit() {
+		// if new object it will add the object to DB,
+		// otherwise, it will just update it in DB
+		if (isNewEntity())
+			ejbPerson.add(this.person);
+		else
+			ejbPerson.save(this.person);
+
+		// return "success" for navigation engine
+		return "success";
+	}
+
+
+
+	public String saveAndContinue() {
+		submit();
+		return "continue";
+	}
+
+
+
+	public String saveAndContinue(Long picID) {
+		submit();
+
+		if (picID != null) {
+			// update photograph image
+			Person p = getPerson();
+			PhotographicImage pimg = (PhotographicImage) ejbEntryFile.getEntity(picID, "PhotographicImage");
+			pimg.addPerson(p);
+			ejbEntryFile.save(pimg);
+		}
+
+		return "continue";
+	}
+
+
+
+	public String saveAndFinish() {
+		submit();
+		return "finish";
 	}
 
 
@@ -58,32 +125,48 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 	 * addPerson.xhtml page at preRenderView phase
 	 */
 	public void createNewPerson() {
-		this.relatable = new Person();
-		super.setNewRelatable(true);
+		this.person = new Person();
+		setNewEntity(true);
 	}
 
 
 
 	public Person getPerson() {
-		return super.getRelatable();
+
+		// if the object was loaded already, just return it
+		if (this.person != null)
+			return this.person;
+
+		// if the id is null do not try to load it from DB, just return null
+		if (this.id == null)
+			return null;
+
+		// at this point object must be null but id is not,
+		// so load it from DB
+		this.person = ejbPerson.getEntity(Long.parseLong(this.id));
+
+		return this.person;
 	}
 
 
 
 	public void setPerson(Person person) {
-		this.relatable = person;
+		this.person = person;
 	}
 
 
 
 	public List<Person> getPersonsList() {
-		return super.getList();
+		if (this.personsList == null)
+			this.personsList = ejbPerson.getList();
+
+		return personsList;
 	}
 
 
 
 	public void setPersonsList(List<Person> list) {
-		super.setList(list);
+		this.personsList = list;
 	}
 
 
@@ -156,14 +239,38 @@ public class ControllerPerson extends AbstractController<Person> implements Seri
 
 
 
-	// public List<String> getGenders() {
-	// return genders;
-	// }
-	//
-	//
-	//
-	// public void setGenders(List<String> genders) {
-	// this.genders = genders;
-	// }
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	public boolean isNewEntity() {
+		return newEntity;
+	}
+
+
+
+	public void setNewEntity(boolean newEntity) {
+		this.newEntity = newEntity;
+	}
+
+
+
+	public void addIdentification() {
+		getPerson().addIdentification(new Identification(getPerson(), "", ""));
+	}
+
+
+
+	public void removeIdentification(Identification i) {
+		getPerson().getIdentifications().remove(i);
+	}
 
 }

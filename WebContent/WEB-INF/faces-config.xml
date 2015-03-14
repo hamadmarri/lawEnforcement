@@ -28,10 +28,43 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/management/entries/person/addPerson.xhtml</from-view-id>
+		<from-view-id>/management/entries/person/addPersonInformation.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>success</from-outcome>
+			<from-outcome>continue</from-outcome>
+			<to-view-id>/management/entries/person/addPersonIdentifications.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerPerson.person.id}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>finish</from-outcome>
 			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/management/entries/person/addPersonIdentifications.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>continue</from-outcome>
+			<to-view-id>/management/entries/person/addPersonContacts.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>finish</from-outcome>
+			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/management/entries/person/addPersonInformation.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -45,7 +78,7 @@
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>
-				/management/entries/person/addPerson.xhtml</to-view-id>
+				/management/entries/person/addPersonInformation.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

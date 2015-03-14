@@ -64,6 +64,19 @@ body {
 	pointer-events: none;
 }
 
+.minor {
+	color: gray;
+}
+
+.borderless tbody tr td,.borderless tbody tr th,.borderless thead tr th,.borderless tfoot tr 
+	{
+	border: none;
+}
+
+.paddingless tbody tr td,.paddingless tbody tr th,.paddingless thead tr th,.paddingless tfoot tr td{
+	padding: 0px;
+}
+
 /* 
 breadcrumbProgress code from : http://thecodeplayer.com/walkthrough/css3-breadcrumb-navigation */
 /*custom font*/

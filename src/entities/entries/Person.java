@@ -31,7 +31,8 @@ import entities.events.FieldInterview;
 @NamedQueries({
 		@NamedQuery(name = "Person.findAll", query = "select p from Person p"),
 		@NamedQuery(name = "Person.findByIdentification", query = "select p from Person p"
-				+ " join p.identifications i WHERE VALUE(i) = :identification") })
+				+ " join p.identifications i WHERE VALUE(i) = :identification"),
+		@NamedQuery(name = "Person.findById", query = "select r from Person r WHERE r.id = :id") })
 public class Person extends Entry {
 
 	/*
@@ -526,7 +527,8 @@ public class Person extends Entry {
 		if (this.modusOperandi != null && !this.modusOperandi.equals(oldP.modusOperandi))
 			this.getHistory().addAction(new Action("modusOperandi", this.modusOperandi, oldP.modusOperandi));
 
-		if (this.NCIC_fingerprintClassification != null && !this.NCIC_fingerprintClassification.equals(oldP.NCIC_fingerprintClassification))
+		if (this.NCIC_fingerprintClassification != null
+				&& !this.NCIC_fingerprintClassification.equals(oldP.NCIC_fingerprintClassification))
 			this.getHistory().addAction(
 					new Action("NCIC fingerprint classification", this.NCIC_fingerprintClassification,
 							oldP.NCIC_fingerprintClassification));
@@ -536,7 +538,9 @@ public class Person extends Entry {
 					new Action("physical characteristic", this.physicalCharacteristic.toString(),
 							oldP.physicalCharacteristic.toString()));
 
-		if (this.threatAssessment != null && !this.threatAssessment.getThreatAssessmentLevel().equals(oldP.threatAssessment.getThreatAssessmentLevel()))
+		if (this.threatAssessment != null
+				&& !this.threatAssessment.getThreatAssessmentLevel().equals(
+						oldP.threatAssessment.getThreatAssessmentLevel()))
 			this.getHistory().addAction(
 					new Action("threat assessment", this.threatAssessment.getThreatAssessmentLevel(),
 							oldP.threatAssessment.getThreatAssessmentLevel()));
