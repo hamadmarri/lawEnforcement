@@ -82,6 +82,10 @@ body {
 	width: 100%;
 }
 
+.icons-text-input {
+	padding-top: 7px;
+}
+
 .gender td  {
 	padding-right: 5px;
 }

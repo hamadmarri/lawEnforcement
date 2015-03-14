@@ -41,7 +41,12 @@ public class AbstractEjb<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	public T getEntity(Long id) {
-		return (T) em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList().get(0);
+		List<T> result = em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList();
+
+		if (result == null || result.isEmpty())
+			return null;
+
+		return result.get(0);
 	}
 
 

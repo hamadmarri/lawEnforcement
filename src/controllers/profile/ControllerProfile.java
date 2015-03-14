@@ -38,7 +38,7 @@ public class ControllerProfile {
 	@EJB
 	private EjbNotification ejbNotification;
 
-	private String userId;
+	private String userId = null;
 	private Authorizable authorizable;
 	private boolean isOfficer = false;
 	private boolean isInvestigator = false;
@@ -52,11 +52,13 @@ public class ControllerProfile {
 
 		this.userId = Long.toString(userSessionController.getProfileId());
 
-		try {
-			this.authorizable = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId));
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("profile id is invalid");
-		}
+		if (this.userId == null || this.userId.isEmpty())
+			return;
+
+		this.authorizable = this.ejbAuthorizable.getEntity(Long.parseLong(this.userId));
+
+		if (authorizable == null)
+			return;
 
 		if (this.authorizable.getType().equals("Officer")) {
 			isOfficer = true;
@@ -155,7 +157,8 @@ public class ControllerProfile {
 
 
 	public void updateNewNotifications() {
-		newNotifications = ejbNotification.getCountNewNotifications(authorizable);
+		if (authorizable != null)
+			newNotifications = ejbNotification.getCountNewNotifications(authorizable);
 	}
 
 

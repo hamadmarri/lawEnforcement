@@ -15,6 +15,11 @@ import entities.entries.Identification;
 import entities.entries.Person;
 import entities.entries.ScarMarkTattoo;
 import entities.entries.YouthRiskFactors;
+import entities.entries.contacts.CellPhone;
+import entities.entries.contacts.Contact;
+import entities.entries.contacts.Email;
+import entities.entries.contacts.OtherContact;
+import entities.entries.contacts.Telephone;
 import entities.entries.files.EntryFile;
 import entities.entries.files.images.PhotographicImage;
 
@@ -125,6 +130,9 @@ public class ControllerPerson implements Serializable {
 	 * addPerson.xhtml page at preRenderView phase
 	 */
 	public void createNewPerson() {
+		if (id != null && !id.isEmpty())
+			return;
+
 		this.person = new Person();
 		setNewEntity(true);
 	}
@@ -271,6 +279,36 @@ public class ControllerPerson implements Serializable {
 
 	public void removeIdentification(Identification i) {
 		getPerson().getIdentifications().remove(i);
+	}
+
+
+
+	public void addOtherContact() {
+		getPerson().addContact(new OtherContact(getPerson(), ""));
+	}
+
+
+
+	public void addCellPhone() {
+		getPerson().addContact(new CellPhone(getPerson(), ""));
+	}
+
+
+
+	public void addEmail() {
+		getPerson().addContact(new Email(getPerson(), ""));
+	}
+
+
+
+	public void addTelephone() {
+		getPerson().addContact(new Telephone(getPerson(), ""));
+	}
+
+
+
+	public void removeContact(Contact c) {
+		getPerson().getContacts().remove(c);
 	}
 
 }

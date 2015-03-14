@@ -11,6 +11,7 @@
 	<f:metadata>
 		<f:event listener="#{controllerPerson.createNewPerson}"
 			type="preRenderView" />
+		<f:viewParam name="id" value="#{controllerPerson.id}" />
 	</f:metadata>
 </h:head>
 
@@ -82,7 +83,8 @@
 									<h:outputLabel value="Gender"
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
-										<p:selectOneRadio styleClass="gender" value="#{controllerPerson.person.gender}">
+										<p:selectOneRadio styleClass="gender"
+											value="#{controllerPerson.person.gender}">
 											<f:selectItem itemLabel="Male" itemValue="Male" />
 											<f:selectItem itemLabel="Female" itemValue="Female" />
 										</p:selectOneRadio>

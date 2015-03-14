@@ -23,8 +23,8 @@ public abstract class Contact implements Serializable {
 	@GeneratedValue
 	protected Long id;
 
-	protected String type;
-	protected String content;
+	protected String type = new String();
+	protected String content = new String();
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	protected Person person;
@@ -32,8 +32,6 @@ public abstract class Contact implements Serializable {
 
 
 	public Contact() {
-		this.type = new String();
-		this.content = new String();
 	}
 
 
@@ -55,7 +53,6 @@ public abstract class Contact implements Serializable {
 
 
 	public abstract void setContent(String content);
-
 
 
 	public String getType() {

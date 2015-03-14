@@ -132,7 +132,7 @@ public class EjbNotification {
 
 
 	public short getCountNewNotifications(Authorizable a) {
-				
+
 		List<Long> ids = new ArrayList<Long>();
 		for (InvestigativeGroup igs : a.getInvestigativeGroups())
 			ids.add(igs.getId());
@@ -142,6 +142,9 @@ public class EjbNotification {
 		Query query = em.createQuery(queryString);
 
 		query.setParameter("invList", ids);
+
+		if (query.getResultList() == null || query.getResultList().isEmpty())
+			return -1;
 
 		return (short) (long) query.getSingleResult();
 	}
