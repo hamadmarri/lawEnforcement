@@ -348,4 +348,28 @@ public class ControllerPerson implements Serializable {
 		ejbConveyance.save(c);
 	}
 
+
+
+	public void addAliasNamesOrMonikers() {
+		getPerson().addAliasNameOrMoniker(new AliasNameOrMoniker(getPerson(), ""));
+	}
+
+
+
+	public void removeAliasNamesOrMonikers(AliasNameOrMoniker a) {
+		getPerson().getAliasNamesOrMonikers().remove(a);
+	}
+
+
+
+	public void addScars_marks_tattoos() {
+		getPerson().addScars_mark_tattoo(new ScarMarkTattoo(getPerson(), ""));
+	}
+
+
+
+	public void removeScars_marks_tattoos(ScarMarkTattoo s) {
+		getPerson().getScars_marks_tattoos().remove(s);
+	}
+	
 }

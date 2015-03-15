@@ -1,6 +1,7 @@
 package entities.entries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -124,7 +125,7 @@ public class Person extends Entry {
 		this.personName = new PersonName();
 		// this.dateOfBirth = new Date();
 		this.birthPlace = new String();
-		this.gender = new String();
+		this.gender = new String("Male");
 		this.citizenship = new String();
 		this.modusOperandi = new String();
 		this.NCIC_fingerprintClassification = new String();
@@ -411,17 +412,18 @@ public class Person extends Entry {
 
 
 
-	public static String[] getNCIC_fingerprintClassificationSuggestions() {
-		return NCIC_fingerprintClassificationSuggestions;
+	public List<String> getNCIC_fingerprintClassificationSuggestions() {
+		return Arrays.asList(NCIC_fingerprintClassificationSuggestions);
 	}
 
 
 
-	public static void setNCIC_fingerprintClassificationSuggestions(String[] nCIC_fingerprintClassificationSuggestions) {
-		NCIC_fingerprintClassificationSuggestions = nCIC_fingerprintClassificationSuggestions;
-	}
-
-
+	// public static void
+	// setNCIC_fingerprintClassificationSuggestions(List<String> ncic) {
+	//
+	// NCIC_fingerprintClassificationSuggestions =
+	// nCIC_fingerprintClassificationSuggestions;
+	// }
 
 	public List<Conveyance> getConveyances() {
 		return conveyances;

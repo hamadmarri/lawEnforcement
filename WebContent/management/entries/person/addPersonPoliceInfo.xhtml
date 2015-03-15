@@ -33,9 +33,10 @@
 				<div class="row">
 					<div class="col-md-11 col-md-offset-1">
 						<div class="breadcrumbProgress flat" style="margin: 0 0 30px 0;">
-							<a href="#">Personal Information</a> <a class="active" href="#">Identifications</a>
-							<a href="#">Contacts</a> <a href="#">Conveyances</a> <a href="#">Police
-								Information</a> <a href="#">Extra Information</a>
+							<a href="#">Personal Information</a> <a href="#">Identifications</a>
+							<a href="#">Contacts</a> <a href="#">Conveyances</a> <a
+								class="active" href="#">Police Information</a> <a href="#">Extra
+								Information</a>
 						</div>
 					</div>
 				</div>
@@ -48,41 +49,88 @@
 					</div>
 
 					<div class="col-md-11">
-						<h4>Identifications</h4>
+						<h4>Police Information</h4>
 					</div>
 				</div>
 
+
+
 				<div class="row">
 					<h:form styleClass="form-horizontal">
+
+
 						<div class="col-md-4 col-md-offset-1">
 
-							<h:dataTable styleClass="table borderless " var="i"
-								value="#{controllerPerson.person.identifications}"
+							<!-- modusOperandi -->
+							<div style="margin: 25px 0 35px 0;">
+								<h:outputLabel value="Modus Operandi" />
+								<br />
+								<p:inputText value="#{controllerPerson.person.modusOperandi}" />
+							</div>
+
+
+							<!-- Alias names and monikers -->
+							<h:dataTable styleClass="table borderless rows-min" var="a"
+								value="#{controllerPerson.person.aliasNamesOrMonikers}"
 								rowClasses="hoverable">
 								<h:column>
 									<f:facet name="header">
-										Id#
+										<h:outputLabel value="Alias names and monikers" />
 									</f:facet>
-									<p:inputText value="#{i.content}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										Type of Id
-									</f:facet>
-									<p:inputText value="#{i.name}" />
+									<p:inputText style="width: 100%;" value="#{a.content}" />
 								</h:column>
 								<h:column>
 									<h:commandButton styleClass="btn btn-sm btn-link minor"
 										value="Remove" style="display: none;"
-										action="#{controllerPerson.removeIdentification(i)}" />
+										action="#{controllerPerson.removeAliasNamesOrMonikers(a)}" />
 									<f:facet name="footer">
 										<h:commandButton styleClass="btn btn-link" value="Add"
-											action="#{controllerPerson.addIdentification}" />
+											action="#{controllerPerson.addAliasNamesOrMonikers}" />
 									</f:facet>
 								</h:column>
 							</h:dataTable>
 						</div>
-						
+
+
+						<div class="col-md-4 col-md-offset-1">
+
+							<!-- NCIC_fingerprintClassification -->
+							<div style="margin: 0 0 30px 0;">
+								<h:outputLabel value="NCIC" />
+								<br />
+								<h:outputLabel value="(fingerprint classification)" />
+								<br />
+								<p:selectOneMenu id="NCIC"
+									value="#{controllerPerson.person.NCIC_fingerprintClassification}"
+									style="width: 62%;">
+									<f:selectItems
+										value="#{controllerPerson.person.NCIC_fingerprintClassificationSuggestions}" />
+								</p:selectOneMenu>
+							</div>
+
+
+							<!-- Scars, marks, and tattoos -->
+							<h:dataTable styleClass="table borderless rows-min" var="s"
+								value="#{controllerPerson.person.scars_marks_tattoos}"
+								rowClasses="hoverable">
+								<h:column>
+									<f:facet name="header">
+										<h:outputLabel value="Scars, marks, and tattoos" />
+									</f:facet>
+									<p:inputText style="width: 100%;" value="#{s.content}" />
+								</h:column>
+								<h:column>
+									<h:commandButton styleClass="btn btn-sm btn-link minor"
+										value="Remove" style="display: none;"
+										action="#{controllerPerson.removeScars_marks_tattoos(s)}" />
+									<f:facet name="footer">
+										<h:commandButton styleClass="btn btn-link" value="Add"
+											action="#{controllerPerson.addScars_marks_tattoos}" />
+									</f:facet>
+								</h:column>
+							</h:dataTable>
+						</div>
+
 						<div class="col-md-11 col-md-offset-1">
 							<hr style="margin-top: 45px;" class="col-md-10" />
 
