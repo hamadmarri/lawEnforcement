@@ -338,6 +338,8 @@ public class ControllerPerson implements Serializable {
 		getPerson().getConveyances().add(newConveyance);
 
 		submit();
+		
+		newConveyance = new Conveyance();
 	}
 
 

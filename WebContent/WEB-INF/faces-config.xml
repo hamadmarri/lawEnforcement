@@ -42,8 +42,13 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>finish</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
-			<redirect />
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{controllerPerson.person.id}</value>
+				</view-param>
+			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
@@ -61,8 +66,8 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>finish</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
-			<redirect />
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true" />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>back</from-outcome>
@@ -71,7 +76,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
@@ -85,8 +90,8 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>finish</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
-			<redirect />
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true" />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>back</from-outcome>
@@ -95,7 +100,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
@@ -109,8 +114,8 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>finish</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
-			<redirect />
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true" />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>back</from-outcome>
@@ -119,7 +124,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
@@ -133,8 +138,8 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>finish</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
-			<redirect />
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true" />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>back</from-outcome>
@@ -143,11 +148,29 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/management/entries/person/listPersons.xhtml</to-view-id>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
 			<redirect include-view-params="true" />
 		</navigation-case>
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/management/entries/person/addPersonExtraInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>finish</from-outcome>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/management/entries/person/addPersonPoliceInfo.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/management/entries/person/viewPerson.xhtml</to-view-id>
+			<redirect include-view-params="true" />
+		</navigation-case>
+	</navigation-rule>
 
 	<navigation-rule>
 		<from-view-id>/management/entries/person/listPersons.xhtml</from-view-id>

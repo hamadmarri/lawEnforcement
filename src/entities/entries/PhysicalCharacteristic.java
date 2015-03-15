@@ -1,5 +1,8 @@
 package entities.entries;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Embeddable;
 
 
@@ -43,26 +46,26 @@ public class PhysicalCharacteristic {
 
 
 
-	public static String[] getBuildCharacteristicsSuggestions() {
-		return buildCharacteristicsSuggestions;
+	public List<String> getBuildCharacteristicsSuggestions() {
+		return Arrays.asList(buildCharacteristicsSuggestions);
 	}
 
 
 
-	public static String[] getHeightCharacteristicsSuggestions() {
-		return heightCharacteristicsSuggestions;
+	public List<String> getHeightCharacteristicsSuggestions() {
+		return Arrays.asList(heightCharacteristicsSuggestions);
 	}
 
 
 
-	public static String[] getComplexionCharacteristicsSuggestions() {
-		return complexionCharacteristicsSuggestions;
+	public List<String> getComplexionCharacteristicsSuggestions() {
+		return Arrays.asList(complexionCharacteristicsSuggestions);
 	}
 
 
 
-	public static String[] getHairCharacteristicsSuggestions() {
-		return hairCharacteristicsSuggestions;
+	public List<String> getHairCharacteristicsSuggestions() {
+		return Arrays.asList(hairCharacteristicsSuggestions);
 	}
 
 
@@ -118,8 +121,8 @@ public class PhysicalCharacteristic {
 	public boolean isEqual(PhysicalCharacteristic another) {
 		return (this.buildCharacteristics.equals(another.buildCharacteristics)
 				&& this.complexionCharacteristics.equals(another.complexionCharacteristics)
-				&& this.hairCharacteristics.equals(another.hairCharacteristics) 
-				&& this.heightCharacteristics.equals(another.heightCharacteristics));
+				&& this.hairCharacteristics.equals(another.hairCharacteristics) && this.heightCharacteristics
+					.equals(another.heightCharacteristics));
 	}
 
 

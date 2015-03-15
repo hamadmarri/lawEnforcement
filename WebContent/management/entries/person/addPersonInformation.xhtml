@@ -124,7 +124,9 @@
 										<f:param name="id" value="#{controllerPerson.person.id}" />
 									</h:commandButton>
 									<h:commandButton styleClass="btn" value="Save &amp; Finish"
-										action="#{controllerPerson.saveAndFinish}" />
+										action="#{controllerPerson.saveAndFinish}">
+										<f:param name="id" value="#{controllerPerson.person.id}" />
+									</h:commandButton>
 									<h:link styleClass="btn btn-link minor" value="Cancel"
 										outcome="cancel" />
 								</div>
@@ -132,13 +134,7 @@
 						</h:form>
 
 					</div>
-
-
 				</div>
-
-
-
-
 			</div>
 		</ui:define>
 	</ui:composition>
