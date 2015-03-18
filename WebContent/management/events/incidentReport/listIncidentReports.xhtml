@@ -29,7 +29,7 @@
 		</c:if>
 
 		<c:if test="${not empty incidentReports}">
-			<h:dataTable value="#{incidentReports}" var="ir">
+			<h:dataTable styleClass="table" value="#{incidentReports}" var="ir">
 				<h:column>
 					<h:link value="view"
 						outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{ir.id}" />

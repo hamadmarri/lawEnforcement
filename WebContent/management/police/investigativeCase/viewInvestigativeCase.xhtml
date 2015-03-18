@@ -120,16 +120,16 @@
 								<h4 id="details">Details:</h4>
 								<h:panelGrid columns="2" styleClass="table borderless">
 									<h:outputLabel value="Start Date" />
-									<h:outputLabel
+									<h:outputText
 										value="#{controllerInvestigativeCase.investigativeCase.startDate}">
 										<f:convertDateTime pattern="MMMM dd, YYYY" />
-									</h:outputLabel>
+									</h:outputText>
 
 									<h:outputLabel value="Due Date" />
-									<h:outputLabel
+									<h:outputText
 										value="#{controllerInvestigativeCase.investigativeCase.dueDate}">
 										<f:convertDateTime pattern="MMMM dd, YYYY" />
-									</h:outputLabel>
+									</h:outputText>
 
 									<h:outputLabel value="Officer who created it" />
 									<h:link
@@ -142,8 +142,11 @@
 
 									<h:outputLabel value="Crime Scene" />
 									<h:link value="view"
+										rendered="#{controllerInvestigativeCase.investigativeCase.crimeScene ne null}"
 										outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerInvestigativeCase.investigativeCase.crimeScene.crimeSceneId}" />
-
+									<h:outputText
+										rendered="#{controllerInvestigativeCase.investigativeCase.crimeScene eq null}"
+										value="no crime scene for this case yet" />
 								</h:panelGrid>
 							</div>
 							<!-- col-6 -->
