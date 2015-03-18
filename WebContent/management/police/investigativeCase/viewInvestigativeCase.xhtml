@@ -23,16 +23,21 @@
 
 			<div class="container">
 
+
 				<div class="page-header">
 					<h4>Investigative Case</h4>
 				</div>
-				<ul class="breadcrumb no-bg-color">
-					<li><h:link value="Home" outcome="/index.xhtml" /><span
-						class="divider" /></li>
-					<li><h:link value="Investigative Cases List"
-							outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" /></li>
-					<li class="active">Investigative Cases</li>
-				</ul>
+
+				<div class="row">
+
+					<ul class="breadcrumb no-bg-color">
+						<li><h:link value="Home" outcome="/index.xhtml" /><span
+							class="divider" /></li>
+						<li><h:link value="Investigative Cases List"
+								outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" /></li>
+						<li class="active">Investigative Cases</li>
+					</ul>
+				</div>
 
 
 				<c:set var="investigativeCase"
@@ -83,9 +88,6 @@
 									action="#{controllerInvestigativeCase.closeCase()}"
 									rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
 							</h:form>
-
-							<!-- HORIZONTAL LINE -->
-							<hr />
 
 						</div>
 						<!-- end row -->
@@ -200,10 +202,10 @@
 					<!-- List -->
 					<div class="col-md-2 col-md-offset-1">
 						<div class="list-group">
-							<a class="list-group-item" href="#description">Description</a>
-							<a class="list-group-item" href="#details">Details</a>
-							<a class="list-group-item" href="#incidentReports">Incident Reports</a>
-							<a class="list-group-item" href="#investigators">Investigators</a>
+							<a class="list-group-item" href="#description">Description</a> <a
+								class="list-group-item" href="#details">Details</a> <a
+								class="list-group-item" href="#incidentReports">Incident
+								Reports</a> <a class="list-group-item" href="#investigators">Investigators</a>
 							<a class="list-group-item" href="#activities">Activities</a>
 						</div>
 					</div>

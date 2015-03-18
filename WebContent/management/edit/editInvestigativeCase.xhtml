@@ -14,48 +14,137 @@
 </h:head>
 
 <h:body>
-	<ui:insert name="editHeader">
-		<h2>Edit Investigative Case</h2>
-	</ui:insert>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Edit Investigative Case</ui:define>
+		<ui:define name="content">
+			<div class="container">
 
 
-	<h:link value="cancel" outcome="cancel">
-		<f:param name="id" value="#{controllerInvestigativeCase.id}" />
-	</h:link>
+				<div class="page-header">
+					<h4>Edit Investigative Case #{controllerInvestigativeCase.id}</h4>
+				</div>
+
+				<div class="row">
+
+					<ul class="breadcrumb no-bg-color">
+						<li><h:link value="Home" outcome="/index.xhtml" /><span
+							class="divider" /></li>
+						<li><h:link value="Investigative Cases List"
+								outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" /></li>
+						<li><h:link
+								value="Investigative Cases #{controllerInvestigativeCase.id}"
+								outcome="cancel">
+								<f:param name="id" value="#{controllerInvestigativeCase.id}" />
+							</h:link></li>
+						<li class="active">Edit Investigative Cases
+							#{controllerInvestigativeCase.id}</li>
+					</ul>
+				</div>
+
+				<div class="row">
+
+					<h:form styleClass="form-horizontal">
+
+						<div class="col-md-5">
+							<!-- Description -->
+							<div class="page-header">
+								<h4>Description</h4>
+							</div>
+
+							<p:inputTextarea styleClass="col-md-12"
+								style="min-height: 300px;"
+								value="#{controllerInvestigativeCase.investigativeCase.description}" />
+
+						</div>
+
+						<div class="col-md-5 col-md-offset-1">
+
+							<div class="page-header">
+								<h4>Details</h4>
+							</div>
+
+							<!-- Status -->
+							<div class="form-group">
+								<h:outputLabel styleClass="control-label col-xs-4"
+									value="Status" />
+								<div class="col-xs-8">
+									<p:inputText styleClass="col-md-12"
+										value="#{controllerInvestigativeCase.investigativeCase.status}" />
+								</div>
+							</div>
+
+							<!-- Start Date -->
+							<div class="form-group">
+								<h:outputLabel styleClass="control-label col-xs-4"
+									value="Start Date" />
+								<div class="col-xs-8">
+									<p:calendar
+										value="#{controllerInvestigativeCase.investigativeCase.startDate}"
+										pattern="dd-MM-yyyy" mask="true" styleClass="dateTimeField" />
+
+								</div>
+							</div>
 
 
-	<h:form>
-		<h4>Investigative Case Information</h4>
-		<h:outputLabel value="Description" />
-		<h:inputText
-			value="#{controllerInvestigativeCase.investigativeCase.description}" />
-		<br />
-		<h:outputLabel value="Status" />
-		<h:inputText 
-			value="#{controllerInvestigativeCase.investigativeCase.status}" />
-		<br />
-		<h:outputLabel value="Start Date" />
-		<p:calendar
-			value="#{controllerInvestigativeCase.investigativeCase.startDate}" />
-		<br />
-		<h:outputLabel value="Due Date" />
-		<p:calendar
-			value="#{controllerInvestigativeCase.investigativeCase.dueDate}" />
-		<br />
-		<h:outputLabel value="Officer who created it" />
-		<h:inputText
-			value="#{controllerInvestigativeCase.officerWhoCreatedItId}" />
-		<br />
+							<!-- Due Date -->
+							<div class="form-group">
+								<h:outputLabel styleClass="control-label col-xs-4"
+									value="Due Date" />
+								<div class="col-xs-8">
+									<p:calendar
+										value="#{controllerInvestigativeCase.investigativeCase.dueDate}"
+										pattern="dd-MM-yyyy" mask="true" styleClass="dateTimeField" />
 
-		<!-- Crime Scene -->
-		<h:outputLabel value="Crime Scene Id" />
-		<h:inputText
-			value="#{controllerInvestigativeCase.crimeSceneId}" />
+								</div>
+							</div>
 
-		<br />
-		<br />
-		<h:commandButton value="save"
-			action="#{controllerInvestigativeCase.submit}" />
-	</h:form>
+
+							<!-- Officer who created it -->
+							<div class="form-group">
+								<h:outputLabel styleClass="control-label col-xs-4"
+									value="Officer" />
+								<div class="col-xs-8">
+									<p:inputText styleClass="col-md-12"
+										value="#{controllerInvestigativeCase.officerWhoCreatedItId}" />
+								</div>
+							</div>
+
+
+
+							<!-- Crime Scene -->
+							<div class="form-group">
+								<h:outputLabel styleClass="control-label col-xs-4"
+									value="Crime Scene Id" />
+								<div class="col-xs-8">
+									<p:inputText styleClass="col-md-12"
+										value="#{controllerInvestigativeCase.crimeSceneId}" />
+								</div>
+							</div>
+
+						</div>
+
+
+						<hr style="margin-top: 45px;" class="col-md-12" />
+						
+						<div class="row">
+
+							<div class="col-md-4 col-md-offset-9">
+								<h:commandButton styleClass="btn btn-primary col-md-3"
+									value="save" action="#{controllerInvestigativeCase.submit}" />
+
+								<h:link styleClass="btn btn-link minor col-md-1" value="cancel"
+									outcome="cancel">
+									<f:param name="id" value="#{controllerInvestigativeCase.id}" />
+								</h:link>
+							</div>
+						</div>
+
+					</h:form>
+				</div>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+
 </h:body>
 </html>
