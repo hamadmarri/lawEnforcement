@@ -1054,6 +1054,17 @@
 				</view-param>
 			</redirect>
 		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>viewOfficer</from-outcome>
+			<to-view-id>/management/police/officer/viewOfficer.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 	</navigation-rule>
 
 

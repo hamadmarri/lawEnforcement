@@ -45,6 +45,7 @@ public abstract class Relatable extends Changeable implements Serializable, Desc
 
 	protected String type;
 
+	// TODO: big text gives error need to check
 	@Lob
 	@Column(length = 20000)
 	protected String description;

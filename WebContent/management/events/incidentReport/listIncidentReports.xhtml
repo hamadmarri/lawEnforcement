@@ -12,9 +12,10 @@
 
 <h:body>
 	<ui:composition>
-		<h3>Incident Reports List</h3>
+		
 
 		<c:if test="${not included}">
+			<h3>Incident Reports List</h3>
 			<h:link value="add" outcome="add" />
 		</c:if>
 

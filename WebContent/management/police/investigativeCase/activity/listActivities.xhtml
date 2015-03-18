@@ -12,9 +12,10 @@
 
 <h:body>
 	<ui:composition>
-		<h3>Activityies List</h3>
+		
 
 		<c:if test="${not included}">
+			<h3>Activityies List</h3>
 			<h:link value="add" outcome="add" />
 		</c:if>
 
@@ -33,7 +34,7 @@
 
 
 
-		<h:dataTable value="#{activities}" var="a">
+		<h:dataTable styleClass="table" value="#{activities}" var="a">
 			<h:column>
 				<h:link value="view"
 					outcome="/management/police/investigativeCase/activity/viewActivity.xhtml?id=#{a.id}" />
