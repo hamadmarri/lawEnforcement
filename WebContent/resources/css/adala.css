@@ -68,6 +68,26 @@ body {
 	color: gray;
 }
 
+.case-open {
+	color: DeepSkyBlue;
+}
+
+.case-pending {
+	color: orange;
+}
+
+.case-inProgress {
+	color: green;
+}
+
+.case-refused {
+	color: red;
+}
+
+.case-closed {
+	color: gray;
+}
+
 .borderless tbody tr td,.borderless tbody tr th,.borderless thead tr th,.borderless tfoot tr
 	{
 	border: none;
@@ -86,7 +106,7 @@ body {
 	padding-top: 7px;
 }
 
-.gender td  {
+.gender td {
 	padding-right: 5px;
 }
 

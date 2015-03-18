@@ -10,25 +10,26 @@
 <h:head>
 </h:head>
 
-<h:body> 
+<h:body>
 	<ui:composition template="/WEB-INF/template.xhtml">
 		<ui:define name="content">
-			<ui:insert name="view" />
-			
-			<c:set var="included" value="true" />
-			
-			<h4>Description</h4>
-			<c:if test="${empty relatable.description}">
-				<h:outputLabel value="nothing" />
-			</c:if>
-			<h:outputLabel
-				value="#{relatable.description}" />
-				
-			<ui:include src="/management/relation/listRelations.xhtml" />
+			<div class="container">
+				<ui:insert name="view" />
 
-			<ui:include src="/management/entries/entryFile/listEntryFiles.xhtml">
-				<ui:param name="relatable" value="#{relatable}" />
-			</ui:include>
+				<c:set var="included" value="true" />
+
+				<h4>Description</h4>
+				<c:if test="${empty relatable.description}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+				<h:outputLabel value="#{relatable.description}" />
+
+				<ui:include src="/management/relation/listRelations.xhtml" />
+
+				<ui:include src="/management/entries/entryFile/listEntryFiles.xhtml">
+					<ui:param name="relatable" value="#{relatable}" />
+				</ui:include>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>
