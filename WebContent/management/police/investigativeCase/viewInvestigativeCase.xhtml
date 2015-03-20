@@ -102,13 +102,29 @@
 									</h:link>
 
 
+
 									<h:outputLabel value="Crime Scene" />
+
+
 									<h:link value="view"
 										rendered="#{controllerInvestigativeCase.investigativeCase.crimeScene ne null}"
 										outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerInvestigativeCase.investigativeCase.crimeScene.crimeSceneId}" />
-									<h:outputText
-										rendered="#{controllerInvestigativeCase.investigativeCase.crimeScene eq null}"
-										value="no crime scene for this case yet" />
+
+
+									<h:form
+										rendered="#{controllerInvestigativeCase.investigativeCase.crimeScene eq null}">
+										<h:commandButton styleClass="btn btn-success"
+											value="Create Crime Scene"
+											action="#{controllerInvestigativeCase.createCrimeScene}" >
+										</h:commandButton>
+									</h:form>
+
+
+									<h:link styleClass="btn btn-default" value="Edit"
+										outcome="edit">
+										<f:param name="id" value="#{controllerInvestigativeCase.id}" />
+									</h:link>
+
 								</h:panelGrid>
 							</div>
 							<!-- col-6 -->
@@ -148,15 +164,6 @@
 									value="#{controllerInvestigativeCase.investigativeCase.description}"
 									escape="false" />
 
-
-								<br />
-								<!-- EDIT -->
-								<div class="pull-right">
-									<h:link styleClass="btn btn-default" value="Edit"
-										outcome="edit">
-										<f:param name="id" value="#{controllerInvestigativeCase.id}" />
-									</h:link>
-								</div>
 							</div>
 
 

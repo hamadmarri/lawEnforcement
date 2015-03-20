@@ -19,6 +19,7 @@ import entities.police.CrimeScene;
 import entities.police.InvestigativeCase;
 import entities.police.Investigator;
 import entities.police.Notification;
+import entities.police.OffenderProfile;
 import entities.police.Officer;
 
 
@@ -243,9 +244,8 @@ public class ControllerInvestigativeCase implements Serializable {
 	 * 
 	 * @return the InvestigativeCase object
 	 */
-	public InvestigativeCase getInvestigativeCase() { 
-		
-		 
+	public InvestigativeCase getInvestigativeCase() {
+
 		// if the object was loaded already, just return it
 		if (this.investigativeCase != null)
 			return this.investigativeCase;
@@ -399,12 +399,29 @@ public class ControllerInvestigativeCase implements Serializable {
 		getInvestigativeCase().addInvestigator(i);
 		submit();
 	}
- 
+
 
 
 	public void removeInvestigator(Investigator i) {
 		getInvestigativeCase().getInvestigators().remove(i);
-		submit(); 
+		submit();
+	}
+
+
+
+	public void createCrimeScene() {
+		CrimeScene cs = new CrimeScene();
+//		OffenderProfile op = new OffenderProfile();
+//
+//		cs.setOffenderProfile(op); 
+		cs.setInvestigativeCase(getInvestigativeCase());
+
+		// ejbCrimeScene.add(cs);
+
+		getInvestigativeCase().setCrimeScene(cs);
+		submit();
+
+		this.investigativeCase = null;
 	}
 
 }

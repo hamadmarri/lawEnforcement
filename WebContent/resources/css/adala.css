@@ -92,6 +92,16 @@ body {
 	color: gray;
 }
 
+.yes {
+	color: green;
+	font-size: 108%;
+	font-weight: bold;
+}
+
+.no {
+	color: gray;
+}
+
 .borderless tbody tr td,.borderless tbody tr th,.borderless thead tr th,.borderless tfoot tr
 	{
 	border: none;
