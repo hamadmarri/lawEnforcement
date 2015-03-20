@@ -15,39 +15,40 @@
 </h:head>
 
 <h:body>
-	<ui:insert name="editHeader">
-		<h2>Edit Activity</h2>
-	</ui:insert>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Investigative Case</ui:define>
+		<ui:define name="content">
+
+			<ui:insert name="editHeader">
+				<h2>Edit Activity</h2>
+			</ui:insert>
 
 
-	<h:link value="cancel" outcome="cancel">
-		<f:param name="id" value="#{controllerActivity.id}" />
-	</h:link>
+			<h:link value="cancel" outcome="cancel">
+				<f:param name="id" value="#{controllerActivity.id}" />
+			</h:link>
 
 
-	<h:form>
-		<h:outputLabel value="Type" />
-		<h:inputText
-			value="#{controllerActivity.activity.type}" />
-		<br />
-		<h:outputLabel value="Date and Time" />
-		<p:calendar
-			value="#{controllerActivity.activity.dateAndTime}" />
-		<br />
-		<h:outputLabel value="Data" />
-		<h:inputText
-			value="#{controllerActivity.activity.data}" />
-		<br />
-		<h:outputLabel value="Invistigative case" />
-		<h:inputText
-			value="#{controllerActivity.investigativeCaseId}" />
-		<br />
-		<h:outputLabel value="Investigator" />
-		<h:inputText
-			value="#{controllerActivity.investigatorId}" />
-		<br />
-		<h:commandButton value="save"
-			action="#{controllerActivity.submit}" />
-	</h:form>
+			<h:form>
+				<h:outputLabel value="Type" />
+				<h:inputText value="#{controllerActivity.activity.type}" />
+				<br />
+				<h:outputLabel value="Date and Time" />
+				<p:calendar value="#{controllerActivity.activity.dateAndTime}" />
+				<br />
+				<h:outputLabel value="Data" />
+				<h:inputText value="#{controllerActivity.activity.data}" />
+				<br />
+				<h:outputLabel value="Invistigative case" />
+				<h:inputText value="#{controllerActivity.investigativeCaseId}" />
+				<br />
+				<h:outputLabel value="Investigator" />
+				<h:inputText value="#{controllerActivity.investigatorId}" />
+				<br />
+				<h:commandButton value="save" action="#{controllerActivity.submit}" />
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

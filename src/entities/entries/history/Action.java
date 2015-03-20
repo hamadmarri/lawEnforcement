@@ -3,6 +3,7 @@ package entities.entries.history;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,7 +17,11 @@ public class Action implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAndTime;
 	private String field;
+	
+	@Column(columnDefinition = "LONGTEXT")
 	private String oldData;
+	
+	@Column(columnDefinition = "LONGTEXT")
 	private String newData;
 
 

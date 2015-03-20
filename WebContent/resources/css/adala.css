@@ -68,6 +68,10 @@ body {
 	color: gray;
 }
 
+.case-open,.case-pending,.case-inProgress,.case-refused,.case-closed {
+	font-size: 108%;
+}
+
 .case-open {
 	color: DeepSkyBlue;
 }

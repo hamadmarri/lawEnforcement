@@ -13,9 +13,11 @@ import security.Authorizable;
 import controllers.profile.ControllerProfile;
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
+import ejbs.EjbInvestigator;
 import entities.events.IncidentReport;
 import entities.police.CrimeScene;
 import entities.police.InvestigativeCase;
+import entities.police.Investigator;
 import entities.police.Notification;
 import entities.police.Officer;
 
@@ -56,6 +58,9 @@ public class ControllerInvestigativeCase implements Serializable {
 	// EJB for CrimeScene object
 	@EJB
 	private EjbCrimeScene ejbCrimeScene;
+
+	@EJB
+	private EjbInvestigator ejbInvestigator;
 
 	@ManagedProperty(value = "#{controllerNotification}")
 	private ControllerNotification controllerNotification;
@@ -238,8 +243,9 @@ public class ControllerInvestigativeCase implements Serializable {
 	 * 
 	 * @return the InvestigativeCase object
 	 */
-	public InvestigativeCase getInvestigativeCase() {
-
+	public InvestigativeCase getInvestigativeCase() { 
+		
+		 
 		// if the object was loaded already, just return it
 		if (this.investigativeCase != null)
 			return this.investigativeCase;
@@ -274,10 +280,12 @@ public class ControllerInvestigativeCase implements Serializable {
 	/**
 	 * Load the incident report from DB and set this case to it
 	 */
-	public void addIncidentReport() {
+	public void addIncidentReport(IncidentReport ir) {
 
-		// load the incident report entity
-		IncidentReport ir = this.ejbIncidentReport.getEntity(Long.parseLong(newIncidentReportId), "IncidentReport");
+		// // load the incident report entity
+		// IncidentReport ir =
+		// this.ejbIncidentReport.getEntity(Long.parseLong(newIncidentReportId),
+		// "IncidentReport");
 
 		// set this case to the incident report
 		ir.setAssignedCase(this.investigativeCase);
@@ -290,6 +298,18 @@ public class ControllerInvestigativeCase implements Serializable {
 
 		// save the this case in DB
 		this.ejbInvestigativeCase.save(investigativeCase);
+	}
+
+
+
+	public void removeIncidentReport(IncidentReport ir) {
+		ir.setAssignedCase(null);
+		getInvestigativeCase().getIncidentReports().remove(ir);
+
+		// save the incident report in DB
+		this.ejbIncidentReport.save(ir);
+
+		submit();
 	}
 
 
@@ -372,4 +392,19 @@ public class ControllerInvestigativeCase implements Serializable {
 	public void setControllerProfile(ControllerProfile controllerProfile) {
 		this.controllerProfile = controllerProfile;
 	}
+
+
+
+	public void addInvestigator(Investigator i) {
+		getInvestigativeCase().addInvestigator(i);
+		submit();
+	}
+ 
+
+
+	public void removeInvestigator(Investigator i) {
+		getInvestigativeCase().getInvestigators().remove(i);
+		submit(); 
+	}
+
 }

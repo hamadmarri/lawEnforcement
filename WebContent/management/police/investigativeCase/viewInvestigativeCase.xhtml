@@ -46,7 +46,11 @@
 					value="#{controllerInvestigativeCase.investigativeCase.incidentReports}" />
 				<c:set var="relatable"
 					value="#{controllerInvestigativeCase.investigativeCase}" />
-				<c:set var="included" value="true" />
+				<c:set var="investigators"
+					value="#{investigativeCase.investigators}" />
+				<c:set var="activities"
+					value="#{controllerInvestigativeCase.investigativeCase.activities}" />
+				<c:set var="ownerController" value="#{controllerInvestigativeCase}" />
 
 
 				<div class="row">
@@ -55,70 +59,28 @@
 
 						<div class="row">
 
-							<!-- HORIZONTAL LINE -->
-							<hr />
-
-							<!-- STATUS -->
-							<h:outputLabel value="Status:&nbsp;" />
-							<h:outputText styleClass="case-open" value="open"
-								rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Open'}" />
-							<h:outputText styleClass="case-pending" value="pending"
-								rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Pending'}" />
-							<h:outputText styleClass="case-inProgress" value="in progress"
-								rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'In progress'}" />
-							<h:outputText styleClass="case-refused" value="refused"
-								rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Refused'}" />
-							<h:outputText styleClass="case-closed" value="closed"
-								rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Closed'}" />
-
-
-
-							<!-- CONTROLS -->
-							<h:form styleClass="pull-right">
-								<h:commandButton styleClass="btn btn-primary" value="open"
-									action="#{controllerInvestigativeCase.openCase()}"
-									rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status eq 'Closed' }" />
-								<h:commandButton styleClass="btn btn-success" value="accept"
-									action="#{controllerInvestigativeCase.acceptCase()}"
-									rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
-								<h:commandButton styleClass="btn btn-danger" value="refuse"
-									action="#{controllerInvestigativeCase.refuseCase()}"
-									rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
-								<h:commandButton styleClass="btn btn-danger" value="close"
-									action="#{controllerInvestigativeCase.closeCase()}"
-									rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
-							</h:form>
-
-						</div>
-						<!-- end row -->
-
-
-						<div class="row">
-
-							<h4 id="description">Description:</h4>
-
-							<h:outputText styleClass="lead"
-								value="#{controllerInvestigativeCase.investigativeCase.description}" />
-
-
-							<!-- EDIT -->
-							<div class="col-md-offset-11">
-								<h:link styleClass="btn btn-link" value="Edit" outcome="edit">
-									<f:param name="id" value="#{controllerInvestigativeCase.id}" />
-								</h:link>
-							</div>
-
-							<!-- HORIZONTAL LINE -->
-							<hr />
-
-						</div>
-						<!-- end row -->
-
-						<div class="row top45">
 							<div class="col-md-6">
 								<!-- DETAILS -->
 								<h4 id="details">Details:</h4>
 								<h:panelGrid columns="2" styleClass="table borderless">
+
+
+									<h:panelGroup>
+										<h:outputLabel value="Status:&nbsp;" />
+										<h:outputText styleClass="case-open" value="open"
+											rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Open'}" />
+										<h:outputText styleClass="case-pending" value="pending"
+											rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Pending'}" />
+										<h:outputText styleClass="case-inProgress" value="in progress"
+											rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'In progress'}" />
+										<h:outputText styleClass="case-refused" value="refused"
+											rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Refused'}" />
+										<h:outputText styleClass="case-closed" value="closed"
+											rendered="#{controllerInvestigativeCase.investigativeCase.status eq 'Closed'}" />
+									</h:panelGroup>
+									<h:panelGroup />
+
+
 									<h:outputLabel value="Start Date" />
 									<h:outputText
 										value="#{controllerInvestigativeCase.investigativeCase.startDate}">
@@ -152,52 +114,146 @@
 							<!-- col-6 -->
 
 
-							<div class="col-md-4 col-md-offset-2">
-
-								<div class="row">
-									<!-- incident reports list -->
-									<h4 id="incidentReports">Incident Reports:</h4>
-
-									<div class="col-md-12">
-										<ui:include
-											src="/management/events/incidentReport/listIncidentReports.xhtml" />
-										<h:form>
-											<p:inputText
-												value="#{controllerInvestigativeCase.newIncidentReportId}" />
-											<h:commandButton styleClass="btn btn-link" value="add"
-												action="#{controllerInvestigativeCase.addIncidentReport}" />
-										</h:form>
-									</div>
-								</div>
-								<!-- HORIZONTAL LINE -->
-								<hr />
-								<div class="row">
-									<!-- investigators responsible for -->
-									<h4 id="investigators">Investigators:</h4>
-									<div class="col-md-12">
-										<ui:include
-											src="/management/police/investigator/listInvestigators.xhtml" />
-									</div>
-								</div>
-
+							<!-- CONTROLS -->
+							<div class="pull-right">
+								<h:form>
+									<h:commandButton styleClass="btn btn-primary" value="open"
+										action="#{controllerInvestigativeCase.openCase()}"
+										rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status eq 'Closed' }" />
+									<h:commandButton styleClass="btn btn-success" value="accept"
+										action="#{controllerInvestigativeCase.acceptCase()}"
+										rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+									<h:commandButton styleClass="btn btn-danger" value="refuse"
+										action="#{controllerInvestigativeCase.refuseCase()}"
+										rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+									<h:commandButton styleClass="btn btn-danger" value="close"
+										action="#{controllerInvestigativeCase.closeCase()}"
+										rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+								</h:form>
 							</div>
+
 
 						</div>
 						<!-- end row -->
-
-
 
 						<!-- HORIZONTAL LINE -->
 						<hr />
 
 						<div class="row">
+
+							<div class="col-md-12">
+								<h4 id="description">Description:</h4>
+
+								<h:outputText styleClass="lead"
+									value="#{controllerInvestigativeCase.investigativeCase.description}"
+									escape="false" />
+
+
+								<br />
+								<!-- EDIT -->
+								<div class="pull-right">
+									<h:link styleClass="btn btn-default" value="Edit"
+										outcome="edit">
+										<f:param name="id" value="#{controllerInvestigativeCase.id}" />
+									</h:link>
+								</div>
+							</div>
+
+
+						</div>
+						<!-- end row -->
+
+
+						<!-- HORIZONTAL LINE -->
+						<hr />
+
+
+						<div class="row">
 							<!-- Activity list -->
 							<h4 id="activities">Activities:</h4>
 							<div class="col-md-12">
-								<ui:include
-									src="/management/police/investigativeCase/activity/listActivities.xhtml" />
+								<ui:include src="/WEB-INF/includes/lists/activities.xhtml" />
 							</div>
 						</div>
+
+						<!-- HORIZONTAL LINE -->
+						<hr />
+
+						<div class="row top45">
+
+							<div class="col-md-6">
+
+								<!-- incident reports list -->
+								<h4 id="incidentReports">Incident Reports:</h4>
+
+								<div class="col-md-12">
+									<ui:include src="/WEB-INF/includes/lists/incidentReports.xhtml" />
+
+									<br />
+									<h:form>
+										<p:commandButton id="incBtn" value="Add Incident Report"
+											type="button" />
+										<p:overlayPanel id="incPanel" for="incBtn" hideEffect="fade"
+											dynamic="true" style="width:600px">
+											<p:dataTable var="ir"
+												value="#{controllerIncidentReport.incidentReportsList}">
+												<p:column>
+													<f:facet name="header">Offense Info</f:facet>
+													<h:outputText value="#{ir.offenseInformation}" />
+												</p:column>
+												<p:column>
+													<f:facet name="header">Status</f:facet>
+													<h:outputText value="#{ir.caseStatus}" />
+												</p:column>
+												<p:column>
+
+													<h:commandButton styleClass="btn btn-link" value="Add"
+														action="#{controllerInvestigativeCase.addIncidentReport(ir)}" />
+												</p:column>
+											</p:dataTable>
+										</p:overlayPanel>
+									</h:form>
+								</div>
+
+							</div>
+
+							<div class="col-md-6">
+								<!-- investigators responsible for -->
+								<h4 id="investigators">Investigators:</h4>
+								<div class="col-md-12">
+									<ui:include src="/WEB-INF/includes/lists/investigators.xhtml" />
+
+									<br />
+									<h:form>
+										<p:commandButton id="invBtn" value="Add Investigators"
+											type="button" />
+										<p:overlayPanel id="invPanel" for="invBtn" hideEffect="fade"
+											dynamic="true" style="width:600px">
+											<p:dataTable var="i"
+												value="#{controllerInvestigator.investigatorsList}">
+												<p:column>
+													<f:facet name="header">Name</f:facet>
+													<h:outputText value="#{i.personName}" />
+												</p:column>
+												<p:column>
+
+													<h:commandButton styleClass="btn btn-link"
+														value="Send Request"
+														action="#{controllerInvestigativeCase.addInvestigator(i)}" />
+												</p:column>
+											</p:dataTable>
+										</p:overlayPanel>
+									</h:form>
+
+								</div>
+							</div>
+
+
+
+						</div>
+						<!-- end row -->
+
+
 
 					</div>
 					<!-- col-md-9 -->
@@ -205,11 +261,12 @@
 					<!-- List -->
 					<div class="col-md-2 col-md-offset-1">
 						<div class="list-group">
-							<a class="list-group-item" href="#description">Description</a> <a
-								class="list-group-item" href="#details">Details</a> <a
+							<a class="list-group-item" href="#details">Details</a><a
+								class="list-group-item" href="#description">Description</a> <a
+								class="list-group-item" href="#activities">Activities</a> <a
 								class="list-group-item" href="#incidentReports">Incident
 								Reports</a> <a class="list-group-item" href="#investigators">Investigators</a>
-							<a class="list-group-item" href="#activities">Activities</a>
+
 						</div>
 					</div>
 

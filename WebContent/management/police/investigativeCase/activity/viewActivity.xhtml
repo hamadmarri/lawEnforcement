@@ -14,33 +14,52 @@
 </h:head>
 <h:body>
 	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Activity</ui:define>
 		<ui:define name="content">
 
-			<h3>Activity</h3>
+			<div class="container">
+			
+			<div class="page-header">
+					<h4>Investigative Case</h4>
+				</div>
 
-			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerActivity.id}" />
-			</h:link>
-			<br />
+				<div class="row">
 
-			<h:outputLabel value="Type" />
-			<h:outputLabel value="#{controllerActivity.activity.type}" />
-			<br />
+					<ul class="breadcrumb no-bg-color">
+						<li><h:link value="Home" outcome="/index.xhtml" /><span
+							class="divider" /></li>
+						<li><h:link value="Investigative Cases List"
+								outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" /></li>
+						<li class="active">Investigative Cases</li>
+					</ul>
+				</div>
+				
+				
+				<h3>Activity</h3>
 
-			<h:outputLabel value="Date and Time" />
-			<h:outputLabel value="#{controllerActivity.activity.dateAndTime}" />
-			<br />
+				<h:link value="edit" outcome="edit">
+					<f:param name="id" value="#{controllerActivity.id}" />
+				</h:link>
+				<br />
 
-			<h:outputLabel value="Data" />
-			<h:outputLabel value="#{controllerActivity.activity.data}" />
-			<br />
+				<h:outputLabel value="Type" />
+				<h:outputText value="#{controllerActivity.activity.type}" />
+				<br />
 
-			<h:outputLabel value="Investigator" />
-			<h:outputLabel
-				value="#{controllerActivity.activity.investigator.personName.lastName},
-			 #{controllerActivity.activity.investigator.personName.firstName}" />
-			<br />
+				<h:outputLabel value="Date and Time" />
+				<h:outputLabel value="#{controllerActivity.activity.dateAndTime}" />
+				<br />
 
+				<h:outputLabel value="Data" />
+				<h:outputLabel value="#{controllerActivity.activity.data}" />
+				<br />
+
+				<h:outputLabel value="Investigator" />
+				<h:outputLabel
+					value="#{controllerActivity.activity.investigator.personName}" />
+				<br />
+
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

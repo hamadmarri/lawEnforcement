@@ -1,5 +1,7 @@
 package controllers.profile;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +23,9 @@ import ejbs.EjbNotification;
  */
 @ManagedBean(name = "controllerProfile")
 @ViewScoped
-public class ControllerProfile {
+public class ControllerProfile implements Serializable {
+
+	private static final long serialVersionUID = -5125021517784368433L;
 
 	@ManagedProperty(value = "#{controllerOfficer}")
 	private ControllerOfficer controllerOfficer;

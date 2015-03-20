@@ -1,5 +1,6 @@
 package controllers.management;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,7 +30,9 @@ import entities.police.Investigator;
  */
 @ManagedBean(name = "controllerActivity")
 @ViewScoped
-public class ControllerActivity {
+public class ControllerActivity implements Serializable {
+
+	private static final long serialVersionUID = 1737896155289958972L;
 
 	// EJB for Activity object
 	@EJB

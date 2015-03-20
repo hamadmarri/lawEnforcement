@@ -62,7 +62,9 @@
 								<!-- DESCRIPTION -->
 								<p:column filterBy="#{ic.description}" headerText="Description"
 									filterMatchMode="contains">
-									<h:outputText value="#{ic.description}" />
+									<h:outputText
+										value="#{ic.description.length() gt 150 ? ic.description.substring(0,150).concat('...') : ic.description}"
+										escape="false" />
 								</p:column>
 
 								<!-- STATUS -->
