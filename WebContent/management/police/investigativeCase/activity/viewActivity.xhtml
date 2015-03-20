@@ -18,9 +18,9 @@
 		<ui:define name="content">
 
 			<div class="container">
-			
-			<div class="page-header">
-					<h4>Investigative Case</h4>
+
+				<div class="page-header">
+					<h4>Activity</h4>
 				</div>
 
 				<div class="row">
@@ -28,36 +28,44 @@
 					<ul class="breadcrumb no-bg-color">
 						<li><h:link value="Home" outcome="/index.xhtml" /><span
 							class="divider" /></li>
-						<li><h:link value="Investigative Cases List"
-								outcome="/management/police/investigativeCase/listInvestigativeCases.xhtml" /></li>
-						<li class="active">Investigative Cases</li>
+						<li><h:link value="Activities List"
+								outcome="/management/police/investigativeCase/activity/listActivities.xhtml" /></li>
+						<li class="active">Activity</li>
 					</ul>
 				</div>
-				
-				
-				<h3>Activity</h3>
 
-				<h:link value="edit" outcome="edit">
-					<f:param name="id" value="#{controllerActivity.id}" />
-				</h:link>
-				<br />
 
-				<h:outputLabel value="Type" />
-				<h:outputText value="#{controllerActivity.activity.type}" />
-				<br />
+				<div class="row">
+					<div class="col-md-6">
 
-				<h:outputLabel value="Date and Time" />
-				<h:outputLabel value="#{controllerActivity.activity.dateAndTime}" />
-				<br />
 
-				<h:outputLabel value="Data" />
-				<h:outputLabel value="#{controllerActivity.activity.data}" />
-				<br />
+						<h:link styleClass="pull-right btn btn-primary" value="Edit" outcome="edit">
+							<f:param name="id" value="#{controllerActivity.id}" />
+						</h:link>
+						
+						<br />
+						<br />
 
-				<h:outputLabel value="Investigator" />
-				<h:outputLabel
-					value="#{controllerActivity.activity.investigator.personName}" />
-				<br />
+						<h:panelGrid columns="2" styleClass="table">
+
+							<h:outputLabel value="Type" />
+							<h:outputText value="#{controllerActivity.activity.type}" />
+
+							<h:outputLabel value="Date and Time" />
+							<h:outputText value="#{controllerActivity.activity.dateAndTime}">
+								<f:convertDateTime pattern="MMMM dd, YYYY (hh:mm)" />
+							</h:outputText>
+
+							<h:outputLabel value="Data" />
+							<h:outputText value="#{controllerActivity.activity.data}" />
+
+							<h:outputLabel value="Investigator" />
+							<h:outputText
+								value="#{controllerActivity.activity.investigator.personName}" />
+						</h:panelGrid>
+
+					</div>
+				</div>
 
 			</div>
 		</ui:define>

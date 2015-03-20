@@ -19,35 +19,57 @@
 		<ui:define name="title">Adala - Investigative Case</ui:define>
 		<ui:define name="content">
 
-			<ui:insert name="editHeader">
-				<h2>Edit Activity</h2>
-			</ui:insert>
+			<div class="container">
+				<div class="page-header">
+					<ui:insert name="editHeader">
+						<h4>Activity</h4>
+					</ui:insert>
+				</div>
+
+				<div class="row">
+
+					<ul class="breadcrumb no-bg-color">
+						<li><h:link value="Home" outcome="/index.xhtml" /><span
+							class="divider" /></li>
+						<li><h:link value="Activities List"
+								outcome="/management/police/investigativeCase/activity/listActivities.xhtml" /></li>
+						<li class="active">Activity</li>
+					</ul>
+				</div>
 
 
-			<h:link value="cancel" outcome="cancel">
-				<f:param name="id" value="#{controllerActivity.id}" />
-			</h:link>
 
 
-			<h:form>
-				<h:outputLabel value="Type" />
-				<h:inputText value="#{controllerActivity.activity.type}" />
-				<br />
-				<h:outputLabel value="Date and Time" />
-				<p:calendar value="#{controllerActivity.activity.dateAndTime}" />
-				<br />
-				<h:outputLabel value="Data" />
-				<h:inputText value="#{controllerActivity.activity.data}" />
-				<br />
-				<h:outputLabel value="Invistigative case" />
-				<h:inputText value="#{controllerActivity.investigativeCaseId}" />
-				<br />
-				<h:outputLabel value="Investigator" />
-				<h:inputText value="#{controllerActivity.investigatorId}" />
-				<br />
-				<h:commandButton value="save" action="#{controllerActivity.submit}" />
-			</h:form>
+				<h:form styleClass="col-md-4">
+					<h:panelGrid columns="2" styleClass="table borderless">
+						<h:outputLabel value="Type" />
+						<p:inputText value="#{controllerActivity.activity.type}" />
 
+						<h:outputLabel value="Date and Time" />
+						<p:calendar value="#{controllerActivity.activity.dateAndTime}" />
+
+						<h:outputLabel value="Data" />
+						<p:inputText value="#{controllerActivity.activity.data}" />
+
+						<h:outputLabel value="Invistigative case" />
+						<p:inputText value="#{controllerActivity.investigativeCaseId}" />
+
+						<h:outputLabel value="Investigator" />
+						<p:inputText value="#{controllerActivity.investigatorId}" />
+					</h:panelGrid>
+
+					<div class="pull-right">
+						<h:commandButton styleClass="btn btn-primary" value="save"
+							action="#{controllerActivity.submit}" />
+
+						<h:link styleClass="btn btn-link minor" value="cancel"
+							outcome="cancel">
+							<f:param name="id" value="#{controllerActivity.id}" />
+						</h:link>
+					</div>
+				</h:form>
+
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

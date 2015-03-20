@@ -23,9 +23,6 @@ public class Activity extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = -4496487588138153339L;
 
-	// @Id
-	// @GeneratedValue
-	// Long id;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private InvestigativeCase investigativeCase;

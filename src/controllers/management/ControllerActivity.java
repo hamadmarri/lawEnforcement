@@ -50,7 +50,7 @@ public class ControllerActivity implements Serializable {
 	protected String id;
 
 	// the Activity object
-	protected Activity activity;
+	protected Activity activity = null;
 
 	// list of Activity objects
 	protected List<Activity> list = null;
@@ -144,6 +144,7 @@ public class ControllerActivity implements Serializable {
 	 */
 	public Activity getActivity() {
 
+		
 		// if the object was loaded already, just return it
 		if (this.activity != null)
 			return this.activity;
@@ -152,10 +153,12 @@ public class ControllerActivity implements Serializable {
 		if (this.id == null)
 			return null;
 
+		
 		// at this point object must be null but id is not,
 		// so load it from DB
-		this.activity = (Activity) ejbActivity.getEntity(Long.parseLong(this.id));
+		this.activity = (Activity) ejbActivity.getEntity(Long.parseLong(this.id), "Activity");
 
+		
 		// hold the id of investigator
 		if (this.investigatorId == null && this.activity != null && this.activity.getInvestigator() != null)
 			setInvestigatorId(this.activity.getInvestigator().getId());
@@ -164,6 +167,8 @@ public class ControllerActivity implements Serializable {
 		if (this.investigativeCaseId == null && this.activity != null && this.activity.getInvestigativeCase() != null)
 			setInvestigativeCaseId(this.activity.getInvestigativeCase().getId());
 
+		
+		
 		return this.activity;
 	}
 

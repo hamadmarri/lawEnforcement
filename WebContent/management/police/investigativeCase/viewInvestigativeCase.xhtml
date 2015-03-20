@@ -55,7 +55,7 @@
 
 				<div class="row">
 
-					<div class="col-md-9">
+					<div class="col-md-8">
 
 						<div class="row">
 
@@ -176,12 +176,64 @@
 							</div>
 						</div>
 
-						<!-- HORIZONTAL LINE -->
+
+					</div>
+					<!-- col-md-9 -->
+
+					<div class="col-md-3 col-md-offset-1">
+						<div class="row">
+							<!-- List -->
+							<div class="col-md-11 col-md-offset-1">
+								<div class="list-group">
+									<a class="list-group-item" href="#details">Details</a><a
+										class="list-group-item" href="#description">Description</a> <a
+										class="list-group-item" href="#activities">Activities</a> <a
+										class="list-group-item" href="#investigators">Investigators</a><a
+										class="list-group-item" href="#incidentReports">Incident
+										Reports</a>
+
+								</div>
+							</div>
+						</div>
+
+						<br />
+
+						<div class="row">
+							<div class="col-md-12">
+								<!-- investigators responsible for -->
+								<h4 id="investigators">Investigators:</h4>
+
+								<ui:include src="/WEB-INF/includes/lists/investigators.xhtml" />
+
+								<h:form>
+									<p:commandButton styleClass="pull-right" id="invBtn"
+										value="Add Investigators" type="button" />
+									<p:overlayPanel id="invPanel" for="invBtn" hideEffect="fade"
+										dynamic="true" style="width:600px">
+										<p:dataTable var="i"
+											value="#{controllerInvestigator.investigatorsList}">
+											<p:column>
+												<f:facet name="header">Name</f:facet>
+												<h:outputText value="#{i.personName}" />
+											</p:column>
+											<p:column>
+												<h:commandButton styleClass="btn btn-link"
+													value="Send Request"
+													action="#{controllerInvestigativeCase.addInvestigator(i)}" />
+											</p:column>
+										</p:dataTable>
+									</p:overlayPanel>
+								</h:form>
+							</div>
+						</div>
+
+
+						<br />
 						<hr />
+						<br />
 
-						<div class="row top45">
-
-							<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-12">
 
 								<!-- incident reports list -->
 								<h4 id="incidentReports">Incident Reports:</h4>
@@ -189,10 +241,9 @@
 								<div class="col-md-12">
 									<ui:include src="/WEB-INF/includes/lists/incidentReports.xhtml" />
 
-									<br />
 									<h:form>
-										<p:commandButton id="incBtn" value="Add Incident Report"
-											type="button" />
+										<p:commandButton styleClass="pull-right" id="incBtn"
+											value="Add Incident Report" type="button" />
 										<p:overlayPanel id="incPanel" for="incBtn" hideEffect="fade"
 											dynamic="true" style="width:600px">
 											<p:dataTable var="ir"
@@ -216,58 +267,9 @@
 								</div>
 
 							</div>
-
-							<div class="col-md-6">
-								<!-- investigators responsible for -->
-								<h4 id="investigators">Investigators:</h4>
-								<div class="col-md-12">
-									<ui:include src="/WEB-INF/includes/lists/investigators.xhtml" />
-
-									<br />
-									<h:form>
-										<p:commandButton id="invBtn" value="Add Investigators"
-											type="button" />
-										<p:overlayPanel id="invPanel" for="invBtn" hideEffect="fade"
-											dynamic="true" style="width:600px">
-											<p:dataTable var="i"
-												value="#{controllerInvestigator.investigatorsList}">
-												<p:column>
-													<f:facet name="header">Name</f:facet>
-													<h:outputText value="#{i.personName}" />
-												</p:column>
-												<p:column>
-
-													<h:commandButton styleClass="btn btn-link"
-														value="Send Request"
-														action="#{controllerInvestigativeCase.addInvestigator(i)}" />
-												</p:column>
-											</p:dataTable>
-										</p:overlayPanel>
-									</h:form>
-
-								</div>
-							</div>
-
-
-
 						</div>
-						<!-- end row -->
 
 
-
-					</div>
-					<!-- col-md-9 -->
-
-					<!-- List -->
-					<div class="col-md-2 col-md-offset-1">
-						<div class="list-group">
-							<a class="list-group-item" href="#details">Details</a><a
-								class="list-group-item" href="#description">Description</a> <a
-								class="list-group-item" href="#activities">Activities</a> <a
-								class="list-group-item" href="#incidentReports">Incident
-								Reports</a> <a class="list-group-item" href="#investigators">Investigators</a>
-
-						</div>
 					</div>
 
 				</div>
