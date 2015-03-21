@@ -14,175 +14,291 @@
 </h:head>
 <h:body>
 
-	<ui:composition>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Offender Profile</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not controllerCrimeScene.showSuggestedOP}">
-			<c:set var="offenderProfile"
-				value="#{controllerOffenderProfile.offenderProfile}" />
-		</c:if>
+			<div class="container">
+
+				<div class="page-header">
+					<h4>Offender Profile
+						#{controllerOffenderProfile.offenderProfile.offenderProfileId}</h4>
+				</div>
+
+				<div class="row">
+
+					<ul class="breadcrumb no-bg-color">
+						<li><h:link value="Home" outcome="/index.xhtml" /><span
+							class="divider" /></li>
+						<li><h:link value="Offender Profile List"
+								outcome="/management/police/offenderProfile/listOffenderProfiles.xhtml" /></li>
+						<li class="active">Offender Profile
+							#{controllerOffenderProfile.offenderProfile.offenderProfileId}</li>
+					</ul>
+				</div>
 
 
-		<h3>Offender Profile</h3>
+				<c:if test="${not controllerCrimeScene.showSuggestedOP}">
+					<c:set var="offenderProfile"
+						value="#{controllerOffenderProfile.offenderProfile}" />
+				</c:if>
 
-		<c:if test="${not controllerCrimeScene.showSuggestedOP}">
-			<h:link value="edit" outcome="edit">
-				<f:param name="id"
-					value="#{controllerOffenderProfile.offenderProfile.offenderProfileId}" />
+
 				<br />
-			</h:link>
-			<br />
 
-
-			<h:outputLabel value="id: " />
-			<h:outputLabel value="#{offenderProfile.offenderProfileId}" />
-			<br />
-		</c:if>
-
-
-		<h:outputLabel value="Young Offender Between 17 And 21 Years: " />
-		<h:outputLabel
-			value="#{offenderProfile.youngOffenderBetween17And21Years}" />
-		<br />
-
-
-		<h:outputLabel value="Criminal Record Of Theft: " />
-		<h:outputLabel value="#{offenderProfile.criminalRecordOfTheft}" />
-		<br />
-
-
-		<h:outputLabel value="Criminal Record Of Fraud: " />
-		<h:outputLabel value="#{offenderProfile.criminalRecordOfFraud}" />
-		<br />
-
-
-		<h:outputLabel value="Criminal Record Of Burglary: " />
-		<h:outputLabel value="#{offenderProfile.criminalRecordOfBurglary}" />
-		<br />
-
-
-		<h:outputLabel value="Relationship With Victim: " />
-		<h:outputLabel value="#{offenderProfile.relationshipWithVictim}" />
-		<br />
-
-
-		<h:outputLabel value="Unemployed At The Time Of Offense: " />
-		<h:outputLabel value="#{offenderProfile.unemployedAtTheTimeOfOffense}" />
-		<br />
-
-
-		<h:outputLabel value="Male: " />
-		<h:outputLabel value="#{offenderProfile.male}" />
-		<br />
-
-
-		<h:outputLabel value="Familiar With Area Of Offense Occurrence: " />
-		<h:outputLabel
-			value="#{offenderProfile.familiarWithAreaOfOffenseOccurrence}" />
-		<br />
-
-
-		<h:outputLabel value="Criminal Record Of Violence: " />
-		<h:outputLabel value="#{offenderProfile.criminalRecordOfViolence}" />
-		<br />
-
-
-		<h:outputLabel value="Criminal Record Of Committing Damage: " />
-		<h:outputLabel
-			value="#{offenderProfile.criminalRecordOfCommittingDamage}" />
-		<br />
-
-
-		<h:outputLabel value="Criminal Record Of Disorderly Conduct: " />
-		<h:outputLabel
-			value="#{offenderProfile.criminalRecordOfDisorderlyConduct}" />
-		<br />
-
-
-		<h:outputLabel value="Record Of Imprisonment: " />
-		<h:outputLabel value="#{offenderProfile.recordOfImprisonment}" />
-		<br />
-
-
-		<h:outputLabel value="Sexual Related Criminal Record: " />
-		<h:outputLabel value="#{offenderProfile.sexualRelatedCriminalRecord}" />
-		<br />
-
-
-		<h:outputLabel value="Armed Services (Past or Present): " />
-		<h:outputLabel value="#{offenderProfile.armedServices_PastOrPresent}" />
-		<br />
-
-
-		<h:outputLabel value="Knew Victim: " />
-		<h:outputLabel value="#{offenderProfile.knewVictim}" />
-		<br />
-
-
-		<h:outputLabel value="History Of Abusiveness In Past Relationships: " />
-		<h:outputLabel
-			value="#{offenderProfile.historyOfAbusivenessInPastRelationships}" />
-		<br />
-
-
-		<h:outputLabel value="Attempts Of Suicide: " />
-		<h:outputLabel value="#{offenderProfile.attemptsOfSuicide}" />
-		<br />
-
-
-		<h:outputLabel value="Psychiatric Disorders: " />
-		<h:outputLabel value="#{offenderProfile.psychiatricDisorders}" />
-		<br />
-
-
-		<h:outputLabel value="Related To Victim: " />
-		<h:outputLabel value="#{offenderProfile.relatedToVictim}" />
-		<br />
-
-
-		<h:outputLabel value="Blood Relative To Victim: " />
-		<h:outputLabel value="#{offenderProfile.bloodRelativeToVictim}" />
-		<br />
-
-
-		<h:outputLabel value="Turned Self Into Police: " />
-		<h:outputLabel value="#{offenderProfile.turnedSelfIntoPolice}" />
-		<br />
-
-
-		<c:if test="${not controllerCrimeScene.showSuggestedOP}">
-			<h:outputLabel value="Crime Scene: " />
-			<h:link value="view"
-				outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerOffenderProfile.offenderProfile.crimeScene.crimeSceneId}" />
-			<br />
-
-			<h:form>
-				<h:commandButton value="List suspects"
-					action="#{controllerOffenderProfile.setShowSuspects(true)}" />
-			</h:form>
-
-			<c:if test="${controllerOffenderProfile.showSuspects}">
-				<h2>Suspects</h2>
-				<h:dataTable value="#{controllerOffenderProfile.suspects}" var="sp">
-					<h:column>
+				<div class="row">
+					<div class="col-md-2">
+						<h:outputLabel value="Crime Scene:" style="margin-right: 5px;" />
 						<h:link value="view"
-							outcome="/management/entries/person/viewPerson.xhtml?id=#{sp.person.id}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Name</f:facet>
-						<h:outputLabel
-							value="#{sp.person.personName.lastName}, #{sp.person.personName.firstName}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Matching Persentage</f:facet>
-						<h:outputLabel value="#{sp.matchPercentage}">
-							<f:convertNumber pattern="00.0%" />
-						</h:outputLabel>
-					</h:column>
-				</h:dataTable>
-			</c:if>
-		</c:if>
+							outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{controllerOffenderProfile.offenderProfile.crimeScene.crimeSceneId}" />
+					</div>
+
+					<div class="col-md-1 col-md-offset-8">
+						<h:link styleClass="btn btn-primary" style="width: 100%;"
+							value="edit" outcome="edit">
+							<f:param name="id"
+								value="#{controllerOffenderProfile.offenderProfile.offenderProfileId}" />
+						</h:link>
+					</div>
+				</div>
+				<br />
 
 
+
+
+				<div class="row">
+					<div class="col-md-5">
+						<h:panelGrid columns="2" styleClass="table table-striped ">
+
+							<h:outputLabel value="Young Offender Between 17 And 21 Years" />
+							<h:outputText
+								rendered="#{offenderProfile.youngOffenderBetween17And21Years}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.youngOffenderBetween17And21Years ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Criminal Record Of Theft" />
+							<h:outputText rendered="#{offenderProfile.criminalRecordOfTheft}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfTheft ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Criminal Record Of Fraud" />
+							<h:outputText rendered="#{offenderProfile.criminalRecordOfFraud}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfFraud ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Criminal Record Of Burglary" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfBurglary}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfBurglary ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Relationship With Victim" />
+							<h:outputText
+								rendered="#{offenderProfile.relationshipWithVictim}" value="Yes"
+								styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.relationshipWithVictim ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Unemployed At The Time Of Offense" />
+							<h:outputText
+								rendered="#{offenderProfile.unemployedAtTheTimeOfOffense}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.unemployedAtTheTimeOfOffense ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Male" />
+							<h:outputText rendered="#{offenderProfile.male}" value="Yes"
+								styleClass="yes" />
+							<h:outputText rendered="#{offenderProfile.male ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Familiar With Area Of Offense Occurrence" />
+							<h:outputText
+								rendered="#{offenderProfile.familiarWithAreaOfOffenseOccurrence}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.familiarWithAreaOfOffenseOccurrence ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Criminal Record Of Violence" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfViolence}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfViolence ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Criminal Record Of Committing Damage" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfCommittingDamage}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfCommittingDamage ne true}"
+								value="No" styleClass="no" />
+
+
+							<h:outputLabel value="Criminal Record Of Disorderly Conduct" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfDisorderlyConduct}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.criminalRecordOfDisorderlyConduct ne true}"
+								value="No" styleClass="no" />
+
+
+						</h:panelGrid>
+					</div>
+
+
+
+					<div class="col-md-5 col-md-offset-1">
+						<h:panelGrid columns="2" styleClass="table table-striped ">
+
+							<h:outputLabel value="Record Of Imprisonment" />
+							<h:outputText rendered="#{offenderProfile.recordOfImprisonment}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.recordOfImprisonment ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Sexual Related Criminal Record" />
+							<h:outputText
+								rendered="#{offenderProfile.sexualRelatedCriminalRecord}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.sexualRelatedCriminalRecord ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Armed Services (Past or Present)" />
+							<h:outputText
+								rendered="#{offenderProfile.armedServices_PastOrPresent}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.armedServices_PastOrPresent ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Knew Victim" />
+							<h:outputText rendered="#{offenderProfile.knewVictim}"
+								value="Yes" styleClass="yes" />
+							<h:outputText rendered="#{offenderProfile.knewVictim ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel
+								value="History Of Abusiveness In Past Relationships" />
+							<h:outputText
+								rendered="#{offenderProfile.historyOfAbusivenessInPastRelationships}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.historyOfAbusivenessInPastRelationships ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Attempts Of Suicide" />
+							<h:outputText rendered="#{offenderProfile.attemptsOfSuicide}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.attemptsOfSuicide ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Psychiatric Disorders" />
+							<h:outputText rendered="#{offenderProfile.psychiatricDisorders}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.psychiatricDisorders ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Related To Victim" />
+							<h:outputText rendered="#{offenderProfile.relatedToVictim}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.relatedToVictim ne true}" value="No"
+								styleClass="no" />
+
+							<h:outputLabel value="Blood Relative To Victim" />
+							<h:outputText rendered="#{offenderProfile.bloodRelativeToVictim}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.bloodRelativeToVictim ne true}"
+								value="No" styleClass="no" />
+
+							<h:outputLabel value="Turned Self Into Police" />
+							<h:outputText rendered="#{offenderProfile.turnedSelfIntoPolice}"
+								value="Yes" styleClass="yes" />
+							<h:outputText
+								rendered="#{offenderProfile.turnedSelfIntoPolice ne true}"
+								value="No" styleClass="no" />
+
+						</h:panelGrid>
+					</div>
+				</div>
+
+
+
+
+
+				<h:form>
+					<h:commandButton styleClass="btn btn-primary" value="List suspects"
+						action="#{controllerOffenderProfile.setShowSuspects(true)}" />
+				</h:form>
+
+				<c:if test="${controllerOffenderProfile.showSuspects}">
+					<div class="page-header">
+						<h4>Suspects</h4>
+					</div>
+
+
+
+					<h:panelGroup
+						rendered="#{controllerOffenderProfile.suspects.isEmpty()}">
+						<div class="alert alert-warning" role="alert">
+							<strong>No matches !</strong> The system could not find any person
+							has a match with this offender profile !
+						</div>
+					</h:panelGroup>
+
+					<h:dataTable styleClass="table table-striped"
+						value="#{controllerOffenderProfile.suspects}" var="sp"
+						rendered="#{controllerOffenderProfile.suspects.isEmpty() ne true}">
+						<h:column>
+							<h:link value="view"
+								outcome="/management/entries/person/viewPerson.xhtml?id=#{sp.person.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputLabel
+								value="#{sp.person.personName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Matching Persentage</f:facet>
+							<h:outputLabel value="#{sp.matchPercentage}">
+								<f:convertNumber pattern="00.0%" />
+							</h:outputLabel>
+						</h:column>
+					</h:dataTable>
+				</c:if>
+
+
+			</div>
+			<!-- container -->
+		</ui:define>
 	</ui:composition>
 
 </h:body>
