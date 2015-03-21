@@ -54,7 +54,7 @@
 
 
 				<div class="row">
-					<div class="col-md-1 col-md-offset-10">
+					<div class="col-md-offset-11">
 						<h:link styleClass="btn btn-default" value="Cancel"
 							outcome="cancel">
 							<f:param name="id" value="#{controllerCrimeScene.id}" />
@@ -68,340 +68,339 @@
 				<h:form>
 
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md-6">
 							<h:panelGrid columns="2" styleClass="table table-striped ">
 
 
 								<h:outputLabel value="Foreign Object Penetration" />
-								<h:selectOneRadio id="selectOneRadio1"
+								<p:selectOneButton id="selectOneRadio1"
 									value="#{controllerCrimeScene.crimeScene.foreignObjectPenetration}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Face Not Deliberately Hidden" />
-								<h:selectOneRadio id="selectOneRadio2"
+								<p:selectOneButton id="selectOneRadio2"
 									value="#{controllerCrimeScene.crimeScene.faceNotDeliberatelyHidden}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Victim Was Blindfolded" />
-								<h:selectOneRadio id="selectOneRadio3"
+								<p:selectOneButton id="selectOneRadio3"
 									value="#{controllerCrimeScene.crimeScene.victimWasBlindfolded}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Wounds Caused By Blunt Instrument" />
-								<h:selectOneRadio id="selectOneRadio4"
+								<p:selectOneButton id="selectOneRadio4"
 									value="#{controllerCrimeScene.crimeScene.woundsCausedByBluntInstrument}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Suffocation" />
-								<h:selectOneRadio id="selectOneRadio5"
+								<p:selectOneButton id="selectOneRadio5"
 									value="#{controllerCrimeScene.crimeScene.suffocation}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Vaginal Penetration" />
-								<h:selectOneRadio id="selectOneRadio6"
+								<p:selectOneButton id="selectOneRadio6"
 									value="#{controllerCrimeScene.crimeScene.vaginalPenetration}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Anal Penetration" />
-								<h:selectOneRadio id="selectOneRadio7"
+								<p:selectOneButton id="selectOneRadio7"
 									value="#{controllerCrimeScene.crimeScene.analPenetration}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Face Up" />
-								<h:selectOneRadio id="selectOneRadio8"
+								<p:selectOneButton id="selectOneRadio8"
 									value="#{controllerCrimeScene.crimeScene.faceUp}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Victim Partially Undressed" />
-								<h:selectOneRadio id="selectOneRadio9"
+								<p:selectOneButton id="selectOneRadio9"
 									value="#{controllerCrimeScene.crimeScene.victimPartiallyUndressed}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Victim Naked" />
-								<h:selectOneRadio id="selectOneRadio10"
+								<p:selectOneButton id="selectOneRadio10"
 									value="#{controllerCrimeScene.crimeScene.victimNaked}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Deliberate Clothing Damaged" />
-								<h:selectOneRadio id="selectOneRadio11"
+								<p:selectOneButton id="selectOneRadio11"
 									value="#{controllerCrimeScene.crimeScene.deliberateClothingDamaged}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Bound" />
-								<h:selectOneRadio id="selectOneRadio12"
+								<p:selectOneButton id="selectOneRadio12"
 									value="#{controllerCrimeScene.crimeScene.bound}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Stabbing Injuries" />
-								<h:selectOneRadio id="selectOneRadio13"
+								<p:selectOneButton id="selectOneRadio13"
 									value="#{controllerCrimeScene.crimeScene.stabbingInjuries}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Manual Injuries" />
-								<h:selectOneRadio id="selectOneRadio14"
+								<p:selectOneButton id="selectOneRadio14"
 									value="#{controllerCrimeScene.crimeScene.manualInjuries}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Gunshot Wounds" />
-								<h:selectOneRadio id="selectOneRadio15"
+								<p:selectOneButton id="selectOneRadio15"
 									value="#{controllerCrimeScene.crimeScene.gunshotWounds}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Wounds To The Head" />
-								<h:selectOneRadio id="selectOneRadio16"
+								<p:selectOneButton id="selectOneRadio16"
 									value="#{controllerCrimeScene.crimeScene.woundsToTheHead}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Wounds To The Face" />
-								<h:selectOneRadio id="selectOneRadio17"
+								<p:selectOneButton id="selectOneRadio17"
 									value="#{controllerCrimeScene.crimeScene.woundsToTheFace}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Wounds To The Neck" />
-								<h:selectOneRadio id="selectOneRadio18"
+								<p:selectOneButton id="selectOneRadio18"
 									value="#{controllerCrimeScene.crimeScene.woundsToTheNeck}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 							</h:panelGrid>
 						</div>
 
-						<div class="col-md-5 col-md-offset-1">
+						<div class="col-md-6 col-md-offset-0">
 
 							<h:panelGrid columns="2" styleClass="table table-striped">
 
-
 								<h:outputLabel value="Wounds To The Torso" />
-								<h:selectOneRadio id="selectOneRadio19"
+								<p:selectOneButton id="selectOneRadio19"
 									value="#{controllerCrimeScene.crimeScene.woundsToTheTorso}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Wounds To The Limbs" />
-								<h:selectOneRadio id="selectOneRadio20"
+								<p:selectOneButton id="selectOneRadio20"
 									value="#{controllerCrimeScene.crimeScene.woundsToTheLimbs}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Multiple Wounds To One Body Area" />
-								<h:selectOneRadio id="selectOneRadio21"
+								<p:selectOneButton id="selectOneRadio21"
 									value="#{controllerCrimeScene.crimeScene.multipleWoundsToOneBodyArea}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel
 									value="Multiple Wounds Distributed Across Different Body Parts" />
-								<h:selectOneRadio id="selectOneRadio22"
+								<p:selectOneButton id="selectOneRadio22"
 									value="#{controllerCrimeScene.crimeScene.multipleWoundsDistributedAcrossDifferentBodyParts}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Weapon Brought To Scene" />
-								<h:selectOneRadio id="selectOneRadio36"
+								<p:selectOneButton id="selectOneRadio36"
 									value="#{controllerCrimeScene.crimeScene.weaponBroughtToScene}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Weapon From The Scene" />
-								<h:selectOneRadio id="selectOneRadio23"
+								<p:selectOneButton id="selectOneRadio23"
 									value="#{controllerCrimeScene.crimeScene.weaponFromTheScene}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Identifiable Property Stolen" />
-								<h:selectOneRadio id="selectOneRadio24"
+								<p:selectOneButton id="selectOneRadio24"
 									value="#{controllerCrimeScene.crimeScene.identifiablePropertyStolen}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Nonidentifiable Property Stolen" />
-								<h:selectOneRadio id="selectOneRadio25"
+								<p:selectOneButton id="selectOneRadio25"
 									value="#{controllerCrimeScene.crimeScene.nonidentifiablePropertyStolen}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Valuable Property Stolen" />
-								<h:selectOneRadio id="selectOneRadio26"
+								<p:selectOneButton id="selectOneRadio26"
 									value="#{controllerCrimeScene.crimeScene.valuablePropertyStolen}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Body Hidden" />
-								<h:selectOneRadio id="selectOneRadio27"
+								<p:selectOneButton id="selectOneRadio27"
 									value="#{controllerCrimeScene.crimeScene.bodyHidden}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Body Transported" />
-								<h:selectOneRadio id="selectOneRadio28"
+								<p:selectOneButton id="selectOneRadio28"
 									value="#{controllerCrimeScene.crimeScene.bodyTransported}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Offender Forensically Aware" />
-								<h:selectOneRadio id="selectOneRadio29"
+								<p:selectOneButton id="selectOneRadio29"
 									value="#{controllerCrimeScene.crimeScene.offenderForensicallyAware}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel
 									value="Victim Found At The Same Scene Where They Were Killed" />
-								<h:selectOneRadio id="selectOneRadio30"
+								<p:selectOneButton id="selectOneRadio30"
 									value="#{controllerCrimeScene.crimeScene.victimFoundAtTheSameSceneWhereTheyWereKilled}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Sexual Crime" />
-								<h:selectOneRadio id="selectOneRadio31"
+								<p:selectOneButton id="selectOneRadio31"
 									value="#{controllerCrimeScene.crimeScene.sexualCrime}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Srson To Crime Scene Or Body" />
-								<h:selectOneRadio id="selectOneRadio32"
+								<p:selectOneButton id="selectOneRadio32"
 									value="#{controllerCrimeScene.crimeScene.arsonToCrimeSceneOrBody}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Victim Found In Water" />
-								<h:selectOneRadio id="selectOneRadio33"
+								<p:selectOneButton id="selectOneRadio33"
 									value="#{controllerCrimeScene.crimeScene.victimFoundInWater}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Victim Drugged And Or Poisoned" />
-								<h:selectOneRadio id="selectOneRadio34"
+								<p:selectOneButton id="selectOneRadio34"
 									value="#{controllerCrimeScene.crimeScene.victimDruggedAndOrPoisoned}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 
 								<h:outputLabel value="Victim Covered" />
-								<h:selectOneRadio id="selectOneRadio35"
+								<p:selectOneButton id="selectOneRadio35"
 									value="#{controllerCrimeScene.crimeScene.victimCovered}">
-									<f:selectItem itemLabel="true" itemValue="#{true}" />
-									<f:selectItem itemLabel="false" itemValue="#{false}" />
-								</h:selectOneRadio>
+									<f:selectItem itemLabel="Yes" itemValue="#{true}" />
+									<f:selectItem itemLabel="No" itemValue="#{false}" />
+								</p:selectOneButton>
 
 
 							</h:panelGrid>
@@ -409,12 +408,14 @@
 
 					</div>
 
-					<h:outputLabel value="Victim id" />
-					<h:inputText value="#{controllerCrimeScene.victimId}" />
+					<hr />
 
-					<br />
-					<h:commandButton value="save"
-						action="#{controllerCrimeScene.submit}" />
+					<div class="row">
+						
+						<h:commandButton styleClass="btn btn-primary pull-right col-md-1" value="save"
+							action="#{controllerCrimeScene.submit}" />
+
+					</div>
 				</h:form>
 
 			</div>

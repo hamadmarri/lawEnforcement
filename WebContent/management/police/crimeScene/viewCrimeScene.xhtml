@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<f:metadata>
@@ -340,7 +341,7 @@
 								rendered="#{controllerCrimeScene.crimeScene.bodyTransported ne true}"
 								value="No" styleClass="no" />
 
-							
+
 
 							<h:outputLabel value="Offender Forensically Aware" />
 							<h:outputText
@@ -418,28 +419,83 @@
 					<h:panelGroup
 						rendered="#{controllerCrimeScene.crimeScene.offenderProfile != null}">
 						<div class="col-md-4">
-							<h:outputLabel value="Offinder Profile" />
-							<h:link value="view"
+							<h:link value="Offinder Profile"
 								outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{controllerCrimeScene.crimeScene.offenderProfile.offenderProfileId}" />
 						</div>
 					</h:panelGroup>
 
 
 					<div class="col-md-4">
-						<h:outputLabel value="Victim" />
-						<h:link
-							rendered="#{controllerCrimeScene.crimeScene.victim != null}"
-							value="view"
-							outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerCrimeScene.crimeScene.victim.id}" />
-						<h:outputText
-							rendered="#{controllerCrimeScene.crimeScene.victim == null}"
-							value=" no victim has been chosen" />
+						<h:panelGroup
+							rendered="#{controllerCrimeScene.crimeScene.victim != null}">
+							<h:outputLabel value="Victim" />
+
+							<h:link style="margin-left: 5px;"
+								value="#{controllerCrimeScene.crimeScene.victim.personName}"
+								outcome="/management/entries/person/viewPerson.xhtml?id=#{controllerCrimeScene.crimeScene.victim.id}" />
+
+							<h:form styleClass="inline-form">
+								<p:commandLink style="margin-left: 5px;" styleClass="minor"
+									value="remove"
+									actionListener="#{controllerCrimeScene.removeVictim}"
+									update="@all">
+
+									<p:confirm header="Confirmation" message="Are you sure?"
+										icon="ui-icon-alert" />
+								</p:commandLink>
+
+								<p:confirmDialog global="true" showEffect="fade"
+									hideEffect="fade">
+									<p:commandButton value="Yes" type="button"
+										styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+									<p:commandButton value="No" type="button"
+										styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								</p:confirmDialog>
+							</h:form>
+
+						</h:panelGroup>
+
+						<h:form
+							rendered="#{controllerCrimeScene.crimeScene.victim == null}">
+							<p:commandButton id="vicBtn" value="Choose victim" type="button" />
+							<p:overlayPanel id="vicPanel" for="vicBtn" hideEffect="fade"
+								dynamic="true" style="width:600px">
+
+								<p:dataTable var="p" value="#{controllerPerson.personsList}"
+									widgetVar="persons" rows="10" paginator="true"
+									emptyMessage="No persons found with given criteria"
+									filteredValue="#{controllerPerson.filteredPersons}">
+
+									<f:facet name="header">
+										<p:outputPanel style="text-align: left; width:150px">
+											<div class="right-inner-addon">
+												<i class="glyphicon glyphicon-search"></i>
+												<p:inputText id="globalFilter"
+													onkeyup="PF('persons').filter()" styleClass="form-control"
+													placeholder="Search all fields" />
+											</div>
+										</p:outputPanel>
+									</f:facet>
+
+									<p:column filterBy="#{p.personName}"
+										sortBy="#{p.personName.firstName}" headerText="Name"
+										filterMatchMode="contains">
+										<h:outputText value="#{p.personName}" />
+									</p:column>
+									<p:column>
+										<h:commandButton styleClass="btn btn-link" value="Choose"
+											action="#{controllerCrimeScene.setVictim(p)}" />
+									</p:column>
+								</p:dataTable>
+
+							</p:overlayPanel>
+						</h:form>
+
 					</div>
 
 
 					<div class="col-md-4">
-						<h:outputLabel value="Investigative Case" />
-						<h:link value=" view"
+						<h:link value="Investigative Case"
 							outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{controllerCrimeScene.crimeScene.investigativeCase.id}" />
 					</div>
 
@@ -448,37 +504,43 @@
 					<h:form
 						rendered="#{controllerCrimeScene.crimeScene.offenderProfile == null}">
 						<div class="col-md-4">
-							<h:commandButton styleClass="btn btn-primary"
+							<h:commandButton id="ofBtn" styleClass="btn btn-primary"
+								type="button"
 								rendered="#{!controllerCrimeScene.showSuggestedOP}"
 								value="Generate Suggested Offender Profile"
 								action="#{controllerCrimeScene.setShowSuggestedOP(true)}" />
 						</div>
-					</h:form>
+
+						<p:overlayPanel id="ofPanel" for="ofBtn" hideEffect="fade"
+							dynamic="true" styleClass="col-md-7">
+
+							<c:set var="offenderProfile"
+								value="#{controllerNeuralNetworkEntity.getSuggestedOffenderProfile(controllerCrimeScene.crimeScene)}" />
+
+							<div class="page-header">
+								<h4>Generated Offender Profile</h4>
+							</div>
+
+							<div class="row">
+								<h:form>
+									<div class="col-md-3">
+										<h:commandButton styleClass="btn btn-primary"
+											value="Link it to this crime scene"
+											action="#{controllerCrimeScene.linkOffenderProfile(controllerNeuralNetworkEntity.getSuggestedOffenderProfile(controllerCrimeScene.crimeScene))}" />
+									</div>
+								</h:form>
+							</div>
+
+							<br />
+
+							<ui:include
+								src="/WEB-INF/includes/views/viewOffenderProfile.xhtml" />
+						</p:overlayPanel>
+
+					</h:form> 
 
 				</div>
 				<!-- row -->
-
-				<div class="row">
-
-					<c:if test="${controllerCrimeScene.showSuggestedOP}">
-						<c:set var="offenderProfile"
-							value="#{controllerNeuralNetworkEntity.getSuggestedOffenderProfile(controllerCrimeScene.crimeScene)}" />
-					</c:if>
-
-					<c:if test="${controllerCrimeScene.showSuggestedOP}">
-						<ui:include
-							src="/management/police/offenderProfile/viewOffenderProfile.xhtml" />
-
-						<h:form>
-							<div class="col-md-3">
-								<h:commandButton styleClass="btn btn-primary"
-									value="link generated offender profile to this crime scene"
-									action="#{controllerCrimeScene.linkOffenderProfile(controllerNeuralNetworkEntity.getSuggestedOffenderProfile(controllerCrimeScene.crimeScene))}" />
-							</div>
-						</h:form>
-					</c:if>
-
-				</div>
 
 			</div>
 		</ui:define>

@@ -94,12 +94,16 @@ body {
 
 .yes {
 	color: green;
-	font-size: 108%;
+	font-size: 113%;
 	font-weight: bold;
 }
 
 .no {
 	color: gray;
+}
+
+.inline-form {
+	display: inline;
 }
 
 .borderless tbody tr td,.borderless tbody tr th,.borderless thead tr th,.borderless tfoot tr

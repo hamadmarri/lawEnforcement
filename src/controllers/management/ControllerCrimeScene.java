@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
+import ejbs.EjbOffenderProfile;
 import entities.entries.Person;
 import entities.police.CrimeScene;
 import entities.police.OffenderProfile;
@@ -41,6 +42,9 @@ public class ControllerCrimeScene implements Serializable {
 	// EJB for Person object
 	@EJB
 	protected AbstractEjb<Person> ejbPerson;
+
+	@EJB
+	private EjbOffenderProfile ejbOffenderProfile;
 
 	// the id of a CrimeScene object
 	protected String id;
@@ -115,8 +119,14 @@ public class ControllerCrimeScene implements Serializable {
 	public void linkOffenderProfile(OffenderProfile op) {
 		CrimeScene cs = getCrimeScene();
 		cs.setOffenderProfile(op);
+
+		op.setCrimeScene(cs);
+		ejbOffenderProfile.add(op);
+
 		ejbCrimeScene.save(cs);
 		showSuggestedOP = false;
+
+		crimeScene = null;
 	}
 
 
@@ -228,6 +238,20 @@ public class ControllerCrimeScene implements Serializable {
 
 	public void setVictimId(Long victimId) {
 		this.victimId = victimId;
+	}
+
+
+
+	public void setVictim(Person p) {
+		getCrimeScene().setVictim(p);
+		submit();
+	}
+
+
+
+	public void removeVictim() {
+		getCrimeScene().setVictim(null);
+		submit();
 	}
 
 }

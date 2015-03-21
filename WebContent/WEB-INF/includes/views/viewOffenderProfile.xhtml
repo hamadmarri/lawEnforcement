@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{controllerOffenderProfile.id}" />
+	</f:metadata>
+</h:head>
+<h:body>
+
+	<ui:composition>
+
+		<div class="row">
+			<div class="col-md-5">
+				<h:panelGrid columns="2" styleClass="table table-striped ">
+
+					<h:outputLabel value="Young Offender Between 17 And 21 Years" />
+					<h:outputText
+						rendered="#{offenderProfile.youngOffenderBetween17And21Years}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.youngOffenderBetween17And21Years ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Criminal Record Of Theft" />
+					<h:outputText rendered="#{offenderProfile.criminalRecordOfTheft}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfTheft ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Criminal Record Of Fraud" />
+					<h:outputText rendered="#{offenderProfile.criminalRecordOfFraud}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfFraud ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Criminal Record Of Burglary" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfBurglary}" value="Yes"
+						styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfBurglary ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Relationship With Victim" />
+					<h:outputText rendered="#{offenderProfile.relationshipWithVictim}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.relationshipWithVictim ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Unemployed At The Time Of Offense" />
+					<h:outputText
+						rendered="#{offenderProfile.unemployedAtTheTimeOfOffense}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.unemployedAtTheTimeOfOffense ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Male" />
+					<h:outputText rendered="#{offenderProfile.male}" value="Yes"
+						styleClass="yes" />
+					<h:outputText rendered="#{offenderProfile.male ne true}" value="No"
+						styleClass="no" />
+
+
+					<h:outputLabel value="Familiar With Area Of Offense Occurrence" />
+					<h:outputText
+						rendered="#{offenderProfile.familiarWithAreaOfOffenseOccurrence}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.familiarWithAreaOfOffenseOccurrence ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Criminal Record Of Violence" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfViolence}" value="Yes"
+						styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfViolence ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Criminal Record Of Committing Damage" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfCommittingDamage}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfCommittingDamage ne true}"
+						value="No" styleClass="no" />
+
+
+					<h:outputLabel value="Criminal Record Of Disorderly Conduct" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfDisorderlyConduct}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.criminalRecordOfDisorderlyConduct ne true}"
+						value="No" styleClass="no" />
+
+
+				</h:panelGrid>
+			</div>
+
+
+
+			<div class="col-md-5">
+				<h:panelGrid columns="2" styleClass="table table-striped ">
+
+					<h:outputLabel value="Record Of Imprisonment" />
+					<h:outputText rendered="#{offenderProfile.recordOfImprisonment}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.recordOfImprisonment ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Sexual Related Criminal Record" />
+					<h:outputText
+						rendered="#{offenderProfile.sexualRelatedCriminalRecord}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.sexualRelatedCriminalRecord ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Armed Services (Past or Present)" />
+					<h:outputText
+						rendered="#{offenderProfile.armedServices_PastOrPresent}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.armedServices_PastOrPresent ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Knew Victim" />
+					<h:outputText rendered="#{offenderProfile.knewVictim}" value="Yes"
+						styleClass="yes" />
+					<h:outputText rendered="#{offenderProfile.knewVictim ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="History Of Abusiveness In Past Relationships" />
+					<h:outputText
+						rendered="#{offenderProfile.historyOfAbusivenessInPastRelationships}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.historyOfAbusivenessInPastRelationships ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Attempts Of Suicide" />
+					<h:outputText rendered="#{offenderProfile.attemptsOfSuicide}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.attemptsOfSuicide ne true}" value="No"
+						styleClass="no" />
+
+					<h:outputLabel value="Psychiatric Disorders" />
+					<h:outputText rendered="#{offenderProfile.psychiatricDisorders}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.psychiatricDisorders ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Related To Victim" />
+					<h:outputText rendered="#{offenderProfile.relatedToVictim}"
+						value="Yes" styleClass="yes" />
+					<h:outputText rendered="#{offenderProfile.relatedToVictim ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Blood Relative To Victim" />
+					<h:outputText rendered="#{offenderProfile.bloodRelativeToVictim}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.bloodRelativeToVictim ne true}"
+						value="No" styleClass="no" />
+
+					<h:outputLabel value="Turned Self Into Police" />
+					<h:outputText rendered="#{offenderProfile.turnedSelfIntoPolice}"
+						value="Yes" styleClass="yes" />
+					<h:outputText
+						rendered="#{offenderProfile.turnedSelfIntoPolice ne true}"
+						value="No" styleClass="no" />
+
+				</h:panelGrid>
+			</div>
+		</div>
+
+	</ui:composition>
+
+</h:body>
+</html>

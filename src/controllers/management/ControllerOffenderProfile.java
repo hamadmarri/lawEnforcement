@@ -162,15 +162,15 @@ public class ControllerOffenderProfile implements Serializable {
 		if (suspects != null)
 			return suspects;
 
-		OffenderProfile op = getOffenderProfile();
+		OffenderProfile op = getOffenderProfile(); 
 		Long victimId = -1L;
 		List<Person> persons;
 
-		// to count how many attributes are set
+		// to count how many attributes are set 
 		// it is used to calculate the match percentage
 		int attributesCounter = getAttributeCount(op);
 
-		victim = op.getCrimeScene().getVictim();
+		victim = op.getCrimeScene().getVictim(); 
 
 		if (victim != null)
 			victimId = victim.getId();
