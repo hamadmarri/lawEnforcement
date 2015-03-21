@@ -115,42 +115,53 @@
 										rendered="#{controllerInvestigativeCase.investigativeCase.crimeScene eq null}">
 										<h:commandButton styleClass="btn btn-success"
 											value="Create Crime Scene"
-											action="#{controllerInvestigativeCase.createCrimeScene}" >
+											action="#{controllerInvestigativeCase.createCrimeScene}">
 										</h:commandButton>
 									</h:form>
 
-
-									<h:link styleClass="btn btn-default" value="Edit"
-										outcome="edit">
-										<f:param name="id" value="#{controllerInvestigativeCase.id}" />
-									</h:link>
-
 								</h:panelGrid>
+
+
+
 							</div>
 							<!-- col-6 -->
 
 
 							<!-- CONTROLS -->
-							<div class="pull-right">
-								<h:form>
-									<h:commandButton styleClass="btn btn-primary" value="open"
-										action="#{controllerInvestigativeCase.openCase()}"
-										rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status eq 'Closed' }" />
-									<h:commandButton styleClass="btn btn-success" value="accept"
-										action="#{controllerInvestigativeCase.acceptCase()}"
-										rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
-									<h:commandButton styleClass="btn btn-danger" value="refuse"
-										action="#{controllerInvestigativeCase.refuseCase()}"
-										rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
-									<h:commandButton styleClass="btn btn-danger" value="close"
-										action="#{controllerInvestigativeCase.closeCase()}"
-										rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
-								</h:form>
+							<div class="col-md-6">
+								<div class="pull-right">
+									<h:form>
+										<h:commandButton styleClass="btn btn-primary" value="open"
+											action="#{controllerInvestigativeCase.openCase()}"
+											rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status eq 'Closed' }" />
+										<h:commandButton styleClass="btn btn-success" value="accept"
+											action="#{controllerInvestigativeCase.acceptCase()}"
+											rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+										<h:commandButton styleClass="btn btn-danger" value="refuse"
+											action="#{controllerInvestigativeCase.refuseCase()}"
+											rendered="#{userSessionController.isInvestigator() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+										<h:commandButton styleClass="btn btn-danger" value="close"
+											action="#{controllerInvestigativeCase.closeCase()}"
+											rendered="#{userSessionController.isSupervisor() and controllerInvestigativeCase.investigativeCase.status ne 'Closed'}" />
+									</h:form>
+								</div>
 							</div>
+
 
 
 						</div>
 						<!-- end row -->
+
+						<!-- EDIT -->
+						<div class="row">
+							<div class="col-md-12">
+								<h:link styleClass="btn btn-default col-md-1 pull-right"
+									value="Edit" outcome="edit">
+									<f:param name="id" value="#{controllerInvestigativeCase.id}" />
+								</h:link>
+							</div>
+						</div>
+
 
 						<!-- HORIZONTAL LINE -->
 						<hr />

@@ -27,7 +27,8 @@
 
 
 				<div class="page-header">
-					<h4>Crime Scene #{controllerCrimeScene.crimeScene.crimeSceneId}</h4>
+					<h4>Crime Scene
+						#{controllerCrimeScene.crimeScene.crimeSceneId}</h4>
 				</div>
 
 				<div class="row">
@@ -408,10 +409,10 @@
 					<hr />
 
 					<div class="row">
-						
-						<h:commandButton styleClass="btn btn-primary pull-right col-md-1" value="save"
-							action="#{controllerCrimeScene.submit}" />
-
+						<div class="col-md-12">
+							<h:commandButton styleClass="btn btn-primary pull-right col-md-1"
+								value="save" action="#{controllerCrimeScene.submit}" />
+						</div>
 					</div>
 				</h:form>
 

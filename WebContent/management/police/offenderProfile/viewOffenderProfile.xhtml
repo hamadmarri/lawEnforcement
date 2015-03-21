@@ -253,48 +253,50 @@
 
 
 
+				<div class="row">
+					<div class="col-md-6">
+						<h:form>
+							<h:commandButton styleClass="btn btn-primary"
+								value="List suspects"
+								action="#{controllerOffenderProfile.setShowSuspects(true)}" />
+						</h:form>
 
-				<h:form>
-					<h:commandButton styleClass="btn btn-primary" value="List suspects"
-						action="#{controllerOffenderProfile.setShowSuspects(true)}" />
-				</h:form>
+						<c:if test="${controllerOffenderProfile.showSuspects}">
+							<div class="page-header">
+								<h4>Suspects</h4>
+							</div>
 
-				<c:if test="${controllerOffenderProfile.showSuspects}">
-					<div class="page-header">
-						<h4>Suspects</h4>
+
+
+							<h:panelGroup
+								rendered="#{controllerOffenderProfile.suspects.isEmpty()}">
+								<div class="alert alert-warning" role="alert">
+									<strong>No matches !</strong> The system could not find any
+									person has a match with this offender profile !
+								</div>
+							</h:panelGroup>
+
+							<h:dataTable styleClass="table table-striped"
+								value="#{controllerOffenderProfile.suspects}" var="sp"
+								rendered="#{controllerOffenderProfile.suspects.isEmpty() ne true}">
+								<h:column>
+									<h:link value="view"
+										outcome="/management/entries/person/viewPerson.xhtml?id=#{sp.person.id}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Name</f:facet>
+									<h:outputLabel value="#{sp.person.personName}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Matching Persentage</f:facet>
+									<h:outputLabel value="#{sp.matchPercentage}">
+										<f:convertNumber pattern="00.0%" />
+									</h:outputLabel>
+								</h:column>
+							</h:dataTable>
+						</c:if>
 					</div>
-
-
-
-					<h:panelGroup
-						rendered="#{controllerOffenderProfile.suspects.isEmpty()}">
-						<div class="alert alert-warning" role="alert">
-							<strong>No matches !</strong> The system could not find any person
-							has a match with this offender profile !
-						</div>
-					</h:panelGroup>
-
-					<h:dataTable styleClass="table table-striped"
-						value="#{controllerOffenderProfile.suspects}" var="sp"
-						rendered="#{controllerOffenderProfile.suspects.isEmpty() ne true}">
-						<h:column>
-							<h:link value="view"
-								outcome="/management/entries/person/viewPerson.xhtml?id=#{sp.person.id}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Name</f:facet>
-							<h:outputLabel
-								value="#{sp.person.personName}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Matching Persentage</f:facet>
-							<h:outputLabel value="#{sp.matchPercentage}">
-								<f:convertNumber pattern="00.0%" />
-							</h:outputLabel>
-						</h:column>
-					</h:dataTable>
-				</c:if>
-
+				</div>
 
 			</div>
 			<!-- container -->
