@@ -24,6 +24,7 @@ import entities.police.InvestigativeCase;
 @ViewScoped
 public class ControllerMonitoring {
 
+	private static final String InvestigativeCase = null;
 	private String search = new String();
 	private Date startDate;
 	private Date dueDate = new Date();
@@ -39,7 +40,9 @@ public class ControllerMonitoring {
 		calendar.add(Calendar.DAY_OF_MONTH, -7);
 		startDate = calendar.getTime();
 
-		status = InvestigativeCase.getStatusSuggestions();
+		List<String> list = (new InvestigativeCase()).getStatusSuggestions();
+
+		status = list.toArray(new String[list.size()]);
 	}
 
 

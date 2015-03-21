@@ -1,6 +1,7 @@
 package entities.police;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -161,8 +162,8 @@ public class InvestigativeCase extends Relatable {
 
 
 
-	public static String[] getStatusSuggestions() {
-		return statusSuggestions;
+	public List<String> getStatusSuggestions() {
+		return Arrays.asList(statusSuggestions);
 	}
 
 

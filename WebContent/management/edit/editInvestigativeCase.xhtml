@@ -51,8 +51,7 @@
 								<h4>Description</h4>
 							</div>
 
-							<p:editor styleClass="col-md-12" id="editor"
-							height="300"
+							<p:editor styleClass="col-md-12" id="editor" height="300"
 								style="min-height: 600;" widgetVar="editorWidget"
 								value="#{controllerInvestigativeCase.investigativeCase.description}" />
 
@@ -69,8 +68,11 @@
 								<h:outputLabel styleClass="control-label col-xs-4"
 									value="Status" />
 								<div class="col-xs-8">
-									<p:inputText styleClass="col-md-12"
-										value="#{controllerInvestigativeCase.investigativeCase.status}" />
+									<p:selectOneMenu style="width: 100%;" id="Build"
+										value="#{controllerInvestigativeCase.investigativeCase.status}">
+										<f:selectItems
+											value="#{controllerInvestigativeCase.investigativeCase.statusSuggestions}" />
+									</p:selectOneMenu>
 								</div>
 							</div>
 
@@ -105,24 +107,36 @@
 								<h:outputLabel styleClass="control-label col-xs-4"
 									value="Officer" />
 								<div class="col-xs-8">
-									<p:inputText styleClass="col-md-12"
+									<p:inputText
+										binding="#{controllerInvestigativeCase.offInputId}"
+										styleClass="col-md-6"
 										value="#{controllerInvestigativeCase.officerWhoCreatedItId}" />
-								</div>
-							</div>
 
+									<p:commandButton
+										styleClass="col-md-5 col-md-offset-1 btn btn-default"
+										id="ofBtn" value="Browes" type="button" />
 
+									<p:overlayPanel id="offPanel" for="ofBtn" hideEffect="fade"
+										dynamic="false" style="width:600px;">
 
-							<!-- Crime Scene -->
-							<div class="form-group">
-								<h:outputLabel styleClass="control-label col-xs-4"
-									value="Crime Scene Id" />
-								<div class="col-xs-8">
-									<p:inputText styleClass="col-md-12"
-										value="#{controllerInvestigativeCase.crimeSceneId}" />
+										<p:dataTable var="o" value="#{controllerOfficer.officersList}">
+											<p:column>
+												<f:facet name="header">Name</f:facet>
+												<h:outputText value="#{o.personName}" />
+											</p:column>
+											<p:column>
+												<h:button styleClass="btn btn-link" value="Choose"
+													onclick="updateOffId(#{o.id}); return false;" />
+											</p:column>
+										</p:dataTable>
+									</p:overlayPanel>
+
 								</div>
 							</div>
 
 						</div>
+
+
 
 
 						<hr style="margin-top: 45px;" class="col-md-12" />
@@ -144,6 +158,15 @@
 				</div>
 
 			</div>
+
+			<script type="text/javascript">
+				function updateOffId(i) {					
+					document.getElementById("#{controllerInvestigativeCase.offInputId.clientId}").value = i;
+					return false;
+				}
+			
+			</script>
+
 		</ui:define>
 	</ui:composition>
 

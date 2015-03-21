@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIInput;
+import javax.faces.component.UIOutput;
 
 import security.Authorizable;
 import controllers.profile.ControllerProfile;
@@ -90,6 +92,9 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	private Long crimeSceneId = null;
 
+	private UIInput offInputId;
+	
+
 
 
 	/**
@@ -153,7 +158,7 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public String openCase() {
 		// make status open
-		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[0]);
+		this.getInvestigativeCase().setStatus(investigativeCase.getStatusSuggestions().get(0));
 		ejbInvestigativeCase.save(this.investigativeCase);
 
 		sendNotification("opened the case");
@@ -166,7 +171,7 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public String acceptCase() {
 		// make status in progress
-		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[2]);
+		this.getInvestigativeCase().setStatus(investigativeCase.getStatusSuggestions().get(2));
 		ejbInvestigativeCase.save(this.investigativeCase);
 
 		sendNotification("accepted the case");
@@ -179,7 +184,7 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public String refuseCase() {
 		// make status refused
-		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[3]);
+		this.getInvestigativeCase().setStatus(investigativeCase.getStatusSuggestions().get(3));
 		ejbInvestigativeCase.save(this.investigativeCase);
 
 		sendNotification("refused the case");
@@ -192,7 +197,7 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public String closeCase() {
 		// make status closed
-		this.getInvestigativeCase().setStatus(InvestigativeCase.getStatusSuggestions()[4]);
+		this.getInvestigativeCase().setStatus(investigativeCase.getStatusSuggestions().get(4));
 		ejbInvestigativeCase.save(this.investigativeCase);
 
 		sendNotification("closed the case");
@@ -411,9 +416,9 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public void createCrimeScene() {
 		CrimeScene cs = new CrimeScene();
-//		OffenderProfile op = new OffenderProfile();
-//
-//		cs.setOffenderProfile(op); 
+		// OffenderProfile op = new OffenderProfile();
+		//
+		// cs.setOffenderProfile(op);
 		cs.setInvestigativeCase(getInvestigativeCase());
 
 		// ejbCrimeScene.add(cs);
@@ -422,6 +427,18 @@ public class ControllerInvestigativeCase implements Serializable {
 		submit();
 
 		this.investigativeCase = null;
+	}
+
+
+
+	public UIInput getOffInputId() {
+		return offInputId;
+	}
+
+
+
+	public void setOffInputId(UIInput offInputId) {
+		this.offInputId = offInputId;
 	}
 
 }
