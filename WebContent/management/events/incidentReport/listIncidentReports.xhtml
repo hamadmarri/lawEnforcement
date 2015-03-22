@@ -11,47 +11,68 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Incident Reports List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h3>Incident Reports List</h3>
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Incident Reports List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Incident Reports List</li>
+				</ul>
 
-		<c:if test="${empty incidentReports and not included}">
-			<c:set var="incidentReports"
-				value="#{controllerIncidentReport.incidentReportsList}" />
-		</c:if>
 
-		<c:if test="${empty incidentReports and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
-		<c:if test="${not empty incidentReports}">
-			<h:dataTable styleClass="table" value="#{incidentReports}" var="ir">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{ir.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/editIncidentReport.xhtml?id=#{ir.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Offense Information</f:facet>
-					<h:outputText value="#{ir.offenseInformation}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Case status</f:facet>
-					<h:outputText value="#{ir.caseStatus}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Summary</f:facet>
-					<h:outputText value="#{ir.summary}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
+				<c:if test="${empty incidentReports and not included}">
+					<c:set var="incidentReports"
+						value="#{controllerIncidentReport.incidentReportsList}" />
+				</c:if>
+
+				<c:if test="${empty incidentReports and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty incidentReports}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{incidentReports}"
+							var="ir">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{ir.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/editIncidentReport.xhtml?id=#{ir.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Offense Information</f:facet>
+								<h:outputText value="#{ir.offenseInformation}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Case status</f:facet>
+								<h:outputText value="#{ir.caseStatus}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Summary</f:facet>
+								<h:outputText value="#{ir.summary}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

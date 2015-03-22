@@ -7,46 +7,70 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<ui:composition>
+<h:head></h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Locations List</ui:define>
+		<ui:define name="content">
 
-	<c:if test="${empty locations}">
-		<c:set var="locations" value="#{controllerLocation.locationsList}" />
-	</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Locations List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Locations List</li>
+				</ul>
 
-	<h3>Locations List</h3>
-	<c:if test="${not included}">
-		<h:link value="add" outcome="add" />
-	</c:if>
+				<c:if test="${empty locations}">
+					<c:set var="locations" value="#{controllerLocation.locationsList}" />
+				</c:if>
 
-	<h:dataTable value="#{locations}" var="l">
-		<h:column>
-			<h:link value="view"
-				outcome="/management/entries/location/viewLocation.xhtml?id=#{l.id}" />
-		</h:column>
-		<h:column>
-			<h:link value="edit"
-				outcome="/management/edit/editLocation.xhtml?id=#{l.id}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Area</f:facet>
+				<c:if test="${not included}">
+					<div class="row ">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
+
+				<div class="row ">
+					<h:dataTable styleClass="table" value="#{locations}" var="l">
+						<h:column>
+							<h:link value="view"
+								outcome="/management/entries/location/viewLocation.xhtml?id=#{l.id}" />
+						</h:column>
+						<h:column>
+							<h:link value="edit"
+								outcome="/management/edit/editLocation.xhtml?id=#{l.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Area</f:facet>
 			#{l.area}
 		</h:column>
-		<h:column>
-			<f:facet name="header">Coordinates</f:facet>
+						<h:column>
+							<f:facet name="header">Coordinates</f:facet>
 			x:#{l.coordinate.x} y:#{l.coordinate.y} z:#{l.coordinate.z} 
 		</h:column>
-		<h:column>
-			<f:facet name="header">Occupancy</f:facet>
+						<h:column>
+							<f:facet name="header">Occupancy</f:facet>
 			#{l.occupancy}
 			</h:column>
-		<h:column>
-			<f:facet name="header">Elevation</f:facet>
+						<h:column>
+							<f:facet name="header">Elevation</f:facet>
 			#{l.elevation}
 		</h:column>
-		<h:column>
-			<f:facet name="header">Premise type</f:facet>
+						<h:column>
+							<f:facet name="header">Premise type</f:facet>
 			#{l.premiseType}
 		</h:column>
-	</h:dataTable>
-</ui:composition>
+					</h:dataTable>
+
+				</div>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>

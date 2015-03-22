@@ -11,65 +11,62 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>History</h2>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - History List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${empty relatables and not included}">
-			<c:set var="actions" value="#{controllerHistory.actions}" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>History List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">History List</li>
+				</ul>
 
-		<c:if test="${not empty relatables and included}">
-			<c:set var="actions" value="#{relatables.actions}" />
-		</c:if>
 
-		<c:if test="${empty actions and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
- 
-		<c:if test="${not empty actions}">
-			<h:dataTable value="#{actions}" var="a">
-				<!-- 				<h:column>
-					<h:link value="view"
-						outcome="/management/police/permission/viewHistory.xhtml?id=#{p.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/police/permission/editHistory.xhtml?id=#{p.id}" />
-				</h:column> 
-				<h:column>
-					<f:facet name="header">id</f:facet>
-					#{a.id}
-				</h:column>
-				-->
-				
-				<h:column>
-					<f:facet name="header">dateAndTime</f:facet>
-					<h:outputLabel value="#{a.dateAndTime}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">field</f:facet>
-					<h:outputLabel value="#{a.field}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">newData</f:facet>
-					<h:outputLabel value="#{a.newData}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">oldData</f:facet>
-					<h:outputLabel value="#{a.oldData}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
 
-		<ui:remove>
-			<!-- 		<c:if test="${included != null and included}">
-			<h:form>
-				<h:inputText value="#{controllerHistory.newHistoryId}" />
-				<h:commandButton value="add"
-					action="#{controllerHistory.addHistoryForInvestigativeCase(relatables)}" />
-			</h:form>
-		</c:if> -->
-		</ui:remove>
+				<c:if test="${empty relatables and not included}">
+					<c:set var="actions" value="#{controllerHistory.actions}" />
+				</c:if>
+
+				<c:if test="${not empty relatables and included}">
+					<c:set var="actions" value="#{relatables.actions}" />
+				</c:if>
+
+				<c:if test="${empty actions and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty actions}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{actions}" var="a">
+							<h:column>
+								<f:facet name="header">Date and Time</f:facet>
+								<h:outputText value="#{a.dateAndTime}">
+									<f:convertDateTime pattern="MMMM dd, YYYY" />
+								</h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Field</f:facet>
+								<h:outputText value="#{a.field}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">New Data</f:facet>
+								<h:outputText value="#{a.newData}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Old Data</f:facet>
+								<h:outputText value="#{a.oldData}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
+
+
+			</div>
+		</ui:define>
 
 	</ui:composition>
 </h:body>

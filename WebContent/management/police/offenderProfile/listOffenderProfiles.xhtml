@@ -11,126 +11,150 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>Offender Profile</h2>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Offender Profile List</ui:define>
+		<ui:define name="content">
 
-		<h:link value="add" outcome="add" />
+			<div class="container">
+				<div class="page-header">
+					<h4>Offender Profile List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Offender Profile List</li>
+				</ul>
 
-		<br />
-		
-		<c:set var="offenderProfiles"
-			value="#{controllerOffenderProfile.offenderProfilesList}" />
 
-		<c:if test="${empty offenderProfiles}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
-		<c:if test="${not empty offenderProfiles}">
-			<h:dataTable value="#{offenderProfiles}" var="o">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{o.offenderProfileId}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/police/offenderProfile/editOffenderProfile.xhtml?id=#{o.offenderProfileId}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">id</f:facet>
+
+
+				<c:set var="offenderProfiles"
+					value="#{controllerOffenderProfile.offenderProfilesList}" />
+
+				<c:if test="${empty offenderProfiles}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty offenderProfiles}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{offenderProfiles}"
+							var="o">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/police/offenderProfile/viewOffenderProfile.xhtml?id=#{o.offenderProfileId}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/police/offenderProfile/editOffenderProfile.xhtml?id=#{o.offenderProfileId}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">id</f:facet>
 					#{o.offenderProfileId}
 				</h:column>
-				<h:column>
-					<f:facet name="header">Young Offender Between 17 And 21 Years</f:facet>
-					<h:outputLabel value="#{o.youngOffenderBetween17And21Years}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Criminal Record Of Theft</f:facet>
-					<h:outputLabel value="#{o.criminalRecordOfTheft}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Criminal Record Of Fraud</f:facet>
-					<h:outputLabel value="#{o.criminalRecordOfFraud}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Criminal Record Of Burglary</f:facet>
-					<h:outputLabel value="#{o.criminalRecordOfBurglary}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Relationship With Victim</f:facet>
-					<h:outputLabel value="#{o.relationshipWithVictim}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Unemployed At The Time Of Offense</f:facet>
-					<h:outputLabel value="#{o.unemployedAtTheTimeOfOffense}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Male</f:facet>
-					<h:outputLabel value="#{o.male}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Familiar With Area Of Offense Occurrence</f:facet>
-					<h:outputLabel value="#{o.familiarWithAreaOfOffenseOccurrence}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Criminal Record Of Violence</f:facet>
-					<h:outputLabel value="#{o.criminalRecordOfViolence}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Criminal Record Of Committing Damage</f:facet>
-					<h:outputLabel value="#{o.criminalRecordOfCommittingDamage}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Criminal Record Of Disorderly Conduct</f:facet>
-					<h:outputLabel value="#{o.criminalRecordOfDisorderlyConduct}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Record Of Imprisonment</f:facet>
-					<h:outputLabel value="#{o.recordOfImprisonment}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Sexual Related Criminal Record</f:facet>
-					<h:outputLabel value="#{o.sexualRelatedCriminalRecord}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Armed Services (Past or Present)</f:facet>
-					<h:outputLabel value="#{o.armedServices_PastOrPresent}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Knew Victim</f:facet>
-					<h:outputLabel value="#{o.knewVictim}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">History Of Abusiveness In Past Relationships</f:facet>
-					<h:outputLabel value="#{o.historyOfAbusivenessInPastRelationships}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Attempts Of Suicide</f:facet>
-					<h:outputLabel value="#{o.attemptsOfSuicide}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Psychiatric Disorders</f:facet>
-					<h:outputLabel value="#{o.psychiatricDisorders}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Related To Victim</f:facet>
-					<h:outputLabel value="#{o.relatedToVictim}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Blood Relative To Victim</f:facet>
-					<h:outputLabel value="#{o.bloodRelativeToVictim}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Turned Self Into Police</f:facet>
-					<h:outputLabel value="#{o.turnedSelfIntoPolice}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Crime Scene</f:facet>
-					<h:link value="view"
-						outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{o.crimeScene.crimeSceneId}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
+							<h:column>
+								<f:facet name="header">Young Offender Between 17 And 21 Years</f:facet>
+								<h:outputText value="#{o.youngOffenderBetween17And21Years}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Criminal Record Of Theft</f:facet>
+								<h:outputText value="#{o.criminalRecordOfTheft}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Criminal Record Of Fraud</f:facet>
+								<h:outputText value="#{o.criminalRecordOfFraud}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Criminal Record Of Burglary</f:facet>
+								<h:outputText value="#{o.criminalRecordOfBurglary}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Relationship With Victim</f:facet>
+								<h:outputText value="#{o.relationshipWithVictim}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Unemployed At The Time Of Offense</f:facet>
+								<h:outputText value="#{o.unemployedAtTheTimeOfOffense}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Male</f:facet>
+								<h:outputText value="#{o.male}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Familiar With Area Of Offense Occurrence</f:facet>
+								<h:outputText value="#{o.familiarWithAreaOfOffenseOccurrence}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Criminal Record Of Violence</f:facet>
+								<h:outputText value="#{o.criminalRecordOfViolence}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Criminal Record Of Committing Damage</f:facet>
+								<h:outputText value="#{o.criminalRecordOfCommittingDamage}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Criminal Record Of Disorderly Conduct</f:facet>
+								<h:outputText value="#{o.criminalRecordOfDisorderlyConduct}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Record Of Imprisonment</f:facet>
+								<h:outputText value="#{o.recordOfImprisonment}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Sexual Related Criminal Record</f:facet>
+								<h:outputText value="#{o.sexualRelatedCriminalRecord}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Armed Services (Past or Present)</f:facet>
+								<h:outputText value="#{o.armedServices_PastOrPresent}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Knew Victim</f:facet>
+								<h:outputText value="#{o.knewVictim}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">History Of Abusiveness In Past Relationships</f:facet>
+								<h:outputText
+									value="#{o.historyOfAbusivenessInPastRelationships}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Attempts Of Suicide</f:facet>
+								<h:outputText value="#{o.attemptsOfSuicide}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Psychiatric Disorders</f:facet>
+								<h:outputText value="#{o.psychiatricDisorders}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Related To Victim</f:facet>
+								<h:outputText value="#{o.relatedToVictim}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Blood Relative To Victim</f:facet>
+								<h:outputText value="#{o.bloodRelativeToVictim}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Turned Self Into Police</f:facet>
+								<h:outputText value="#{o.turnedSelfIntoPolice}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Crime Scene</f:facet>
+								<h:link value="view"
+									outcome="/management/police/crimeScene/viewCrimeScene.xhtml?id=#{o.crimeScene.crimeSceneId}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
 
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

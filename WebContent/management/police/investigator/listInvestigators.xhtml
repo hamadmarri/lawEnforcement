@@ -12,58 +12,78 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Investigators List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h2>Investigators</h2>
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Investigators List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Investigators List</li>
+				</ul>
 
-		<c:if test="${empty investigativeCase and not included}">
-			<c:set var="investigators"
-				value="#{controllerInvestigator.investigatorsList}" />
-		</c:if>
-		
-		<c:if test="${not empty investigativeCase and included}">
-			<c:set var="investigators"
-				value="#{investigativeCase.investigators}" />
-		</c:if>
 
-		<c:if test="${empty investigators and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
-		<c:if test="${not empty investigators}">
-			<h:dataTable styleClass="table" value="#{investigators}" var="i">
-				<h:column>
-					<h:link value="view" 
-						outcome="/management/police/investigator/viewInvestigator.xhtml?id=#{i.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/editInvestigator.xhtml?id=#{i.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">id</f:facet>
+
+				<c:if test="${empty investigativeCase and not included}">
+					<c:set var="investigators"
+						value="#{controllerInvestigator.investigatorsList}" />
+				</c:if>
+
+				<c:if test="${not empty investigativeCase and included}">
+					<c:set var="investigators"
+						value="#{investigativeCase.investigators}" />
+				</c:if>
+
+				<c:if test="${empty investigators and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty investigators}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{investigators}" var="i">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/police/investigator/viewInvestigator.xhtml?id=#{i.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/editInvestigator.xhtml?id=#{i.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">id</f:facet>
 					#{i.id}
 				</h:column>
-				<h:column>
-					<f:facet name="header">Name</f:facet>
-					<h:outputLabel
-						value="#{i.personName.lastName}, #{i.personName.firstName}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
+							<h:column>
+								<f:facet name="header">Name</f:facet>
+								<h:outputText
+									value="#{i.personName}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
 
-		<c:if test="${included != null and included}">
-			<h:form>
-				<p:inputText value="#{controllerInvestigator.newInvestigatorId}" />
-				<h:commandButton styleClass="btn btn-link" value="add"
-					action="#{controllerInvestigator.addInvestigatorForInvestigativeCase(investigativeCase)}" />
-			</h:form>
-		</c:if>
+				<c:if test="${included != null and included}">
+					<h:form>
+						<p:inputText value="#{controllerInvestigator.newInvestigatorId}" />
+						<h:commandButton styleClass="btn btn-link" value="add"
+							action="#{controllerInvestigator.addInvestigatorForInvestigativeCase(investigativeCase)}" />
+					</h:form>
+				</c:if>
 
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

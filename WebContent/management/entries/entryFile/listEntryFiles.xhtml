@@ -11,67 +11,89 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>EntryFiles</h2>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Uploaded Files List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
-
-		<c:if test="${empty relatable and not included}">
-			<c:set var="entryFiles" value="#{controllerEntryFile.entryFilesList}" />
-		</c:if>
-
-		<c:if test="${not empty relatable and included}">
-			<c:set var="entryFiles" value="#{relatable.entryFiles}" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Uploaded Files List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Uploaded Files List</li>
+				</ul>
 
 
-		<c:if test="${empty entryFiles and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
-		<c:if test="${not empty entryFiles}">
-			<h:form>
-				<h:dataTable value="#{entryFiles}" var="e">
-					<h:column>
-						<h:link value="view"
-							outcome="/management/entries/entryFile/viewEntryFile.xhtml?id=#{e.id}" />
-					</h:column>
-					<h:column>
-						<h:link value="edit"
-							outcome="/management/edit/editEntryFile.xhtml?id=#{e.id}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">id</f:facet>
+
+				<c:if test="${empty relatable and not included}">
+					<c:set var="entryFiles"
+						value="#{controllerEntryFile.entryFilesList}" />
+				</c:if>
+
+				<c:if test="${not empty relatable and included}">
+					<c:set var="entryFiles" value="#{relatable.entryFiles}" />
+				</c:if>
+
+
+				<c:if test="${empty entryFiles and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty entryFiles}">
+					<h:form>
+						<div class="row">
+							<h:dataTable styleClass="table" value="#{entryFiles}" var="e">
+								<h:column>
+									<h:link value="view"
+										outcome="/management/entries/entryFile/viewEntryFile.xhtml?id=#{e.id}" />
+								</h:column>
+								<h:column>
+									<h:link value="edit"
+										outcome="/management/edit/editEntryFile.xhtml?id=#{e.id}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">id</f:facet>
 					#{e.id}
 				</h:column>
-					<h:column>
-						<f:facet name="header">Caption</f:facet>
-						<h:outputLabel value="#{e.caption}" />
-					</h:column>
-					<h:column>
-						<h:commandButton value="remove"
-							action="#{controllerEntryFile.removeEntryFile(e.id)}" />
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</c:if>
+								<h:column>
+									<f:facet name="header">Caption</f:facet>
+									<h:outputLabel value="#{e.caption}" />
+								</h:column>
+								<h:column>
+									<h:commandLink styleClass="minor" value="remove"
+										action="#{controllerEntryFile.removeEntryFile(e.id)}" />
+								</h:column>
+							</h:dataTable>
+						</div>
+					</h:form>
+				</c:if>
 
-		<c:if test="${not empty relatable and included}">
-			<c:set var="entryFiles" value="#{relatable.entryFiles}" />
-		</c:if>
-
-
-		<c:if test="${included != null and included}">
-			<h:form>
-				<h:inputText value="#{controllerEntryFile.mergeEntryFileId}" />
-				<h:commandButton value="add"
-					action="#{controllerEntryFile.addEntryFileToRelatable(relatable.id)}" />
-			</h:form>
-		</c:if>
+				<c:if test="${not empty relatable and included}">
+					<c:set var="entryFiles" value="#{relatable.entryFiles}" />
+				</c:if>
 
 
+				<c:if test="${included != null and included}">
+					<h:form>
+						<h:inputText value="#{controllerEntryFile.mergeEntryFileId}" />
+						<h:commandButton value="add"
+							action="#{controllerEntryFile.addEntryFileToRelatable(relatable.id)}" />
+					</h:form>
+				</c:if>
+
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

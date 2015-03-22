@@ -11,62 +11,79 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Activityies List</ui:define>
+		<ui:define name="content">
+
+			<div class="container">
+				<div class="page-header">
+					<h4>Activityies List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Activityies List</li>
+				</ul>
+
+
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
 
 
+				<c:if test="${empty investigativeCase and not included}">
+					<c:set var="activities" value="#{controllerActivity.list}" />
+				</c:if>
 
-		<c:if test="${not included}">
-			<h3>Activityies List</h3>
-			<h:link value="add" outcome="add" />
-		</c:if>
+				<c:if test="${not empty investigativeCase and included}">
+					<c:set var="activities" value="#{investigativeCase.activities}" />
+				</c:if>
 
-
-		<c:if test="${empty investigativeCase and not included}">
-			<c:set var="activities" value="#{controllerActivity.list}" />
-		</c:if>
-
-		<c:if test="${not empty investigativeCase and included}">
-			<c:set var="activities" value="#{investigativeCase.activities}" />
-		</c:if>
-
-		<c:if test="${empty activities and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${empty activities and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
 
 
 
-		<h:dataTable styleClass="table" value="#{activities}" var="a">
-			<h:column>
-				<h:link value="view"
-					outcome="/management/police/investigativeCase/activity/viewActivity.xhtml?id=#{a.id}" />
-			</h:column>
-			<h:column>
-				<h:link value="edit"
-					outcome="/management/edit/editActivity.xhtml?id=#{a.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Type</f:facet>
-				<h:outputLabel value="#{a.type}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Date and Time</f:facet>
-				<h:outputLabel value="#{a.dateAndTime}">
-					<f:convertDateTime pattern="MMMM dd, YYYY hh:mm:ss" />
-				</h:outputLabel>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Data</f:facet>
-				<h:outputLabel value="#{a.data}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Investigator</f:facet>
-				<h:outputLabel
-					value="#{a.investigator.personName.lastName}, #{a.investigator.personName.firstName}" />
-			</h:column>
-		</h:dataTable>
+				<h:dataTable styleClass="table" value="#{activities}" var="a">
+					<div class="row">
+						<h:column>
+							<h:link value="view"
+								outcome="/management/police/investigativeCase/activity/viewActivity.xhtml?id=#{a.id}" />
+						</h:column>
+						<h:column>
+							<h:link value="edit"
+								outcome="/management/edit/editActivity.xhtml?id=#{a.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Type</f:facet>
+							<h:outputText value="#{a.type}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date and Time</f:facet>
+							<h:outputText value="#{a.dateAndTime}">
+								<f:convertDateTime pattern="MMMM dd, YYYY hh:mm:ss" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Data</f:facet>
+							<h:outputText value="#{a.data}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Investigator</f:facet>
+							<h:outputText
+								value="#{a.investigator.personName}" />
+						</h:column>
+					</div>
+				</h:dataTable>
 
-
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

@@ -11,73 +11,85 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>Permissions</h2>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Permissions List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Permissions List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Permissions List</li>
+				</ul>
 
-		<c:if test="${empty relatables and not included}">
-			<c:set var="permissions"
-				value="#{controllerPermission.permissionsList}" />
-		</c:if>
 
-		<c:if test="${not empty relatables and included}">
-			<c:set var="permissions" value="#{relatables.permissions}" />
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
-		<c:if test="${empty permissions and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
 
-		<c:if test="${not empty permissions}">
-			<h:dataTable value="#{permissions}" var="p">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/edit/permission/viewPermission.xhtml?id=#{p.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/permission/editPermission.xhtml?id=#{p.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">id</f:facet>
+				<c:if test="${empty relatables and not included}">
+					<c:set var="permissions"
+						value="#{controllerPermission.permissionsList}" />
+				</c:if>
+
+				<c:if test="${not empty relatables and included}">
+					<c:set var="permissions" value="#{relatables.permissions}" />
+				</c:if>
+
+				<c:if test="${empty permissions and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty permissions}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{permissions}" var="p">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/edit/permission/viewPermission.xhtml?id=#{p.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/permission/editPermission.xhtml?id=#{p.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">id</f:facet>
 					#{p.id}
 				</h:column>
-				<h:column>
-					<f:facet name="header">Read Permission</f:facet>
-					<h:outputLabel value="#{p.readPermission}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Write Permission</f:facet>
-					<h:outputLabel value="#{p.writePermission}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Owner</f:facet>
-					<h:outputLabel value="#{p.owner.id}:#{p.owner}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Relatable id</f:facet>
-					<h:outputLabel value="#{p.relatable.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Authorizable id</f:facet>
-					<h:outputLabel value="#{p.authorizable.id}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
+							<h:column>
+								<f:facet name="header">Read Permission</f:facet>
+								<h:outputText value="#{p.readPermission}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Write Permission</f:facet>
+								<h:outputText value="#{p.writePermission}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Owner</f:facet>
+								<h:outputText value="#{p.owner.id}:#{p.owner}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Relatable id</f:facet>
+								<h:outputText value="#{p.relatable.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Authorizable id</f:facet>
+								<h:outputText value="#{p.authorizable.id}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
 
-		<ui:remove>
-			<!-- 		<c:if test="${included != null and included}">
-			<h:form>
-				<h:inputText value="#{controllerPermission.newPermissionId}" />
-				<h:commandButton value="add"
-					action="#{controllerPermission.addPermissionForInvestigativeCase(relatables)}" />
-			</h:form>
-		</c:if> -->
-		</ui:remove>
 
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

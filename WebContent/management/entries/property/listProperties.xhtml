@@ -11,45 +11,68 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h3>Properties List</h3>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Properties List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Properties List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Properties List</li>
+				</ul>
 
-		<h:dataTable value="#{controllerProperty.propertiesList}" var="p">
-			<h:column>
-				<h:link value="view"
-					outcome="/management/entries/property/viewProperty.xhtml?id=#{p.id}" />
-			</h:column>
-			<h:column>
-				<h:link value="edit"
-					outcome="/management/edit/editProperty.xhtml?id=#{p.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Serial number</f:facet>
-				<h:outputLabel value="#{p.serialNumber}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Make</f:facet>
-				<h:outputLabel value="#{p.make}">
-					<f:convertDateTime pattern="MMMM dd, YYYY" />
-				</h:outputLabel>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Model</f:facet>
-				<h:outputLabel value="#{p.model}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Brand</f:facet>
-				<h:outputLabel value="#{p.brand}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Distinguishing characteristics</f:facet>
-				<h:outputLabel value="#{p.distinguishingCharacteristics}" />
-			</h:column>
-		</h:dataTable>
+
+
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
+
+				<div class="row">
+					<h:dataTable styleClass="table"
+						value="#{controllerProperty.propertiesList}" var="p">
+						<h:column>
+							<h:link value="view"
+								outcome="/management/entries/property/viewProperty.xhtml?id=#{p.id}" />
+						</h:column>
+						<h:column>
+							<h:link value="edit"
+								outcome="/management/edit/editProperty.xhtml?id=#{p.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Serial number</f:facet>
+							<h:outputText value="#{p.serialNumber}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Make</f:facet>
+							<h:outputText value="#{p.make}">
+								<f:convertDateTime pattern="MMMM dd, YYYY" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Model</f:facet>
+							<h:outputText value="#{p.model}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Brand</f:facet>
+							<h:outputText value="#{p.brand}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Distinguishing characteristics</f:facet>
+							<h:outputText value="#{p.distinguishingCharacteristics}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

@@ -10,57 +10,82 @@
 <h:head></h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>Addresses</h2>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Addresses List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Addresses List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Addresses List</li>
+				</ul>
 
-		<c:if test="${empty addresses and not included}">
-			<c:set var="addresses" value="#{controllerAddress.addressesList}" />
-		</c:if>
 
-		<c:if test="${empty addresses and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
 
-		<c:if test="${not empty addresses}">
-			<h:dataTable value="#{addresses}" var="a">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/entries/address/viewAddress.xhtml?id=#{a.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/editAddress.xhtml?id=#{a.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Street name</f:facet>
+				<c:if test="${not included}">
+					<div class="row ">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
+
+
+				<c:if test="${empty addresses and not included}">
+					<c:set var="addresses" value="#{controllerAddress.addressesList}" />
+				</c:if>
+
+				<c:if test="${empty addresses and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+
+				<c:if test="${not empty addresses}">
+
+					<div class="row ">
+						<h:dataTable styleClass="table" value="#{addresses}" var="a">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/entries/address/viewAddress.xhtml?id=#{a.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/editAddress.xhtml?id=#{a.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Street name</f:facet>
 				#{a.streetName}
 			</h:column>
-				<h:column>
-					<f:facet name="header">Apt No.</f:facet>
+							<h:column>
+								<f:facet name="header">Apt No.</f:facet>
 				#{a.aptNo}
 			</h:column>
-				<h:column>
-					<f:facet name="header">City</f:facet>
+							<h:column>
+								<f:facet name="header">City</f:facet>
 				#{a.city}
 			</h:column>
-				<h:column>
-					<f:facet name="header">Province</f:facet>
+							<h:column>
+								<f:facet name="header">Province</f:facet>
 				#{a.province}
 			</h:column>
-				<h:column>
-					<f:facet name="header">Country</f:facet>
+							<h:column>
+								<f:facet name="header">Country</f:facet>
 				#{a.country}
 			</h:column>
-				<h:column>
-					<f:facet name="header">Postal code</f:facet>
+							<h:column>
+								<f:facet name="header">Postal code</f:facet>
 				#{a.postalCode}
 			</h:column>
-			</h:dataTable>
-		</c:if>
+						</h:dataTable>
+					</div>
+				</c:if>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

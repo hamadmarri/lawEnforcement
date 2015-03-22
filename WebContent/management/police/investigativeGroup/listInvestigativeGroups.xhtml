@@ -11,40 +11,63 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h3>Investigative Groups</h3>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Investigative Groups List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
-
-		<c:if test="${empty investigativeGroups and not included}">
-			<c:set var="investigativeGroups"
-				value="#{controllerInvestigativeGroup.investigativeGroupsList}" />
-		</c:if>
-
-		<c:if test="${empty investigativeGroups and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Investigative Groups List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Investigative Groups List</li>
+				</ul>
 
 
-		<c:if test="${not empty investigativeGroups}">
-			<h:dataTable value="#{investigativeGroups}" var="ig">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/police/investigativeGroup/viewInvestigativeGroup.xhtml?id=#{ig.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/editInvestigativeGroup.xhtml?id=#{ig.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Group Name</f:facet>
-					<h:outputLabel value="#{ig.name}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
+
+				<c:if test="${empty investigativeGroups and not included}">
+					<c:set var="investigativeGroups"
+						value="#{controllerInvestigativeGroup.investigativeGroupsList}" />
+				</c:if>
+
+				<c:if test="${empty investigativeGroups and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+
+				<c:if test="${not empty investigativeGroups}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{investigativeGroups}"
+							var="ig">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/police/investigativeGroup/viewInvestigativeGroup.xhtml?id=#{ig.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/editInvestigativeGroup.xhtml?id=#{ig.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Group Name</f:facet>
+								<h:outputText value="#{ig.name}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
+
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

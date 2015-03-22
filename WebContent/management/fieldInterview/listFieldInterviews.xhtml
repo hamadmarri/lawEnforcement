@@ -11,63 +11,88 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h3>Field Interviews List</h3>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Field Interviews List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Field Interviews List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Field Interviews List</li>
+				</ul>
 
-		<c:if test="${empty fieldInterviews and not included}">
-			<c:set var="fieldInterviews"
-				value="#{controllerFieldInterview.fieldInterviewsList}" />
-		</c:if>
-
-		<c:if test="${empty fieldInterviews and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
-
-		<c:if test="${not empty fieldInterviews}">
-			<h:dataTable value="#{fieldInterviews}" var="fi">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/fieldInterview/viewFieldInterview.xhtml?id=#{fi.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/editFieldInterview.xhtml?id=#{fi.id}" />
-				</h:column>
 
 				<c:if test="${not included}">
-					<h:column>
-						<f:facet name="header">Incident Report</f:facet>
-						<h:link value="view"
-							outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{fi.incidentReport.id}" />
-					</h:column>
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
 				</c:if>
 
-				<h:column>
-					<f:facet name="header">Subscriber</f:facet>
-					<h:outputLabel value="#{fi.subscriber.toString()}" />
-					<h:link value="view" rendered="#{fi.subscriber ne null}"
-						outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.subscriber.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Emergency contact</f:facet>
-					<h:outputLabel value="#{fi.inCaseOfEmergencyPerson.toString()}" />
-					<h:link value="view"
-						rendered="#{fi.inCaseOfEmergencyPerson ne null}"
-						outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.inCaseOfEmergencyPerson.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Date and time</f:facet>
-					<h:outputLabel value="#{fi.dateAndTime}">
-						<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
-					</h:outputLabel>
-				</h:column>
 
-			</h:dataTable>
-		</c:if>
+
+
+				<c:if test="${empty fieldInterviews and not included}">
+					<c:set var="fieldInterviews"
+						value="#{controllerFieldInterview.fieldInterviewsList}" />
+				</c:if>
+
+				<c:if test="${empty fieldInterviews and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty fieldInterviews}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{fieldInterviews}"
+							var="fi">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/fieldInterview/viewFieldInterview.xhtml?id=#{fi.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/editFieldInterview.xhtml?id=#{fi.id}" />
+							</h:column>
+
+							<c:if test="${not included}">
+								<h:column>
+									<f:facet name="header">Incident Report</f:facet>
+									<h:link value="view"
+										outcome="/management/events/incidentReport/viewIncidentReport.xhtml?id=#{fi.incidentReport.id}" />
+								</h:column>
+							</c:if>
+
+							<h:column>
+								<f:facet name="header">Subscriber</f:facet>
+								<h:outputText value="#{fi.subscriber.toString()} " />
+								<h:link value="view" rendered="#{fi.subscriber ne null}"
+									outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.subscriber.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Emergency contact</f:facet>
+								<h:outputText value="#{fi.inCaseOfEmergencyPerson.toString()}" />
+								<h:link value="view"
+									rendered="#{fi.inCaseOfEmergencyPerson ne null}"
+									outcome="/management/entries/person/viewPerson.xhtml?id=#{fi.inCaseOfEmergencyPerson.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Date and time</f:facet>
+								<h:outputText value="#{fi.dateAndTime}">
+									<f:convertDateTime pattern="MMMM dd, yyyy @hh:mm" />
+								</h:outputText>
+							</h:column>
+
+						</h:dataTable>
+					</div>
+				</c:if>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

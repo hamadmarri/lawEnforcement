@@ -11,97 +11,113 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h2>Notifications</h2>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Notifications List</ui:define>
+		<ui:define name="content">
+
+			<div class="container">
+				<div class="page-header">
+					<h4>Notifications List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Notifications List</li>
+				</ul>
 
 
-		<c:if test="${not included}">
-			<c:set var="notifications"
-				value="#{controllerNotification.notificationsList}" />
-		</c:if>
 
-		<c:if test="${included != null}">
-			<c:set var="notifications"
-				value="#{controllerNotification.getNotificationsListForAuthorizable(authorizable)}" />
-		</c:if>
+				<c:if test="${not included}">
+					<c:set var="notifications"
+						value="#{controllerNotification.notificationsList}" />
+				</c:if>
 
-		<c:if test="${empty notifications and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${included != null}">
+					<c:set var="notifications"
+						value="#{controllerNotification.getNotificationsListForAuthorizable(authorizable)}" />
+				</c:if>
 
-		<c:if test="${not empty notifications}">
-			<h:form>
-				<h:dataTable value="#{notifications}" var="n">
-					<h:column>
-						<h:link value="view" outcome="view">
-							<f:param name="id" value="#{n.id}" />
-						</h:link>
-					</h:column>
-					<h:column>
-						<f:facet name="header">id</f:facet>
+				<c:if test="${empty notifications and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty notifications}">
+					<h:form>
+						<div class="row">
+							<h:dataTable styleClass="table" value="#{notifications}" var="n">
+								<h:column>
+									<h:link value="view" outcome="view">
+										<f:param name="id" value="#{n.id}" />
+									</h:link>
+								</h:column>
+								<h:column>
+									<f:facet name="header">id</f:facet>
 					#{n.id}
 				</h:column>
-					<h:column>
-						<f:facet name="header">Notification Text</f:facet>
+								<h:column>
+									<f:facet name="header">Notification Text</f:facet>
 					#{n.text}
 				</h:column>
-					<h:column>
-						<f:facet name="header">Date And Time</f:facet>
+								<h:column>
+									<f:facet name="header">Date And Time</f:facet>
 					#{n.dateAndTime}
 				</h:column>
-					<h:column>
-						<f:facet name="header">State</f:facet>
+								<h:column>
+									<f:facet name="header">State</f:facet>
 					#{n.state}
 				</h:column>
-					<h:column>
-						<f:facet name="header">Caused By</f:facet>
-						<!-- Show for Officer -->
-						<h:link outcome="officer"
-							rendered="#{n.causedBy.type == 'Officer'}"
-							value="#{n.causedBy.personName.firstName}, #{n.causedBy.personName.lastName}">
-							<f:param name="id" value="#{n.causedBy.id}" />
-						</h:link>
+								<h:column>
+									<f:facet name="header">Caused By</f:facet>
+									<!-- Show for Officer -->
+									<h:link outcome="officer"
+										rendered="#{n.causedBy.type == 'Officer'}"
+										value="#{n.causedBy.personName}">
+										<f:param name="id" value="#{n.causedBy.id}" />
+									</h:link>
 
-						<!-- Show for Investigator -->
-						<h:link outcome="investigator"
-							rendered="#{n.causedBy.type == 'Investigator'}"
-							value="#{n.causedBy.personName.firstName}, #{n.causedBy.personName.lastName}">
-							<f:param name="id" value="#{n.causedBy.id}" />
-						</h:link>
-					</h:column>
-					<h:column>
-						<f:facet name="header">To</f:facet>
+									<!-- Show for Investigator -->
+									<h:link outcome="investigator"
+										rendered="#{n.causedBy.type == 'Investigator'}"
+										value="#{n.causedBy.personName}">
+										<f:param name="id" value="#{n.causedBy.id}" />
+									</h:link>
+								</h:column>
+								<h:column>
+									<f:facet name="header">To</f:facet>
 
-						<!-- Show for Officer -->
-						<h:link outcome="officer" rendered="#{n.to.type == 'Officer'}"
-							value="#{n.to.personName.firstName}, #{n.to.personName.lastName}">
-							<f:param name="id" value="#{n.to.id}" />
-						</h:link>
+									<!-- Show for Officer -->
+									<h:link outcome="officer" rendered="#{n.to.type == 'Officer'}"
+										value="#{n.to.personName}">
+										<f:param name="id" value="#{n.to.id}" />
+									</h:link>
 
-						<!-- Show for Investigator -->
-						<h:link outcome="investigator"
-							rendered="#{n.to.type == 'Investigator'}"
-							value="#{n.to.personName.firstName}, #{n.to.personName.lastName}">
-							<f:param name="id" value="#{n.to.id}" />
-						</h:link>
+									<!-- Show for Investigator -->
+									<h:link outcome="investigator"
+										rendered="#{n.to.type == 'Investigator'}"
+										value="#{n.to.personName}">
+										<f:param name="id" value="#{n.to.id}" />
+									</h:link>
 
-						<!-- Show for Group -->
-						<h:link value="Group id: #{n.to.id}" outcome="group"
-							rendered="#{n.to.type != 'Investigator' and n.to.type != 'Officer'}">
-							<f:param name="id" value="#{n.to.id}" />
-						</h:link>
-					</h:column>
-					<c:if test="${included != null}">
-						<h:column>
-							<h:commandButton value="mark as read"
-								action="#{controllerNotification.markAsRead(n)}" />
-						</h:column>
-					</c:if>
+									<!-- Show for Group -->
+									<h:link value="Group id: #{n.to.id}" outcome="group"
+										rendered="#{n.to.type != 'Investigator' and n.to.type != 'Officer'}">
+										<f:param name="id" value="#{n.to.id}" />
+									</h:link>
+								</h:column>
+								<c:if test="${included != null}">
+									<h:column>
+										<h:commandButton value="mark as read"
+											action="#{controllerNotification.markAsRead(n)}" />
+									</h:column>
+								</c:if>
 
-				</h:dataTable>
-			</h:form>
-		</c:if>
+							</h:dataTable>
+						</div>
+					</h:form>
+				</c:if>
 
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

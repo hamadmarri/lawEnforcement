@@ -11,47 +11,69 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h3>Suspect Persons List</h3>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Suspect Persons List</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${not included}">
-			<h:link value="add" outcome="add" />
-		</c:if>
+			<div class="container">
+				<div class="page-header">
+					<h4>Suspect Persons List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Suspect Persons List</li>
+				</ul>
 
-		<c:if test="${empty suspectPersons and not included}">
-			<c:set var="suspectPersons"
-				value="#{controllerSuspectPerson.suspectPersonsList}" />
-		</c:if>
 
-		<c:if test="${empty suspectPersons and included}">
-			<h:outputLabel value="nothing" />
-		</c:if>
+				<c:if test="${not included}">
+					<div class="row">
+						<h:link styleClass="btn btn-primary pull-right" value="Add"
+							outcome="add" />
+					</div>
+					<br />
+				</c:if>
 
-		<c:if test="${not empty suspectPersons}">
-			<h:dataTable value="#{suspectPersons}" var="sp">
-				<h:column>
-					<h:link value="view"
-						outcome="/management/entries/suspectPerson/viewSuspectPerson.xhtml?id=#{sp.id}" />
-				</h:column>
-				<h:column>
-					<h:link value="edit"
-						outcome="/management/edit/editSuspectPerson.xhtml?id=#{sp.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Physical Characteristic</f:facet>
-					<h:outputLabel value="#{sp.physicalCharacteristic.toString()}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Threat Assessment</f:facet>
-					<h:outputLabel value="#{sp.threatAssessment.threatAssessmentLevel}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Description</f:facet>
-					<h:outputLabel value="#{sp.description}" />
-				</h:column>
-			</h:dataTable>
-		</c:if>
 
+				<c:if test="${empty suspectPersons and not included}">
+					<c:set var="suspectPersons"
+						value="#{controllerSuspectPerson.suspectPersonsList}" />
+				</c:if>
+
+				<c:if test="${empty suspectPersons and included}">
+					<h:outputLabel value="nothing" />
+				</c:if>
+
+				<c:if test="${not empty suspectPersons}">
+					<div class="row">
+						<h:dataTable styleClass="table" value="#{suspectPersons}" var="sp">
+							<h:column>
+								<h:link value="view"
+									outcome="/management/entries/suspectPerson/viewSuspectPerson.xhtml?id=#{sp.id}" />
+							</h:column>
+							<h:column>
+								<h:link value="edit"
+									outcome="/management/edit/editSuspectPerson.xhtml?id=#{sp.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Physical Characteristic</f:facet>
+								<h:outputText value="#{sp.physicalCharacteristic.toString()}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Threat Assessment</f:facet>
+								<h:outputText
+									value="#{sp.threatAssessment.threatAssessmentLevel}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Description</f:facet>
+								<h:outputText value="#{sp.description}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</c:if>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

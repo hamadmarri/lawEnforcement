@@ -9,35 +9,53 @@
 <h:head></h:head>
 <h:body>
 
-	<h1>Youth In Risk List</h1>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="title">Adala - Youth In Risk List</ui:define>
+		<ui:define name="content">
 
-	<h:dataTable var="y"
-		value="#{controllerNeuralNetworkEntity.youthInRiskList}">
+			<div class="container">
+				<div class="page-header">
+					<h4>Youth In Risk List</h4>
+				</div>
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Youth In Risk List</li>
+				</ul>
 
-		<h:column>
-			<f:facet name="header">view</f:facet>
-			<h:link value="view"
-					outcome="/management/entries/person/viewPerson.xhtml?id=#{y.id}" />
-		</h:column>
 
-		<h:column>
-			<f:facet name="header">id</f:facet>
-			<h:outputLabel value="#{y.id}" />
-		</h:column>
+				<div class="row">
+					<h:dataTable styleClass="table" var="y"
+						value="#{controllerNeuralNetworkEntity.youthInRiskList}">
 
-		<h:column>
-			<f:facet name="header">Name</f:facet>
-			<h:outputLabel
-				value="#{y.personName.lastName}, #{y.personName.firstName}" />
-		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Type of Risk</f:facet>
-			<h:outputLabel
-				value="#{y.riskType}" />
-		</h:column>
+						<h:column>
+							<f:facet name="header">view</f:facet>
+							<h:link value="view"
+								outcome="/management/entries/person/viewPerson.xhtml?id=#{y.id}" />
+						</h:column>
 
-	</h:dataTable>
+						<h:column>
+							<f:facet name="header">id</f:facet>
+							<h:outputText value="#{y.id}" />
+						</h:column>
 
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText
+								value="#{y.personName}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Type of Risk</f:facet>
+							<h:outputText value="#{y.riskType}" />
+						</h:column>
+
+					</h:dataTable>
+				</div>
+
+
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
