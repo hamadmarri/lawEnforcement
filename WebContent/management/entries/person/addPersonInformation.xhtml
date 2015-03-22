@@ -42,25 +42,40 @@
 
 						<h4>Personal Information</h4>
 
+
 						<h:form styleClass="form-horizontal" enctype="multipart/form-data">
+
+							<p:messages autoUpdate="true" styleClass="col-md-9" />
 
 							<div class="col-md-5">
 								<div class="form-group">
 									<h:outputLabel value="First name"
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
-										<p:inputText
+										<p:inputText style="color: black;"
 											value="#{controllerPerson.person.personName.firstName}"
-											styleClass="col-md-12" />
+											styleClass="col-md-12"
+											validatorMessage="First name must be all alphabet and between 2 and 25 characters">
+
+											<f:validateRegex pattern="#{validator.lettersOnly}" />
+											<f:validateLength minimum="2" maximum="25" />
+
+										</p:inputText>
 									</div>
 								</div>
 								<div class="form-group">
 									<h:outputLabel value="Last name"
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
-										<p:inputText
+										<p:inputText style="color: black;"
 											value="#{controllerPerson.person.personName.lastName}"
-											styleClass="col-md-12" />
+											styleClass="col-md-12"
+											validatorMessage="Last name must be all alphabet and between 2 and 25 characters">
+
+											<f:validateRegex pattern="#{validator.lettersOnly}" />
+											<f:validateLength minimum="2" maximum="25" />
+
+										</p:inputText>
 									</div>
 								</div>
 								<div class="form-group">
@@ -68,15 +83,30 @@
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
 										<p:calendar value="#{controllerPerson.person.dateOfBirth}"
-											pattern="dd-MM-yyyy" mask="true" styleClass="dateTimeField" />
+											pattern="dd-MM-yyyy" mask="true" styleClass="dateTimeField"
+											maxdate="#{validator.currentDate}"
+											mindate="#{validator.notMore150YearsDate}"
+											validatorMessage="Birth Date must be less than or equal to current date and not older than 150 (max age is 150 years old)">
+
+											<f:validator validatorId="birthDateValidator" />
+											
+										</p:calendar>
 									</div>
 								</div>
 								<div class="form-group">
 									<h:outputLabel value="Birth place"
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
-										<p:inputText value="#{controllerPerson.person.birthPlace}"
-											styleClass="col-md-12" />
+										<p:inputText style="color: black;"
+											value="#{controllerPerson.person.birthPlace}"
+											styleClass="col-md-12"
+											validatorMessage="Birth place must be all alphabet and between 3 and 25 characters (white spaces are ok)">
+
+											<f:validateRegex
+												pattern="#{validator.lettersWithWhiteSpacesOnly}" />
+											<f:validateLength minimum="3" maximum="25" />
+
+										</p:inputText>
 									</div>
 								</div>
 								<div class="form-group">
@@ -94,8 +124,16 @@
 									<h:outputLabel value="Citizenship"
 										styleClass="control-label col-xs-4" />
 									<div class="col-xs-8">
-										<p:inputText value="#{controllerPerson.person.citizenship}"
-											styleClass="col-md-12" />
+										<p:inputText style="color: black;"
+											value="#{controllerPerson.person.citizenship}"
+											styleClass="col-md-12"
+											validatorMessage="Citizenship must be all alphabet and between 3 and 25 characters (white spaces are ok)">
+
+											<f:validateRegex
+												pattern="#{validator.lettersWithWhiteSpacesOnly}" />
+											<f:validateLength minimum="3" maximum="25" />
+
+										</p:inputText>
 									</div>
 								</div>
 							</div>

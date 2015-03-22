@@ -118,6 +118,7 @@ body {
 
 .dateTimeField input {
 	width: 100%;
+	color: black;
 }
 
 .icons-text-input {
