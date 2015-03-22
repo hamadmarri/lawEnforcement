@@ -137,8 +137,11 @@ public class ControllerCrime implements Serializable {
 		// so load it from DB
 		this.crime = ejbCriminalRecord.getCrime(Long.parseLong(this.id));
 
-		criminalRecordId = crime.getCriminalRecord().getId();
-		incidentReportId = crime.getIncidentReport().getId();
+		if (crime.getCriminalRecord() != null)
+			criminalRecordId = crime.getCriminalRecord().getId();
+
+		if (crime.getIncidentReport() != null)
+			incidentReportId = crime.getIncidentReport().getId();
 
 		return this.crime;
 	}
