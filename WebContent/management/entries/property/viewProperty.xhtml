@@ -15,36 +15,58 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relatable"
-				value="#{controllerProperty.property}" />
+			<c:set var="relatable" value="#{controllerProperty.property}" />
 			<c:set var="included" value="true" />
 
-			<h3>Property</h3>
 
-			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerProperty.id}" />
-			</h:link>
+			<div class="page-header">
+				<h4>Property #{controllerProperty.id}</h4>
+			</div>
+
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Property List"
+						outcome="/management/entries/property/listProperties.xhtml" /><span
+					class="divider" /></li>
+				<li class="active">Property #{controllerProperty.id}</li>
+			</ul>
+
+
+			<div class="row ">
+				<h:link styleClass="btn btn-primary pull-right" value="edit"
+					outcome="edit">
+					<f:param name="id" value="#{controllerProperty.id}" />
+				</h:link>
+			</div>
 			<br />
 
-			<h:outputLabel value="Serial number" />
-			<h:outputLabel value="#{controllerProperty.property.serialNumber}" />
-			<br />
 
-			<h:outputLabel value="Make" />
-			<h:outputLabel value="#{controllerProperty.property.make}" />
-			<br />
 
-			<h:outputLabel value="Model" />
-			<h:outputLabel value="#{controllerProperty.property.model}" />
-			<br />
+			<div class="row ">
+				<div class="col-md-8">
+					<h:panelGrid columns="2" styleClass="table table-striped">
+						<h:outputLabel value="Serial number" />
+						<h:outputText value="#{controllerProperty.property.serialNumber}" />
 
-			<h:outputLabel value="Brand" />
-			<h:outputLabel value="#{controllerProperty.property.brand}" />
-			<br />
+						<h:outputLabel value="Make" />
+						<h:outputText value="#{controllerProperty.property.make}" />
 
-			<h:outputLabel value="Distinguishing characteristics" />
-			<h:outputLabel
-				value="#{controllerProperty.property.distinguishingCharacteristics}" />
+						<h:outputLabel value="Model" />
+						<h:outputText value="#{controllerProperty.property.model}" />
+
+						<h:outputLabel value="Brand" />
+						<h:outputText value="#{controllerProperty.property.brand}" />
+
+						<h:outputLabel value="Distinguishing characteristics" />
+						<h:outputText
+							value="#{controllerProperty.property.distinguishingCharacteristics}" />
+					</h:panelGrid>
+				</div>
+			</div>
+
+
 		</ui:define>
 	</ui:composition>
 </h:body>

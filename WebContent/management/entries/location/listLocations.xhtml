@@ -23,50 +23,18 @@
 					<li class="active">Locations List</li>
 				</ul>
 
-				<c:if test="${empty locations}">
-					<c:set var="locations" value="#{controllerLocation.locationsList}" />
-				</c:if>
-
-				<c:if test="${not included}">
-					<div class="row ">
-						<h:link styleClass="btn btn-primary pull-right" value="Add"
-							outcome="add" />
-					</div>
-					<br />
-				</c:if>
+				<c:set var="locations" value="#{controllerLocation.locationsList}" />
 
 				<div class="row ">
-					<h:dataTable styleClass="table" value="#{locations}" var="l">
-						<h:column>
-							<h:link value="view"
-								outcome="/management/entries/location/viewLocation.xhtml?id=#{l.id}" />
-						</h:column>
-						<h:column>
-							<h:link value="edit"
-								outcome="/management/edit/editLocation.xhtml?id=#{l.id}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Area</f:facet>
-			#{l.area}
-		</h:column>
-						<h:column>
-							<f:facet name="header">Coordinates</f:facet>
-			x:#{l.coordinate.x} y:#{l.coordinate.y} z:#{l.coordinate.z} 
-		</h:column>
-						<h:column>
-							<f:facet name="header">Occupancy</f:facet>
-			#{l.occupancy}
-			</h:column>
-						<h:column>
-							<f:facet name="header">Elevation</f:facet>
-			#{l.elevation}
-		</h:column>
-						<h:column>
-							<f:facet name="header">Premise type</f:facet>
-			#{l.premiseType}
-		</h:column>
-					</h:dataTable>
+					<h:link styleClass="btn btn-primary pull-right" value="Add"
+						outcome="add" />
+				</div>
+				<br />
 
+				<div class="row ">
+					<ui:include src="/WEB-INF/includes/lists/listLocations.xhtml">
+						<ui:param name="locations" value="#{locations}"></ui:param>
+					</ui:include>
 				</div>
 
 			</div>

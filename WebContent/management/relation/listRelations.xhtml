@@ -24,60 +24,20 @@
 				</ul>
 
 
+				<div class="row">
+					<h:link styleClass="btn btn-primary pull-right" value="Add"
+						outcome="add" />
+				</div>
+				<br />
 
-				<c:if test="${not included}">
-					<div class="row">
-						<h:link styleClass="btn btn-primary pull-right" value="Add"
-							outcome="add" />
+				<div class="row">
+					<div class="col-md-12">
+						<ui:include src="/WEB-INF/includes/lists/listRelations.xhtml">
+							<ui:param name="relations"
+								value="#{controllerRelation.relationsList}" />
+						</ui:include>
 					</div>
-					<br />
-				</c:if>
-
-
-				<c:if test="${empty relatable and not included}">
-					<c:set var="relations" value="#{controllerRelation.relationsList}" />
-				</c:if>
-
-				<c:if test="${not empty relatable}">
-					<c:set var="relations" value="#{relatable.allRelations}" />
-				</c:if>
-
-				<c:if test="${empty relations and included}">
-					<h:outputLabel value="nothing" />
-				</c:if>
-
-				<c:if test="${not empty relations}">
-					<div class="row">
-						<h:dataTable styleClass="table" value="#{relations}" var="r">
-							<h:column>
-								<h:link value="view"
-									outcome="/management/relation/viewRelation.xhtml?id=#{r.id}" />
-							</h:column>
-							<h:column>
-								<h:link value="edit"
-									outcome="/management/edit/editRelation.xhtml?id=#{r.id}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">First relatable</f:facet>
-								<h:outputText value="#{r.something.toString()} " />
-								<h:link value="view" outcome="#{r.something.type}">
-									<f:param name="id" value="#{r.something.id}" />
-								</h:link>
-							</h:column>
-							<h:column>
-								<f:facet name="header">Type of relation</f:facet>
-								<h:outputText value="#{r.typeOfRelation}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Second relatable</f:facet>
-								<h:outputText value="#{r.somethingElse.toString()} " />
-								<h:link value="view" outcome="#{r.somethingElse.type}">
-									<f:param name="id" value="#{r.somethingElse.id}" />
-								</h:link>
-							</h:column>
-						</h:dataTable>
-					</div>
-				</c:if>
+				</div>
 
 			</div>
 		</ui:define>

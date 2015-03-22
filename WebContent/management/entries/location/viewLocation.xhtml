@@ -19,42 +19,79 @@
 			<c:set var="relatable" value="#{controllerLocation.location}" />
 			<c:set var="included" value="true" />
 
-			<h3>Location</h3>
 
-			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerLocation.id}" />
-			</h:link>
+			<div class="page-header">
+				<h4>Location id #{controllerLocation.id}</h4>
+			</div>
+
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Locations List"
+						outcome="/management/entries/location/listLocations.xhtml" /><span
+					class="divider" /></li>
+				<li class="active">Location id #{controllerLocation.id}</li>
+			</ul>
+
+
+			<div class="row">
+				<h:link styleClass="btn btn-primary pull-right" value="edit"
+					outcome="edit">
+					<f:param name="id" value="#{controllerLocation.id}" />
+				</h:link>
+			</div>
 			<br />
 
-			<h:outputLabel value="Area" />
-			<h:outputLabel value="#{controllerLocation.location.area}" />
+
+			<div class="row">
+				<div class="col-md-5">
+					<h:panelGrid styleClass="table" columns="2">
+
+						<h:outputLabel value="Area" />
+						<h:outputText value="#{controllerLocation.location.area}" />
+
+						<h:outputLabel value="Coordinate" />
+						<h:outputText
+							value="x:#{controllerLocation.location.coordinate.x} y:#{controllerLocation.location.coordinate.y} z:#{controllerLocation.location.coordinate.z}" />
+
+						<h:outputLabel value="Occupancy" />
+						<h:outputText value="#{controllerLocation.location.occupancy}" />
+
+						<h:outputLabel value="Elevation" />
+						<h:outputText value="#{controllerLocation.location.elevation}" />
+
+						<h:outputLabel value="Premise type" />
+						<h:outputText value="#{controllerLocation.location.premiseType}" />
+
+					</h:panelGrid>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header">
+						<h4>Addresses List</h4>
+					</div>
+
+					<ui:include src="/WEB-INF/includes/lists/listAddresses.xhtml">
+						<ui:param name="addresses"
+							value="#{controllerLocation.location.addresses}" />
+					</ui:include>
+				</div>
+			</div>
+
+			<div class="row">
+				<h:link styleClass="btn btn-primary pull-right" value="add address"
+					outcome="addAddress">
+					<f:param name="locationId"
+						value="#{controllerLocation.location.id}" />
+				</h:link>
+			</div>
 			<br />
 
-			<h:outputLabel value="Coordinate" />
-			<h:outputLabel
-				value="x:#{controllerLocation.location.coordinate.x} y:#{controllerLocation.location.coordinate.y} z:#{controllerLocation.location.coordinate.z}" />
-			<br />
 
-			<h:outputLabel value="Occupancy" />
-			<h:outputLabel value="#{controllerLocation.location.occupancy}" />
-			<br />
-
-			<h:outputLabel value="Elevation" />
-			<h:outputLabel value="#{controllerLocation.location.elevation}" />
-			<br />
-
-			<h:outputLabel value="Premise type" />
-			<h:outputLabel value="#{controllerLocation.location.premiseType}" />
-			<br />
-
-			<ui:include src="/management/entries/address/listAddresses.xhtml">
-				<ui:param name="addresses"
-					value="#{controllerLocation.location.addresses}"></ui:param>
-			</ui:include>
-			
-			<h:link value="add" outcome="addAddress">
-				<f:param name="locationId" value="#{controllerLocation.location.id}" />
-			</h:link>
 
 		</ui:define>
 	</ui:composition>

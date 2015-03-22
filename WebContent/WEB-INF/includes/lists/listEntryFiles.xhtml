@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition>
+
+	<c:if test="${empty entryFiles}">
+		<h:outputText value="no uploaded files" />
+	</c:if>
+
+	<c:if test="${not empty entryFiles}">
+		<h:form>
+			<h:dataTable styleClass="table" value="#{entryFiles}" var="e">
+				<h:column>
+					<h:link value="view"
+						outcome="/management/entries/entryFile/viewEntryFile.xhtml?id=#{e.id}" />
+				</h:column>
+				<h:column>
+					<h:link value="edit"
+						outcome="/management/edit/editEntryFile.xhtml?id=#{e.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">id</f:facet>
+					#{e.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Caption</f:facet>
+					<h:outputLabel value="#{e.caption}" />
+				</h:column>
+				<h:column>
+					<h:commandLink styleClass="minor" value="remove"
+						action="#{controllerEntryFile.removeEntryFile(e.id)}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
+	</c:if>
+
+
+	<c:if test="${included != null and included}">
+		<h:form>
+			<h:inputText value="#{controllerEntryFile.mergeEntryFileId}" />
+			<h:commandButton value="add"
+				action="#{controllerEntryFile.addEntryFileToRelatable(relatable.id)}" />
+		</h:form>
+	</c:if>
+
+
+</ui:composition>
+</html>

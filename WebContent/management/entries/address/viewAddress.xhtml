@@ -16,45 +16,68 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relatable"
-				value="#{controllerAddress.address}" />
+			<c:set var="relatable" value="#{controllerAddress.address}" />
 			<c:set var="included" value="true" />
 
-			<h3>Address</h3>
 
-			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerAddress.id}" />
-			</h:link>
+			<div class="page-header">
+				<h4>Address id #{controllerAddress.id}</h4>
+			</div>
+
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Addresses List"
+						outcome="/management/entries/address/listAddresses.xhtml" /><span
+					class="divider" /></li>
+				<li class="active">Address id #{controllerAddress.id}</li>
+			</ul>
+
+
+			<div class="row">
+				<h:link styleClass="btn btn-primary pull-right" value="edit"
+					outcome="edit">
+					<f:param name="id" value="#{controllerAddress.id}" />
+				</h:link>
+			</div>
 			<br />
 
-			<h:outputLabel value="Street name" />
-			<h:outputLabel value="#{controllerAddress.address.streetName}" />
-			<br />
+			<div class="row">
+				<div class="col-md-5">
+					<h:panelGrid styleClass="table" columns="2">
+						<h:outputLabel value="Street name" />
+						<h:outputText value="#{controllerAddress.address.streetName}" />
 
-			<h:outputLabel value="Apt No." />
-			<h:outputLabel value="#{controllerAddress.address.aptNo}" />
-			<br />
+						<h:outputLabel value="Apt No." />
+						<h:outputText value="#{controllerAddress.address.aptNo}" />
 
-			<h:outputLabel value="City" />
-			<h:outputLabel value="#{controllerAddress.address.city}" />
-			<br />
+						<h:outputLabel value="City" />
+						<h:outputText value="#{controllerAddress.address.city}" />
 
-			<h:outputLabel value="Province" />
-			<h:outputLabel value="#{controllerAddress.address.province}" />
-			<br />
+						<h:outputLabel value="Province" />
+						<h:outputText value="#{controllerAddress.address.province}" />
 
-			<h:outputLabel value="Country" />
-			<h:outputLabel value="#{controllerAddress.address.country}" />
-			<br />
+						<h:outputLabel value="Country" />
+						<h:outputText value="#{controllerAddress.address.country}" />
 
-			<h:outputLabel value="Postal code" />
-			<h:outputLabel value="#{controllerAddress.address.postalCode}" />
-			<br />
+						<h:outputLabel value="Postal code" />
+						<h:outputText value="#{controllerAddress.address.postalCode}" />
+					</h:panelGrid>
+				</div>
 
-			<ui:include src="/management/entries/location/listLocations.xhtml">
-				<ui:param name="locations"
-					value="#{controllerAddress.address.locations}"></ui:param>
-			</ui:include>
+				<div class="col-md-6 col-md-offset-1">
+					<div class="page-header">
+						<h4>Locations List</h4>
+					</div>
+					<ui:include src="/WEB-INF/includes/lists/listLocations.xhtml">
+						<ui:param name="locations"
+							value="#{controllerAddress.address.locations}"></ui:param>
+					</ui:include>
+				</div>
+
+			</div>
+
 
 		</ui:define>
 	</ui:composition>

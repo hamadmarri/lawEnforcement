@@ -15,24 +15,43 @@
 <h:body>
 	<ui:composition template="/management/view.xhtml">
 		<ui:define name="view">
-			<c:set var="relatable"
-				value="#{controllerOrganization.organization}" />
+			<c:set var="relatable" value="#{controllerOrganization.organization}" />
 
-			<h3>Organization</h3>
 
-			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerOrganization.id}" />
-			</h:link>
+			<div class="page-header">
+				<h4>#{controllerOrganization.organization.name}</h4>
+			</div>
+
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Organizations List"
+						outcome="/management/entries/organization/listOrganizations.xhtml" /><span
+					class="divider" /></li>
+				<li class="active">#{controllerOrganization.organization.name}</li>
+			</ul>
+
+
+			<div class="row ">
+				<h:link styleClass="btn btn-primary pull-right" value="edit"
+					outcome="edit">
+					<f:param name="id" value="#{controllerOrganization.id}" />
+				</h:link>
+			</div>
 			<br />
 
+
+
 			<h:outputLabel value="Organization name" />
-			<h:outputLabel value="#{controllerOrganization.organization.name}" />
+			<h:outputText value=" #{controllerOrganization.organization.name}" />
 			<br />
 
 			<h:outputLabel value="Organization type" />
-			<h:outputLabel
-				value="#{controllerOrganization.organization.organizationType}" />
+			<h:outputText
+				value=" #{controllerOrganization.organization.organizationType}" />
 			<br />
+
 		</ui:define>
 	</ui:composition>
 </h:body>

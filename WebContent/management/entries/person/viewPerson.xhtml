@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<f:metadata>
@@ -19,139 +20,231 @@
 			<c:set var="relatable" value="#{controllerPerson.person}" />
 			<c:set var="included" value="true" />
 
-			<h1>Person</h1>
+			<div class="page-header">
+				<h4>#{controllerPerson.person.personName}</h4>
+			</div>
 
-			<h:link value="edit" outcome="edit">
-				<f:param name="id" value="#{controllerPerson.id}" />
-			</h:link>
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Persons List"
+						outcome="/management/entries/person/listPersons.xhtml" /><span
+					class="divider" /></li>
+				<li class="active">#{controllerPerson.person.personName}</li>
+			</ul>
+
+
+			<div class="row ">
+				<div class="col-md-offset-10">
+					<h:link styleClass="btn btn-primary" value="edit" outcome="edit">
+						<f:param name="id" value="#{controllerPerson.id}" />
+					</h:link>
+				</div>
+			</div>
 			<br />
 
+
 			<h:form>
-				<h2>Person Information</h2>
-				<h:outputLabel value="First name" />
-				<h:outputLabel
-					value="#{controllerPerson.person.personName.firstName}" />
-				<br />
-				<h:outputLabel value="Last name" />
-				<h:outputLabel
-					value="#{controllerPerson.person.personName.lastName}" />
-				<br />
-				<h:outputLabel value="Data of birth" />
-				<h:outputLabel value="#{controllerPerson.person.dateOfBirth}">
-					<f:convertDateTime pattern="MMMM dd, YYYY" />
-				</h:outputLabel>
-				<br />
-				<h:outputLabel value="Birth place" />
-				<h:outputLabel value="#{controllerPerson.person.birthPlace}" />
-				<br />
-				<h:outputLabel value="Gender" />
-				<h:outputLabel value="#{controllerPerson.person.gender}" />
-				<br />
-				<h:outputLabel value="Citizenship" />
-				<h:outputLabel value="#{controllerPerson.person.citizenship}" />
-				<br />
 
-				<h3>Identifications</h3>
-				<h:dataTable value="#{controllerPerson.person.identifications}"
-					var="id">
-					<h:column>#{id.name}</h:column>
-					<h:column>#{id.content}</h:column>
-				</h:dataTable>
+				<div class="row top30">
 
-				<h3>Contacts</h3>
-				<h:dataTable value="#{controllerPerson.person.contacts}" var="c">
-					<h:column>#{c.type}</h:column>
-					<h:column>#{c.content}</h:column>
-				</h:dataTable>
+					<div class="col-md-3">
+						<h4>Person Information</h4>
+						<h:panelGrid columns="2" styleClass="table table-striped">
+							<h:outputLabel value="First name" />
+							<h:outputText
+								value="#{controllerPerson.person.personName.firstName}" />
 
-				<h3>Alias names and monikers</h3>
-				<c:if test="${empty controllerPerson.person.aliasNamesOrMonikers}">
-					<h:outputLabel value="nothing" />
-					<br />
-				</c:if>
-				<c:if
-					test="${not empty controllerPerson.person.aliasNamesOrMonikers}">
-					<h:dataTable
-						value="#{controllerPerson.person.aliasNamesOrMonikers}" var="a">
-						<h:column>#{a.content}</h:column>
-					</h:dataTable>
-				</c:if>
-				<h:inputText
-					value="#{controllerPerson.newAliasNameOrMoniker.content}" />
-				<h:commandButton value="add"
-					action="#{controllerPerson.addNewAliasName()}" />
+							<h:outputLabel value="Last name" />
+							<h:outputText
+								value="#{controllerPerson.person.personName.lastName}" />
 
+							<h:outputLabel value="Data of birth" />
+							<h:outputText value="#{controllerPerson.person.dateOfBirth}">
+								<f:convertDateTime pattern="MMMM dd, YYYY" />
+							</h:outputText>
 
-				<h3>Scars, marks, and tattoos</h3>
-				<c:if test="${empty controllerPerson.person.scars_marks_tattoos}">
-					<h:outputLabel value="nothing" />
-					<br />
-				</c:if>
-				<c:if
-					test="${not empty controllerPerson.person.scars_marks_tattoos}">
-					<h:dataTable value="#{controllerPerson.person.scars_marks_tattoos}"
-						var="s">
-						<h:column>#{s.content}</h:column>
-					</h:dataTable>
-				</c:if>
-				<h:inputText value="#{controllerPerson.newScarMarkTattoo.content}" />
-				<h:commandButton value="add"
-					action="#{controllerPerson.addNewScarMarkTattoo()}" />
+							<h:outputLabel value="Birth place" />
+							<h:outputText value="#{controllerPerson.person.birthPlace}" />
 
-				<h3>Modus operandi</h3>
-				<h:outputLabel value="${controllerPerson.person.modusOperandi}" />
+							<h:outputLabel value="Gender" />
+							<h:outputText value="#{controllerPerson.person.gender}" />
 
+							<h:outputLabel value="Citizenship" />
+							<h:outputText value="#{controllerPerson.person.citizenship}" />
 
-				<h3>NCIC fingerprint Classification</h3>
-				<h:outputLabel
-					value="${controllerPerson.person.NCIC_fingerprintClassification}" />
+						</h:panelGrid>
+					</div>
 
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Identifications</h4>
+						<h:dataTable styleClass="table table-striped"
+							value="#{controllerPerson.person.identifications}" var="id">
+							<h:column>
+								<h:outputLabel value="#{id.name}" />
+							</h:column>
+							<h:column>#{id.content}</h:column>
+						</h:dataTable>
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Contacts</h4>
+						<h:dataTable styleClass="table table-striped"
+							value="#{controllerPerson.person.contacts}" var="c">
+							<h:column>
+								<h:outputLabel value="#{c.type}" />
+							</h:column>
+							<h:column>#{c.content}</h:column>
+						</h:dataTable>
+					</div>
 
-				<ui:include
-					src="/management/physicalcharacteristic/viewPhysicalCharacteristic.xhtml">
-					<ui:param name="person" value="#{controllerPerson.person}"></ui:param>
-				</ui:include>
+				</div>
+				<!-- row -->
 
-				<h2>Threat Assessment</h2>
-				<h:outputLabel
-					value="#{controllerPerson.person.threatAssessment.threatAssessmentLevel}" />
+				<hr />
 
-				<h2>Race</h2>
-				<h:outputLabel value="${controllerPerson.person.race.race}" />
+				<div class="row top30">
+					<div class="col-md-3">
+						<h4>Alias names and monikers</h4>
+						<c:if test="${empty controllerPerson.person.aliasNamesOrMonikers}">
+							<h:outputLabel value="nothing" />
+							<br />
+						</c:if>
+						<c:if
+							test="${not empty controllerPerson.person.aliasNamesOrMonikers}">
+							<h:dataTable styleClass="table table-striped"
+								value="#{controllerPerson.person.aliasNamesOrMonikers}" var="a">
+								<h:column>#{a.content}</h:column>
+							</h:dataTable>
+						</c:if>
+						<p:inputText
+							value="#{controllerPerson.newAliasNameOrMoniker.content}" />
+						<h:commandButton styleClass="btn" value="add"
+							action="#{controllerPerson.addNewAliasName()}" />
 
-				<h2>Mug Shots</h2>
-				<ui:include src="/management/image/listImages.xhtml">
-					<ui:param name="images" value="#{controllerPerson.person.mugShots}"></ui:param>
-				</ui:include>
+					</div>
+					<div class="col-md-3 col-md-offset-1">
 
-				<h2>Finger Prints</h2>
-				<ui:include src="/management/image/listImages.xhtml">
-					<ui:param name="images"
-						value="#{controllerPerson.person.fingerprintsImages}"></ui:param>
-				</ui:include>
+						<h4>Scars, marks, and tattoos</h4>
+						<c:if test="${empty controllerPerson.person.scars_marks_tattoos}">
+							<h:outputLabel value="nothing" />
+							<br />
+						</c:if>
+						<c:if
+							test="${not empty controllerPerson.person.scars_marks_tattoos}">
+							<h:dataTable styleClass="table table-striped"
+								value="#{controllerPerson.person.scars_marks_tattoos}" var="s">
+								<h:column>#{s.content}</h:column>
+							</h:dataTable>
+						</c:if>
+						<p:inputText value="#{controllerPerson.newScarMarkTattoo.content}" />
+						<h:commandButton styleClass="btn" value="add"
+							action="#{controllerPerson.addNewScarMarkTattoo()}" />
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Modus operandi</h4>
+						<h:outputText
+							rendered="${controllerPerson.person.modusOperandi eq null}"
+							value="no modus operani" />
+						<h:outputText value="${controllerPerson.person.modusOperandi}" />
+					</div>
 
-				<h2>Photographs</h2>
-				<ui:include src="/management/image/listImages.xhtml">
-					<ui:param name="images"
-						value="#{controllerPerson.person.photographs}"></ui:param>
-				</ui:include>
+				</div>
+				<!-- row -->
 
-				<ui:include
-					src="/management/entries/conveyance/listConveyances.xhtml">
-					<ui:param name="conveyances"
-						value="#{controllerPerson.person.conveyances}"></ui:param>
-				</ui:include>
+				<hr />
 
-				<h2>Criminal Record</h2>
-				<h:link value="view" outcome="viewCR">
-					<f:param name="id"
-						value="#{controllerPerson.person.criminalRecord.id}" />
-				</h:link>
+				<div class="row top30">
+					<div class="col-md-3">
+						<h4>NCIC fingerprint Classification</h4>
+						<h:outputText
+							value="${controllerPerson.person.NCIC_fingerprintClassification}" />
 
-				<h2>Youth Risk Factors</h2>
-				<h:link value="view" outcome="viewYRF">
-					<f:param name="id" value="#{controllerPerson.id}" />
-				</h:link>
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+						<ui:include
+							src="/management/physicalcharacteristic/viewPhysicalCharacteristic.xhtml">
+							<ui:param name="person" value="#{controllerPerson.person}"></ui:param>
+						</ui:include>
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Threat Assessment</h4>
+						<h:outputText
+							value="#{controllerPerson.person.threatAssessment.threatAssessmentLevel}" />
+					</div>
+
+				</div>
+				<!-- row -->
+
+				<hr />
+				
+				<div class="row top30">
+					<div class="col-md-3">
+						<h4>Race</h4>
+						<h:outputText value="${controllerPerson.person.race.race}" />
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Mug Shots</h4>
+						<ui:include src="/management/image/listImages.xhtml">
+							<ui:param name="images"
+								value="#{controllerPerson.person.mugShots}"></ui:param>
+						</ui:include>
+					</div>
+
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Finger Prints</h4>
+						<ui:include src="/management/image/listImages.xhtml">
+							<ui:param name="images"
+								value="#{controllerPerson.person.fingerprintsImages}"></ui:param>
+						</ui:include>
+					</div>
+
+				</div>
+				<!-- row -->
+
+				<hr />
+				
+				<div class="row top30">
+					<div class="col-md-3">
+						<h4>Photographs</h4>
+						<ui:include src="/management/image/listImages.xhtml">
+							<ui:param name="images"
+								value="#{controllerPerson.person.photographs}"></ui:param>
+						</ui:include>
+					</div>
+
+					<div class="col-md-3 col-md-offset-1">
+						<h4>Criminal Record</h4>
+						<h:link value="view" outcome="viewCR">
+							<f:param name="id"
+								value="#{controllerPerson.person.criminalRecord.id}" />
+						</h:link>
+					</div>
+					<div class="col-md-3 col-md-offset-1">
+
+						<h4>Youth Risk Factors</h4>
+						<h:link value="view" outcome="viewYRF">
+							<f:param name="id" value="#{controllerPerson.id}" />
+						</h:link>
+					</div>
+
+				</div>
+				<!-- row -->
+
+				<hr />
+
+				<div class="page-header top45">
+					<h4>Conveyances</h4>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<ui:include src="/WEB-INF/includes/lists/listConveyances.xhtml">
+							<ui:param name="conveyances"
+								value="#{controllerPerson.person.conveyances}"></ui:param>
+						</ui:include>
+					</div>
+				</div>
+
 			</h:form>
 
 		</ui:define>

@@ -22,14 +22,14 @@ import entities.events.IncidentReport;
  *        - listCrimes.xhtml
  *        - viewCrime.xhtml
  *        - addCrime.xhtml
- *        - editCrime.xhtml
+ *        - editCrime.xhtml 
  * 
  * @Relative_Objects
  *                   - InvisigativeCase/s that this Crime responsible
  *                   of
  * 
  */
-@ManagedBean(name = "controllerCrime")
+@ManagedBean(name = "controllerCrime") 
 @ViewScoped
 public class ControllerCrime implements Serializable {
 

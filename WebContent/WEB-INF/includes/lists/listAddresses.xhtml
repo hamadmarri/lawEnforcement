@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition>
+
+	<c:if test="${empty addresses}">
+		<h:outputText value="no addresses" />
+	</c:if>
+
+
+	<c:if test="${not empty addresses}">
+		<h:dataTable styleClass="table" value="#{addresses}" var="a">
+			<h:column>
+				<h:link value="view"
+					outcome="/management/entries/address/viewAddress.xhtml?id=#{a.id}" />
+			</h:column>
+			<h:column>
+				<h:link value="edit"
+					outcome="/management/edit/editAddress.xhtml?id=#{a.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Street name</f:facet>
+				#{a.streetName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Apt No.</f:facet>
+				#{a.aptNo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">City</f:facet>
+				#{a.city}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Province</f:facet>
+				#{a.province}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Country</f:facet>
+				#{a.country}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Postal code</f:facet>
+				#{a.postalCode}
+			</h:column>
+		</h:dataTable>
+	</c:if>
+
+</ui:composition>
+</html>

@@ -18,17 +18,39 @@
 
 				<c:set var="included" value="true" />
 
-				<h4>Description</h4>
+
+				<div class="page-header">
+					<h4>Relations</h4>
+				</div>
+				<div class="row">
+					<div class="col-md-12 ">
+						<ui:include src="/WEB-INF/includes/lists/listRelations.xhtml">
+							<ui:param name="relations" value="#{relatable.allRelations}" />
+						</ui:include>
+					</div>
+				</div>
+
+
+				<div class="page-header">
+					<h4>Uploaded Files List</h4>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<ui:include src="/WEB-INF/includes/lists/listEntryFiles.xhtml">
+							<ui:param name="entryFiles" value="#{relatable.entryFiles}" />
+						</ui:include>
+					</div>
+				</div>
+
+
+				<div class="page-header">
+					<h4>Description</h4>
+				</div>
 				<c:if test="${empty relatable.description}">
-					<h:outputLabel value="nothing" />
+					<h:outputText value="no description" />
 				</c:if>
 				<h:outputLabel value="#{relatable.description}" />
 
-				<ui:include src="/management/relation/listRelations.xhtml" />
-
-				<ui:include src="/management/entries/entryFile/listEntryFiles.xhtml">
-					<ui:param name="relatable" value="#{relatable}" />
-				</ui:include>
 			</div>
 		</ui:define>
 	</ui:composition>

@@ -47,40 +47,11 @@
 				<c:if test="${not empty addresses}">
 
 					<div class="row ">
-						<h:dataTable styleClass="table" value="#{addresses}" var="a">
-							<h:column>
-								<h:link value="view"
-									outcome="/management/entries/address/viewAddress.xhtml?id=#{a.id}" />
-							</h:column>
-							<h:column>
-								<h:link value="edit"
-									outcome="/management/edit/editAddress.xhtml?id=#{a.id}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Street name</f:facet>
-				#{a.streetName}
-			</h:column>
-							<h:column>
-								<f:facet name="header">Apt No.</f:facet>
-				#{a.aptNo}
-			</h:column>
-							<h:column>
-								<f:facet name="header">City</f:facet>
-				#{a.city}
-			</h:column>
-							<h:column>
-								<f:facet name="header">Province</f:facet>
-				#{a.province}
-			</h:column>
-							<h:column>
-								<f:facet name="header">Country</f:facet>
-				#{a.country}
-			</h:column>
-							<h:column>
-								<f:facet name="header">Postal code</f:facet>
-				#{a.postalCode}
-			</h:column>
-						</h:dataTable>
+
+						<ui:include src="/WEB-INF/includes/lists/listAddresses.xhtml">
+							<ui:param name="addresses" value="#{addresses}" />
+						</ui:include>
+
 					</div>
 				</c:if>
 

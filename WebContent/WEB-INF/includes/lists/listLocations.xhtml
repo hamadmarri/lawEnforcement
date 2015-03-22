@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition>
+
+	<c:if test="${empty locations}">
+		no locations
+	</c:if>
+
+	<c:if test="${not empty locations}">
+		<h:dataTable styleClass="table" value="#{locations}" var="l">
+			<h:column>
+				<h:link value="view"
+					outcome="/management/entries/location/viewLocation.xhtml?id=#{l.id}" />
+			</h:column>
+			<h:column>
+				<h:link value="edit"
+					outcome="/management/edit/editLocation.xhtml?id=#{l.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Area</f:facet>
+			#{l.area}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Coordinates</f:facet>
+			x:#{l.coordinate.x} y:#{l.coordinate.y} z:#{l.coordinate.z} 
+		</h:column>
+			<h:column>
+				<f:facet name="header">Occupancy</f:facet>
+			#{l.occupancy}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Elevation</f:facet>
+			#{l.elevation}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Premise type</f:facet>
+			#{l.premiseType}
+		</h:column>
+		</h:dataTable>
+	</c:if>
+
+</ui:composition>
+
+</html>
