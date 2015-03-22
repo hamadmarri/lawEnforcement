@@ -12,36 +12,40 @@
 <h:body>
 	<ui:composition>
 
-		<p:dataTable id="icList" var="ic" value="#{controllerList.investigativeCasesList}"
+		<p:dataTable id="icList" var="ic"
+			value="#{controllerList.investigativeCasesList}"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-			paginator="true" rows="10">
+			paginator="true" rows="10"
+			paginatorPosition="bottom">
 			<p:column headerText="ID">
 				<h:outputText value="#{ic.id}" />
 			</p:column>
 
 			<p:column headerText="Officer">
-				<h:outputLabel
-					value="#{ic.officerWhoCreatedIt.personName.lastName}, #{ic.officerWhoCreatedIt.personName.firstName}" />
+				<h:outputText
+					value="#{ic.officerWhoCreatedIt.personName}" />
 			</p:column>
 
 			<p:column headerText="Status">
-				<h:outputLabel value="#{ic.status}" />
+				<h:outputText value="#{ic.status}" />
 			</p:column>
 
 			<p:column headerText="Description">
-				<h:outputLabel value="#{ic.description}" />
+				<h:outputText
+					value="#{ic.description.length() gt 150 ? ic.description.substring(0,150).concat('...') : ic.description}"
+					escape="false" />
 			</p:column>
 
 			<p:column headerText="Start Date">
-				<h:outputLabel value="#{ic.startDate}">
+				<h:outputText value="#{ic.startDate}">
 					<f:convertDateTime pattern="MMMM dd, YYYY" />
-				</h:outputLabel>
+				</h:outputText>
 			</p:column>
 
 			<p:column headerText="Due Date">
-				<h:outputLabel value="#{ic.dueDate}">
+				<h:outputText value="#{ic.dueDate}">
 					<f:convertDateTime pattern="MMMM dd, YYYY" />
-				</h:outputLabel>
+				</h:outputText>
 			</p:column>
 
 			<p:column headerText="view">

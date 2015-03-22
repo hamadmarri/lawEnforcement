@@ -13,59 +13,106 @@
 	<ui:composition>
 		<h:form id="monitoringForm">
 
-			<p:panel id="search" header="Search" style="margin-bottom:20px">
-				<h:panelGrid columns="1">
-					<h:panelGroup>
-						<p:commandButton icon="ui-icon-search" title="Search" ajax="false" />
-						<p:inputText value="#{controllerMonitoring.search}" />
-					</h:panelGroup>
-					<h:panelGrid columns="2">
-						<h:panelGrid columns="1">
-							<h:outputLabel value="Start Date" />
-							<p:calendar value="#{controllerMonitoring.startDate}" pattern="MMMM dd, yyyy" />
-						</h:panelGrid>
-						<h:panelGrid columns="1">
-							<h:outputLabel value="Due Date" />
-							<p:calendar value="#{controllerMonitoring.dueDate}" pattern="MMMM dd, yyyy" />
-						</h:panelGrid>
-					</h:panelGrid>
-					<p:commandButton value="Filter" ajax="false" />
-				</h:panelGrid>
-			</p:panel>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">Search</h3>
+						</div>
 
-			<p:panel id="status" header="Status" style="margin-bottom:20px">
-				<h:panelGrid columns="1">
-					<h:selectManyCheckbox value="#{controllerMonitoring.status}">
-						<f:selectItem itemValue="Open" itemLabel="Open" />
-						<f:selectItem itemValue="Pending" itemLabel="Pending" />
-						<f:selectItem itemValue="In progress" itemLabel="In progress" />
-						<f:selectItem itemValue="Refused" itemLabel="Refused" />
-						<f:selectItem itemValue="Closed" itemLabel="Closed" />
-					</h:selectManyCheckbox>
+						<div class="panel-body">
 
-					<p:commandButton value="Filter" ajax="false" />
-				</h:panelGrid>
-			</p:panel>
+							<div class="col-md-12">
+								<p:commandButton icon="ui-icon-search" title="Search"
+									ajax="false" />
+								<p:inputText style="width:80%;"
+									value="#{controllerMonitoring.search}" />
+							</div>
 
-			<p:panel id="officers" header="Officers" style="margin-bottom:20px">
-				<h:panelGrid columns="1">
-					<h:panelGroup>
-						<h:inputText value="#{controllerMonitoring.officerToBeAdded}" />
-						<p:commandButton icon="ui-icon-circle-plus" title="Add"
-							ajax="false" action="#{controllerMonitoring.addOfficer}" />
-					</h:panelGroup>
-					<h:dataTable var="o" value="#{controllerMonitoring.officers}">
-						<h:column>
-							<h:outputLabel value="#{o}" />
-						</h:column>
-						<h:column>
-							<p:commandButton icon="ui-icon-circle-minus" title="Remove"
-								ajax="false" action="#{controllerMonitoring.removeOfficer(o)}" />
-						</h:column>
-					</h:dataTable>
-				</h:panelGrid>
-			</p:panel>
+							<div class="col-md-6 top10">
+								<h:outputLabel value="Start Date" />
+								<p:calendar styleClass="dateTimeField"
+									value="#{controllerMonitoring.startDate}" pattern="MM/dd/yyyy" />
+							</div>
 
+							<div class="col-md-6 top10">
+								<h:outputLabel value="Due Date" />
+								<p:calendar styleClass="dateTimeField"
+									value="#{controllerMonitoring.dueDate}" pattern="MM/dd/yyyy" />
+							</div>
+
+							<div class="col-md-12 top15">
+								<p:commandButton styleClass="col-xs-offset-8" value="Filter"
+									ajax="false" />
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">Status</h3>
+						</div>
+
+						<div class="panel-body">
+							<p:selectManyCheckbox layout="pageDirection"
+								value="#{controllerMonitoring.status}">
+								<f:selectItem itemValue="Open" itemLabel="Open" />
+								<f:selectItem itemValue="Pending" itemLabel="Pending" />
+								<f:selectItem itemValue="In progress" itemLabel="In progress" />
+								<f:selectItem itemValue="Refused" itemLabel="Refused" />
+								<f:selectItem itemValue="Closed" itemLabel="Closed" />
+							</p:selectManyCheckbox>
+
+							<div class="col-md-12 top15">
+								<p:commandButton styleClass="col-xs-offset-8" value="Filter"
+									ajax="false" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">Officers</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<div class="col-md-12">
+								<h:inputText value="#{controllerMonitoring.officerToBeAdded}" />
+								<p:commandButton icon="ui-icon-circle-plus" title="Add"
+									ajax="false" action="#{controllerMonitoring.addOfficer}" />
+							</div>
+
+							<div class="col-md-12">
+								<h:dataTable var="o" value="#{controllerMonitoring.officers}">
+									<h:column>
+										<h:outputLabel value="#{o}" />
+									</h:column>
+									<h:column>
+										<p:commandButton icon="ui-icon-circle-minus" title="Remove"
+											ajax="false"
+											action="#{controllerMonitoring.removeOfficer(o)}" />
+									</h:column>
+								</h:dataTable>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</h:form>
 	</ui:composition>

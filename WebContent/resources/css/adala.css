@@ -121,6 +121,10 @@ body {
 	color: black;
 }
 
+.cal-monitoring input {
+	max-width: 90%;
+}
+
 .icons-text-input {
 	padding-top: 7px;
 }
