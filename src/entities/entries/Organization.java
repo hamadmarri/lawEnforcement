@@ -1,8 +1,10 @@
 package entities.entries;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Entity;
 
-import entities.Relatable;
 import entities.entries.history.Action;
 
 
@@ -15,7 +17,7 @@ public class Organization extends Entry {
 
 	private static final long serialVersionUID = -2612388572963932408L;
 
-	private static String[] organizationTypeSuggestions = { "gang", "business", "school", "shopping center", };
+	private static String[] organizationTypeSuggestions = { "gang", "business", "school", "shopping center", "other" };
 
 	private String organizationType;
 
@@ -67,6 +69,12 @@ public class Organization extends Entry {
 
 	public static String[] getOrganizationTypeSuggestions() {
 		return organizationTypeSuggestions;
+	}
+
+
+
+	public List<String> getOrganizationTypeSuggestionsAsList() {
+		return Arrays.asList(organizationTypeSuggestions);
 	}
 
 

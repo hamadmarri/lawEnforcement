@@ -7,11 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 import security.Authorizable;
 import entities.police.InvestigativeGroup;
@@ -138,10 +133,17 @@ public class EjbNotification {
 			ids.add(igs.getId());
 
 		String queryString = "select count(n.id) From Notification n where n.state = 'sent' and ( n.to.id = "
-				+ a.getId() + " or n.to.id in :invList )";
+				+ a.getId();
+
+		if (!ids.isEmpty())
+			queryString += " or n.to.id in :invList";
+
+		queryString += " )";
+
 		Query query = em.createQuery(queryString);
 
-		query.setParameter("invList", ids);
+		if (!ids.isEmpty())
+			query.setParameter("invList", ids);
 
 		if (query.getResultList() == null || query.getResultList().isEmpty())
 			return -1;

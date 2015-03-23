@@ -21,63 +21,95 @@
 			<c:set var="controller" value="#{controllerConveyance}" />
 			<c:set var="relatable" value="#{controllerConveyance.conveyance}" />
 
-			<h:link value="cancel" outcome="cancel">
-				<f:param name="id" value="#{controllerConveyance.id}" />
-			</h:link>
+
+			<div class="page-header">
+				<h4>Edit Conveyance id #{controllerConveyance.id}</h4>
+			</div>
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Conveyancees List"
+						outcome="/management/entries/conveyance/listConveyances.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link
+						value="Conveyance id #{controllerConveyance.conveyance.id}"
+						outcome="cancel">
+						<f:param name="id" value="#{controllerConveyance.id}" />
+					</h:link><span class="divider" /></li>
+				<li class="active">Edit Conveyance id
+					#{controllerConveyance.id}</li>
+			</ul>
 
 
-			<ui:insert name="editHeader">
-				<h2>Edit Conveyance</h2>
-			</ui:insert>
-
-			<h:outputLabel value="Vehicle identification number" />
-			<h:inputText
-				value="#{controllerConveyance.conveyance.vehicleIdentificationNumber}" />
-			<br />
-
-			<h:outputLabel value="License plate number" />
-			<h:inputText
-				value="#{controllerConveyance.conveyance.licensePlateNumber}" />
-			<br />
-
-			<h:outputLabel value="License plate state" />
-			<h:inputText
-				value="#{controllerConveyance.conveyance.licensePlateState}" />
-			<br />
-
-			<h:outputLabel value="License plate year" />
-			<p:calendar
-				value="#{controllerConveyance.conveyance.licensePlateYear}" />
-			<br />
-
-			<h:outputLabel value="Registered owner" />
-			<h:inputText value="#{controllerConveyance.registeredOwnerId}" />
-			<br />
+			<div class="row">
+				<div class="col-md-12">
+					<h:link styleClass="minor pull-right" value="Cancel"
+						outcome="cancel">
+						<f:param name="id" value="#{controllerConveyance.id}" />
+					</h:link>
+				</div>
+			</div>
 
 
-			<h:outputLabel value="Make" />
-			<h:inputText value="#{controllerConveyance.conveyance.make}" />
-			<br />
+			<div class="row top30">
+				<div class="col-md-5">
+					<h:panelGrid columns="2" styleClass="table">
 
-			<h:outputLabel value="Model" />
-			<h:inputText value="#{controllerConveyance.conveyance.model}" />
-			<br />
+						<h:outputLabel value="Vehicle identification number" />
+						<p:inputText
+							value="#{controllerConveyance.conveyance.vehicleIdentificationNumber}" />
 
-			<h:outputLabel value="Year" />
-			<p:calendar value="#{controllerConveyance.conveyance.year}" />
-			<br />
 
-			<h:outputLabel value="Color" />
-			<h:inputText value="#{controllerConveyance.conveyance.color}" />
-			<br />
+						<h:outputLabel value="License plate number" />
+						<p:inputText
+							value="#{controllerConveyance.conveyance.licensePlateNumber}" />
 
-			<h:outputLabel value="Style" />
-			<h:inputText value="#{controllerConveyance.conveyance.style}" />
-			<br />
 
-			<h:outputLabel value="Attributes" />
-			<h:inputText value="#{controllerConveyance.conveyance.attributes}" />
-			<br />
+						<h:outputLabel value="License plate state" />
+						<p:inputText
+							value="#{controllerConveyance.conveyance.licensePlateState}" />
+
+
+						<h:outputLabel value="License plate year" />
+						<p:calendar
+							value="#{controllerConveyance.conveyance.licensePlateYear}"
+							pattern="MMMM dd, yyyy" />
+
+
+						<h:outputLabel value="Registered owner" />
+						<p:inputText value="#{controllerConveyance.registeredOwnerId}" />
+
+
+
+						<h:outputLabel value="Make" />
+						<p:inputText value="#{controllerConveyance.conveyance.make}" />
+
+
+						<h:outputLabel value="Model" />
+						<p:inputText value="#{controllerConveyance.conveyance.model}" />
+
+
+						<h:outputLabel value="Year" />
+						<p:calendar value="#{controllerConveyance.conveyance.year}"
+							pattern="MMMM dd, yyyy" />
+
+
+						<h:outputLabel value="Color" />
+						<p:inputText value="#{controllerConveyance.conveyance.color}" />
+
+
+						<h:outputLabel value="Style" />
+						<p:inputText value="#{controllerConveyance.conveyance.style}" />
+
+
+						<h:outputLabel value="Attributes" />
+						<p:inputText value="#{controllerConveyance.conveyance.attributes}" />
+
+
+					</h:panelGrid>
+				</div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

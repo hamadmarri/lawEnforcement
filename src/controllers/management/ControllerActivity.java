@@ -28,7 +28,7 @@ import entities.police.Investigator;
  *                   - InvisigativeCase that this Activity is for
  * 
  */
-@ManagedBean(name = "controllerActivity")
+@ManagedBean(name = "controllerActivity") 
 @ViewScoped
 public class ControllerActivity implements Serializable {
 

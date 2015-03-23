@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
@@ -20,23 +21,51 @@
 			<c:set var="controller" value="#{controllerOrganization}" />
 			<c:set var="relatable" value="#{controllerOrganization.organization}" />
 
-			<ui:insert name="editHeader">
-				<h2>Edit Organization</h2>
-			</ui:insert>
 
-			<h:link value="cancel" outcome="cancel">
-				<f:param name="id" value="#{controllerOrganization.id}" />
-			</h:link>
-			<br />
+			<div class="page-header">
+				<h4>Edit #{controllerOrganization.organization.name}</h4>
+			</div>
 
-			<h:outputLabel value="Organization name" />
-			<h:inputText value="#{controllerOrganization.organization.name}" />
-			<br />
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Organizations List"
+						outcome="/management/entries/organization/listOrganizations.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="#{controllerOrganization.organization.name}"
+						outcome="cancel">
+						<f:param name="id" value="#{controllerOrganization.id}" />
+					</h:link><span class="divider" /></li>
+				<li class="active">Edit #{controllerOrganization.organization.name}</li>
+			</ul>
 
-			<h:outputLabel value="Organization type" />
-			<h:inputText
-				value="#{controllerOrganization.organization.organizationType}" />
-			<br />
+
+			<div class="row">
+				<div class="col-md-12">
+					<h:link styleClass="minor pull-right" value="Cancel"
+						outcome="cancel">
+						<f:param name="id" value="#{controllerOrganization.id}" />
+					</h:link>
+				</div>
+			</div>
+
+			<div class="row top30">
+				<div class="col-md-4">
+					<h:panelGrid columns="2" styleClass="table ">
+
+						<h:outputLabel value="Organization name" />
+						<p:inputText value="#{controllerOrganization.organization.name}" />
+
+						<h:outputLabel value="Organization type" />
+						<p:selectOneMenu id="threatAssessment" 
+							value="#{controllerOrganization.organization.organizationType}">
+							<f:selectItems
+								value="#{controllerOrganization.organization.organizationTypeSuggestionsAsList}" />
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+				</div>
+			</div>
 
 		</ui:define>
 	</ui:composition>

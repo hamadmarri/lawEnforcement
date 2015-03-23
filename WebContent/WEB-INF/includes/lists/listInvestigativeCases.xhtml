@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition>
+
+
+	<c:if test="${empty investigativeCases and included}">
+		<h:outputText value="no investigative cases" />
+	</c:if>
+
+
+	<c:if test="${not empty investigativeCases}">
+
+		<h:form>
+			<p:dataTable styleClass="table table-striped"
+				value="#{investigativeCases}" var="ic" widgetVar="cases" rows="10"
+				paginator="true" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="10,30,100"
+				emptyMessage="No cases found with given criteria"
+				filteredValue="#{controllerPerson.filteredPersons}">
+
+
+				<!-- DESCRIPTION -->
+				<p:column filterBy="#{ic.description}" headerText="Description"
+					filterMatchMode="contains">
+					<h:outputText
+						value="#{ic.description.length() gt 150 ? ic.description.substring(0,150).concat('...') : ic.description}"
+						escape="false" />
+				</p:column>
+
+				<!-- STATUS -->
+				<p:column filterBy="#{ic.status}" headerText="Status"
+					filterMatchMode="equals" style="text-align: center;">
+					<f:facet name="filter">
+						<p:selectOneButton onchange="PF('cases').filter()">
+							<f:selectItem itemLabel="O" itemValue="Open" />
+							<f:selectItem itemLabel="P" itemValue="Pending" />
+							<f:selectItem itemLabel="IP" itemValue="In progress" />
+							<f:selectItem itemLabel="R" itemValue="Refused" />
+							<f:selectItem itemLabel="C" itemValue="Closed" />
+							<f:selectItem itemLabel="-" itemValue="" />
+						</p:selectOneButton>
+					</f:facet>
+					<h:outputText styleClass="case-open" value="open"
+						rendered="#{ic.status eq 'Open'}" />
+					<h:outputText styleClass="case-pending" value="pending"
+						rendered="#{ic.status eq 'Pending'}" />
+					<h:outputText styleClass="case-inProgress" value="in progress"
+						rendered="#{ic.status eq 'In progress'}" />
+					<h:outputText styleClass="case-refused" value="refused"
+						rendered="#{ic.status eq 'Refused'}" />
+					<h:outputText styleClass="case-closed" value="closed"
+						rendered="#{ic.status eq 'Closed'}" />
+				</p:column>
+
+				<!-- START DATE -->
+				<p:column sortBy="#{ic.startDate}" headerText="Start Date">
+					<h:outputText value="#{ic.startDate}">
+						<f:convertDateTime pattern="MMMM dd, YYYY" />
+					</h:outputText>
+				</p:column>
+
+				<!-- DUE DATE -->
+				<p:column sortBy="#{ic.dueDate}" headerText="Due Date">
+					<h:outputText value="#{ic.dueDate}">
+						<f:convertDateTime pattern="MMMM dd, YYYY" />
+					</h:outputText>
+				</p:column>
+
+				<!-- OFFICER -->
+				<p:column filterBy="#{ic.officerWhoCreatedIt.personName}"
+					headerText="Officer" filterMatchMode="contains">
+					<h:outputText value="#{ic.officerWhoCreatedIt.personName}" />
+				</p:column>
+
+				<!-- CONTROLLERS -->
+				<p:column headerText="Controls" style="text-align: center;">
+					<h:link value="view" styleClass="btn btn-sm btn-primary"
+						style="color: white;"
+						outcome="/management/police/investigativeCase/viewInvestigativeCase.xhtml?id=#{ic.id}" />
+					<h:outputText value="  " />
+					<h:link value="edit" styleClass="btn btn-sm btn-default"
+						outcome="/management/edit/editInvestigativeCase.xhtml?id=#{ic.id}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</c:if>
+
+
+</ui:composition>
+
+</html>

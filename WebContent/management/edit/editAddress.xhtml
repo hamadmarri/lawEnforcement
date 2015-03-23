@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
@@ -19,37 +20,60 @@
 			<c:set var="controller" value="#{controllerAddress}" />
 			<c:set var="relatable" value="#{controllerAddress.address}" />
 
-			<h:link value="cancel" outcome="cancel">
-				<f:param name="id" value="#{controllerAddress.id}" />
-			</h:link>
+			<div class="page-header">
+				<h4>Edit Address id #{controllerAddress.id}</h4>
+			</div>
 
-			<ui:insert name="editHeader">
-				<h2>Edit Address</h2>
-			</ui:insert>
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Addresses List"
+						outcome="/management/entries/address/listAddresses.xhtml" /><span
+					class="divider" /></li>
+				<li><h:link value="Address id #{controllerAddress.address.id}"
+						outcome="cancel">
+						<f:param name="id" value="#{controllerAddress.id}" />
+					</h:link><span class="divider" /></li>
+				<li class="active">Edit Address id #{controllerAddress.id}</li>
+			</ul>
 
-			<h:outputLabel value="StreetName" />
-			<h:inputText value="#{controllerAddress.address.streetName}" />
-			<br />
 
-			<h:outputLabel value="Apt No." />
-			<h:inputText value="#{controllerAddress.address.aptNo}" />
-			<br />
+			<div class="row">
+				<div class="col-md-12">
+					<h:link styleClass="minor pull-right" value="Cancel"
+						outcome="cancel">
+						<f:param name="id" value="#{controllerAddress.id}" />
+					</h:link>
+				</div>
+			</div>
 
-			<h:outputLabel value="City" />
-			<h:inputText value="#{controllerAddress.address.city}" />
-			<br />
+ 
+			<div class="row top30">
+				<div class="col-md-4">
+					<h:panelGrid columns="2" styleClass="table">
 
-			<h:outputLabel value="Province" />
-			<h:inputText value="#{controllerAddress.address.province}" />
-			<br />
+						<h:outputLabel value="StreetName" />
+						<p:inputText value="#{controllerAddress.address.streetName}" />
 
-			<h:outputLabel value="Country" />
-			<h:inputText value="#{controllerAddress.address.country}" />
-			<br />
+						<h:outputLabel value="Apt No." />
+						<p:inputText value="#{controllerAddress.address.aptNo}" />
 
-			<h:outputLabel value="PostalCode" />
-			<h:inputText value="#{controllerAddress.address.postalCode}" />
-			<br />
+						<h:outputLabel value="City" />
+						<p:inputText value="#{controllerAddress.address.city}" />
+
+						<h:outputLabel value="Province" />
+						<p:inputText value="#{controllerAddress.address.province}" />
+
+						<h:outputLabel value="Country" />
+						<p:inputText value="#{controllerAddress.address.country}" />
+
+						<h:outputLabel value="PostalCode" />
+						<p:inputText value="#{controllerAddress.address.postalCode}" />
+
+					</h:panelGrid>
+				</div>
+			</div>
+
 		</ui:define>
 	</ui:composition>
 

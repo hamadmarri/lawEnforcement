@@ -10,31 +10,62 @@
 <h:head></h:head>
 <h:body>
 
-	<ui:composition>
-		<h1>Profile</h1>
-		
-		<c:set var="included" value="true" />
+	<ui:composition template="/WEB-INF/template.xhtml">
 
-		<h:link value="Change Password"
-			outcome="/profile/changePassword.xhtml" />
-		<br />
+		<ui:define name="title">Adala</ui:define>
+		<ui:define name="content">
 
-		<c:if test="${controllerProfile.isOfficer()}">
-			<ui:include src="/management/police/officer/viewOfficer.xhtml" />
-		</c:if>
+			<c:set var="included" value="true" />
+
+			<div class="container">
+
+				<div class="row top30">
+					<div class="col-md-offset-10">
+						<h:link styleClass="minor" value="Change Password"
+							outcome="/profile/changePassword.xhtml" />
+					</div>
+				</div>
 
 
-		<c:if test="${controllerProfile.isInvestigator()}">
-			<ui:include
-				src="/management/police/investigator/viewInvestigator.xhtml" />
-		</c:if>
+				<div class="page-header">
+					<h4>Profile</h4>
+				</div>
 
-		<ui:include
-			src="/management/police/notification/listNotifications.xhtml">
-			<ui:param name="authorizable"
-				value="#{controllerProfile.authorizable}" />
-		</ui:include>
 
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Profile</li>
+				</ul>
+
+
+
+				<div class="top45">
+					<div class="page-header">
+						<h4>Notifications</h4>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<ui:include src="/WEB-INF/includes/lists/listNotifications.xhtml">
+								<ui:param name="notifications"
+									value="#{controllerNotification.getNotificationsListForAuthorizable(controllerProfile.authorizable)}" />
+							</ui:include>
+						</div>
+					</div>
+				</div>
+
+				<c:if test="${controllerProfile.isOfficer()}">
+					<ui:include src="/management/police/officer/viewOfficer.xhtml" />
+				</c:if>
+
+
+				<c:if test="${controllerProfile.isInvestigator()}">
+					<ui:include
+						src="/management/police/investigator/viewInvestigator.xhtml" />
+				</c:if>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 
 </h:body>

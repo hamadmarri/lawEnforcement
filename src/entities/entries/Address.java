@@ -7,7 +7,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import entities.Relatable;
 import entities.entries.history.Action;
 
 

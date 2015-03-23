@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition>
+
+
+
+	<c:if test="${empty notifications}">
+		<h:outputText value="no notifications" />
+	</c:if>
+
+	<c:if test="${not empty notifications}">
+		<h:form>
+
+			<h:dataTable styleClass="table" value="#{notifications}" var="n">
+				<h:column>
+					<h:link value="view" outcome="view">
+						<f:param name="id" value="#{n.id}" />
+					</h:link>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Notification Text</f:facet>
+					#{n.text}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date And Time</f:facet>
+					<h:outputText value="#{n.dateAndTime}">
+						<f:convertDateTime pattern="MMMM dd, yyyy @ hh:mm" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">State</f:facet>
+					#{n.state}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Caused By</f:facet>
+					<!-- Show for Officer -->
+					<h:link outcome="officer"
+						rendered="#{n.causedBy.type == 'Officer'}"
+						value="#{n.causedBy.personName}">
+						<f:param name="id" value="#{n.causedBy.id}" />
+					</h:link>
+
+					<!-- Show for Investigator -->
+					<h:link outcome="investigator"
+						rendered="#{n.causedBy.type == 'Investigator'}"
+						value="#{n.causedBy.personName}">
+						<f:param name="id" value="#{n.causedBy.id}" />
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">To</f:facet>
+
+					<!-- Show for Officer -->
+					<h:link outcome="officer" rendered="#{n.to.type == 'Officer'}"
+						value="#{n.to.personName}">
+						<f:param name="id" value="#{n.to.id}" />
+					</h:link>
+
+					<!-- Show for Investigator -->
+					<h:link outcome="investigator"
+						rendered="#{n.to.type == 'Investigator'}"
+						value="#{n.to.personName}">
+						<f:param name="id" value="#{n.to.id}" />
+					</h:link>
+
+					<!-- Show for Group -->
+					<h:link value="Group id: #{n.to.id}" outcome="group"
+						rendered="#{n.to.type != 'Investigator' and n.to.type != 'Officer'}">
+						<f:param name="id" value="#{n.to.id}" />
+					</h:link>
+				</h:column>
+				<c:if test="${included != null}">
+					<h:column>
+						<h:commandButton styleClass="btn btn-success" value="mark as read"
+							action="#{controllerNotification.markAsRead(n)}" />
+					</h:column>
+				</c:if>
+
+			</h:dataTable>
+		</h:form>
+	</c:if>
+
+</ui:composition>
+</html>

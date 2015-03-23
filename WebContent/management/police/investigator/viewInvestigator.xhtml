@@ -14,29 +14,44 @@
 </h:head>
 <h:body>
 
-	<h3>Investigator</h3>
-	<h:link value="edit" outcome="edit">
-		<f:param name="id" value="#{controllerInvestigator.id}" />
-	</h:link>
-	<br />
-	<ui:composition>
 
-		<c:set var="investigativeCases"
-			value="#{controllerInvestigator.investigator.investigativeCases}" />
-		<c:set var="included" value="true" />
+	<ui:composition template="/WEB-INF/template.xhtml">
+
+		<ui:define name="title">Adala</ui:define>
+		<ui:define name="content">
+			<div class="container">
 
 
+				<c:set var="investigativeCases"
+					value="#{controllerInvestigator.investigator.investigativeCases}" />
+				<c:set var="included" value="true" />
 
-		<h:outputLabel value="Name" />
-		<h:outputLabel
-			value="#{controllerInvestigator.investigator.personName.lastName},
-			 #{controllerInvestigator.investigator.personName.firstName}" />
-		<br />
 
-		<!-- Investigative Cases -->
-		<ui:include
-			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
+				<div class="page-header">
+					<h4>Information</h4>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h:outputLabel value="Name:" />
+						<h:outputText
+							value=" #{controllerInvestigator.investigator.personName}" />
+					</div>
+				</div>
 
+
+				<div class="page-header">
+					<h4>Investigative Cases</h4>
+				</div>
+				<!-- Investigative Cases -->
+				<div class="row">
+					<div class="col-md-12">
+						<ui:include
+							src="/WEB-INF/includes/lists/listInvestigativeCases.xhtml" />
+					</div>
+				</div>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
