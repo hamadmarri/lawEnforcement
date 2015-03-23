@@ -12,7 +12,7 @@ import security.Authorizable;
 import security.login_system.UserSessionController;
 import controllers.management.ControllerInvestigator;
 import controllers.management.ControllerOfficer;
-import ejbs.AbstractEjb;
+import ejbs.EjbAuthorizable;
 import ejbs.EjbNotification;
 
 
@@ -37,7 +37,8 @@ public class ControllerProfile implements Serializable {
 	private UserSessionController userSessionController;
 
 	@EJB
-	private AbstractEjb<Authorizable> ejbAuthorizable;
+	// private AbstractEjb<Authorizable> ejbAuthorizable;
+	private EjbAuthorizable ejbAuthorizable;
 
 	@EJB
 	private EjbNotification ejbNotification;

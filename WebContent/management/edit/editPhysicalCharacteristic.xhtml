@@ -4,29 +4,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 
 <h:body>
 	<ui:composition>
-		
-		<h2>Physical Characteristics</h2>
-		<h:outputLabel value="Build" />
-		<h:inputText
-			value="${person.physicalCharacteristic.buildCharacteristics}" />
-		<br />
-		<h:outputLabel value="Height" />
-		<h:inputText
-			value="${person.physicalCharacteristic.heightCharacteristics}" />
-		<br />
-		<h:outputLabel value="Complexion" />
-		<h:inputText
-			value="${person.physicalCharacteristic.complexionCharacteristics}" />
-		<br />
-		<h:outputLabel value="Hair" />
-		<h:inputText
-			value="${person.physicalCharacteristic.hairCharacteristics}" />
+
+		<h4>Physical Characteristics</h4>
+
+
+		<h:panelGrid styleClass="table table-striped" columns="2">
+
+			<h:outputLabel value="Build" />
+			<p:selectOneMenu id="Build" style="width: 100%;"
+				value="#{controllerPerson.person.physicalCharacteristic.buildCharacteristics}">
+				<f:selectItems
+					value="#{controllerPerson.person.physicalCharacteristic.buildCharacteristicsSuggestions}" />
+			</p:selectOneMenu>
+
+
+			<h:outputLabel value="Height" />
+			<p:selectOneMenu id="Height" style="width: 100%;"
+				value="#{controllerPerson.person.physicalCharacteristic.heightCharacteristics}">
+				<f:selectItems
+					value="#{controllerPerson.person.physicalCharacteristic.heightCharacteristicsSuggestions}" />
+			</p:selectOneMenu>
+
+			<h:outputLabel value="Complexion" />
+
+			<p:selectOneMenu id="Complexion" style="width: 100%;"
+				value="#{controllerPerson.person.physicalCharacteristic.complexionCharacteristics}">
+				<f:selectItems
+					value="#{controllerPerson.person.physicalCharacteristic.complexionCharacteristicsSuggestions}" />
+			</p:selectOneMenu>
+
+
+			<h:outputLabel value="Hair" />
+			<p:selectOneMenu id="Hair" style="width: 100%;"
+				value="#{controllerPerson.person.physicalCharacteristic.hairCharacteristics}">
+				<f:selectItems
+					value="#{controllerPerson.person.physicalCharacteristic.hairCharacteristicsSuggestions}" />
+			</p:selectOneMenu>
+		</h:panelGrid>
+
 	</ui:composition>
 </h:body>
 </html>

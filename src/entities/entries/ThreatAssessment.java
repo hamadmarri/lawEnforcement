@@ -1,5 +1,8 @@
 package entities.entries;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Embeddable;
 
 
@@ -41,4 +44,9 @@ public class ThreatAssessment {
 		return threatAssessmentSuggestions;
 	}
 
+
+
+	public List<String> getThreatAssessmentSuggestionsAsList() {
+		return Arrays.asList(threatAssessmentSuggestions);
+	}
 }
