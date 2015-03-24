@@ -5,65 +5,85 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<f:metadata>
 		<f:viewParam name="id" value="#{controllerInvestigativeGroup.id}" />
-		<ui:remove>
-			<!-- <f:viewParam name="id" value="#{controllerAccessManager.relatableId}" /> -->
-			<!-- <f:event listener="#{controllerAccessManager.manage}"
-			type="preRenderView" /> -->
-		</ui:remove>
 	</f:metadata>
 </h:head>
 <h:body>
-	<ui:composition>
-		<h3>Investigative Group</h3>
+	<ui:composition template="/WEB-INF/template.xhtml">
 
-		<c:set var="investigativeGroup"
-			value="#{controllerInvestigativeGroup.investigativeGroup}" />
-		<c:set var="included" value="true" />
+		<ui:define name="title">Adala</ui:define>
+		<ui:define name="content">
+			<div class="container">
 
-		<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerInvestigativeGroup.id}" />
-		</h:link>
-		<br />
+				<c:set var="investigativeGroup"
+					value="#{controllerInvestigativeGroup.investigativeGroup}" />
+				<c:set var="included" value="true" />
 
-		<h:outputLabel value="Group Name" />
-		<h:outputLabel
-			value="#{controllerInvestigativeGroup.investigativeGroup.name}" />
-		<br />
 
-		<h3>People in this group</h3>
-		<h:form>
-			<h:dataTable value="#{controllerInvestigativeGroup.authorizables}"
-				var="a">
-				<h:column>
-					<h:link value="view" outcome="#{a.type}">
-						<f:param name="id" value="#{a.id}" />
+				<div class="page-header">
+					<h4>Investigative Group</h4>
+				</div>
+
+
+				<div class="row">
+					<h:link styleClass="btn btn-primary pull-right" value="edit"
+						outcome="edit">
+						<f:param name="id" value="#{controllerInvestigativeGroup.id}" />
 					</h:link>
-				</h:column>
-				<h:column>
-					<h:commandLink value="remove"
-						action="#{controllerInvestigativeGroup.removeAuthorizable(a)}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					<h:outputLabel value="#{a.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Name</f:facet>
-					<h:outputLabel value="#{a.name}" />
-				</h:column>
-			</h:dataTable>
+				</div>
+				<br />
 
-			<h:inputText
-				value="#{controllerInvestigativeGroup.newAuthorizableId}" />
-			<h:commandLink value="add"
-				action="#{controllerInvestigativeGroup.addAuthorizable}" />
-		</h:form>
 
+				<h:outputLabel value="Group Name" />
+				<h:outputText
+					value=" #{controllerInvestigativeGroup.investigativeGroup.name}" />
+				<br /> <br /> <br />
+
+				<h4>People in this group</h4>
+				<h:form>
+					<div class="row">
+						<div class="col-md-12">
+							<h:dataTable styleClass="table"
+								value="#{controllerInvestigativeGroup.authorizables}" var="a">
+								<h:column>
+									<h:link value="view" outcome="#{a.type}">
+										<f:param name="id" value="#{a.id}" />
+									</h:link>
+								</h:column>
+								<h:column>
+									<h:commandLink value="remove"
+										action="#{controllerInvestigativeGroup.removeAuthorizable(a)}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Id</f:facet>
+									<h:outputText value="#{a.id}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Name</f:facet>
+									<h:outputText value="#{a.name}" />
+								</h:column>
+							</h:dataTable>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<p:inputText
+								value="#{controllerInvestigativeGroup.newAuthorizableId}" />
+							<h:commandLink value="add" styleClass="btn btn-primary"
+								action="#{controllerInvestigativeGroup.addAuthorizable}" />
+						</div>
+					</div>
+
+				</h:form>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

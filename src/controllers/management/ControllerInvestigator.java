@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ejbs.AbstractEjb;
 import ejbs.EjbInvestigativeCase;
 import ejbs.EjbInvestigator;
 import entities.police.InvestigativeCase;
@@ -46,6 +45,8 @@ public class ControllerInvestigator implements Serializable {
 
 	// the id of a Investigator object
 	protected String id;
+
+	protected String editId = "-1";
 
 	// the Investigator object
 	protected Investigator investigator = null;
@@ -140,7 +141,7 @@ public class ControllerInvestigator implements Serializable {
 		this.ejbInvestigator.save(inv);
 
 		this.newInvestigatorId = null;
-		
+
 		return "success";
 	}
 
@@ -153,6 +154,11 @@ public class ControllerInvestigator implements Serializable {
 	 * @return the Investigator object
 	 */
 	public Investigator getInvestigator() {
+
+		if (!editId.equals("-1")) {
+			id = editId;
+			this.investigator = null;
+		}
 
 		// if the object was loaded already, just return it
 		if (this.investigator != null)
@@ -224,6 +230,18 @@ public class ControllerInvestigator implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+
+	public String getEditId() {
+		return editId;
+	}
+
+
+
+	public void setEditId(String editId) {
+		this.editId = editId;
 	}
 
 }

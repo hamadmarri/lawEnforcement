@@ -979,7 +979,7 @@
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{param['id']}</value>
+					<value>#{param['id']}</value> 
 				</view-param>
 			</redirect>
 		</navigation-case>

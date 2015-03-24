@@ -35,7 +35,7 @@ public class EjbInvestigator {
 	 * @return Entity object
 	 */
 	public Investigator getEntity(Long id) {
-		return (Investigator) em.createNamedQuery(this.entityName + ".findById").setParameter("id", id).getResultList()
+		return (Investigator) em.createNamedQuery("Investigator.findById").setParameter("id", id).getResultList()
 				.get(0);
 	}
 

@@ -14,22 +14,41 @@
 </h:head>
 
 <h:body>
-	<ui:insert name="editHeader">
-		<h2>Edit Investigative Group</h2>
-	</ui:insert>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="content">
+
+			<div class="container">
 
 
-	<h:link value="cancel" outcome="cancel">
-		<f:param name="id" value="#{controllerInvestigativeGroup.id}" />
-	</h:link>
+				<div class="page-header">
+					<h4>Edit Investigative Group id
+						#{controllerInvestigativeGroup.id}</h4>
+				</div>
 
 
-	<h:form>
-		<h:outputLabel value="Name" />
-		<h:inputText value="#{controllerInvestigativeGroup.investigativeGroup.name}" />
-		<br />
-		<br />
-		<h:commandButton value="save" action="#{controllerInvestigativeGroup.submit}" />
-	</h:form>
+				<div class="row">
+					<div class="col-md-12">
+						<h:link styleClass="minor pull-right" value="Cancel"
+							outcome="cancel">
+							<f:param name="id" value="#{controllerInvestigativeGroup.id}" />
+						</h:link>
+					</div>
+				</div>
+
+				<h:form>
+					<h:outputLabel value="Name" />
+					<p:inputText
+						value="#{controllerInvestigativeGroup.investigativeGroup.name}" />
+
+					<hr />
+
+					<h:commandButton styleClass="btn btn-primary" value="save"
+						action="#{controllerInvestigativeGroup.submit}" />
+				</h:form>
+
+
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

@@ -13,86 +13,101 @@
 	</f:metadata>
 </h:head>
 <h:body>
+	<ui:composition template="/WEB-INF/template.xhtml">
 
-	<h3>Notification</h3>
-	<ui:composition>
+		<ui:define name="title">Adala</ui:define>
+		<ui:define name="content">
 
+			<div class="container">
+				<div class="page-header">
+					<h4>Notification</h4>
+				</div>
 
-		<h:outputLabel value="id" />
-		<h:outputLabel value="#{controllerNotification.notification.id}" />
-		<br />
-
-		<h:outputLabel value="Notification Text" />
-		<h:outputLabel value="#{controllerNotification.notification.text}" />
-		<br />
-
-		<h:outputLabel value="Investigative Case" />
-		<h:link outcome="#{controllerNotification.notification.relatable.type}" value="view">
-			<f:param name="id"
-				value="#{controllerNotification.notification.relatable.id}" />
-		</h:link>
-		<br />
+				<ul class="breadcrumb no-bg-color">
+					<li><h:link value="Home" outcome="/index.xhtml" /><span
+						class="divider" /></li>
+					<li class="active">Notification</li>
+				</ul>
 
 
-		<h:outputLabel value="Date And Time" />
-		<h:outputLabel
-			value="#{controllerNotification.notification.dateAndTime}" />
-		<br />
+				<div class="row">
+					<div class="col-md-5">
+						<h:panelGrid styleClass="table" columns="2">
+
+							<h:outputLabel value="Notification Text" />
+							<h:outputText
+								value="#{controllerNotification.notification.text}" />
+
+							<h:outputLabel value="Investigative Case" />
+							<h:link
+								outcome="#{controllerNotification.notification.relatable.type}"
+								value="view">
+								<f:param name="id"
+									value="#{controllerNotification.notification.relatable.id}" />
+							</h:link>
+							
 
 
-		<h:outputLabel value="State" />
-		<h:outputLabel value="#{controllerNotification.notification.state}" />
-		<br />
+							<h:outputLabel value="Date And Time" />
+							<h:outputText
+								value="#{controllerNotification.notification.dateAndTime}">
+								<f:convertDateTime pattern="MMMM dd, yyyy @ hh:mm" />
+								</h:outputText>
+							
 
 
-
-		<h:outputLabel value="Caused By" />
-		<!-- Show for Officer -->
-		<h:link outcome="officer"
-			rendered="#{controllerNotification.notification.causedBy.type == 'Officer'}"
-			value="#{controllerNotification.notification.causedBy.personName.firstName}, #{controllerNotification.notification.causedBy.personName.lastName}">
-			<f:param name="id"
-				value="#{controllerNotification.notification.causedBy.id}" />
-		</h:link>
-		<br />
+							<h:outputLabel value="State" />
+							<h:outputText
+								value="#{controllerNotification.notification.state}" />
+							
 
 
-		<!-- Show for Investigator -->
-		<h:link outcome="investigator"
-			rendered="#{controllerNotification.notification.causedBy.type == 'Investigator'}"
-			value="#{controllerNotification.notification.causedBy.personName.firstName}, #{controllerNotification.notification.causedBy.personName.lastName}">
-			<f:param name="id"
-				value="#{controllerNotification.notification.causedBy.id}" />
-		</h:link>
+							<h:outputLabel value="Caused By" />
+							<h:link outcome="officer"
+								rendered="#{controllerNotification.notification.causedBy.type == 'Officer'}"
+								value="#{controllerNotification.notification.causedBy.personName}">
+								<f:param name="id"
+									value="#{controllerNotification.notification.causedBy.id}" />
+							</h:link>
+							
+
+							<h:link outcome="investigator"
+								rendered="#{controllerNotification.notification.causedBy.type == 'Investigator'}"
+								value="#{controllerNotification.notification.causedBy.personName}">
+								<f:param name="id"
+									value="#{controllerNotification.notification.causedBy.id}" />
+							</h:link>
 
 
+							<h:outputLabel value="To" />
+							<h:link outcome="officer"
+								rendered="#{controllerNotification.notification.to.type == 'Officer'}"
+								value="#{controllerNotification.notification.to.personName}">
+								<f:param name="id"
+									value="#{controllerNotification.notification.to.id}" />
+							</h:link>
 
-		<h:outputLabel value="To" />
-		<!-- Show for Officer -->
-		<h:link outcome="officer"
-			rendered="#{controllerNotification.notification.to.type == 'Officer'}"
-			value="#{controllerNotification.notification.to.personName.firstName}, #{controllerNotification.notification.to.personName.lastName}">
-			<f:param name="id"
-				value="#{controllerNotification.notification.to.id}" />
-		</h:link>
+							<h:link outcome="investigator"
+								rendered="#{controllerNotification.notification.to.type == 'Investigator'}"
+								value="#{controllerNotification.notification.to.personName}">
+								<f:param name="id"
+									value="#{controllerNotification.notification.to.id}" />
+							</h:link>
 
-		<!-- Show for Investigator -->
-		<h:link outcome="investigator"
-			rendered="#{controllerNotification.notification.to.type == 'Investigator'}"
-			value="#{controllerNotification.notification.to.personName.firstName}, #{controllerNotification.notification.to.personName.lastName}">
-			<f:param name="id"
-				value="#{controllerNotification.notification.to.id}" />
-		</h:link>
+							<h:link
+								value="Group id: #{controllerNotification.notification.to.id}"
+								outcome="group"
+								rendered="#{controllerNotification.notification.to.type != 'Investigator' and n.to.type != 'Officer'}">
+								<f:param name="id"
+									value="#{controllerNotification.notification.to.id}" />
+							</h:link>
 
-		<!-- Show for Group -->
-		<h:link value="Group id: #{controllerNotification.notification.to.id}"
-			outcome="group"
-			rendered="#{controllerNotification.notification.to.type != 'Investigator' and n.to.type != 'Officer'}">
-			<f:param name="id"
-				value="#{controllerNotification.notification.to.id}" />
-		</h:link>
+						</h:panelGrid>
+					</div>
+				</div>
 
-
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

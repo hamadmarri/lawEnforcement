@@ -13,49 +13,89 @@
 	</f:metadata>
 </h:head>
 <h:body>
-	<h3>Officer</h3>
-	
-	<h:link value="edit" outcome="edit">
-			<f:param name="id" value="#{controllerOfficer.id}" />
-		</h:link>
-		<br />
-		
-	<ui:composition>
-		<c:set var="investigativeCases"
-			value="#{controllerOfficer.officer.createdInvestigativeCases}" />
-		<c:set var="included" value="true" />
-		
-		<h4>Person Information</h4>
-		<h:outputLabel value="First name" />
-		<h:outputLabel
-			value="#{controllerOfficer.officer.personName.firstName}" />
-		<br />
-		<h:outputLabel value="Last name" />
-		<h:outputLabel
-			value="#{controllerOfficer.officer.personName.lastName}" />
-		<br />
-		<h:outputLabel value="Data of birth" />
-		<h:outputLabel value="#{controllerOfficer.officer.dateOfBirth}">
-			<f:convertDateTime pattern="MMMM dd, YYYY" />
-		</h:outputLabel>
-		<br />
-		<h:outputLabel value="Gender" />
-		<h:outputLabel value="#{controllerOfficer.officer.gender}" />
-		<br />
+	<ui:composition template="/WEB-INF/template.xhtml">
 
-		<h4>Events Responsible For</h4>
-		<h:dataTable value="#{controllerOfficer.officer.eventsResponsibleFor}"
-			var="e">
-			<h:column>
-				<h:outputLabel value="#{e.toString()}" />
-			</h:column>
-		</h:dataTable>
+		<ui:define name="title">Adala</ui:define>
+		<ui:define name="content">
+			<div class="container">
+
+				<c:set var="investigativeCases"
+					value="#{controllerOfficer.officer.createdInvestigativeCases}" />
+				<c:set var="included" value="true" />
+
+				<div class="page-header">
+					<h4>Officer #{controllerOfficer.officer.personName}</h4>
+				</div>
 
 
-		<!-- Investigative Cases -->
-		<ui:include
-			src="/management/police/investigativeCase/listInvestigativeCases.xhtml" />
+				<div class="row">
+					<h:link styleClass="btn btn-primary pull-right" value="edit"
+						outcome="edit">
+						<f:param name="id" value="#{controllerOfficer.id}" />
+					</h:link>
+				</div>
+				<br />
 
+
+
+
+				<div class="page-header">
+					<h4>Person Information</h4>
+				</div>
+
+				<div class="row">
+					<div class="col-md-5">
+						<h:panelGrid styleClass="table" columns="2">
+
+							<h:outputLabel value="First name" />
+							<h:outputText
+								value="#{controllerOfficer.officer.personName.firstName}" />
+
+							<h:outputLabel value="Last name" />
+							<h:outputText
+								value="#{controllerOfficer.officer.personName.lastName}" />
+
+							<h:outputLabel value="Data of birth" />
+							<h:outputText value="#{controllerOfficer.officer.dateOfBirth}">
+								<f:convertDateTime pattern="MMMM dd, YYYY" />
+							</h:outputText>
+
+							<h:outputLabel value="Gender" />
+							<h:outputText value="#{controllerOfficer.officer.gender}" />
+
+						</h:panelGrid>
+					</div>
+				</div>
+
+
+				<div class="page-header">
+					<h4>Events Responsible For</h4>
+				</div>
+
+				<h:dataTable
+					value="#{controllerOfficer.officer.eventsResponsibleFor}" var="e">
+					<h:column>
+						<h:outputText value="#{e.toString()}" />
+					</h:column>
+				</h:dataTable>
+
+
+
+				<div class="top45">
+					<div class="page-header">
+						<h4>Investigative Cases</h4>
+					</div>
+					<!-- Investigative Cases -->
+					<div class="row">
+						<div class="col-md-12">
+							<ui:include
+								src="/WEB-INF/includes/lists/listInvestigativeCases.xhtml" />
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
