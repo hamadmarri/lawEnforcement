@@ -60,6 +60,9 @@
 							<h:outputText
 								value="#{controllerPerson.person.personName.lastName}" />
 
+							<h:outputLabel value="Age" />
+							<h:outputText value="#{controllerPerson.person.age}" />
+
 							<h:outputLabel value="Data of birth" />
 							<h:outputText value="#{controllerPerson.person.dateOfBirth}">
 								<f:convertDateTime pattern="MMMM dd, YYYY" />

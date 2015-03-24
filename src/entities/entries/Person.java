@@ -2,6 +2,7 @@ package entities.entries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -189,6 +190,17 @@ public class Person extends Entry {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+
+
+	public int getAge() {
+		Calendar current = Calendar.getInstance();
+		Calendar bDate = Calendar.getInstance();
+
+		bDate.setTime(dateOfBirth);
+
+		return current.get(Calendar.YEAR) - bDate.get(Calendar.YEAR);
 	}
 
 

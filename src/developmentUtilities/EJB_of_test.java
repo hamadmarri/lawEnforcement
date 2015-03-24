@@ -58,7 +58,7 @@ public class EJB_of_test {
 	@EJB
 	private FillUpDatabaseWithYourhRiskFactorsAndCriminalRecords fillUpDatabaseWithYourhRiskFactorsAndCriminalRecords;
 
-
+ 
 
 	@SuppressWarnings("unchecked")
 	public List<Relatable> getView(Long id) {
@@ -102,36 +102,110 @@ public class EJB_of_test {
 	 * Random names generator http://listofrandomnames.com/index.cfm?generated
 	 */
 	private void createYouthInRisk() {
-		Person p1 = new Person(new PersonName("Nathan", "Puckett"), null, null, "Male", null, null, null);
-		Person p2 = new Person(new PersonName("Liz", "Basch"), null, null, "Female", null, null, null);
-		Person p3 = new Person(new PersonName("Amina", "Lucey"), null, null, "Female", null, null, null);
-		Person p4 = new Person(new PersonName("Israel", "Vandever"), null, null, "Male", null, null, null);
-		Person p5 = new Person(new PersonName("Kanesha", "Ephraim"), null, null, "Female", null, null, null);
-		Person p6 = new Person(new PersonName("Cythia", "Lytle"), null, null, "Female", null, null, null);
-		Person p7 = new Person(new PersonName("Krysten", "Gaeta"), null, null, "Female", null, null, null);
-		Person p8 = new Person(new PersonName("Milford", "Brann"), null, null, "Male", null, null, null);
-		Person p9 = new Person(new PersonName("Lorretta", "Kuzma"), null, null, "Female", null, null, null);
-		Person p10 = new Person(new PersonName("Shanelle", "Kieffer"), null, null, "Female", null, null, null);
-		Person p11 = new Person(new PersonName("Abby", "Kirkwood"), null, null, "Female", null, null, null);
-		Person p12 = new Person(new PersonName("Felice", "Moulder"), null, null, "Female", null, null, null);
-		Person p13 = new Person(new PersonName("Lan", "Alegria"), null, null, "Female", null, null, null);
-		Person p14 = new Person(new PersonName("Alphonso", "Warnke"), null, null, "Male", null, null, null);
-		Person p15 = new Person(new PersonName("Kizzy", "Mounsey"), null, null, "Female", null, null, null);
-		Person p16 = new Person(new PersonName("Sharan", "Chenard"), null, null, "Female", null, null, null);
-		Person p17 = new Person(new PersonName("Latashia", "Guajardo"), null, null, "Female", null, null, null);
-		Person p18 = new Person(new PersonName("Micaela", "Weiner"), null, null, "Female", null, null, null);
-		Person p19 = new Person(new PersonName("Evangeline", "Sinkler"), null, null, "Female", null, null, null);
-		Person p20 = new Person(new PersonName("Denise", "Mcmenamin"), null, null, "Female", null, null, null);
-		Person p21 = new Person(new PersonName("Lenny", "Dilks"), null, null, "Male", null, null, null);
-		Person p22 = new Person(new PersonName("Thaddeus", "Mckelvey"), null, null, "Male", null, null, null);
-		Person p23 = new Person(new PersonName("Oliver", "Peasley"), null, null, "Male", null, null, null);
-		Person p24 = new Person(new PersonName("Trista", "Stubbe"), null, null, "Female", null, null, null);
-		Person p25 = new Person(new PersonName("Mercy", "Buckingham"), null, null, "Female", null, null, null);
-		Person p26 = new Person(new PersonName("Latonya", "Benavides"), null, null, "Female", null, null, null);
-		Person p27 = new Person(new PersonName("Latrina", "Deem"), null, null, "Female", null, null, null);
-		Person p28 = new Person(new PersonName("Gena", "Luebbert"), null, null, "Female", null, null, null);
-		Person p29 = new Person(new PersonName("Keturah", "Drown"), null, null, "Female", null, null, null);
-		Person p30 = new Person(new PersonName("Heriberto", "Kopczynski"), null, null, "Male", null, null, null);
+		Calendar bd = Calendar.getInstance();
+
+		bd.set(1991, 5, 21);
+		Person p1 = new Person(new PersonName("Nathan", "Puckett"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1975, 4, 1);
+		Person p2 = new Person(new PersonName("Liz", "Basch"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1981, 7, 20);
+		Person p3 = new Person(new PersonName("Amina", "Lucey"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1986, 4, 17);
+		Person p4 = new Person(new PersonName("Israel", "Vandever"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1976, 5, 3);
+		Person p5 = new Person(new PersonName("Kanesha", "Ephraim"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1970, 11, 9);
+		Person p6 = new Person(new PersonName("Cythia", "Lytle"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1982, 2, 5);
+		Person p7 = new Person(new PersonName("Krysten", "Gaeta"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1979, 6, 23);
+		Person p8 = new Person(new PersonName("Milford", "Brann"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1973, 11, 3);
+		Person p9 = new Person(new PersonName("Lorretta", "Kuzma"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1990, 10, 7);
+		Person p10 = new Person(new PersonName("Shanelle", "Kieffer"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1994, 5, 13);
+		Person p11 = new Person(new PersonName("Abby", "Kirkwood"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1996, 8, 27);
+		Person p12 = new Person(new PersonName("Felice", "Moulder"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1994, 8, 17);
+		Person p13 = new Person(new PersonName("Lan", "Alegria"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1997, 4, 18);
+		Person p14 = new Person(new PersonName("Alphonso", "Warnke"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1992, 5, 14);
+		Person p15 = new Person(new PersonName("Kizzy", "Mounsey"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1988, 4, 21);
+		Person p16 = new Person(new PersonName("Sharan", "Chenard"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1999, 7, 7);
+		Person p17 = new Person(new PersonName("Latashia", "Guajardo"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 1);
+		Person p18 = new Person(new PersonName("Micaela", "Weiner"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p19 = new Person(new PersonName("Evangeline", "Sinkler"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p20 = new Person(new PersonName("Denise", "Mcmenamin"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p21 = new Person(new PersonName("Lenny", "Dilks"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p22 = new Person(new PersonName("Thaddeus", "Mckelvey"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p23 = new Person(new PersonName("Oliver", "Peasley"), bd.getTime(), null, "Male", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p24 = new Person(new PersonName("Trista", "Stubbe"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p25 = new Person(new PersonName("Mercy", "Buckingham"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p26 = new Person(new PersonName("Latonya", "Benavides"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p27 = new Person(new PersonName("Latrina", "Deem"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p28 = new Person(new PersonName("Gena", "Luebbert"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1991, 5, 21);
+		Person p29 = new Person(new PersonName("Keturah", "Drown"), bd.getTime(), null, "Female", null, null, null);
+
+		bd.set(1982, 5, 21);
+		Person p30 = new Person(new PersonName("Heriberto", "Kopczynski"), bd.getTime(), null, "Male", null, null, null);
+
+		Crime c1 = new Crime(p5.getCriminalRecord(), "killed her hasband", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[0]);
+		Crime c2 = new Crime(p8.getCriminalRecord(), "stole a grossary", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[1]);
+		Crime c3 = new Crime(p4.getCriminalRecord(), "phishing Bank users", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[2]);
+		Crime c4 = new Crime(p8.getCriminalRecord(), "rapped a bank", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[3]);
+		Crime c5 = new Crime(p30.getCriminalRecord(), "burned his neighbour's car", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[5]);
+		Crime c6 = new Crime(p30.getCriminalRecord(), "abused a child", Calendar.getInstance().getTime(),
+				Crime.typeOfCrimeSuggestions[6]);
 
 		p1.getYouthRiskFactors().setPoverty(true);
 		p4.getYouthRiskFactors().setGangMembership(true);
@@ -173,16 +247,27 @@ public class EJB_of_test {
 		em.persist(p28);
 		em.persist(p29);
 		em.persist(p30);
+
+		em.persist(c1);
+		em.persist(c2);
+		em.persist(c3);
+		em.persist(c4);
+		em.persist(c5);
+		em.persist(c6);
 	}
 
 
 
 	private void createCriminalRecord() {
-		Person p = new Person(new PersonName("Matt", "Zoo"), null, null, "Male", null, null, null);
+
+		Calendar bd = Calendar.getInstance();
+		bd.set(1991, 5, 21);
+
+		Person p = new Person(new PersonName("Matt", "Zoo"), bd.getTime(), null, "Male", null, null, null);
 		IncidentReport ir = (IncidentReport) em.createNamedQuery("IncidentReport.findAll").getResultList().get(0);
 		Crime c = new Crime(p.getCriminalRecord(), "rapped old women", Calendar.getInstance().getTime(),
 				Crime.typeOfCrimeSuggestions[4]);
-		
+
 		c.setIncidentReport(ir);
 
 		p.getYouthRiskFactors().setGangMembership(true);
@@ -420,7 +505,8 @@ public class EJB_of_test {
 		// ThreatAssessment("medium"), "ugly");
 		IncidentReport ir = new IncidentReport("flirting", IncidentReport.getStatusOptions()[0], "nothing yet");
 		Location l = (Location) em.createNamedQuery("Location.findAll").getResultList().get(0);
-		Person complainant = new Person(new PersonName("Yara", ""), null, null, "Female", "Libanies", null, null);
+		Person complainant = new Person(new PersonName("Yara", ""), dateYara.getTime(), null, "Female", "Libanies",
+				null, null);
 		Relation r = new Relation(l, "happened in", ir);
 		Relation r2 = new Relation(complainant, "reported", ir);
 		// ir.addSuspectPerson(sp1);

@@ -15,23 +15,42 @@
 
 <h:body>
 
-	<c:set var="cr" value="${controllerCriminalRecord.criminalRecord}" />
-	<c:set var="included" value="true" />
-	<c:set var="crimes" value="${cr.crimes}" />
-
-	<h1>Criminal Record</h1>
-
-
-	<h2>Criminal Record For</h2>
-	<h:outputLabel
-		value="#{cr.committedBy.personName.lastName}, #{cr.committedBy.personName.firstName}" />
-	<h:link value="view" outcome="viewPerson">
-		<f:param name="id" value="#{cr.committedBy.id}" />
-	</h:link>
-	<br />
+	<ui:composition template="/management/view.xhtml">
+		<ui:define name="view">
+			<c:set var="relatable" value="#{controllerPerson.person}" />
+			<c:set var="included" value="true" />
+			<c:set var="cr" value="${controllerCriminalRecord.criminalRecord}" />
+			<c:set var="crimes" value="${cr.crimes}" />
 
 
-	<ui:include src="/management/entries/person/crime/listCrimes.xhtml" />
+			<div class="page-header">
+				<h4>
+					Criminal Record For
+					<h:link value="#{cr.committedBy.personName}" outcome="viewPerson">
+						<f:param name="id" value="#{cr.committedBy.id}" />
+					</h:link>
+				</h4>
+			</div>
 
+
+			<ul class="breadcrumb no-bg-color">
+				<li><h:link value="Home" outcome="/index.xhtml" /><span
+					class="divider" /></li>
+				<li class="active">Criminal Record For
+					#{cr.committedBy.personName}</li>
+			</ul>
+
+
+			<div class="page-header">
+				<h4>Crimes</h4>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ui:include src="/WEB-INF/includes/lists/listCrimes.xhtml" />
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

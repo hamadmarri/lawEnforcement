@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition>
+
+
+	<c:if test="${empty crimes and included}">
+		<h:outputText value="no crimes" />
+	</c:if>
+
+
+	<c:if test="${not empty crimes}">
+
+		<h:dataTable styleClass="table" var="c" value="#{crimes}">
+			<h:column>
+				<f:facet name="header">view</f:facet>
+				<h:link value="view" outcome="view">
+					<f:param name="id" value="#{c.id}" />
+				</h:link>
+			</h:column>
+			<h:column>
+				<f:facet name="header">type of the crime</f:facet>
+				<h:outputText value="#{c.typeOfCrime}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">description</f:facet>
+				<h:outputText value="#{c.description}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">date and time</f:facet>
+				<h:outputText value="#{c.dateAndTime}">
+					<f:convertDateTime pattern="MMMM dd, YYYY" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">incident report</f:facet>
+				<h:link value="view incident report" outcome="viewIR">
+					<f:param name="id" value="#{c.incidentReport.id}" />
+				</h:link>
+			</h:column>
+		</h:dataTable>
+	</c:if>
+
+
+</ui:composition>
+</html>

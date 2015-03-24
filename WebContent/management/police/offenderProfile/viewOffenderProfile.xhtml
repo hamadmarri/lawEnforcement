@@ -254,7 +254,7 @@
 
 
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<h:form>
 							<h:commandButton styleClass="btn btn-primary"
 								value="List suspects"
@@ -279,8 +279,13 @@
 							<h:dataTable styleClass="table table-striped"
 								value="#{controllerOffenderProfile.suspects}" var="sp"
 								rendered="#{controllerOffenderProfile.suspects.isEmpty() ne true}">
+
 								<h:column>
-									<h:link value="view"
+									<h:link value="View Criminal Record"
+										outcome="/management/entries/person/viewCriminalRecord.xhtml?id=#{sp.person.criminalRecord.id}" />
+								</h:column>
+								<h:column>
+									<h:link value="View Person Page"
 										outcome="/management/entries/person/viewPerson.xhtml?id=#{sp.person.id}" />
 								</h:column>
 								<h:column>

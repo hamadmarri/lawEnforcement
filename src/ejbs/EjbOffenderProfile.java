@@ -148,8 +148,8 @@ public class EjbOffenderProfile {
 		if (op.getYoungOffenderBetween17And21Years())
 			parameters.append("(p.dateOfBirth >= :startDate AND p.dateOfBirth <= :endDate) OR ");
 
-		if (op.getMale())
-			parameters.append("(p.gender = :gender) OR ");
+		// if (op.getMale())
+		parameters.append("(p.gender LIKE :gender) OR ");
 
 		if (op.getUnemployedAtTheTimeOfOffense())
 			parameters.append("(lower(p.description) LIKE :unemployedAtTheTimeOfOffense) OR ");
@@ -174,23 +174,23 @@ public class EjbOffenderProfile {
 
 		// TODO: change all checking criminal record from p.description to check
 		// the criminal records
-		if (op.getCriminalRecordOfTheft())
-			parameters.append("(lower(p.description) LIKE :criminalRecordOfTheft) OR ");
+		// if (op.getCriminalRecordOfTheft())
+		// parameters.append("(p.criminalRecord.crimes.typeOfCrime = :criminalRecordOfTheft) OR ");
 
-		if (op.getCriminalRecordOfFraud())
-			parameters.append("(lower(p.description) LIKE :criminalRecordOfFraud) OR ");
+		// if (op.getCriminalRecordOfFraud())
+		// parameters.append("(lower(p.description) LIKE :criminalRecordOfFraud) OR ");
 
-		if (op.getCriminalRecordOfBurglary())
-			parameters.append("(lower(p.description) LIKE :criminalRecordOfBurglary) OR ");
+		// if (op.getCriminalRecordOfBurglary())
+		// parameters.append("(lower(p.description) LIKE :criminalRecordOfBurglary) OR ");
 
-		if (op.getCriminalRecordOfViolence())
-			parameters.append("(lower(p.description) LIKE :criminalRecordOfViolence) OR ");
+		// if (op.getCriminalRecordOfViolence())
+		// parameters.append("(lower(p.description) LIKE :criminalRecordOfViolence) OR ");
 
-		if (op.getCriminalRecordOfCommittingDamage())
-			parameters.append("(lower(p.description) LIKE :criminalRecordOfCommittingDamage) OR ");
+		// if (op.getCriminalRecordOfCommittingDamage())
+		// parameters.append("(lower(p.description) LIKE :criminalRecordOfCommittingDamage) OR ");
 
-		if (op.getCriminalRecordOfDisorderlyConduct())
-			parameters.append("(lower(p.description) LIKE :criminalRecordOfDisorderlyConduct) OR ");
+		// if (op.getCriminalRecordOfDisorderlyConduct())
+		// parameters.append("(lower(p.description) LIKE :criminalRecordOfDisorderlyConduct) OR ");
 
 		if (op.getRecordOfImprisonment())
 			parameters.append("(lower(p.description) LIKE :recordOfImprisonment) OR ");
@@ -226,6 +226,8 @@ public class EjbOffenderProfile {
 
 		if (op.getMale())
 			nq.setParameter("gender", "Male");
+		else
+			nq.setParameter("gender", "%");
 
 		if (op.getUnemployedAtTheTimeOfOffense())
 			nq.setParameter("unemployedAtTheTimeOfOffense", "%unemployed%");
@@ -248,23 +250,27 @@ public class EjbOffenderProfile {
 		if (op.getTurnedSelfIntoPolice())
 			nq.setParameter("turnedSelfIntoPolice", "%turn%self%to%police%");
 
-		if (op.getCriminalRecordOfTheft())
-			nq.setParameter("criminalRecordOfTheft", "%criminal%record%theft%");
-
-		if (op.getCriminalRecordOfFraud())
-			nq.setParameter("criminalRecordOfFraud", "%criminal%record%fraud%");
-
-		if (op.getCriminalRecordOfBurglary())
-			nq.setParameter("criminalRecordOfBurglary", "%criminal%record%burglary%");
-
-		if (op.getCriminalRecordOfViolence())
-			nq.setParameter("criminalRecordOfViolence", "%criminal%record%violence%");
-
-		if (op.getCriminalRecordOfCommittingDamage())
-			nq.setParameter("criminalRecordOfCommittingDamage", "%criminal%record%committ%damage%");
-
-		if (op.getCriminalRecordOfDisorderlyConduct())
-			nq.setParameter("criminalRecordOfDisorderlyConduct", "%criminal%record%disorder%conduct%");
+		// if (op.getCriminalRecordOfTheft())
+		// nq.setParameter("criminalRecordOfTheft", "theft");
+		//
+		// if (op.getCriminalRecordOfFraud())
+		// nq.setParameter("criminalRecordOfFraud", "%criminal%record%fraud%");
+		//
+		// if (op.getCriminalRecordOfBurglary())
+		// nq.setParameter("criminalRecordOfBurglary",
+		// "%criminal%record%burglary%");
+		//
+		// if (op.getCriminalRecordOfViolence())
+		// nq.setParameter("criminalRecordOfViolence",
+		// "%criminal%record%violence%");
+		//
+		// if (op.getCriminalRecordOfCommittingDamage())
+		// nq.setParameter("criminalRecordOfCommittingDamage",
+		// "%criminal%record%committ%damage%");
+		//
+		// if (op.getCriminalRecordOfDisorderlyConduct())
+		// nq.setParameter("criminalRecordOfDisorderlyConduct",
+		// "%criminal%record%disorder%conduct%");
 
 		if (op.getRecordOfImprisonment())
 			nq.setParameter("recordOfImprisonment", "%record%imprisonment%");

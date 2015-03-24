@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +15,7 @@ import javax.faces.bean.ViewScoped;
 
 import ejbs.EjbOffenderProfile;
 import entities.Relation;
+import entities.entries.Crime;
 import entities.entries.Person;
 import entities.entries.SuspectPerson;
 import entities.police.OffenderProfile;
@@ -161,15 +163,15 @@ public class ControllerOffenderProfile implements Serializable {
 		if (suspects != null)
 			return suspects;
 
-		OffenderProfile op = getOffenderProfile(); 
+		OffenderProfile op = getOffenderProfile();
 		Long victimId = -1L;
 		List<Person> persons;
 
-		// to count how many attributes are set 
+		// to count how many attributes are set
 		// it is used to calculate the match percentage
 		int attributesCounter = getAttributeCount(op);
 
-		victim = op.getCrimeScene().getVictim(); 
+		victim = op.getCrimeScene().getVictim();
 
 		if (victim != null)
 			victimId = victim.getId();
@@ -177,6 +179,7 @@ public class ControllerOffenderProfile implements Serializable {
 		suspects = new ArrayList<SuspectPerson>();
 
 		persons = ejbOffenderProfile.getSuspects(op);
+
 
 		for (Person p : persons) {
 			SuspectPerson sp = new SuspectPerson();
@@ -210,30 +213,78 @@ public class ControllerOffenderProfile implements Serializable {
 					&& isRelationWithVictimWithMatch(sp, victimId, ".*blood.*relat.*"))
 				matches++;
 
-			if (op.getCriminalRecordOfBurglary() && description.contains("criminal") && description.contains("record")
-					&& description.contains("burglary"))
-				matches++;
+			if (op.getCriminalRecordOfBurglary()) {
+				for (Crime c : sp.getPerson().getCriminalRecord().getCrimes()) {
+					if (c.getTypeOfCrime().equals("burglary"))
+						matches++;
+				}
+			}
 
-			if (op.getCriminalRecordOfCommittingDamage() && description.contains("criminal")
-					&& description.contains("record") && description.contains("damage"))
-				matches++;
+			// if (op.getCriminalRecordOfCommittingDamage() &&
+			// description.contains("criminal")
+			// && description.contains("record") &&
+			// description.contains("damage"))
+			// matches++;
 
-			if (op.getCriminalRecordOfDisorderlyConduct() && description.contains("criminal")
-					&& description.contains("record") && description.contains("disorder")
-					&& description.contains("conduct"))
-				matches++;
+			if (op.getCriminalRecordOfCommittingDamage()) {
+				for (Crime c : sp.getPerson().getCriminalRecord().getCrimes()) {
+					if (c.getTypeOfCrime().equals("committingDamage"))
+						matches++;
+				}
+			}
 
-			if (op.getCriminalRecordOfFraud() && description.contains("criminal") && description.contains("record")
-					&& description.contains("fraud"))
-				matches++;
+			// if (op.getCriminalRecordOfDisorderlyConduct() &&
+			// description.contains("criminal")
+			// && description.contains("record") &&
+			// description.contains("disorder")
+			// && description.contains("conduct"))
+			// matches++;
 
-			if (op.getCriminalRecordOfTheft() && description.contains("criminal") && description.contains("record")
-					&& description.contains("theft"))
-				matches++;
+			if (op.getCriminalRecordOfDisorderlyConduct()) {
+				for (Crime c : sp.getPerson().getCriminalRecord().getCrimes()) {
+					if (c.getTypeOfCrime().equals("disorderlyConduct"))
+						matches++;
+				}
+			}
 
-			if (op.getCriminalRecordOfViolence() && description.contains("criminal") && description.contains("record")
-					&& description.contains("violence"))
-				matches++;
+			// if (op.getCriminalRecordOfFraud() &&
+			// description.contains("criminal") &&
+			// description.contains("record")
+			// && description.contains("fraud"))
+			// matches++;
+
+			if (op.getCriminalRecordOfFraud()) {
+				for (Crime c : sp.getPerson().getCriminalRecord().getCrimes()) {
+					if (c.getTypeOfCrime().equals("fraud"))
+						matches++;
+				}
+			}
+
+			// if (op.getCriminalRecordOfTheft() &&
+			// description.contains("criminal") &&
+			// description.contains("record")
+			// && description.contains("theft"))
+			// matches++;
+
+			if (op.getCriminalRecordOfTheft()) {
+				for (Crime c : sp.getPerson().getCriminalRecord().getCrimes()) {
+					if (c.getTypeOfCrime().equals("theft"))
+						matches++;
+				}
+			}
+
+			// if (op.getCriminalRecordOfViolence() &&
+			// description.contains("criminal") &&
+			// description.contains("record")
+			// && description.contains("violence"))
+			// matches++;
+
+			if (op.getCriminalRecordOfViolence()) {
+				for (Crime c : sp.getPerson().getCriminalRecord().getCrimes()) {
+					if (c.getTypeOfCrime().equals("violence") || c.getTypeOfCrime().equals("murder"))
+						matches++;
+				}
+			}
 
 			if (op.getFamiliarWithAreaOfOffenseOccurrence() && description.contains("familiar")
 					&& description.contains("with") && description.contains("offense") && description.contains("occur"))
@@ -286,6 +337,14 @@ public class ControllerOffenderProfile implements Serializable {
 
 			// calc the percentage
 			sp.setMatchPercentage((double) matches / (double) attributesCounter);
+
+		}
+
+		// remove all zero matches
+		for (Iterator<SuspectPerson> iterator = suspects.iterator(); iterator.hasNext();) {
+			SuspectPerson s = iterator.next();
+			if (Double.compare(s.getMatchPercentage(), 0.0) == 0)
+				iterator.remove();
 		}
 	}
 
