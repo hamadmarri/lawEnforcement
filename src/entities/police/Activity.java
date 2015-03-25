@@ -1,11 +1,15 @@
 package entities.police;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +27,6 @@ public class Activity extends Changeable implements Serializable {
 
 	private static final long serialVersionUID = -4496487588138153339L;
 
-
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private InvestigativeCase investigativeCase;
 
@@ -32,8 +35,12 @@ public class Activity extends Changeable implements Serializable {
 
 	private static String typeSuggestions[] = { "evidence", "developing leads", "conducting interviews",
 			"interrogations", "requesting warrants", "supplemental reports" };
-	private String type;
-	private String Data;
+	
+	private String type = new String();
+
+	@Lob
+	@Column(length = 20000) 
+	private String Data = new String();
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date DateAndTime;
@@ -122,8 +129,12 @@ public class Activity extends Changeable implements Serializable {
 
 
 
-	public static String[] getTypeSuggestions() {
-		return typeSuggestions;
+	// public static String[] getTypeSuggestions() {
+	// return typeSuggestions;
+	// }
+
+	public List<String> getTypeSuggestionsAsList() {
+		return Arrays.asList(typeSuggestions);
 	}
 
 

@@ -40,27 +40,43 @@
 
 
 
-				<h:form styleClass="col-md-4">
+				<h:form styleClass="col-md-6">
 					<h:panelGrid columns="2" styleClass="table borderless">
 						<h:outputLabel value="Type" />
-						<p:inputText value="#{controllerActivity.activity.type}" />
+						<p:selectOneMenu style="width: 100%" id="Build"
+							value="#{controllerActivity.activity.type}">
+							<f:selectItems
+								value="#{controllerActivity.activity.typeSuggestionsAsList}" />
+						</p:selectOneMenu>
+
 
 						<h:outputLabel value="Date and Time" />
-						<p:calendar value="#{controllerActivity.activity.dateAndTime}" />
+						<p:calendar styleClass="dateTimeField"
+							value="#{controllerActivity.activity.dateAndTime}"
+							pattern="dd-MM-yyyy" mask="true" />
 
-						<h:outputLabel value="Data" />
-						<p:inputText value="#{controllerActivity.activity.data}" />
 
 						<h:outputLabel value="Invistigative case" />
-						<p:inputText value="#{controllerActivity.investigativeCaseId}" />
+						<p:inputText disabled="true" style="width: 100%"
+							value="#{controllerActivity.investigativeCaseId}" />
 
 						<h:outputLabel value="Investigator" />
-						<p:inputText value="#{controllerActivity.investigatorId}" />
+						<p:inputText disabled="true" style="width: 100%"
+							value="#{controllerActivity.investigatorId}" />
+
+						<h:outputLabel value="Data" />
+						<p:inputTextarea style="width: 100%; min-height: 190px;"
+							value="#{controllerActivity.activity.data}" />
+
 					</h:panelGrid>
 
 					<div class="pull-right">
 						<h:commandButton styleClass="btn btn-primary" value="save"
-							action="#{controllerActivity.submit}" />
+							action="#{controllerActivity.submit}">
+
+							<f:param name="id"
+								value="#{controllerActivity.investigativeCaseId}" />
+						</h:commandButton>
 
 						<h:link styleClass="btn btn-link minor" value="cancel"
 							outcome="cancel">

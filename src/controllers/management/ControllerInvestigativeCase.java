@@ -9,19 +9,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIInput;
-import javax.faces.component.UIOutput;
 
 import security.Authorizable;
+import security.login_system.UserSessionController;
 import controllers.profile.ControllerProfile;
 import ejbs.AbstractEjb;
 import ejbs.EjbCrimeScene;
 import ejbs.EjbInvestigator;
 import entities.events.IncidentReport;
+import entities.police.Activity;
 import entities.police.CrimeScene;
 import entities.police.InvestigativeCase;
 import entities.police.Investigator;
 import entities.police.Notification;
-import entities.police.OffenderProfile;
 import entities.police.Officer;
 
 
@@ -71,6 +71,12 @@ public class ControllerInvestigativeCase implements Serializable {
 	@ManagedProperty(value = "#{controllerProfile}")
 	private ControllerProfile controllerProfile;
 
+	@ManagedProperty(value = "#{controllerActivity}")
+	private ControllerActivity controllerActivity;
+
+	@ManagedProperty(value = "#{userSessionController}")
+	private UserSessionController userSessionController;
+
 	// the id of a InvestigativeCase object
 	protected String id;
 
@@ -93,7 +99,6 @@ public class ControllerInvestigativeCase implements Serializable {
 	private Long crimeSceneId = null;
 
 	private UIInput offInputId;
-	
 
 
 
@@ -400,6 +405,30 @@ public class ControllerInvestigativeCase implements Serializable {
 
 
 
+	public ControllerActivity getControllerActivity() {
+		return controllerActivity;
+	}
+
+
+
+	public void setControllerActivity(ControllerActivity controllerActivity) {
+		this.controllerActivity = controllerActivity;
+	}
+
+
+
+	public UserSessionController getUserSessionController() {
+		return userSessionController;
+	}
+
+
+
+	public void setUserSessionController(UserSessionController userSessionController) {
+		this.userSessionController = userSessionController;
+	}
+
+
+
 	public void addInvestigator(Investigator i) {
 		getInvestigativeCase().addInvestigator(i);
 		submit();
@@ -439,6 +468,26 @@ public class ControllerInvestigativeCase implements Serializable {
 
 	public void setOffInputId(UIInput offInputId) {
 		this.offInputId = offInputId;
+	}
+
+
+
+	public String getInvId() {
+		return String.valueOf(userSessionController.getProfileId());
+	}
+
+
+
+	public String addActivity() {
+		// Activity a = new Activity();
+		// Investigator i = ejbInvestigator.getEntity((long) );
+		// a.setInvestigativeCase(getInvestigativeCase());
+		// a.setInvestigator(i);
+		//
+		// controllerActivity.setNewActivity(true);
+		// controllerActivity.setActivity(a);
+
+		return "newActivity";
 	}
 
 }

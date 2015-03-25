@@ -193,6 +193,22 @@
 								<ui:include src="/WEB-INF/includes/lists/activities.xhtml" />
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h:form>
+									<h:commandButton value="Add"
+										styleClass="btn btn-primary pull-right"
+										action="#{controllerInvestigativeCase.addActivity}">
+
+										<f:param name="inv"
+											value="#{controllerInvestigativeCase.invId}" />
+
+										<f:param name="case" value="#{controllerInvestigativeCase.id}" />
+									</h:commandButton>
+								</h:form>
+							</div>
+						</div>
+
 
 
 					</div>

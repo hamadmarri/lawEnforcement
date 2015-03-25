@@ -49,8 +49,8 @@ public class InvestigativeCase extends Relatable {
 	@Temporal(TemporalType.DATE)
 	private Date dueDate;
 
-	@OneToMany(mappedBy = "investigativeCase")
-	private List<Activity> activities;
+	@OneToMany(mappedBy = "investigativeCase") 
+	private List<Activity> activities; 
 
 	@OneToMany(mappedBy = "investigativeCase")
 	private List<Task> tasks;

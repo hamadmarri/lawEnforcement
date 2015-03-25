@@ -6,12 +6,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
+import controllers.profile.ControllerProfile;
+import security.Authorizable;
 import ejbs.AbstractEjb;
 import entities.police.Activity;
 import entities.police.InvestigativeCase;
 import entities.police.Investigator;
+import entities.police.Notification;
 
 
 /**
@@ -28,11 +33,11 @@ import entities.police.Investigator;
  *                   - InvisigativeCase that this Activity is for
  * 
  */
-@ManagedBean(name = "controllerActivity") 
+@ManagedBean(name = "controllerActivity")
 @ViewScoped
-public class ControllerActivity implements Serializable {
+public class ControllerActivity implements Serializable { 
 
-	private static final long serialVersionUID = 1737896155289958972L;
+	private static final long serialVersionUID = 1737896155289958972L; 
 
 	// EJB for Activity object
 	@EJB
@@ -45,6 +50,12 @@ public class ControllerActivity implements Serializable {
 	// EJB for InvestigativeCase object
 	@EJB
 	private AbstractEjb<InvestigativeCase> ejbInvestigativeCase;
+
+	@ManagedProperty(value = "#{controllerNotification}")
+	private ControllerNotification controllerNotification;
+
+	@ManagedProperty(value = "#{controllerProfile}")
+	private ControllerProfile controllerProfile;
 
 	// the id of a Activity object
 	protected String id;
@@ -86,6 +97,7 @@ public class ControllerActivity implements Serializable {
 	 *         proper page
 	 */
 	public String submit() {
+		InvestigativeCase invCase = null;
 
 		// update investigator based on its id
 		if (this.investigatorId != null) {
@@ -95,20 +107,42 @@ public class ControllerActivity implements Serializable {
 
 		// update investigativeCase based on its id
 		if (this.investigativeCaseId != null) {
-			InvestigativeCase invCase = (InvestigativeCase) this.ejbInvestigativeCase.getEntity(
-					this.investigativeCaseId, "InvestigativeCase");
-			this.getActivity().setInvestigativeCase(invCase);
+			invCase = (InvestigativeCase) this.ejbInvestigativeCase.getEntity(this.investigativeCaseId,
+					"InvestigativeCase");
+			this.getActivity().setInvestigativeCase(invCase); 
+
+//			this.ejbActivity.setEntityName("Activity");
 		}
 
 		// if new object it will add the object to DB,
 		// otherwise, it will just update it in DB
-		if (isNewActivity())
-			ejbActivity.add(this.activity);
-		else
-			ejbActivity.save(this.activity);
+		if (isNewActivity()) {
+			sendNotification("added activity", invCase);
+//			this.ejbActivity.setEntityName("Activity");
 
+			ejbActivity.add(this.activity);
+		
+			invCase.getActivities().add(getActivity());
+			ejbInvestigativeCase.save(invCase);
+			
+			return "toCase";
+		} else {
+			ejbActivity.save(this.activity);
+		}
 		// return "success" for navigation engine
+
 		return "success";
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public void sendNotification(String text, InvestigativeCase investigativeCase) {
+		Authorizable causedBy = controllerProfile.getAuthorizable();
+		Notification n = new Notification(text, causedBy, null, investigativeCase);
+
+		List<? extends Authorizable> authorizables = investigativeCase.getInvestigators();
+		controllerNotification.sendNotification((List<Authorizable>) authorizables, n);
 	}
 
 
@@ -144,7 +178,6 @@ public class ControllerActivity implements Serializable {
 	 */
 	public Activity getActivity() {
 
-		
 		// if the object was loaded already, just return it
 		if (this.activity != null)
 			return this.activity;
@@ -153,12 +186,10 @@ public class ControllerActivity implements Serializable {
 		if (this.id == null)
 			return null;
 
-		
 		// at this point object must be null but id is not,
 		// so load it from DB
 		this.activity = (Activity) ejbActivity.getEntity(Long.parseLong(this.id), "Activity");
 
-		
 		// hold the id of investigator
 		if (this.investigatorId == null && this.activity != null && this.activity.getInvestigator() != null)
 			setInvestigatorId(this.activity.getInvestigator().getId());
@@ -167,8 +198,6 @@ public class ControllerActivity implements Serializable {
 		if (this.investigativeCaseId == null && this.activity != null && this.activity.getInvestigativeCase() != null)
 			setInvestigativeCaseId(this.activity.getInvestigativeCase().getId());
 
-		
-		
 		return this.activity;
 	}
 
@@ -227,6 +256,30 @@ public class ControllerActivity implements Serializable {
 
 	public void setInvestigativeCaseId(Long investigativeCaseId) {
 		this.investigativeCaseId = investigativeCaseId;
+	}
+
+
+
+	public ControllerNotification getControllerNotification() {
+		return controllerNotification;
+	}
+
+
+
+	public void setControllerNotification(ControllerNotification controllerNotification) {
+		this.controllerNotification = controllerNotification;
+	}
+
+
+
+	public ControllerProfile getControllerProfile() {
+		return controllerProfile;
+	}
+
+
+
+	public void setControllerProfile(ControllerProfile controllerProfile) {
+		this.controllerProfile = controllerProfile;
 	}
 
 }

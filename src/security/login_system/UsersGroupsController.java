@@ -192,7 +192,7 @@ public class UsersGroupsController {
 
 		try {
 
-			System.out.println("********* before login **********");
+//			System.out.println("********* before login **********");
 			request.login(username, user.getSalt() + hashedPass.getPassword());
 
 			// set cookie

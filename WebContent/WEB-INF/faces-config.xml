@@ -979,7 +979,7 @@
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{param['id']}</value> 
+					<value>#{param['id']}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -1034,6 +1034,20 @@
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/police/investigativeCase/viewInvestigativeCase.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>newActivity</from-outcome>
+			<to-view-id>/management/police/investigativeCase/activity/addActivity.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>inv</name>
+					<value>#{param['inv']}</value>
+				</view-param>
+				<view-param>
+					<name>case</name>
+					<value>#{param['case']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
 			<to-view-id>/management/edit/editInvestigativeCase.xhtml</to-view-id>
@@ -1094,6 +1108,16 @@
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/management/police/investigativeCase/activity/addActivity.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>toCase</from-outcome>
+			<to-view-id>/management/police/investigativeCase/viewInvestigativeCase.xhtml</to-view-id>
+			<redirect include-view-params="true">
+				<view-param>
+					<name>id</name>
+					<value>#{param['id']}</value>
+				</view-param>
+			</redirect>
+		</navigation-case>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/management/police/investigativeCase/activity/listActivities.xhtml</to-view-id>

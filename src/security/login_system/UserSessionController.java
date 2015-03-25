@@ -18,28 +18,29 @@ import entities.Users;
 
 @ManagedBean(name = "userSessionController")
 @SessionScoped
-public class UserSessionController implements Serializable {
+public class UserSessionController implements Serializable { 
 
 	private static final long serialVersionUID = -4999739921114335774L;
 
 	@EJB
 	private EjbUserGroup userGroupEJB;
 
-	private Integer userId = null;
+	private Integer userId = null; 
 	private Integer profileId = null;
 	private String username = null;
 	private boolean loggedIn = false;
+	private boolean isValidated = false;
 
-
+ 
 
 	/*
 	 * TODO: should be removed when deploying
 	 */
 	@PostConstruct
 	public void mocking() {
-		profileId = (int) (long) UserSessionMock.userId;
-		loggedIn = true;
-		username = "hamad";
+//		 profileId = (int) (long) UserSessionMock.userId;
+//		 loggedIn = true;
+//		 username = "hamad"; 
 	}
 
 
@@ -48,7 +49,11 @@ public class UserSessionController implements Serializable {
 		if (userId == null && isLoggedIn()) {
 			Users user = (userGroupEJB.findUser(getUsername()));
 			userId = new Integer(user.getUserId());
-			profileId = new Integer(user.getProfile_id());
+			
+			if (user.getProfile_id() != null)
+				profileId = new Integer(user.getProfile_id());
+			
+			isValidated = user.getValidated() > 0 ? true : false;
 			user = null;
 		}
 
@@ -84,7 +89,7 @@ public class UserSessionController implements Serializable {
 	public String getUsername() {
 
 		if (username != null)
-			return username;
+			return username;  
 
 		try {
 			// get request object
@@ -161,6 +166,15 @@ public class UserSessionController implements Serializable {
 			Users user = (userGroupEJB.findUser(getUsername()));
 			return user.getGroupsList().get(0).getGroupName().equals("supervisor");
 		}
+
+		return false;
+	}
+
+
+
+	public boolean isValidated() {
+		if (isLoggedIn() && isValidated)
+			return true;
 
 		return false;
 	}

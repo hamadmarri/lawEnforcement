@@ -10,12 +10,15 @@
 	<f:metadata>
 		<f:event listener="#{controllerActivity.createNewActivity}"
 			type="preRenderView" />
+
+		<f:viewParam name="inv" value="#{controllerActivity.investigatorId}" />
+		<f:viewParam name="case"
+			value="#{controllerActivity.investigativeCaseId}" />
 	</f:metadata>
 </h:head>
 
 <h:body>
-	<ui:composition
-		template="/management/edit/editActivity.xhtml">
+	<ui:composition template="/management/edit/editActivity.xhtml">
 
 		<ui:define name="editHeader">
 			<h2>Add Activity</h2>

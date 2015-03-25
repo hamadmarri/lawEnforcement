@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UICommand;
+import javax.faces.component.UIComponent;
 
 import security.Authorizable;
 import security.login_system.UserSessionController;
